@@ -9,8 +9,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "gitbook serve",
-    "build": "gitbook build",
-    "install": "gitbook install"
+    "build": "npm run install && gitbook build",
+    "install": "gitbook install",
+    "publish": "npm run build && cp CNAME _book && cd _book && git init && git commit --allow-empty -m 'update book' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update book' && git push git@github.com:c-3po-org/c-3po-doc.git gh-pages --force"
   },
   "repository": {
     "type": "git",
