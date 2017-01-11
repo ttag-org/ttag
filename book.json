@@ -1,0 +1,6 @@
+{
+    "plugins": [
+        "anchorjs"
+    ],
+    "root": "./docs"
+}

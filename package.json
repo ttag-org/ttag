@@ -1,0 +1,28 @@
+{
+  "name": "@evo/c-3po-doc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "gitbook serve",
+    "build": "gitbook build",
+    "install": "gitbook install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c-3po-org/c-3po-doc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/c-3po-org/c-3po-doc/issues"
+  },
+  "homepage": "https://github.com/c-3po-org/c-3po-doc#readme",
+  "devDependencies": {
+    "gitbook-cli": "^2.3.0"
+  }
+}
