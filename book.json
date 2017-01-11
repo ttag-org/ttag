@@ -2,5 +2,5 @@
     "plugins": [
         "anchorjs"
     ],
-    "root": "./pages"
+    "root": "./gitbook"
 }
