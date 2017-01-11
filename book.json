@@ -2,5 +2,5 @@
     "plugins": [
         "anchorjs"
     ],
-    "root": "./docs"
+    "root": "./pages"
 }
