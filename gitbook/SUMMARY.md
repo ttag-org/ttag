@@ -4,7 +4,7 @@
 * [Introduction](README.md)
 * [Installation](chapter1.md)
 * [Multiline strings](multiline-strings.md)
-* Configuration
+* [Configuration](configuration.md)
 * [Whole workflow description](whole-workflow-description.md)
 
 ## functions
