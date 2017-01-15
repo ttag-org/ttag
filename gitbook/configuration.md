@@ -1,12 +1,12 @@
 ### Configuration
 
-c-3po configuration is a simple javascript object \(Config\).
+c-3po configuration is a simple javascript object \(**Config**\).
 
 ### Config.extract.output \(string\)
 
 Specifies file where to save extracted translations \(.pot file\). If this setting is present then c-3po-plugin will extract translations.
 
-### Config.extract.output \(one of: 'full', 'file', 'never'\) \[optional\]
+### Config.extract.output \(string one of: 'full', 'file', 'never'\)
 
 Set's mode for the translations file reference.
 
@@ -18,17 +18,17 @@ Set's mode for the translations file reference.
 
 ### **Config.resolve.locale \(string\)**
 
-If this configuration is present, then all translations from specified locale \(en, us, uk\) will be placed in a resulting code. 
+If this configuration is present, then all translations from specified locale \(en, us, uk\) will be placed in a resulting code.
 
 > Retrieves appropriate .po file from **config.locales **setting
 
-### **Config.resolve.unresolved \(one of: 'fail', 'warn', 'skip'\)**
+### **Config.resolve.unresolved \(string one of: 'fail', 'warn', 'skip'\)**
 
 Default behaviour - **skip**.
 
-Sets action when translation for some string is not found in .po file. 
+Sets action when translation for some string is not found in .po file.
 
-Available actions:
+Actions:
 
 **fail **- will throw exception with information about string that has no translation.
 
@@ -37,6 +37,20 @@ Available actions:
 **skip **- no reaction
 
 This setting can be useful if you want to ensure that all translations are present before some release, branch merge e.t.c.
+
+### Config.extractors.invalidFormat \(string one of: 'fail', 'warn', 'skip'\)
+
+Default behaviour -** fail**
+
+Sets action when some extracted function \(t, gettext, ngettext e.t.c\) has invalid format.
+
+Actions:
+
+**fail **- will throw exception with information about string that has no translation.
+
+**warn **- will send warn message to stdout.
+
+**skip **- no reaction
 
 
 
