@@ -6,9 +6,13 @@
   "keywords": ["gettext", "translations", "i18n"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src --out-dir dist",
-    "lint": "eslint ./src ./tests",
-    "prepublish": "npm run lint && npm run build"
+    "prepublish": "npm run lib:lint && npm run lib:build",
+    "lib:build": "babel src --out-dir dist",
+    "lib:lint": "eslint ./src ./tests",
+    "doc:serve": "gitbook serve",
+    "doc:build": "npm run doc:install && gitbook build",
+    "doc:install": "gitbook install",
+    "doc:publish": "npm run doc:build && cp CNAME _book && cd _book && git init && git commit --allow-empty -m 'update book' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update book' && git push git@github.com:c-3po-org/c-3po-doc.git gh-pages --force"
   },
   "repository": {
     "type": "git",
