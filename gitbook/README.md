@@ -18,8 +18,8 @@ The core features of this tool are:
 
 The whole solution consists of 2 parts:
 
-1. **c-3po library** - [https://github.com/AlexMost/c-3po](https://github.com/AlexMost/c-3po)
-2. **c-3po babel plugin** - [https://github.com/AlexMost/babel-plugin-c-3po](https://github.com/AlexMost/babel-plugin-c-3po)
+1. **c-3po library** - [https://github.com/c-3po-org/c-3po](https://github.com/c-3po-org/c-3po)
+2. **c-3po babel plugin** - [https://github.com/c-3po-org/babel-plugin-c-3po](https://github.com/c-3po-org/babel-plugin-c-3po)
 
 ### How it looks like in code:
 
