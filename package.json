@@ -1,6 +1,6 @@
 {
   "name": "c-3po",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "main": "dist/index.js",
   "keywords": ["gettext", "translations", "i18n"],
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AlexMost/c-3po.git"
+    "url": "git+https://github.com/c-3po-org/babel-plugin-c-3po.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AlexMost/c-3po/issues"
+    "url": "https://github.com/c-3po-org/babel-plugin-c-3po.git"
   },
-  "homepage": "https://github.com/AlexMost/c-3po#readme",
+  "homepage": "https://github.com/c-3po-org/babel-plugin-c-3po.git#readme",
   "devDependencies": {
     "@evo/eslint-config-uaprom": "1.0.7",
     "babel-cli": "6.18.0",
