@@ -1,0 +1,12 @@
+{
+  "env": {"mocha": true},
+  "globals": {
+    "_": true
+  },
+  "extends": "@evo/eslint-config-uaprom",
+  "rules": {
+    "no-unused-expressions": "off",
+    "no-unused-vars": ["error", { "varsIgnorePattern": "^_$" }],
+    "prefer-const": ["error", {"destructuring": "all"}]
+  }
+}

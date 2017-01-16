@@ -1,29 +1,36 @@
 {
-  "name": "@evo/c-3po-doc",
-  "version": "1.0.0",
+  "name": "c-3po",
+  "version": "0.0.4",
   "description": "",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "main": "dist/index.js",
+  "keywords": ["gettext", "translations", "i18n"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "gitbook serve",
-    "build": "npm run install && gitbook build",
-    "install": "gitbook install",
-    "publish": "npm run build && cp CNAME _book && cd _book && git init && git commit --allow-empty -m 'update book' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update book' && git push git@github.com:c-3po-org/c-3po-doc.git gh-pages --force"
+    "build": "babel src --out-dir dist",
+    "lint": "eslint ./src ./tests",
+    "prepublish": "npm run lint && npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/c-3po-org/c-3po-doc.git"
+    "url": "git+https://github.com/AlexMost/c-3po.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/c-3po-org/c-3po-doc/issues"
+    "url": "https://github.com/AlexMost/c-3po/issues"
   },
-  "homepage": "https://github.com/c-3po-org/c-3po-doc#readme",
+  "homepage": "https://github.com/AlexMost/c-3po#readme",
   "devDependencies": {
-    "gitbook-cli": "^2.3.0"
+    "@evo/eslint-config-uaprom": "1.0.7",
+    "babel-cli": "6.18.0",
+    "babel-core": "6.18.2",
+    "babel-preset-es2015": "6.18.0",
+    "babel-preset-stage-3": "^6.17.0",
+    "chai": "3.5.0",
+    "eslint": "2.13.1",
+    "eslint-plugin-import": "1.16.0",
+    "eslint-plugin-jsx-a11y": "1.5.5",
+    "eslint-plugin-react": "5.2.2",
+    "mocha": "3.1.2"
   }
 }
