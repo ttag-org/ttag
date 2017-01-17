@@ -1,6 +1,19 @@
 {
     "plugins": [
-        "anchorjs"
+        "anchorjs",
+        "github-buttons",
+        "github-edit"
     ],
+    "pluginsConfig": {
+        "github-buttons": {
+          "repo": "c-3po-org/c-3po",
+          "types": ["star"],
+          "size": "small"
+        },
+        "github-edit": {
+            "repo": "c-3po-org/c-3po",
+            "branch": "master"
+        }
+    },
     "root": "./gitbook"
 }
