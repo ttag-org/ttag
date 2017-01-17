@@ -22,5 +22,5 @@ const helloMike = t`Hello ${name}`;
 
 // plurals (works for default locale out of the box)
 const n = 5;
-const msg = ngettext(msgid`${ n } task left`, `${ n } tasks left`)
+const msg = ngettext(msgid`${ n } task left`, `${ n } tasks left`, n)
 ```

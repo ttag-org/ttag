@@ -37,7 +37,7 @@ const helloMike = t`Hello ${name}`;
 
 // plurals (works for default locale out of the box)
 const n = 5;
-const msg = ngettext(msgid`${ n } task left`, `${ n } tasks left`)
+const msg = ngettext(msgid`${ n } task left`, `${ n } tasks left`, n)
 
 // plurals (just one form, other forms will be inside .po files)
 const n = 5;
