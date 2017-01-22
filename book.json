@@ -2,7 +2,8 @@
     "plugins": [
         "anchorjs",
         "github-buttons",
-        "github-edit"
+        "github-edit",
+        "ga"
     ],
     "pluginsConfig": {
         "github-buttons": {
@@ -13,6 +14,9 @@
         "github-edit": {
             "repo": "c-3po-org/c-3po",
             "branch": "master"
+        },
+        "ga": {
+            "token": "UA-90721450-1"
         }
     },
     "root": "./gitbook"
