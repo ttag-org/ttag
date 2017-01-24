@@ -1,4 +1,5 @@
 {
+    "title": "c-3po javascript es6 localization tool",
     "plugins": [
         "anchorjs",
         "github-buttons",
