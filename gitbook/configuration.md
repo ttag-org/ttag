@@ -52,7 +52,9 @@ Actions:
 
 **skip **- no reaction
 
-### Config.dedent
+### Config.dedent \(boolean\)
+
+Configures wether multiline strings should be dedented - [/multiline-strings.md](/multiline-strings.md)
 
 
 
