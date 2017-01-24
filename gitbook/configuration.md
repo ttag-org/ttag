@@ -56,5 +56,20 @@ Actions:
 
 Configures wether multiline strings should be dedented - [/multiline-strings.md](/multiline-strings.md)
 
+### Config.discover \(Array of strings\)
+
+Points at what functions \(t, ngettext, gettext e.t.c\) should be discovered without import in file.
+
+### Config.defaultHeaders** \(Object\)**
+
+Default headers for .pot file \(base file with extracted translations\).
+
+Default \(English locale\):
+
+```
+'content-type': 'text/plain; charset=UTF-8'
+'plural-forms': 'nplurals=2; plural=(n!=1);'
+```
+
 
 
