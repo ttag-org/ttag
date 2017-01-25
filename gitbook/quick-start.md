@@ -2,6 +2,8 @@
 
 Here is a simple step by step tutorial for the demonstration of the full translation cycle with gettext and c-3po \(extraction, merging, resolving translations\). From the first glance, it may seem a little bit complex but I tried to simplify all necessary steps as much as possible.
 
+All quickstart sources are [here](https://github.com/c-3po-org/c-3po/tree/master/examples/quickstart).
+
 ### Step 1. Installation
 
 1. Firstly we need to create separate folder run **npm init **and  execute [installation](/chapter1.md) instructions. 
@@ -252,5 +254,5 @@ And here is an localized output:
 минуло 3 тіка
 ```
 
-
+All quickstart sources are [here](https://github.com/c-3po-org/c-3po/tree/master/examples/quickstart).
 
