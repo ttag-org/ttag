@@ -1,6 +1,6 @@
 # Quick Start
 
-Here is a simple step by step tutorial for the demonstration of the full translation cycle with gettext and c-3po \(extraction, merging, resolving translations\). From the first glance it may seem a little bit complex but I tried to simplify all necessary steps as much as possible.
+Here is a simple step by step tutorial for the demonstration of the full translation cycle with gettext and c-3po \(extraction, merging, resolving translations\). From the first glance, it may seem a little bit complex but I tried to simplify all necessary steps as much as possible.
 
 ### Step 1. Installation
 
