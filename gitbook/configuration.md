@@ -22,6 +22,12 @@ If this configuration is present, then all translations from specified locale \(
 
 > Retrieves appropriate .po file from **config.locales **setting
 
+### **Config.locales \(object map with locale: &lt;filepath&gt;\)**
+
+Object keys are locales \(uk, en e.t.c\).
+
+Object values are paths to the appropriate .po files.
+
 ### **Config.resolve.unresolved \(string one of: 'fail', 'warn', 'skip'\)**
 
 Default behaviour - **skip**.
