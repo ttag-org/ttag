@@ -2,8 +2,6 @@
 
 Here is a simple step by step tutorial for the demonstration of the full translation cycle with gettext and c-3po \(extraction, merging, resolving translations\). From the first glance it may seem a little bit complex but I tried to simplify all necessary steps as much as possible.
 
-> Gettext utilities will be used for merging .pot and .po files. As it was pointed in the [introduciton](/README.md) c-3po works closely with **gettext** utilities and provides some helper methods for extraction translations from javascript and placing them back at a compile time.
-
 ### Step 1. Installation
 
 1. Firstly we need to create separate folder run **npm init **and  execute [installation](/chapter1.md) instructions. 
@@ -14,7 +12,7 @@ npm install --save-dev babel-cli
 npm install --save-dev babel-preset-es2015
 ```
 
-   3. Add **.babelrc **file
+1. Add **.babelrc **file
 
 ```
 {
@@ -118,7 +116,7 @@ To be able to localize our program, gettext utility requires template file with 
 }
 ```
 
-As we see, we added **extract** env configuration, and extract settings to c-3po plugin. 
+As we see, we added **extract** env configuration, and extract settings to c-3po plugin.
 
 Let's add extraction command to our **package.json **scripts section:
 
@@ -172,6 +170,12 @@ msgid_plural "${ 0 } ticks passed"
 msgstr[0] ""
 msgstr[1] ""
 ```
+
+### Step 5. Adding locale and merging .pot and po file
+
+Template files are used only on extraction step, translators are not working with them. After extraction phase we need to merge existing translations with newly extracted. This is where gettext utility [msgmerge](https://www.gnu.org/software/gettext/manual/html_node/msgmerge-Invocation.html) is needed.
+
+> You need to install [gettext](https://www.gnu.org/software/gettext/manual/gettext.html) utility and have [msgmerge](https://www.gnu.org/software/gettext/manual/gettext.html#msgmerge-Invocation) and [msginit](https://www.gnu.org/software/gettext/manual/gettext.html#msginit-Invocation) commands available inside the environment.
 
 
 
