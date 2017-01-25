@@ -1,21 +1,20 @@
 # Quick Start
 
-Here is a simple tutorial for the demonstration of the full translation cycle with gettext and c-3po \(extraction, merging, resolving translations\). 
+Here is a simple step by step tutorial for the demonstration of the full translation cycle with gettext and c-3po \(extraction, merging, resolving translations\). From the first glance it may seem a little bit complex but I tried to simplify all necessary steps as much as possible.
 
 > Gettext utilities will be used for merging .pot and .po files. As it was pointed in the [introduciton](/README.md) c-3po works closely with **gettext** utilities and provides some helper methods for extraction translations from javascript and placing them back at a compile time.
 
 ### Step 1. Installation
 
 1. Firstly we need to create separate folder run **npm init **and  execute [installation](/chapter1.md) instructions. 
-2. Also we need to ensure that [**gettext**](https://www.gnu.org/software/gettext/) utilities are installed on our system \(commands [**msginit**](https://www.gnu.org/software/gettext/manual/html_node/msginit-Invocation.html#msginit-Invocation)**, **[**msgmerge**](https://www.gnu.org/software/gettext/manual/html_node/msgmerge-Invocation.html#msgmerge-Invocation)** **must be available\).
-3. babel-cli and es2015 presets should be available.
+2. babel-cli and es2015 presets should be available.
 
 ```
 npm install --save-dev babel-cli
 npm install --save-dev babel-preset-es2015
 ```
 
-   4. Add **.babelrc **file
+   3. Add **.babelrc **file
 
 ```
 {
@@ -99,6 +98,79 @@ starting count up to 3
 1 tick passed
 2 ticks passed
 3 ticks passed
+```
+
+### Step 4. Extracting translations to .pot file
+
+To be able to localize our program, gettext utility requires template file with strings that are need to be translated. Template file is a [.pot file](https://www.gnu.org/software/gettext/manual/html_node/Template.html#Template). All c-3po behaviour can be customized by [config](/configuration.md). We can use [env options](https://babeljs.io/docs/usage/babelrc/#env-option) for making different configuration options in our **.babelrc. **Let's add extraction feature:
+
+```js
+{
+  "presets": ["es2015"],
+  "plugins": ["c-3po"],
+  "env": {
+    "extract": {
+        "plugins": [
+            ["c-3po", { "extract": { "output": "extract.pot" } }]
+        ]
+    }
+  }
+}
+```
+
+As we see, we added **extract** env configuration, and extract settings to c-3po plugin. 
+
+Let's add extraction command to our **package.json **scripts section:
+
+```
+"scripts": {
+    ...
+    "extract": "BABEL_ENV=extract babel count-1.js"
+  },
+```
+
+And execute **npm run extract**. File **extract.pot **must be created:
+
+```
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: count-1.js:6
+msgid "${ 0 } tick passed"
+msgid_plural "${ 0 } ticks passed"
+msgstr[0] ""
+msgstr[1] ""
+```
+
+We can observe that strings inside [**ngettext**](/ngettext.md)** **were extracted to template file. Let's add another one that we have in our program, by tagging with [**t**](/tag-gettext--t-.md) function:
+
+```javascript
+import { ngettext, msgid, t } from 'c-3po';
+
+...
+console.log(t`starting count up to ${n}`);
+...
+```
+
+And after executing extract one again we will have this in .pot file:
+
+```
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: count-1.js:4
+msgid "starting count up to ${ 0 }"
+msgstr ""
+
+#: count-1.js:6
+msgid "${ 0 } tick passed"
+msgid_plural "${ 0 } ticks passed"
+msgstr[0] ""
+msgstr[1] ""
 ```
 
 
