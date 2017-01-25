@@ -6,4 +6,4 @@ Detailed step by step description is - [here](https://c-3po.js.org/quick-start.h
 npm install
 ```
 
-All available operations in package.json scripts section. 
+All available operations are in package.json scripts section. 
