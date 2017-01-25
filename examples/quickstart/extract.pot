@@ -1,0 +1,14 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: count-1.js:4
+msgid "starting count up to ${ 0 }"
+msgstr ""
+
+#: count-1.js:6
+msgid "${ 0 } tick passed"
+msgid_plural "${ 0 } ticks passed"
+msgstr[0] ""
+msgstr[1] ""

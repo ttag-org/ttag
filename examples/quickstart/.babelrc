@@ -1,0 +1,21 @@
+{
+  "presets": ["es2015"],
+  "plugins": ["c-3po"],
+  "env": {
+    "extract": {
+        "plugins": [
+            ["c-3po", { "extract": { "output": "extract.pot" } }]
+        ]
+    },
+    'resolve-uk': {
+        "plugins": [
+            ["c-3po", 
+            { 
+                "resolve": { "locale": "uk" },
+                "locales": { "uk": "uk.po"},
+            }
+            ]
+        ]
+    }
+  }
+}
