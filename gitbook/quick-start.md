@@ -49,7 +49,7 @@ starting count up to 3
 
 ### Step 3. Handling plural forms
 
-Let's assume we want to localize this output for some different locale. But before this step, let's fix plural form for \`1 ticks passed\` to \`1 tick passed\`. To fix this issue, let's start with adding **c-3po **plugin to **.babelrc:**
+Let's assume we want to localize this output for some different locale. But before this step, let's fix plural form for \`1 ticks passed\` to \`1 tick passed\`. To fix this issue, let's start with adding the **c-3po **plugin to **.babelrc:**
 
 ```
 {
@@ -58,7 +58,7 @@ Let's assume we want to localize this output for some different locale. But befo
 }
 ```
 
-After that, let's modify our previous program and save it to another file **count-1.js**. We can use [ngettext](/ngettext.md) function for plural forms:
+After that, let's modify our previous program and save it to another file **count-1.js**. We can use the [ngettext](/ngettext.md) function for plural forms:
 
 > c-3po will not proceed ngettext without import
 
@@ -100,7 +100,7 @@ starting count up to 3
 
 ### Step 4. Extracting translations to .pot file
 
-To be able to localize our program, gettext utility requires template file with strings that are need to be translated. Template file is a [.pot file](https://www.gnu.org/software/gettext/manual/html_node/Template.html#Template). All c-3po behaviour can be customized by [config](/configuration.md). We can use [env options](https://babeljs.io/docs/usage/babelrc/#env-option) for making different configuration options in our **.babelrc. **Let's add extraction feature:
+To be able to localize our program, gettext utility requires template file with strings that need to be translated. The template file is a [.pot file](https://www.gnu.org/software/gettext/manual/html_node/Template.html#Template). All c-3po behavior can be customized by [config](/configuration.md). We can use [env options](https://babeljs.io/docs/usage/babelrc/#env-option) for making different configuration options in our **.babelrc. **Let's add extraction feature:
 
 ```js
 {
@@ -173,11 +173,11 @@ msgstr[1] ""
 
 ### Step 5. Adding locale and merging .pot and po file
 
-Template files are used only on extraction step, translators are not working with them. After extraction phase we need to merge existing translations with newly extracted. This is where gettext utility [msgmerge](https://www.gnu.org/software/gettext/manual/html_node/msgmerge-Invocation.html) is needed.
+Template files are used only on extraction step, translators are not working with them. After extraction phase, we need to merge existing translations with newly extracted. This is where gettext utility [msgmerge](https://www.gnu.org/software/gettext/manual/html_node/msgmerge-Invocation.html) is needed.
 
-> You need to install [gettext](https://www.gnu.org/software/gettext/manual/gettext.html) utility and have [msginit](https://www.gnu.org/software/gettext/manual/gettext.html#msginit-Invocation) command available inside the environment. Or you can just copy and paste uk.po file from the repository or this tutorial.
+> You need to install [gettext](https://www.gnu.org/software/gettext/manual/gettext.html) utility and have the [msginit](https://www.gnu.org/software/gettext/manual/gettext.html#msginit-Invocation) command available inside the environment. Or you can just copy and paste uk.po file from the repository or this tutorial.
 
-Let's assume we decided to add Ukrainian locale. Let's do it with **msginit **command:
+Let's assume we decided to add Ukrainian locale. Let's do it with the **msginit **command:
 
 ```
 msginit -i extract.pot -o uk.po -l uk
@@ -223,7 +223,7 @@ Let's add another env configuration to our **.babelrc **file to be able to resol
 }
 ```
 
-We added resolve and locales attributes to specify which locale must be resolved in sources and which .po file is appropriate to locale.
+We added resolve and locales attribute to specify which locale must be resolved and which .po file is appropriate to locale.
 
 Let's also add new command in scripts section
 
