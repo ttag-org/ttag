@@ -175,7 +175,82 @@ msgstr[1] ""
 
 Template files are used only on extraction step, translators are not working with them. After extraction phase we need to merge existing translations with newly extracted. This is where gettext utility [msgmerge](https://www.gnu.org/software/gettext/manual/html_node/msgmerge-Invocation.html) is needed.
 
-> You need to install [gettext](https://www.gnu.org/software/gettext/manual/gettext.html) utility and have [msgmerge](https://www.gnu.org/software/gettext/manual/gettext.html#msgmerge-Invocation) and [msginit](https://www.gnu.org/software/gettext/manual/gettext.html#msginit-Invocation) commands available inside the environment.
+> You need to install [gettext](https://www.gnu.org/software/gettext/manual/gettext.html) utility and have [msginit](https://www.gnu.org/software/gettext/manual/gettext.html#msginit-Invocation) command available inside the environment. Or you can just copy and paste uk.po file from the repository or this tutorial.
+
+Let's assume we decided to add Ukrainian locale. Let's do it with **msginit **command:
+
+```
+msginit -i extract.pot -o uk.po -l uk
+```
+
+**uk.po **will be created. This file will contain all appropriate to Ukrainian locale headers. Let's add translations:
+
+```
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language-Team: Ukrainian\n"
+"Language: uk\n"
+
+#: count-1.js:4
+msgid "starting count up to ${ 0 }"
+msgstr "починаємо рахунок до ${ 0 }"
+
+#: count-1.js:6
+msgid "${ 0 } tick passed"
+msgid_plural "${ 0 } ticks passed"
+msgstr[0] "минув ${ 0 } тік"
+msgstr[1] "минуло ${ 0 } тіка"
+msgstr[2] "минуло ${ 0 } тіків"
+```
+
+### Step 6. Resolving translations \(applying translations from .po file\).
+
+Let's add another env configuration to our **.babelrc **file to be able to resolve uk locale:
+
+```
+'resolve-uk': {
+    "plugins": [
+        ["c-3po", 
+            { 
+               "resolve": { "locale": "uk" },
+               "locales": { "uk": "uk.po"},
+            }
+        ]
+    ]
+}
+```
+
+We added resolve and locales attributes to specify which locale must be resolved in sources and which .po file is appropriate to locale.
+
+Let's also add new command in scripts section
+
+```
+{
+...
+"translate-uk": "BABEL_ENV=resolve-uk babel count-1.js -o count-1.uk.js",
+}
+```
+
+After executing **npm run translate-uk** we will get localized version of our **count-1.js** program saved in **count-1.uk.js**.
+
+We can check how it works by executing
+
+```
+node count-1.uk.js
+```
+
+And here is an localized output:
+
+```
+починаємо рахунок до 3
+минуло 0 тіків
+минув 1 тік
+минуло 2 тіка
+минуло 3 тіка
+```
 
 
 
