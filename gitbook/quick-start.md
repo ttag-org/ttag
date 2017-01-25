@@ -36,7 +36,7 @@ function startCount(n){
     }
 }
 
-startCount(10);
+startCount(3);
 ```
 
 When can execute this file and see this in output:
