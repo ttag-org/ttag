@@ -1,7 +1,7 @@
 # c-3po (WIP)
 [![NPM](https://nodei.co/npm/c-3po.png?downloads=true)](https://nodei.co/npm/c-3po/)
 
-# javascript localization library based on javascript tagged templates
+# javascript localization library based on es6 tagged templates
 
 # Installation
 
