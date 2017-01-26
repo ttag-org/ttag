@@ -7,7 +7,7 @@
 The core features of this tool are:
 
 1. Works with GNU **gettext** tool \(.po files\).
-2. Uses javascript tagged template syntax for string formatting \(no extra formatting rules, no sprintf e.t.c\).
+2. Use es6 tagged templates syntax for string formatting \(no extra formatting rules, no sprintf e.t.c\).
 3. The most intelligent **gettext** functions extraction from javascript sources \(babel plugin\).
 4. Resolves translations from .po files right into your code \(no runtime extra work in browser\).
 5. Works with everything that works with babel \(.jsx syntax for instance\).
