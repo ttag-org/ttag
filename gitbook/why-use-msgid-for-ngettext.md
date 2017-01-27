@@ -1,4 +1,4 @@
-# Why there must be the msgid tag in ngettext?
+# Why there must be a msgid tag in ngettext?
 
 From the first glance, it is not clear why we should use *msgid* tag for the first argument of ngettext
 function.
