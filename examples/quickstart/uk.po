@@ -12,11 +12,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: count-1.js:4
+#: counter.js:4
 msgid "starting count up to ${ 0 }"
 msgstr "починаємо рахунок до ${ 0 }"
 
-#: count-1.js:6
+#: counter.js:6
 msgid "${ 0 } tick passed"
 msgid_plural "${ 0 } ticks passed"
 msgstr[0] "минув ${ 0 } тік"

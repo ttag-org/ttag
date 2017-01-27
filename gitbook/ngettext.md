@@ -14,7 +14,10 @@ function test(n) {
 
 > This example works out of the box without no extra configuration for **c-3po** plugin.
 
-You may noticed that the first argument for **ngettext** is tagged with **msgid** tag. This may seem a little bit weird, but this is the only way to find translations by **msgid** without code transpilation with babel plugin. User friendly checks on extract and resolve steps will not let you forgive about that.
+You may noticed that the first argument for **ngettext** is tagged with **msgid** tag. 
+This may seem a little bit weird, but this is the only way to find translations by **msgid** without code transpilation with babel plugin. 
+User friendly checks on extract and resolve steps will not let you forgive about that.
+More details about why we are using **msgid** tag are [here](why-use-msgid-for-ngettext.md).
 
 ### ngettext format
 

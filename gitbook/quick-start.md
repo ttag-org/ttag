@@ -24,10 +24,10 @@ npm install --save-dev babel-preset-es2015
 
 ### Step 2. Setup file for translations
 
-Let's setup some simple js file \(**count.js**\) with some logic, that we will try to translate with the help of **c-3po **and **gettext.**
+Let's setup some simple js file \(**counter.js**\) with some logic, that we will try to translate with the help of **c-3po **and **gettext.**
 
 ```js
-// count.js
+// counter.js
 
 function startCount(n){
     console.log(`starting count up to ${n}`);
@@ -60,12 +60,12 @@ Let's assume we want to localize this output for some different locale. But befo
 }
 ```
 
-After that, let's modify our previous program and save it to another file **count-1.js**. We can use the [ngettext](/ngettext.md) function for plural forms:
+After that, let's modify our previous program. We can use the [ngettext](/ngettext.md) function for plural forms:
 
 > c-3po will not proceed ngettext without import
 
 ```js
-// count-1.js
+// counter.js
 
 import { ngettext, msgid } from 'c-3po';
 
@@ -78,6 +78,7 @@ function startCount(n){
 
 startCount(3);
 ```
+> We should use msgid tag for the first argument of ngettext function due to a reasons described [here](why-use-msgid-for-ngettext.md)
 
 Let's also add script to npm scripts section to be able to execute our modified file in package.json:
 
@@ -85,12 +86,12 @@ Let's also add script to npm scripts section to be able to execute our modified 
 {
 ...
 "scripts": {
-    "count-1": "babel-node count-1.js"
+    "counter": "babel-node counter.js"
   },
 }
 ```
 
-And run our program with **npm run count-1.**
+And run our program with **npm run counter.**
 
 ```
 starting count up to 3
@@ -125,7 +126,7 @@ Let's add extraction command to our **package.json **scripts section:
 ```
 "scripts": {
     ...
-    "extract": "BABEL_ENV=extract babel count-1.js"
+    "extract": "BABEL_ENV=extract babel counter.js"
   },
 ```
 
@@ -137,14 +138,15 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: count-1.js:6
+#: counter.js:6
 msgid "${ 0 } tick passed"
 msgid_plural "${ 0 } ticks passed"
 msgstr[0] ""
 msgstr[1] ""
 ```
 
-We can observe that strings inside [**ngettext**](/ngettext.md)** **were extracted to template file. Let's add another one that we have in our program, by tagging with [**t**](/tag-gettext--t-.md) function:
+We can observe that strings inside [**ngettext**](/ngettext.md)** **were extracted to template file. 
+Let's add another one that we have in our program, by tagging with [**t**](/tag-gettext--t-.md) function:
 
 ```javascript
 import { ngettext, msgid, t } from 'c-3po';
@@ -162,11 +164,11 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: count-1.js:4
+#: counter.js:4
 msgid "starting count up to ${ 0 }"
 msgstr ""
 
-#: count-1.js:6
+#: counter.js:6
 msgid "${ 0 } tick passed"
 msgid_plural "${ 0 } ticks passed"
 msgstr[0] ""
@@ -196,11 +198,11 @@ msgstr ""
 "Language-Team: Ukrainian\n"
 "Language: uk\n"
 
-#: count-1.js:4
+#: counter.js:4
 msgid "starting count up to ${ 0 }"
 msgstr "починаємо рахунок до ${ 0 }"
 
-#: count-1.js:6
+#: counter.js:6
 msgid "${ 0 } tick passed"
 msgid_plural "${ 0 } ticks passed"
 msgstr[0] "минув ${ 0 } тік"
@@ -232,16 +234,20 @@ Let's also add new command in scripts section
 ```
 {
 ...
-"translate-uk": "BABEL_ENV=resolve-uk babel count-1.js -o count-1.uk.js",
+"translate-uk": "BABEL_ENV=resolve-uk babel counter.js -o counter.uk.js",
 }
 ```
 
-After executing **npm run translate-uk** we will get localized version of our **count-1.js** program saved in **count-1.uk.js**.
+> Here we are saving localized version with a different file name for simplification, in
+general for this case it's better to store localized assets somewhere in separate folder like i18n/uk/ with
+the same filename.
+
+After executing **npm run translate-uk** we will get localized version of our **counter.js** program saved in **counter.uk.js**.
 
 We can check how it works by executing
 
 ```
-node count-1.uk.js
+node counter.uk.js
 ```
 
 And here is an localized output:

@@ -2,7 +2,8 @@
 
 ### Overview
 
-This tag is used for plural forms. And is handy when your default locale has less or more that 2 forms. \(**is not an English locale**\). It assumes that you have only 1 plural form in your sources, and other forms are inside the .po files.
+This is kind of experimental tag and can be handy when your default locale has less or more that 2 forms. \(**is not an English locale**\). 
+It assumes that you have only 1 plural form in your sources, and other forms are inside the .po files.
 
 ### Usage
 
@@ -14,13 +15,21 @@ nt(n)`Mike has ${n} banana`
 
 ### Why only 1 plural form in the sources?
 
-The decision to leave only 1 form in the sources can be confusing from the first point of view, but let me explain when you can benefit from it:
+The decision to leave only 1 form in the sources can be confusing from the first point of view, 
+but there are cases where you can benefit from it:
 
 1. Default locale \(default language for your sources\) can have more or less then 2 plural forms. Standard **ngettext** assumes, that you have exactly 2 plural forms with no other options. So, if your default language is not English - you still need to get other plural forms from .po files, or create some workarounds for handling 1, 3, 4 plural forms with other functions.
-2. If we want to make everything work without transpile step \(at a runtime on a backend\), we should remember that we can not use this kind of form: **ngettext\(\`${n} banana\`, \`${n} bananas\`, n\),** just because we will not receive proper **msgid **inside **ngettext** function. So we will end up with something like: **ngettext\(lazy\`${n} banana\`, lazy\`${n} bananas\`, n\). **Which looks a little bit confusing and still doesn't work for other than English default locales \(because of plural forms count\).
+2. If we want to make everything work without transpile step \(at a runtime on a backend\), 
+we should remember that we can not use this kind of form: **ngettext\(\`${n} banana\`, \`${n} bananas\`, n\),** just because we will not receive proper **msgid **inside **ngettext** function. 
+So we will end up with something like: **ngettext\(lazy\`${n} banana\`, lazy\`${n} bananas\`, n\). 
+Which looks a little bit confusing and still doesn't work for other than English default locales \(because of plural forms count\).
+> more about msgid is in FAQ section - [here](why-use-msgid-for-ngettext.md)
 3. The third argument, that it just looks cleaner in code to have just 1 form instead of 2, 3 or more forms. 
 
 This kind of approach leads to solution where you always have to resolve some locale \(even default\), and retrieve plural forms even for the default locale.
+
+Anyway you can use standart [ngettext](ngettext.md) function if you want to keep all plural
+forms in the code.
 
 ### 'nt' format
 

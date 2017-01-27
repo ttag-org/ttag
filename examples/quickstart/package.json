@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "count-1": "babel-node count-1.js",
-    "extract": "BABEL_ENV=extract babel count-1.js",
-    "translate-uk": "BABEL_ENV=resolve-uk babel count-1.js -o count-1.uk.js",
-    "count-1-uk": "npm run translate-uk && node count-1.uk.js"
+    "counter": "babel-node counter.js",
+    "extract": "BABEL_ENV=extract babel counter.js",
+    "translate-uk": "BABEL_ENV=resolve-uk babel counter.js -o counter.uk.js",
+    "counter-uk": "npm run translate-uk && node counter.uk.js"
   },
   "author": "",
   "license": "ISC",
