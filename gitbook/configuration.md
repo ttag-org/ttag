@@ -6,7 +6,7 @@ c-3po configuration is a simple javascript object \(**Config**\).
 
 Specifies file where to save extracted translations \(.pot file\). If this setting is present then c-3po-plugin will extract translations.
 
-### Config.extract.output \(string one of: 'full', 'file', 'never'\)
+### Config.extract.location \(string one of: 'full', 'file', 'never'\)
 
 Set's mode for the translations file reference.
 
