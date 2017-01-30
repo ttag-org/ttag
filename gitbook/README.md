@@ -21,7 +21,7 @@ The whole solution consists of 2 parts:
 1. **c-3po library** - [https://github.com/c-3po-org/c-3po](https://github.com/c-3po-org/c-3po)
 2. **c-3po babel plugin** - [https://github.com/c-3po-org/babel-plugin-c-3po](https://github.com/c-3po-org/babel-plugin-c-3po)
 
-### How it looks like in code:
+### How it looks like in the code:
 
 Here is a usage of some **c-3po** functions:
 
