@@ -16,17 +16,9 @@ Set's mode for the translations file reference.
 
 **never **- don't attach file reference
 
-### **Config.resolve.locale \(string\)**
+### **Config.resolve.translations \(string\)**
 
 If this configuration is present, then all translations from specified locale \(en, us, uk\) will be placed in a resulting code.
-
-> Retrieves appropriate .po file from **config.locales **setting
-
-### **Config.locales \(object map with locale: &lt;filepath&gt;\)**
-
-Object keys are locales \(uk, en e.t.c\).
-
-Object values are paths to the appropriate .po files.
 
 ### **Config.resolve.unresolved \(string one of: 'fail', 'warn', 'skip'\)**
 

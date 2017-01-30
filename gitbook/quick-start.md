@@ -219,15 +219,14 @@ Let's add another env configuration to our **.babelrc **file to be able to resol
     "plugins": [
         ["c-3po", 
             { 
-               "resolve": { "locale": "uk" },
-               "locales": { "uk": "uk.po"},
+               "resolve": { "translations": "uk.po" },
             }
         ]
     ]
 }
 ```
 
-We added resolve and locales attribute to specify which locale must be resolved and which .po file is appropriate to locale.
+We added resolve.translations property to specify where to get .po file with translations.
 
 Let's also add new command in scripts section
 

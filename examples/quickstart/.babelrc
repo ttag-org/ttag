@@ -9,12 +9,7 @@
     },
     'resolve-uk': {
         "plugins": [
-            ["c-3po", 
-            { 
-                "resolve": { "locale": "uk" },
-                "locales": { "uk": "uk.po"},
-            }
-            ]
+            ["c-3po", {"resolve": { "translations": "uk.po" }}]
         ]
     }
   }
