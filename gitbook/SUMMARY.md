@@ -8,7 +8,6 @@
 * [Multiline strings](multiline-strings.md)
 * [Aliasing](aliasing.md)
 * [Ignoring code blocks](c-3po-ignore.md)
-* [Whole workflow description](whole-workflow-description.md)
 
 ## functions
 
@@ -20,8 +19,6 @@
 ## Tutorials
 
 * [Quick Start](quick-start.md)
-* [Extraction tutorial](extraction-tutorial.md)
-* [Resolve tutorial](resolve-tutorial.md)
 
 ## FAQ
 
