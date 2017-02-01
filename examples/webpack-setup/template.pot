@@ -1,0 +1,30 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: app.js:5
+msgid "${ 0 } hour"
+msgid_plural "${ 0 } hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app.js:6
+msgid "${ 0 } minute"
+msgid_plural "${ 0 } minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app.js:7
+msgid "${ 0 } second"
+msgid_plural "${ 0 } seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app.js:10
+msgid "webpack with c-3po localization demo"
+msgstr ""
+
+#: app.js:11
+msgid "Current time is"
+msgstr ""

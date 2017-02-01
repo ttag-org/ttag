@@ -19,6 +19,7 @@
 ## Tutorials
 
 * [Quick Start](quick-start.md)
+* [Localization with webpack and c-3po](localization-with-webpack-and-c-3po.md)
 
 ## FAQ
 
