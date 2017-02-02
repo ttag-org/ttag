@@ -1,0 +1,25 @@
+{
+  "name": "@evo/c-3po-webpack-start",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "build-uk": "webpack --env.locale=uk",
+    "extract": "webpack --env.extract",
+    "watch": "webpack -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-c-3po": "0.0.35",
+    "babel-preset-es2015": "^6.22.0",
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "c-3po": "0.0.6"
+  }
+}
