@@ -250,7 +250,7 @@ Let's check what we see in browser:
 Note that Ukrainian locale has 3 plural forms, this information is fetched from the **uk.po** file
 headers.
 
-### Setp 2. Updating .po files with new translations
+### Setp 5. Updating .po files with new translations
 In future you will add more string literals to your app, and you will need to update .po files.
 I suggest to use `msgmerge` for that. Here is an example:
 ````bash
