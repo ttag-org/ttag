@@ -25,4 +25,6 @@ const n = 5;
 const msg = ngettext(msgid`${ n } task left`, `${ n } tasks left`, n)
 ```
 
-> Here is an example of c-3po translations setup with webpack - [http://c-3po-org.github.io/c-3po-demo/](http://c-3po-org.github.io/c-3po-demo/)
+## Tutorials
+* [Quick Start](https://c-3po.js.org/quick-start.html)
+* [Localization with webpack and c-3po](https://c-3po.js.org/localization-with-webpack-and-c-3po.html)

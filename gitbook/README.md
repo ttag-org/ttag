@@ -44,5 +44,10 @@ const n = 5;
 const msg = nt(n)`You have completed ${n} tasks`
 ```
 
-c-3po library aims to provide the most natural and reliable way to translate strings in a javascript sources. it provides some helper functions \(tags\) for making javascript templates translatable with all their shiny features like string interpolation, multiline e.t.c.
+c-3po library aims to provide the most natural and reliable way to translate strings in a javascript sources. it provides some helper functions \(tags\) for making javascript templates translatable with all their shiny 
+features like string interpolation, multiline e.t.c.
+
+## Tutorials
+* [Quick Start](https://c-3po.js.org/quick-start.html)
+* [Localization with webpack and c-3po](https://c-3po.js.org/localization-with-webpack-and-c-3po.html)
 
