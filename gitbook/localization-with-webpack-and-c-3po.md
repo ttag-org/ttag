@@ -2,8 +2,8 @@
 
 This short tutorial will demonstrate how c-3po can be used with webpack.
 
-Sources can be found - here
-Live demo - here
+Sources - [here](https://github.com/c-3po-org/c-3po/tree/master/examples/webpack-setup)
+Live demo - [here](https://c-3po-org.github.io/webpack-demo/)
 
 ### Step 1. Installation
 
@@ -247,5 +247,17 @@ Let's check what we see in browser:
 
 > ![Local image](./assets/webpack-demo-4.png)
 
-Note that Ukrainian locale has 3 plural forms, this information is fetched from **uk.po** file
+Note that Ukrainian locale has 3 plural forms, this information is fetched from the **uk.po** file
 headers.
+
+### Setp 2. Updating .po files with new translations
+In future you will add more string literals to your app, and you will need to update .po files.
+I suggest to use `msgmerge` for that. Here is an example:
+````bash
+msgmerge uk.po template.pot -U
+````
+
+### More realistic case
+Here is the separate repository where I used the code from this tutorial 
+to publish on gh-pages - [https://github.com/c-3po-org/webpack-demo](https://github.com/c-3po-org/webpack-demo).
+I have added StaticSiteGeneratorPlugin to generate html output for each locale.
