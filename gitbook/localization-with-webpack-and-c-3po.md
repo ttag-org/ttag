@@ -80,9 +80,8 @@ module.exports = {
 And now we can execute **webpack** to build our **app.js** file and open index.html in browser.
 
 ### Step 2. Plural forms
-English language has only 2 plural forms and quite simple rule for 
-defining what form we should be used (n!=1). c-3po uses en locale by default. So, you can just
-enable c-3po plugin and use **ngettext** for describing plurals.
+The English language has only 2 plural forms and a  rule for the definition of what form we should be used (n!=1). c-3po uses en locale by default. So, you can just
+enable the c-3po plugin and use **ngettext** for describing plurals.
 
 Let's add c-3po plugin to our babel loader config (I will be using webpack 2 config format).
 
@@ -140,14 +139,13 @@ total 12K
 -rw-rw-r-- 1 www www  198 jan  2 11:24 index.html
 ```
 
-Note that it's non minified and non gzipped code. So, you can see that c-3po adds minimal overhead.
+Note that it's non-minified and non-gzipped code. So, you can see that c-3po adds minimal overhead.
 This is one of the main advantages of this library is that it has almost zero
 overhead(1.9K) in the resulting bundles.
 
 ### Step 3. Extracting translations
 To be able to execute all commands from this step you need to install GNU **gettext** utility.
-(msginit, msgmerge commands should be available). The very generic description of how gettext utility
-works is:
+(msginit, msgmerge commands should be available). The very generic description of h gettext translation phases are:
 1. You wrap all your literals with special functions (gettext, ngettext e.t.c).
 2. Extracting translations to .pot files (template files).
 3. Updating existing .po files with newly extracted translations from .pot.
@@ -188,7 +186,7 @@ module.exports = ({ extract } = {}) => { // webpack 2 can accept env object
 Let's extract translated strings by executing `webpack --env.extract`.
 
 ### Step 4. Localization
-For example, let's add some locale. For this tutorial I have chosen my native locale - uk,
+For example, let's add some locale. For this tutorial, I have chosen my native locale - uk,
 because I am from the Ukraine. Let's use `msginit` tool for creation of .po file with all
 appropriate to uk locale headers:
 
@@ -197,7 +195,7 @@ msginit -i template.pot -o uk.po -l uk
 ```
 
 The next step is to add translations to uk.po. You can check this file here.
-After all translations are added, we should modify our webpack config to be able to produce
+After all, translations are added, we should modify our webpack config to be able to produce
 localized assets.
 
 ```js
@@ -234,8 +232,8 @@ module.exports = ({ extract, locale } = {}) => {
 ```
 
 Let's build localized assets with command `webpack --env.locale=uk`.
-> If you are still using webpack 1, you can use simple env vars instead 
-of webpack env. For example: `LOCALE=uk webpack`.
+> If you are still using webpack 1, you can use simple env vars instead of
+webpack env. For example: `LOCALE=uk webpack`.
 
 To see that it works le'ts modify scr attribute in *index.html*:
 ```html
