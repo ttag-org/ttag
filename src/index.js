@@ -1,3 +1,5 @@
+const locales = {};
+
 export function t(strings, ...exprs) {
     if (strings && strings.reduce) {
         return strings.reduce((r, s, i) => r + s + (exprs[i] || ''), '');
@@ -27,4 +29,8 @@ export function gettext(text) {
 
 export function ngettext(str) {
     return str;
+}
+
+export function regLocale(locale, data) {
+    locales[locale] = data;
 }
