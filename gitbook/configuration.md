@@ -69,5 +69,26 @@ Default \(English locale\):
 'plural-forms': 'nplurals=2; plural=(n!=1);'
 ```
 
+### Config.addComments **[ boolean | string ]**
+> Disabled by default
 
+Set this setting to *true* to extract leading comments before translated string.
+```js
+addComments: true
+```
 
+```js
+// this comment will be extracted to .po file
+t`translated string`
+```
+
+Also you can specify tag (mark) that will filter comments that will be extracted:
+```js
+addComments: 'translator:'
+```
+
+```js
+// this comment will not be extracted
+// translator: only this comment will be extracted
+t`translated string`
+```
