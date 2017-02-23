@@ -222,7 +222,7 @@ module.exports = ({ extract, locale } = {}) => {
                     test: /\.(js|jsx)$/,
                     use: {
                         loader: 'babel-loader',
-                        options: {plugins: [['c-3po', c3po]]}
+                        options: {plugins: [['c-3po', c3po]], cacheDirectory: !(c3po.extract || c3po.resolve) }
                     }
                 }
             ]
@@ -230,6 +230,8 @@ module.exports = ({ extract, locale } = {}) => {
     }
 };
 ```
+> it's better to disable cacheDirectory for extract and resolve phase.
+> Check this [link](why-po-is-not-updated.md) for the details.
 
 Let's build localized assets with command `webpack --env.locale=uk`.
 > If you are still using webpack 1, you can use simple env vars instead of
@@ -261,3 +263,7 @@ msgmerge uk.po template.pot -U
 Here is the separate repository where I used the code from this tutorial 
 to publish on gh-pages - [https://github.com/c-3po-org/webpack-demo](https://github.com/c-3po-org/webpack-demo).
 I have added StaticSiteGeneratorPlugin to generate html output for each locale.
+
+## Troubleshooting
+
+### no .pot files generated or .po file

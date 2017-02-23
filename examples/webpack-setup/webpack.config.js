@@ -20,7 +20,7 @@ module.exports = ({ extract, locale }={}) => {
                     test: /\.(js|jsx)$/,
                     use: {
                     loader: 'babel-loader',
-                    options: {plugins: [['c-3po', c3po]]}
+                    options: {plugins: [['c-3po', c3po]], cacheDirectory: !(c3po.extract || c3po.resolve) }
                 }
                 }
             ]
