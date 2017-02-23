@@ -263,7 +263,3 @@ msgmerge uk.po template.pot -U
 Here is the separate repository where I used the code from this tutorial 
 to publish on gh-pages - [https://github.com/c-3po-org/webpack-demo](https://github.com/c-3po-org/webpack-demo).
 I have added StaticSiteGeneratorPlugin to generate html output for each locale.
-
-## Troubleshooting
-
-### no .pot files generated or .po file
