@@ -10,5 +10,6 @@ describe('loader', () => {
         rew.__Rewire__('regLocale', spy);
         loadLocale('en', 'tests/fixtures/test-loader.mo');
         assert(spy.calledWithExactly('en', expected));
+        rew.__ResetDependency__('regLocale');
     });
 });
