@@ -126,9 +126,11 @@ Let's add extraction command to our **package.json **scripts section:
 ```
 "scripts": {
     ...
-    "extract": "BABEL_ENV=extract babel counter.js"
+    "extract": "BABEL_DISABLE_CACHE=1 BABEL_ENV=extract babel counter.js"
   },
 ```
+> It's better to disable babel cahce on resolve and extract steps.
+> Check this [link](why-po-is-not-updated.md) for the details.
 
 And execute **npm run extract**. File **extract.pot **must be created:
 
@@ -233,7 +235,7 @@ Let's also add new command in scripts section
 ```
 {
 ...
-"translate-uk": "BABEL_ENV=resolve-uk babel counter.js -o counter.uk.js",
+"translate-uk": "BABEL_DISABLE_CACHE=1 BABEL_ENV=resolve-uk babel counter.js -o counter.uk.js",
 }
 ```
 
