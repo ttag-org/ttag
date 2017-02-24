@@ -7,3 +7,7 @@ msgstr ""
 #: tests/fixtures/fixture.js:7
 msgid "test"
 msgstr "test [translation]"
+
+#: tests/fixtures/fixture.js:8
+msgid "test ${ 0 } test"
+msgstr "test ${ 0 } test [translation]"

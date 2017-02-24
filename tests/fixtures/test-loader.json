@@ -18,6 +18,12 @@
         "msgstr": [
           "test [translation]"
         ]
+      },
+      "test ${ 0 } test": {
+        "msgid": "test ${ 0 } test",
+        "msgstr": [
+          "test ${ 0 } test [translation]"
+        ]
       }
     }
   }

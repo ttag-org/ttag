@@ -12,6 +12,10 @@ describe('t', () => {
         expect(t`test`).to.eql('test [translation]');
     });
 
+    it('should resolve translation with expressions', () => {
+        expect(t`test ${1} test`).to.eql('test 1 test [translation]');
+    });
+
     it('should use the same str if no translation found', () => {
         expect(t`not found`).to.eql('not found');
     });
