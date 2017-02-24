@@ -92,3 +92,8 @@ addComments: 'translator:'
 // translator: only this comment will be extracted
 t`translated string`
 ```
+
+### Config.sortByMsgid
+
+The resulting entries in .po(.pot) file will be sorted alphabetically by msgid. Can be helpful
+for avoiding merge conflicts.
