@@ -24,6 +24,14 @@
         "msgstr": [
           "test ${ 0 } test [translation]"
         ]
+      },
+      "test with ${ 0 } plural": {
+        "msgid": "test with ${ 0 } plural",
+        "msgid_plural": "test with ${ 0 } plurals",
+        "msgstr": [
+          "test with ${ 0 } plural [translation]",
+          "test with ${ 0 } plurals [translation]"
+        ]
       }
     }
   }
