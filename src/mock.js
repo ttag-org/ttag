@@ -1,6 +1,8 @@
+export const buildStr = (strs, exprs) => strs.reduce((r, s, i) => r + s + (exprs[i] || ''), '');
+
 export function t(strings, ...exprs) {
     if (strings && strings.reduce) {
-        return strings.reduce((r, s, i) => r + s + (exprs[i] || ''), '');
+        return buildStr(strings, exprs);
     }
     return strings;
 }
@@ -8,7 +10,7 @@ export function t(strings, ...exprs) {
 export function nt() {
     return (strings, ...exprs) => {
         if (strings && strings.reduce) {
-            return strings.reduce((r, s, i) => r + s + (exprs[i] || ''), '');
+            return buildStr(strings, exprs);
         }
         return strings;
     };
@@ -16,7 +18,7 @@ export function nt() {
 
 export function msgid(strings, ...exprs) {
     if (strings && strings.reduce) {
-        return strings.reduce((r, s, i) => r + s + (exprs[i] || ''), '');
+        return buildStr(strings, exprs);
     }
     return strings;
 }
