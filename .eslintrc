@@ -7,6 +7,8 @@
   "rules": {
     "no-unused-expressions": "off",
     "no-unused-vars": ["error", { "varsIgnorePattern": "^_$" }],
-    "prefer-const": ["error", {"destructuring": "all"}]
+    "prefer-const": ["error", {"destructuring": "all"}],
+    "no-underscore-dangle": ["error", { "allow" : [
+      "__Rewire__", "__ResetDependency__", "_strs", "_exprs"]}]
   }
 }
