@@ -10,7 +10,6 @@
   ],
   "scripts": {
     "test": "BABEL_ENV=test mocha --compilers js:babel-core/register tests",
-    "prepublish": "npm run lib:lint && npm run lib:build",
     "lib:build": "babel src --out-dir dist",
     "lint": "eslint ./src ./tests",
     "fix": "eslint --fix ./src ./tests",

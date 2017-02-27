@@ -41,3 +41,8 @@ export function getPluralFunc(headers) {
     }
     return pluralFn;
 }
+
+export const defaultHeaders = {
+    'content-type': 'text/plain; charset=UTF-8',
+    'plural-forms': 'nplurals=2; plural=(n!=1);',
+};

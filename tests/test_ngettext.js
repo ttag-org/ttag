@@ -21,4 +21,13 @@ describe('ngettext', () => {
         expect(ones).to.eql('not found with 1 plural');
         expect(others).to.eql('not found with 2 plurals');
     });
+
+    it('should resolve the same string if locale is not found', () => {
+        useLocale('unknown');
+        const ones = ngettext(msgid`not found with ${1} plural`, `not found with ${1} plurals`, 1);
+        const others = ngettext(msgid`not found with ${2} plural`, `not found with ${2} plurals`, 2);
+        expect(ones).to.eql('not found with 1 plural');
+        expect(others).to.eql('not found with 2 plurals');
+        useLocale('en');
+    });
 });

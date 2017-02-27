@@ -1,11 +1,11 @@
 import { getMsgid, msgid2Orig, buildStr, makePluralFunc,
-    getPluralFunc } from './utils';
+    getPluralFunc, defaultHeaders } from './utils';
 
 const locales = {};
 let currentLocale;
 
 function findTransObj(locale, str) {
-    return locales[locale] ? locales[locale].translations[''][str] : str;
+    return locales[locale] ? locales[locale].translations[''][str] : null;
 }
 
 export function t(strings, ...exprs) {
@@ -46,7 +46,8 @@ export function ngettext(...args) {
     const id = getMsgid(args[0]._strs, args[0]._exprs);
     const n = args[args.length - 1];
     const trans = findTransObj(currentLocale, id);
-    const pluralStr = getPluralFunc(locales[currentLocale].headers);
+    const headers = trans ? locales[currentLocale].headers : defaultHeaders;
+    const pluralStr = getPluralFunc(headers);
     const pluralFn = makePluralFunc(pluralStr);
 
     if (!trans) {
