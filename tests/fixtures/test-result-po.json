@@ -1,0 +1,47 @@
+{
+  "charset": "utf-8",
+  "headers": {
+    "content-type": "text/plain; charset=UTF-8",
+    "content-transfer-encoding": "8bit",
+    "plural-forms": "nplurals=2; plural=(n!=1);"
+  },
+  "translations": {
+    "": {
+      "": {
+        "msgid": "",
+        "msgstr": [
+          "Content-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n!=1);\n"
+        ]
+      },
+      "test": {
+        "msgid": "test",
+        "comments": {
+          "reference": "tests/fixtures/fixture.js:7"
+        },
+        "msgstr": [
+          "test [translation]"
+        ]
+      },
+      "test ${ 0 } test": {
+        "msgid": "test ${ 0 } test",
+        "comments": {
+          "reference": "tests/fixtures/fixture.js:8"
+        },
+        "msgstr": [
+          "test ${ 0 } test [translation]"
+        ]
+      },
+      "test with ${ 0 } plural": {
+        "msgid": "test with ${ 0 } plural",
+        "comments": {
+          "reference": "tests/fixtures/fixture.js:9"
+        },
+        "msgid_plural": "test with ${ 0 } plurals",
+        "msgstr": [
+          "test with ${ 0 } plural [translation]",
+          "test with ${ 0 } plurals [translation]"
+        ]
+      }
+    }
+  }
+}

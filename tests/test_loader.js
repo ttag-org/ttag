@@ -12,4 +12,13 @@ describe('loader', () => {
         assert(spy.calledWithExactly('en', expected));
         rew.__ResetDependency__('regLocale');
     });
+
+    it('should load locale from .po file', () => {
+        const spy = sinon.spy();
+        const expected = JSON.parse(fs.readFileSync('tests/fixtures/test-result-po.json'));
+        rew.__Rewire__('regLocale', spy);
+        loadLocale('en', 'tests/fixtures/test-loader.po');
+        assert(spy.calledWithExactly('en', expected));
+        rew.__ResetDependency__('regLocale');
+    });
 });
