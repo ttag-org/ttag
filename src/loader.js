@@ -20,7 +20,8 @@ export function loadLocale(locale, filepath) {
         throw new Error(`Unsupported filetype ${filepath}`);
     }
 
-    if (filepath && typeof filepath === 'object') {
+    if (filepath && typeof filepath === 'object' &&
+        filepath.translations && filepath.headers) {
         return regLocale(locale, filepath);
     }
 

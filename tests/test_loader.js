@@ -24,9 +24,9 @@ describe('loader', () => {
 
     it('should load locale from object', () => {
         const spy = sinon.spy();
-        const expected = { test: 'test' };
+        const expected = { headers: 'test', translations: 'test' };
         rew.__Rewire__('regLocale', spy);
-        loadLocale('en', { test: 'test' });
+        loadLocale('en', { headers: 'test', translations: 'test' });
         assert(spy.calledWithExactly('en', expected));
         rew.__ResetDependency__('regLocale');
     });
