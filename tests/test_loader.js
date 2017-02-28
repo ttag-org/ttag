@@ -21,4 +21,14 @@ describe('loader', () => {
         assert(spy.calledWithExactly('en', expected));
         rew.__ResetDependency__('regLocale');
     });
+
+    it('should load locale from object', () => {
+        const spy = sinon.spy();
+        const expected = { test: 'test' };
+        rew.__Rewire__('regLocale', spy);
+        loadLocale('en', { test: 'test' });
+        assert(spy.calledWithExactly('en', expected));
+        rew.__ResetDependency__('regLocale');
+    });
+
 });

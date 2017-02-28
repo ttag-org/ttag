@@ -4,7 +4,6 @@ import gParser from 'gettext-parser';
 import { regLocale } from './index';
 
 export function loadLocale(locale, filepath) {
-    // TODO: implement detection (po or mo file).
     if (typeof filepath === 'string') {
         const fileContent = fs.readFileSync(filepath);
         let data;
@@ -20,5 +19,10 @@ export function loadLocale(locale, filepath) {
 
         throw new Error(`Unsupported filetype ${filepath}`);
     }
-    return undefined;
+
+    if (filepath && typeof filepath === 'object') {
+        return regLocale(locale, filepath);
+    }
+
+    throw new Error(`Unsupported filetype ${filepath}`);
 }
