@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import gParser from 'gettext-parser';
-import { regLocale } from './index';
+import { addLocale } from './index';
 
 export function loadLocale(locale, filepath) {
     if (typeof filepath === 'string') {
@@ -9,12 +9,12 @@ export function loadLocale(locale, filepath) {
         let data;
         if (path.extname(filepath) === '.mo') {
             data = gParser.mo.parse(fileContent);
-            return regLocale(locale, data);
+            return addLocale(locale, data);
         }
 
         if (path.extname(filepath) === '.po') {
             data = gParser.po.parse(fileContent);
-            return regLocale(locale, data);
+            return addLocale(locale, data);
         }
 
         throw new Error(`Unsupported filetype ${filepath}`);
@@ -22,7 +22,7 @@ export function loadLocale(locale, filepath) {
 
     if (filepath && typeof filepath === 'object' &&
         filepath.translations && filepath.headers) {
-        return regLocale(locale, filepath);
+        return addLocale(locale, filepath);
     }
 
     throw new Error(`Unsupported filetype ${filepath}`);

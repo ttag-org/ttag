@@ -38,8 +38,9 @@ export function msgid(strings, ...exprs) {
     return strings;
 }
 
-export function gettext(text) {
-    return text;
+export function gettext(id) {
+    const transObj = findTransObj(currentLocale, id);
+    return transObj ? transObj.msgstr[0] : id;
 }
 
 export function ngettext(...args) {
@@ -59,7 +60,7 @@ export function ngettext(...args) {
     return msgid2Orig(pluralFn(n, trans.msgstr), args[0]._exprs);
 }
 
-export function regLocale(locale, data) {
+export function addLocale(locale, data) {
     locales[locale] = data;
 }
 

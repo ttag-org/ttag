@@ -30,3 +30,7 @@ export function gettext(text) {
 export function ngettext(str) {
     return str;
 }
+
+export function useLocale() {}
+
+export function regLocale() {}
