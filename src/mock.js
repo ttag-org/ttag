@@ -33,4 +33,4 @@ export function ngettext(str) {
 
 export function useLocale() {}
 
-export function regLocale() {}
+export function addLocale() {}
