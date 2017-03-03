@@ -15,6 +15,12 @@ describe('ngettext', () => {
         expect(others).to.eql('test with 2 plurals [translation]');
     });
 
+    it('should resolve translation for 0', () => {
+        const a = 0;
+        const others = ngettext(msgid`test with ${a} plural`, `test with ${a} plurals`, a);
+        expect(others).to.eql('test with 0 plurals [translation]');
+    });
+
     it('should use the same str if no translation found', () => {
         const ones = ngettext(msgid`not found with ${1} plural`, `not found with ${1} plurals`, 1);
         const others = ngettext(msgid`not found with ${2} plural`, `not found with ${2} plurals`, 2);
