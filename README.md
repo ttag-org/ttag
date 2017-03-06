@@ -3,7 +3,7 @@
 
 # javascript localization library based on es6 tagged templates
 
-### Quick demo - https://jsfiddle.net/AlexMost/9wuafbL5/6/
+### Quick demo - https://jsfiddle.net/AlexMost/9wuafbL5/7/
 
 ## Installation
 
