@@ -3,16 +3,18 @@
 
 # javascript localization library based on es6 tagged templates
 
-# Installation
+### Quick demo - https://jsfiddle.net/AlexMost/9wuafbL5/6/
+
+## Installation
 
 ```bash
 npm install --save c-3po
 npm install --save-dev babel-plugin-c-3po
 ```
 
-# Documentation - [https://c-3po.js.org](https://c-3po.js.org)
+## Documentation - [https://c-3po.js.org](https://c-3po.js.org)
 
-# Usage example
+## Usage example
 ```js
 import { t, ngettext, msgid } from 'c-3po'
 
