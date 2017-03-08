@@ -30,7 +30,7 @@ const msg = ngettext(msgid`${ n } task left`, `${ n } tasks left`, n)
 npm install --save c-3po
 npm install --save-dev babel-plugin-c-3po
 ```
-### Quick demo - https://jsfiddle.net/AlexMost/9wuafbL5/7/
+### Quick demo - https://jsfiddle.net/AlexMost/9wuafbL5/10/
 ### Docs - [https://c-3po.js.org](https://c-3po.js.org)
 
 ## Tutorials
