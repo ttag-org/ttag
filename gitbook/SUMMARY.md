@@ -21,6 +21,7 @@
 
 * [Quick Start](quick-start.md)
 * [Localization with webpack and c-3po](localization-with-webpack-and-c-3po.md)
+* [Translate without translpile](translations-without-transpile.md)
 
 ## FAQ
 
