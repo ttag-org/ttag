@@ -8,11 +8,31 @@ function findTransObj(locale, str) {
     return locales[locale] ? locales[locale].translations[''][str] : null;
 }
 
+const separator = /(\${\s*\d+\s*})/g;
+const slotIdRegexp = /\${\s*(\d+)\s*}/;
+
 export function t(strings, ...exprs) {
     if (strings && strings.reduce) {
         const id = getMsgid(strings, exprs);
         const transObj = findTransObj(currentLocale, id);
         return transObj ? msgid2Orig(transObj.msgstr[0], exprs) : id;
+    }
+    return strings;
+}
+
+export function jt(strings, ...exprs) {
+    if (strings && strings.reduce) {
+        const id = getMsgid(strings, exprs);
+        const transObj = findTransObj(currentLocale, id);
+        if (!transObj) return [id];
+
+        const translatedTokens = transObj.msgstr[0].split(separator);
+
+        return translatedTokens.map((token) => {
+            const slotIdMatch = token.match(slotIdRegexp);
+            // slotIdMatch is not null only when the token is a variable slot (${xx})
+            return slotIdMatch ? exprs[+slotIdMatch[1]] : token;
+        });
     }
     return strings;
 }
