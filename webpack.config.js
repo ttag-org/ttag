@@ -11,6 +11,8 @@ module.exports = {
         rules: [
             {test: /\.(js|jsx)$/, use: 'babel-loader'}
         ]
-
+    },
+    externals: {
+        react: 'react',
     }
 };
