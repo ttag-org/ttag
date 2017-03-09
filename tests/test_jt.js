@@ -25,4 +25,25 @@ describe('jt', () => {
         expect(jt`not found`).to.deep.eql(['not found']);
         useLocale('en');
     });
+
+    it('should handle the case that variable positions are inconsistent', () => {
+        const enLocale = {
+            headers: {
+                'plural-forms': 'nplurals=2; plural=(n!=1);',
+            },
+            translations: {
+                '': {
+                    'Click ${ 0 } and ${ 1 }': {
+                        msgid: 'Click ${ 0 } and ${ 1 }',
+                        msgstr: [
+                            'Click ${ 1 } and ${ 0 } [translation]',
+                        ],
+                    },
+                },
+            },
+        };
+        loadLocale('en2', enLocale);
+        useLocale('en2');
+        expect(jt`Click ${100} and ${200}`).to.deep.eql(['Click ', 200, ' and ', 100, ' [translation]']);
+    });
 });

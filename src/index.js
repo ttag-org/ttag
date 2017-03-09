@@ -8,9 +8,6 @@ function findTransObj(locale, str) {
     return locales[locale] ? locales[locale].translations[''][str] : null;
 }
 
-const separator = /(\${\s*\d+\s*})/g;
-const slotIdRegexp = /\${\s*(\d+)\s*}/;
-
 export function t(strings, ...exprs) {
     if (strings && strings.reduce) {
         const id = getMsgid(strings, exprs);
@@ -20,12 +17,17 @@ export function t(strings, ...exprs) {
     return strings;
 }
 
+const separator = /(\${\s*\d+\s*})/g;
+const slotIdRegexp = /\${\s*(\d+)\s*}/;
+
 export function jt(strings, ...exprs) {
     if (strings && strings.reduce) {
         const id = getMsgid(strings, exprs);
         const transObj = findTransObj(currentLocale, id);
         if (!transObj) return [id];
 
+        // splits string & capturing group into tokens
+        //
         const translatedTokens = transObj.msgstr[0].split(separator);
 
         return translatedTokens.map((token) => {
