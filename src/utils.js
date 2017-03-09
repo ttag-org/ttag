@@ -2,6 +2,35 @@ export const getMsgid = (str, exprs) => {
     return str.reduce((s, l, i) => s + l + (exprs[i] !== undefined && `\${ ${i} }` || ''), '');
 };
 
+const reactSymbol = Symbol.for('react.element');
+
+function isReactEl(el) {
+    return el.$$typeof === reactSymbol;
+}
+
+export const getReactMsgid = (strs, exprs) => {
+    const result = [];
+    let reactElsCount = 0;
+
+    strs.forEach((str, i) => {
+        let chunk = str;
+        const expr = exprs[i];
+        if (typeof expr === 'object' && isReactEl(expr)) {
+            if (typeof expr.props.children === 'string') {
+                chunk += `<${reactElsCount}>${expr.props.children}</${reactElsCount}>`;
+            } else {
+                chunk += `\${ ${i} }`;
+            }
+            reactElsCount += 1;
+        } else if (expr !== undefined) {
+            chunk += `\${ ${i} }`;
+        }
+        result.push(chunk);
+    });
+
+    return result.join('');
+};
+
 const mem = {};
 const memoize1 = (f) => (arg) => {
     if (mem[arg]) {
