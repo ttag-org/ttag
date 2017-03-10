@@ -21,7 +21,7 @@ const msg = ngettext(msgid`${ n } task left`, `${ n } tasks left`, n)
 * Uses es2015 (es6) template literals for formatting.
 * Compatible with GNU gettext utility format (.po, .pot files).
 * Intelligent translations extraction (xgettext alternative).
-* Builtin validation for translated strings format.
+* Builtin [validation](https://c-3po.js.org/validation.html) for translated strings format.
 
 
 ## Installation

@@ -1,4 +1,4 @@
-### Configuration
+# Configuration for babel-plugin-c-3po
 
 c-3po configuration is a simple javascript object \(**Config**\).
 
@@ -36,7 +36,14 @@ Actions:
 
 This setting can be useful if you want to ensure that all translations are present before some release, branch merge e.t.c.
 
-### Config.extractors.invalidFormat \(string one of: 'fail', 'warn', 'skip'\)
+Example: 
+```json
+["c-3po", {"translations": "uk.po", "unresolved": "fail"}]
+```
+
+### Config.extractors.[FunctionName].invalidFormat \(string one of: 'fail', 'warn', 'skip'\)
+
+> Available function names: tag-gettext, ngettext, gettext, tag-ngettext
 
 Default behaviour -** fail**
 
@@ -49,6 +56,13 @@ Actions:
 **warn **- will send warn message to stdout.
 
 **skip **- no reaction
+
+Example:
+```json
+["c-3po",
+  {"extractors": { "tag-gettext": { "invalidFormat": "skip" }}}
+]
+```
 
 ### Config.dedent \(boolean\)
 

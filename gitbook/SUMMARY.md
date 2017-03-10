@@ -4,8 +4,9 @@
 
 * [Introduction](README.md)
 * [Installation](chapter1.md)
-* [Configuration](configuration.md)
+* [Configuration(babel plugin)](configuration.md)
 * [Leaving comments for the translator](translator-comments.md)
+* [Validation](validation.md)
 * [Multiline strings](multiline-strings.md)
 * [Aliasing](aliasing.md)
 * [Ignoring code blocks](c-3po-ignore.md)
