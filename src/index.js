@@ -1,5 +1,6 @@
 import { getMsgid, msgid2Orig, buildStr, makePluralFunc,
     getPluralFunc, defaultHeaders } from './utils';
+import { getReactMsgid, reactMsgid2Orig, buildArr } from './react-utils';
 
 const locales = {};
 let currentLocale;
@@ -13,6 +14,15 @@ export function t(strings, ...exprs) {
         const id = getMsgid(strings, exprs);
         const transObj = findTransObj(currentLocale, id);
         return transObj ? msgid2Orig(transObj.msgstr[0], exprs) : id;
+    }
+    return strings;
+}
+
+export function rt(strings, ...exprs) {
+    if (strings && strings.reduce) {
+        const id = getReactMsgid(strings, exprs);
+        const transObj = findTransObj(currentLocale, id);
+        return transObj ? reactMsgid2Orig(transObj.msgstr[0], exprs) : buildArr(strings, exprs);
     }
     return strings;
 }
