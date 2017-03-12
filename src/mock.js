@@ -7,6 +7,13 @@ export function t(strings, ...exprs) {
     return strings;
 }
 
+export function jt(strings, ...exprs) {
+    if (strings && strings.reduce) {
+        return strings.slice(1).reduce((r, s, i) => r.concat(exprs[i], s), [strings[0]]);
+    }
+    return strings;
+}
+
 export function nt() {
     return (strings, ...exprs) => {
         if (strings && strings.reduce) {

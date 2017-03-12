@@ -17,6 +17,28 @@ export function t(strings, ...exprs) {
     return strings;
 }
 
+const separator = /(\${\s*\d+\s*})/g;
+const slotIdRegexp = /\${\s*(\d+)\s*}/;
+
+export function jt(strings, ...exprs) {
+    if (strings && strings.reduce) {
+        const id = getMsgid(strings, exprs);
+        const transObj = findTransObj(currentLocale, id);
+        if (!transObj) return [id];
+
+        // splits string & capturing group into tokens
+        //
+        const translatedTokens = transObj.msgstr[0].split(separator);
+
+        return translatedTokens.map((token) => {
+            const slotIdMatch = token.match(slotIdRegexp);
+            // slotIdMatch is not null only when the token is a variable slot (${xx})
+            return slotIdMatch ? exprs[+slotIdMatch[1]] : token;
+        });
+    }
+    return strings;
+}
+
 export function nt() {
     return (strings, ...exprs) => {
         if (strings && strings.reduce) {
