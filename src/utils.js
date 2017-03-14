@@ -48,3 +48,64 @@ export const defaultHeaders = {
     'content-type': 'text/plain; charset=UTF-8',
     'plural-forms': 'nplurals=2; plural=(n!=1);',
 };
+
+
+const variableREG = /\$\{ \w+(.\w+)* \}/g;
+
+function getObjectKeys(obj) {
+    const keys = [];
+    for (const key in obj) {  // eslint-disable-line no-restricted-syntax
+        if (obj.hasOwnProperty(key)) {
+            keys.push(key);
+        }
+    }
+    return keys;
+}
+
+function replaceVariables(str, obj) {
+    return str.replace(variableREG, (variable) => {
+        return `\$\{ ${obj[variable]} \}`;
+    });
+}
+
+function transformTranslate(translate) {
+    const variables = translate.msgid.match(variableREG);
+    if (!variables) {
+        return translate;
+    }
+
+    const variableNumberMap = {};
+    variables.forEach((variable, i) => {
+        variableNumberMap[variable] = i;
+    });
+
+    const msgid = replaceVariables(translate.msgid, variableNumberMap);
+
+    const newTranslate = { msgid };
+
+    if (translate.msgid_plural) {
+        newTranslate.msgid_plural = replaceVariables(translate.msgid_plural, variableNumberMap);
+    }
+
+    newTranslate.msgstr = [];
+    for (const str of translate.msgstr) {
+        newTranslate.msgstr.push(replaceVariables(str, variableNumberMap));
+    }
+    newTranslate.comments = translate.comments;
+    return newTranslate;
+}
+
+export function transformTranslateObj(translateObj) {
+    const newTranslations = {};
+    for (const key of getObjectKeys(translateObj.translations)) {
+        const translation = translateObj.translations[key];
+        const newTranslation = {};
+        for (const msgid of getObjectKeys(translation)) {
+            const newTranslate = transformTranslate(translation[msgid]);
+            newTranslation[newTranslate.msgid] = newTranslate;
+        }
+        newTranslations[key] = newTranslation;
+    }
+    translateObj.translations = newTranslations;
+    return translateObj;
+}

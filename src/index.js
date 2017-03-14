@@ -1,5 +1,5 @@
 import { getMsgid, msgid2Orig, buildStr, makePluralFunc,
-    getPluralFunc, defaultHeaders } from './utils';
+    getPluralFunc, defaultHeaders, transformTranslateObj } from './utils';
 
 const locales = {};
 let currentLocale;
@@ -82,7 +82,10 @@ export function ngettext(...args) {
     return msgid2Orig(pluralFn(n, trans.msgstr), args[0]._exprs);
 }
 
-export function addLocale(locale, data) {
+export function addLocale(locale, data, replaceVariablesNames = false) {
+    if (replaceVariablesNames) {
+        data = transformTranslateObj(data);
+    }
     locales[locale] = data;
 }
 
