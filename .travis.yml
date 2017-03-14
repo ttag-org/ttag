@@ -10,4 +10,7 @@ before_script:
 
 script:
   - npm run lint
-  - npm test
+  - npm test-ci
+
+after_success:
+  - npm run coverage-ci
