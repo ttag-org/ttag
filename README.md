@@ -1,4 +1,4 @@
-# c-3po [![travis](https://api.travis-ci.org/c-3po-org/c-3po.svg?master)](https://travis-ci.org/c-3po-org/c-3po) [![codecov](https://img.shields.io/codecov/c/github/c-3po-org/c-3po/master.svg?maxAge=43200)](https://codecov.io/github/c-3po-org/c-3po)
+# c-3po [![travis](https://api.travis-ci.org/c-3po-org/c-3po.svg?master)](https://travis-ci.org/c-3po-org/c-3po)
 [![NPM](https://nodei.co/npm/c-3po.png?downloads=true)](https://nodei.co/npm/c-3po/)
 
 # javascript i18n localization library based on es6 tagged templates
