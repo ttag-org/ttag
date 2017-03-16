@@ -1,8 +1,6 @@
 .idea
 node_modules
 dist
-coverage
 _book
 *.log
 .DS_Store
-.nyc_output
