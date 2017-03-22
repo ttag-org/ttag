@@ -44,8 +44,8 @@ We will extract this from the example above:
 
 ```
 #: src/ngettextDemo.js:19
-msgid "${ 0 } time clicked"
-msgid_plural "${ 0 } times clicked"
+msgid "${ n } time clicked"
+msgid_plural "${ n } times clicked"
 msgstr[0] ""
 msgstr[1] ""
 ```
@@ -56,10 +56,10 @@ Assume that translator added translations to our previous extracted entry:
 
 ```
 #: src/ngettextDemo.js:19
-msgid "${ 0 } time clicked"
-msgid_plural "${ 0 } times clicked"
-msgstr[0] "${ 0 } time clicked [translated]"
-msgstr[1] "${ 0 } times clicked [translated]"
+msgid "${ n } time clicked"
+msgid_plural "${ n } times clicked"
+msgstr[0] "${ n } time clicked [translated]"
+msgstr[1] "${ n } times clicked [translated]"
 ```
 
 The resulting code \(after transpilation will look like\):
@@ -96,4 +96,3 @@ So, if you want to use **ngettext** with Ukrainian locale, you should change thi
 > Here is a link where you can search for an appropriate headers for some other locales - [http://docs.translatehouse.org/projects/localization-guide/en/latest/l10n/pluralforms.html](http://docs.translatehouse.org/projects/localization-guide/en/latest/l10n/pluralforms.html)
 
 So, you need to make sure to use correct defaultHeaders. Those headers must correspond to your default locale.
-
