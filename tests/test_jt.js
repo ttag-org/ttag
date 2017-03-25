@@ -20,6 +20,10 @@ describe('jt', () => {
         expect(jt`not found`).to.deep.eql(['not found']);
     });
 
+    it('should use the same str with expressions if no translation found', () => {
+        expect(jt`not found ${0}`).to.deep.eql(['not found ', 0, '']);
+    });
+
     it('should use the same str if locale is not found', () => {
         useLocale('unknown');
         expect(jt`not found`).to.deep.eql(['not found']);

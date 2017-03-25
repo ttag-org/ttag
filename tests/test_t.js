@@ -21,7 +21,7 @@ describe('t', () => {
     });
 
     it('should use the same str with expressions if no translation found', () => {
-        expect(t`not found ${ 1 }`).to.eql('not found 1');
+        expect(t`not found ${0}`).to.eql('not found 0');
     });
 
     it('should use the same str if locale is not found', () => {

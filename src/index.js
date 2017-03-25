@@ -1,5 +1,5 @@
 import { getMsgid, msgid2Orig, buildStr, makePluralFunc,
-    getPluralFunc, defaultHeaders, transformTranslateObj } from './utils';
+    getPluralFunc, defaultHeaders, transformTranslateObj, buildArr } from './utils';
 
 const locales = {};
 let currentLocale;
@@ -24,7 +24,7 @@ export function jt(strings, ...exprs) {
     if (strings && strings.reduce) {
         const id = getMsgid(strings, exprs);
         const transObj = findTransObj(currentLocale, id);
-        if (!transObj) return [id];
+        if (!transObj) return buildArr(strings, exprs);
 
         // splits string & capturing group into tokens
         //

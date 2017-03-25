@@ -18,7 +18,15 @@ export const msgid2Orig = (id, exprs) => {
     return exprs.reduce((r, expr, i) => r.replace(memReg(i), expr), id);
 };
 
-export const buildStr = (strs, exprs) => strs.reduce((r, s, i) => r + s + (exprs[i] || ''), '');
+export const buildStr = (strs, exprs) => {
+    return strs.reduce((r, s, i) => r + s + (exprs[i] !== undefined ? exprs[i] : ''), '');
+};
+
+export const buildArr = (strs, exprs) => {
+    return strs.reduce((r, s, i) => {
+        return (exprs[i] !== undefined) ? r.concat(s, exprs[i]) : r.concat(s);
+    }, []);
+};
 
 function pluralFnBody(pluralStr) {
     return `return args[+ (${pluralStr})];`;
