@@ -17,7 +17,7 @@
     "doc:build": "npm run doc:install && gitbook build",
     "doc:install": "gitbook install",
     "doc:publish": "npm run doc:build && cp CNAME _book && cd _book && git init && git commit --allow-empty -m 'update book' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update book' && git push git@github.com:c-3po-org/c-3po-doc.git gh-pages --force",
-    "preversion": "npm run lint && make test",
+    "preversion": "npm run lint && npm run test",
     "prepublish": "npm run build"
   },
   "repository": {
