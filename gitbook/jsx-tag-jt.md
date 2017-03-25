@@ -3,13 +3,14 @@
 ### Overview
 jt is working in the same way as [t](tag-gettext--t-.md) but allows you to
 use jsx elements in tagged template expressions.
+This tag is useful if you are building your UI with React (or another lib that uses jsx).
 
 ### Usage:
 
-```jsx harmony
+```jsx
 import { jt } from 'c-3po';
 
-function test() {
+function Button() {
     const btn = <button>{ t`me` }</button>;
     return <span>{jt`Click ${ btn }`}</span>
 }
@@ -25,7 +26,7 @@ To make localized strings more clear and reliable for translators there are some
 jt`Hello Mike`                       // valid.
 jt`Hello ${ name }`                  // valid. (identifiers are allowed)
 
-const btn = <button>{ t`me` }</button>
+const btn = <button>{ jt`me` }</button>
 jt`Click ${ btn }` // valid. jsx elements can be used as expressions.
 ```
 
@@ -43,18 +44,15 @@ jt`Click ${ <button> me </button> }` // jsx expressions must be referenced throu
 Here is an example of what will be extracted to .pot
 
 ```js
-import { t } from 'c-3po';
-const name = 'Mike';
-console.log(t`Hello ${name}`);
+import { jt } from 'c-3po';
+jt`Click ${btn}`
 ```
 
 ```po
 #: src/source.js:8
-msgid "Hello ${ 0 }"
+msgid "Click ${ btn }"
 msgstr ""
 ```
-
-You can see that 'name' expression is displayed as a { 0 }. This is happening for a reason to make it possible to match strings in a runtime \(without compilations step\). In a runtime tag function doesn't have information about the name of literal in expression, it just has expression value, so it's reasonable to use numbers instead.
 
 ### Resolve translation
 
@@ -62,16 +60,15 @@ From the example above, let's assume that translator added translation to .po fi
 
 ```po
 #: src/source.js:8
-msgid "Hello ${ 0 }"
-msgstr "Hello ${ 0 } [translated]"
+msgid "Click ${ btn }"
+msgstr "Click ${ btn } [translated]"
 ```
 
 The resulting compiled file will contain this:
 
 ```js
 import { t } from 'c-3po'
-const name = 'Mike'
-console.log(`Hello ${ name } [translated]`)
+jt`Click ${btn} [translated]`
 ```
 
 If there are no expressions inside template, then c-3po will resolve translation as a simple string.
