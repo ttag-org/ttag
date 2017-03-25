@@ -1,0 +1,19 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: tests/fixtures/fixture.js:7
+msgid "test"
+msgstr "test [translation]"
+
+#: tests/fixtures/fixture.js:8
+msgid "test ${ a.b.c } ${ d } ${ e } test"
+msgstr "test ${ e } ${ d } ${ a.b.c } test [translation]"
+
+#: tests/fixtures/fixture.js:9
+msgid "test with ${ n } plural"
+msgid_plural "test with ${ n } plurals"
+msgstr[0] "test with ${ n } plural [translation]"
+msgstr[1] "test with ${ n } plurals [translation]"

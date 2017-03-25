@@ -16,14 +16,16 @@ export function loadFile(filepath) {
     throw new Error(`Unsupported filetype ${filepath}`);
 }
 
-export function loadLocale(locale, filepath) {
+export function loadLocale(locale, filepath, replaceVariablesNames = false) {
     if (typeof filepath === 'string') {
-        return addLocale(locale, loadFile(filepath));
+        return addLocale(locale, loadFile(filepath), replaceVariablesNames);
     }
 
-    if (filepath && typeof filepath === 'object' &&
-        filepath.translations && filepath.headers) {
-        return addLocale(locale, filepath);
+    if (
+        filepath && typeof filepath === 'object' &&
+        filepath.translations && filepath.headers
+    ) {
+        return addLocale(locale, filepath, replaceVariablesNames);
     }
 
     throw new Error(`Unsupported filetype ${filepath}`);

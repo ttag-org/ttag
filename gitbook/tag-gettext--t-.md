@@ -52,11 +52,9 @@ console.log(t`Hello ${name}`);
 
 ```po
 #: src/source.js:8
-msgid "Hello ${ 0 }"
+msgid "Hello ${ name }"
 msgstr ""
 ```
-
-You can see that 'name' expression is displayed as a { 0 }. This is happening for a reason to make it possible to match strings in a runtime \(without compilations step\). In a runtime tag function doesn't have information about the name of literal in expression, it just has expression value, so it's reasonable to use numbers instead.
 
 ### Resolve translation
 
@@ -64,8 +62,8 @@ From the example above, let's assume that translator added translation to .po fi
 
 ```po
 #: src/source.js:8
-msgid "Hello ${ 0 }"
-msgstr "Hello ${ 0 } [translated]"
+msgid "Hello ${ name }"
+msgstr "Hello ${ name } [translated]"
 ```
 
 The resulting compiled file will contain this:

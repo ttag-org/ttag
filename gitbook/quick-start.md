@@ -141,8 +141,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: counter.js:6
-msgid "${ 0 } tick passed"
-msgid_plural "${ 0 } ticks passed"
+msgid "${ i } tick passed"
+msgid_plural "${ i } ticks passed"
 msgstr[0] ""
 msgstr[1] ""
 ```
@@ -167,12 +167,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: counter.js:4
-msgid "starting count up to ${ 0 }"
+msgid "starting count up to ${ n }"
 msgstr ""
 
 #: counter.js:6
-msgid "${ 0 } tick passed"
-msgid_plural "${ 0 } ticks passed"
+msgid "${ i } tick passed"
+msgid_plural "${ i } ticks passed"
 msgstr[0] ""
 msgstr[1] ""
 ```
@@ -201,15 +201,15 @@ msgstr ""
 "Language: uk\n"
 
 #: counter.js:4
-msgid "starting count up to ${ 0 }"
-msgstr "починаємо рахунок до ${ 0 }"
+msgid "starting count up to ${ n }"
+msgstr "починаємо рахунок до ${ n }"
 
 #: counter.js:6
-msgid "${ 0 } tick passed"
-msgid_plural "${ 0 } ticks passed"
-msgstr[0] "минув ${ 0 } тік"
-msgstr[1] "минуло ${ 0 } тіка"
-msgstr[2] "минуло ${ 0 } тіків"
+msgid "${ i } tick passed"
+msgid_plural "${ i } ticks passed"
+msgstr[0] "минув ${ i } тік"
+msgstr[1] "минуло ${ i } тіка"
+msgstr[2] "минуло ${ i } тіків"
 ```
 
 ### Step 6. Resolving translations \(applying translations from .po file\).
