@@ -1,5 +1,8 @@
-# nt \(tag-ngettext\)
+# nt \(tag-ngettext\) [Experimental]
 
+> This tag is experimental and may be moved out of the core lib
+> to some kind of extension.
+ 
 ### Overview
 
 This is kind of experimental tag and can be handy when your default locale has less or more that 2 forms. \(**is not an English locale**\). 
