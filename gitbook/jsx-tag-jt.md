@@ -5,6 +5,11 @@ jt is working in the same way as [t](tag-gettext--t-.md) but allows you to
 use jsx elements in tagged template expressions.
 This tag is useful if you are building your UI with React (or another lib that uses jsx).
 
+## Live demo
+> this demo works without transpile step, consider using babel-plugin-c-3po for production usage
+
+https://jsfiddle.net/AlexMost/ravkuapg/4/
+
 ### Usage:
 
 ```jsx
