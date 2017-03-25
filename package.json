@@ -22,14 +22,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/c-3po-org/babel-plugin-c-3po.git"
+    "url": "git+https://github.com/c-3po-org/c-3po.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/c-3po-org/babel-plugin-c-3po.git"
+    "url": "https://github.com/c-3po-org/c-3po.git/issues"
   },
-  "homepage": "https://github.com/c-3po-org/babel-plugin-c-3po.git#readme",
+  "homepage": "https://github.com/c-3po-org/c-3po.git#readme",
   "devDependencies": {
     "@evo/eslint-config-uaprom": "1.0.7",
     "babel-cli": "6.18.0",
