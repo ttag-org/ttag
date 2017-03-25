@@ -12,7 +12,7 @@ export function t(strings, ...exprs) {
     if (strings && strings.reduce) {
         const id = getMsgid(strings, exprs);
         const transObj = findTransObj(currentLocale, id);
-        return transObj ? msgid2Orig(transObj.msgstr[0], exprs) : id;
+        return transObj ? msgid2Orig(transObj.msgstr[0], exprs) : buildStr(strings, exprs);
     }
     return strings;
 }

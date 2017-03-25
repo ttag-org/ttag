@@ -29,7 +29,16 @@ const msg = ngettext(msgid`${ n } task left`, `${ n } tasks left`, n)
 ```bash
 npm install --save c-3po
 npm install --save-dev babel-plugin-c-3po
+
 ```
+## Usage from CDN
+
+[https://unpkg.com/c-3po/dist/c3po.min.js](https://unpkg.com/c-3po/dist/c3po.min.js)
+
+> This project is designed to work in pair with [babel-plugin-c-3po](https://github.com/c-3po-org/babel-plugin-c-3po)
+But you can also play with it without transpile. Here is the [doc](https://c-3po.js.org/translations-without-transpile.html)
+about how to use c-3po without babel transpilation.
+
 ### Quick demo - https://jsfiddle.net/AlexMost/9wuafbL5/11/
 ### Docs - [https://c-3po.js.org](https://c-3po.js.org)
 
