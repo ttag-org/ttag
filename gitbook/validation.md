@@ -32,7 +32,7 @@ Module build failed: SyntaxError: Can not translate '${ username }'
 ```
 
 This error occurred because there is no meaningful information for 
-the translator in `${ 0 }` string.
+the translator in `${ username }` string.
 
 > More about `t` tag format [here](tag-gettext--t-.md#tag-gettext-format)
 
