@@ -16,7 +16,7 @@ https://jsfiddle.net/ravkuapg/6/
 import { jt } from 'c-3po';
 
 function Button() {
-    const btn = <button>{ t`me` }</button>;
+    const btn = <button>{ jt`me` }</button>;
     return <span>{jt`Click ${ btn }`}</span>
 }
 ```
@@ -72,7 +72,7 @@ msgstr "Click ${ btn } [translated]"
 The resulting compiled file will contain this:
 
 ```js
-import { t } from 'c-3po'
+import { jt } from 'c-3po'
 jt`Click ${btn} [translated]`
 ```
 
