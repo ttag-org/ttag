@@ -4,6 +4,11 @@
 
 Tagged **gettext** function is used almost as a simple GNU **gettex**t function but with possibility to embed some expressions inside the templates.
 
+## Live demo
+> this demo works without transpile step, consider using babel-plugin-c-3po for production usage
+
+https://jsfiddle.net/AlexMost/5vu9ep2c/1/
+
 ### Usage:
 
 ```js
