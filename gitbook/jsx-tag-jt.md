@@ -8,7 +8,7 @@ This tag is useful if you are building your UI with React (or another lib that u
 ## Live demo
 > this demo works without transpile step, consider using babel-plugin-c-3po for production usage
 
-https://jsfiddle.net/AlexMost/ravkuapg/4/
+https://jsfiddle.net/ravkuapg/6/
 
 ### Usage:
 
