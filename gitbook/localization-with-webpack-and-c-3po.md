@@ -185,6 +185,40 @@ module.exports = ({ extract } = {}) => { // webpack 2 can accept env object
 ```
 Let's extract translated strings by executing `webpack --env.extract`.
 
+The resulting extracted .pot file:
+```
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: app.js:5
+msgid "${ hours } hour"
+msgid_plural "${ hours } hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app.js:6
+msgid "${ minutes } minute"
+msgid_plural "${ minutes } minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app.js:7
+msgid "${ seconds } second"
+msgid_plural "${ seconds } seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app.js:10
+msgid "webpack with c-3po localization demo"
+msgstr ""
+
+#: app.js:11
+msgid "Current time is"
+msgstr ""
+```
+
 ### Step 4. Localization
 For example, let's add some locale. For this tutorial, I have chosen my native locale - uk,
 because I am from the Ukraine. Let's use `msginit` tool for creation of .po file with all
@@ -195,6 +229,40 @@ msginit -i template.pot -o uk.po -l uk
 ```
 
 The next step is to add translations to uk.po. You can check this file [here](https://github.com/c-3po-org/c-3po/blob/master/examples/webpack-setup/uk.po).
+
+Here are the translations:
+
+```
+#: app.js:5
+msgid "${ hours } hour"
+msgid_plural "${ hours } hours"
+msgstr[0] "${ hours } година"
+msgstr[1] "${ hours } години"
+msgstr[2] "${ hours } годин"
+
+#: app.js:6
+msgid "${ minutes } minute"
+msgid_plural "${ minutes } minutes"
+msgstr[0] "${ minutes } хвилина"
+msgstr[1] "${ minutes } хвилини"
+msgstr[2] "${ minutes } хвилин"
+
+#: app.js:7
+msgid "${ seconds } second"
+msgid_plural "${ seconds } seconds"
+msgstr[0] "${ seconds } секунда"
+msgstr[1] "${ seconds } секунди"
+msgstr[2] "${ seconds } секунд"
+
+#: app.js:10
+msgid "webpack with c-3po localization demo"
+msgstr "Демо локалізації з c-3po та webpack"
+
+#: app.js:11
+msgid "Current time is"
+msgstr "Поточний час"
+```
+
 After all, translations are added, we should modify our webpack config to be able to produce
 localized assets.
 
