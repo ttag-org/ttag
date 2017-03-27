@@ -16,7 +16,7 @@ export function loadFile(filepath) {
     throw new Error(`Unsupported filetype ${filepath}`);
 }
 
-export function loadLocale(locale, filepath, replaceVariablesNames = false) {
+export function loadLocale(locale, filepath, replaceVariablesNames = true) {
     if (typeof filepath === 'string') {
         return addLocale(locale, loadFile(filepath), replaceVariablesNames);
     }

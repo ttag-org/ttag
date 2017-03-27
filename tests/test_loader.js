@@ -8,7 +8,7 @@ describe('loader', () => {
         const spy = sinon.spy();
         const expected = JSON.parse(fs.readFileSync('tests/fixtures/test-loader.json'));
         rew.__Rewire__('addLocale', spy);
-        loadLocale('en', 'tests/fixtures/test-loader.mo');
+        loadLocale('en', 'tests/fixtures/test-loader.mo', false);
         assert(spy.calledWithExactly('en', expected, false));
         rew.__ResetDependency__('addLocale');
     });
@@ -17,7 +17,7 @@ describe('loader', () => {
         const spy = sinon.spy();
         const expected = JSON.parse(fs.readFileSync('tests/fixtures/test-result-po.json'));
         rew.__Rewire__('addLocale', spy);
-        loadLocale('en', 'tests/fixtures/test-loader.po');
+        loadLocale('en', 'tests/fixtures/test-loader.po', false);
         assert(spy.calledWithExactly('en', expected, false));
         rew.__ResetDependency__('addLocale');
     });
@@ -26,7 +26,7 @@ describe('loader', () => {
         const spy = sinon.spy();
         const expected = { headers: 'test', translations: 'test' };
         rew.__Rewire__('addLocale', spy);
-        loadLocale('en', { headers: 'test', translations: 'test' });
+        loadLocale('en', { headers: 'test', translations: 'test' }, false);
         assert(spy.calledWithExactly('en', expected, false));
         rew.__ResetDependency__('addLocale');
     });
@@ -37,7 +37,7 @@ describe('loader with transform', () => {
         const spy = sinon.spy();
         const expected = JSON.parse(fs.readFileSync('tests/fixtures/test-result-po-before-transform.json'));
         rew.__Rewire__('addLocale', spy);
-        loadLocale('en', 'tests/fixtures/test-loader-with-transform.po', true);
+        loadLocale('en', 'tests/fixtures/test-loader-with-transform.po');
         assert(spy.calledWithExactly('en', expected, true));
         rew.__ResetDependency__('addLocale');
     });
