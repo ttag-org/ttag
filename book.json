@@ -18,6 +18,10 @@
         },
         "ga": {
             "token": "UA-90721450-1"
+        },
+        "edit-link": {
+            "base": "https://github.com/USER/REPO/edit/BRANCH/path/to/book",
+            "label": "Edit This Page"
         }
     },
     "root": "./gitbook"

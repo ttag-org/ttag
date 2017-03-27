@@ -194,7 +194,7 @@ appropriate to uk locale headers:
 msginit -i template.pot -o uk.po -l uk
 ```
 
-The next step is to add translations to uk.po. You can check this file here.
+The next step is to add translations to uk.po. You can check this file [here](https://github.com/c-3po-org/c-3po/blob/master/examples/webpack-setup/uk.po).
 After all, translations are added, we should modify our webpack config to be able to produce
 localized assets.
 

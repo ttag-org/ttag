@@ -13,7 +13,6 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: app.js:5
-#, fuzzy
 msgid "${ hours } hour"
 msgid_plural "${ hours } hours"
 msgstr[0] "${ hours } година"
@@ -21,7 +20,6 @@ msgstr[1] "${ hours } години"
 msgstr[2] "${ hours } годин"
 
 #: app.js:6
-#, fuzzy
 msgid "${ minutes } minute"
 msgid_plural "${ minutes } minutes"
 msgstr[0] "${ minutes } хвилина"
@@ -29,7 +27,6 @@ msgstr[1] "${ minutes } хвилини"
 msgstr[2] "${ minutes } хвилин"
 
 #: app.js:7
-#, fuzzy
 msgid "${ seconds } second"
 msgid_plural "${ seconds } seconds"
 msgstr[0] "${ seconds } секунда"
