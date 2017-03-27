@@ -82,7 +82,7 @@ export function ngettext(...args) {
     return msgid2Orig(pluralFn(n, trans.msgstr), args[0]._exprs);
 }
 
-export function addLocale(locale, data, replaceVariablesNames = false) {
+export function addLocale(locale, data, replaceVariablesNames = true) {
     if (replaceVariablesNames) {
         data = transformTranslateObj(data);
     }
