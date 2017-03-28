@@ -5,10 +5,12 @@ jt is working in the same way as [t](tag-gettext--t-.md) but allows you to
 use jsx elements in tagged template expressions.
 This tag is useful if you are building your UI with React (or another lib that uses jsx).
 
+The biggest difference between `jt` and `t` is that `t` concatenates translations and expressions all together into a single string, while `jt` returns **an array** of translated strings and expressions.
+
 ## Live demo
 > this demo works without transpile step, consider using babel-plugin-c-3po for production usage
 
-https://jsfiddle.net/ravkuapg/6/
+https://jsfiddle.net/ravkuapg/7/
 
 ### Usage:
 
@@ -16,7 +18,7 @@ https://jsfiddle.net/ravkuapg/6/
 import { jt } from 'c-3po';
 
 function Button() {
-    const btn = <button>{ jt`me` }</button>;
+    const btn = <button key="btn">{ t`me` }</button>;
     return <span>{jt`Click ${ btn }`}</span>
 }
 ```
@@ -31,7 +33,7 @@ To make localized strings more clear and reliable for translators there are some
 jt`Hello Mike`                       // valid.
 jt`Hello ${ name }`                  // valid. (identifiers are allowed)
 
-const btn = <button>{ jt`me` }</button>
+const btn = <button key="btn">{ t`me` }</button>
 jt`Click ${ btn }` // valid. jsx elements can be used as expressions.
 ```
 
@@ -73,12 +75,13 @@ The resulting compiled file will contain this:
 
 ```js
 import { jt } from 'c-3po'
-jt`Click ${btn} [translated]`
+['Click ', btn, ' [translated]']
 ```
 
-If there are no expressions inside template, then c-3po will resolve translation as a simple string.
+When put inside curly braces `{ }` within jsx context, the returned array will be [directly consumed by jsx](https://facebook.github.io/react/docs/lists-and-keys.html).
+
+If the array item is a React element, you may need to [add `key` property on them](https://facebook.github.io/react/docs/lists-and-keys.html#keys) to get rid of the `key` prop warnings.
 
 ### Default resolve
 
-By default, if no translation was found, c-3po will just strip 't' tag before tagged template.
-
+By default, if no translation was found, c-3po returns an array of the source strings and expressions.
