@@ -2,6 +2,11 @@
 
 This is an implementation of **ngettext** function from standard **GNU** **gettext. **But also it's standard behavior can be extended by some extra configuration for handling different number of plural forms than 2. By default it works as expected with 2 plural forms. So you can use it even when you don't have actual translations, just for having support for plural forms in your code.
 
+## Live demo
+> this demo works without transpile step, consider using babel-plugin-c-3po for production usage
+
+https://jsfiddle.net/AlexMost/mc2pd1on/2/
+
 ### Usage:
 
 ```js
