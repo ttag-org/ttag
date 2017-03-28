@@ -2,10 +2,9 @@
 
 ### Overview
 jt is working in the same way as [t](tag-gettext--t-.md) but allows you to
-use jsx elements in tagged template expressions.
-This tag is useful if you are building your UI with React (or another lib that uses jsx).
+use jsx elements in tagged template expressions. The biggest difference between `jt` and `t` is that `t` concatenates translations and expressions all together into a single string, while `jt` returns **an array** of translated strings and expressions.
 
-The biggest difference between `jt` and `t` is that `t` concatenates translations and expressions all together into a single string, while `jt` returns **an array** of translated strings and expressions.
+This tag is useful if you are building your UI with React (or another lib that uses jsx).
 
 ## Live demo
 > this demo works without transpile step, consider using babel-plugin-c-3po for production usage
@@ -34,7 +33,7 @@ jt`Hello Mike`                       // valid.
 jt`Hello ${ name }`                  // valid. (identifiers are allowed)
 
 const btn = <button key="btn">{ t`me` }</button>
-jt`Click ${ btn }` // valid. jsx elements can be used as expressions.
+jt`Click ${ btn }` // even though btn stores a jsx element, it is valid because `btn` is an identifier.
 ```
 
 **Invalid:**
