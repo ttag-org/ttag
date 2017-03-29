@@ -84,14 +84,26 @@ There is a new extra function in our file - \_tag\_ngettext, but you don't need 
 
 ### Plural forms that are different from default \(English\)
 
-There are cases when your source code uses string literals from some different language than English. And here is the point when usage of ngettext becomes not so clear. For instance, you decided to write string literals in Ukrainian in your sources, because at the time of the first release it was a single language for your project. At some point, you decided to localize your strings and want to use ngettext for plurals. Ukrainian language has 3 plural forms, but standard ngettext has only 2 arguments for them, so which one of those 3 plural forms must be passed to ngettext function? c-3po suggests quite a nice solution for this problem. You can configure the number of plural forms arguments for ngettext by **defaultHeaders **property in config or by headers in Ukrainian** locale .po file**. But still c-3po will use **defaultHeaders **on resolve if translations was not found. By default c-3po uses this headers:
+There are cases when your source code uses string literals from some different language 
+than English. And here is the point when usage of ngettext becomes not so clear. 
+For instance, you decided to write string literals in Ukrainian in your sources, 
+because at the time of the first release it was a single language for your project. 
+At some point, you decided to localize your strings and want to use ngettext for plurals. 
+Ukrainian language has 3 plural forms, but standard ngettext has only 2 arguments for them, 
+so which one of those 3 plural forms must be passed to ngettext function? 
+c-3po suggests quite a nice solution for this problem. 
+You can configure the number of plural forms arguments for ngettext by 
+**[defaultHeaders](configuration.md#configdefaultheaders-object)** property in config 
+or by headers in Ukrainian the **locale .po file**. But still c-3po will use 
+**defaultHeaders** on resolve if translations was not found. 
+By default c-3po uses this headers:
 
 ```
 'content-type': 'text/plain; charset=UTF-8'
 'plural-forms': 'nplurals=2; plural=(n!=1);'
 ```
 
-So, if you want to use **ngettext** with Ukrainian locale, you should change this setting to:
+So, if you want to use **ngettext** with Ukrainian locale, you should change [defaultHeaders](#configdefaultheaders-object) setting to:
 
 ```
 'content-type': 'text/plain; charset=UTF-8'
