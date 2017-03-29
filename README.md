@@ -17,7 +17,7 @@ const msg = ngettext(msgid`${ n } task left`, `${ n } tasks left`, n)
 ```
 
 ## Key features
-* Can resolve translations at [build](https://c-3po.js.org/localization-with-webpack-and-c-3po.html#step-3-extracting-translations) or [runtime](https://c-3po.js.org/translations-without-transpile.html).
+* Can extract translated strings at [build](https://c-3po.js.org/localization-with-webpack-and-c-3po.html#step-3-extracting-translations) or [runtime](https://c-3po.js.org/translations-without-transpile.html).
 * Uses es2015 (es6) template literals for formatting.
 * Compatible with GNU gettext utility format (.po, .pot files).
 * Intelligent translations extraction (xgettext alternative).
