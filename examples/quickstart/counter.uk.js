@@ -2,8 +2,19 @@
 
 var _c3po = require('c-3po');
 
+var _loader = require('c-3po/loader');
+
 function _tag_ngettext(n, args) {
 	return args[+(n % 10 == 1 && n % 100 != 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2)];
+}
+
+var locale = process.env.LOCALE;
+
+if (locale) {
+	console.log('[dev mode]');
+	var translationObj = (0, _loader.loadFile)(locale + '.po');
+	(0, _c3po.addLocale)(locale, translationObj);
+	(0, _c3po.useLocale)(locale);
 }
 
 function startCount(n) {

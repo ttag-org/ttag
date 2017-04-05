@@ -1,6 +1,9 @@
 # Quick Start
 
-Here is a simple step by step tutorial for the demonstration of the full translation cycle with gettext and c-3po \(extraction, merging, resolving translations\). From the first glance, it may seem a little bit complex but I tried to simplify all necessary steps as much as possible.
+Here is a simple step by step tutorial for the demonstration of the full translation 
+cycle with gettext and c-3po \(extraction, merging, resolving translations\). From the first glance, 
+it may seem a little bit complex but I tried to simplify all necessary steps as much as possible.
+Also, I will try to demonstrate 2 different setups for dev and prod environments.
 
 All quickstart sources are [here](https://github.com/c-3po-org/c-3po/tree/master/examples/quickstart).
 
@@ -14,7 +17,7 @@ npm install --save-dev babel-cli
 npm install --save-dev babel-preset-es2015
 ```
 
-1. Add **.babelrc **file
+1. Add **.babelrc **file. 
 
 ```
 {
@@ -22,7 +25,7 @@ npm install --save-dev babel-preset-es2015
 }
 ```
 
-### Step 2. Setup file for translations
+### Step 2. Simple counter program
 
 Let's setup some simple js file \(**counter.js**\) with some logic, that we will try to translate with the help of **c-3po **and **gettext.**
 
@@ -49,38 +52,29 @@ starting count up to 3
 3 ticks passed
 ```
 
-### Step 3. Handling plural forms
+As we see our program works but it uses the wrong plural form for `1 ticks passed` (must be `1 tick passed`).
+Let's fix it.
 
-Let's assume we want to localize this output for some different locale. But before this step, let's fix plural form for \`1 ticks passed\` to \`1 tick passed\`. To fix this issue, let's start with adding the **c-3po **plugin to **.babelrc:**
+### Step 3. Wrapping strings with c-3po tags and functions
 
-```
-{
-  "presets": ["es2015"],
-  "plugins": ["c-3po"]
-}
-```
-
-After that, let's modify our previous program. We can use the [ngettext](/ngettext.md) function for plural forms:
-
-> c-3po will not proceed ngettext without import
+Let's wrap strings with c-3po functions and tags to make them translatable:
 
 ```js
-// counter.js
+import { t, ngettext, msgid } from 'c-3po';
 
-import { ngettext, msgid } from 'c-3po';
-
-function startCount(n){ 
-    console.log(`starting count up to ${n}`);
-    for (let i = 0; i <= n; i++) { 
-        console.log(ngettext(msgid`${i} tick passed`, `${i} ticks passed`, i)); 
+function startCount(n){
+    console.log(t`starting count up to ${n}`); // using 't' tag for 1 to 1 translations
+    for (let i = 0; i <= n; i++) {
+       // use ngettext function for handling plural forms
+       console.log(ngettext(msgid`${i} tick passed`, `${i} ticks passed`, i));
     }
 }
-
-startCount(3);
 ```
-> We should use msgid tag for the first argument of ngettext function due to a reasons described [here](why-use-msgid-for-ngettext.md)
+> doc for `t` tag - [https://c-3po.js.org/tag-gettext--t-.html](tag-gettext--t-.md)
 
-Let's also add script to npm scripts section to be able to execute our modified file in package.json:
+> doc for ngettext - [https://c-3po.js.org/ngettext.html](ngettext.md)
+
+Let's also add an appropriate script to npm scripts section to be able to execute our modified file in package.json:
 
 ```
 {
@@ -101,9 +95,13 @@ starting count up to 3
 3 ticks passed
 ```
 
+As we see plural forms are working out of the box without no extra configuration for the English locale.
+
 ### Step 4. Extracting translations to .pot file
 
-To be able to localize our program, gettext utility requires template file with strings that need to be translated. The template file is a [.pot file](https://www.gnu.org/software/gettext/manual/html_node/Template.html#Template). All c-3po behavior can be customized by [config](/configuration.md). We can use [env options](https://babeljs.io/docs/usage/babelrc/#env-option) for making different configuration options in our **.babelrc. **Let's add extraction feature:
+To be able to localize our program, *gettext* utility requires template file with strings that need to be translated.
+The template file is a [.pot file](https://www.gnu.org/software/gettext/manual/html_node/Template.html#Template). 
+All c-3po behavior can be customized by [config](/configuration.md). We can use [env options](https://babeljs.io/docs/usage/babelrc/#env-option) for making different configuration options in our **.babelrc. **Let's add extraction feature:
 
 ```js
 {
@@ -119,9 +117,9 @@ To be able to localize our program, gettext utility requires template file with 
 }
 ```
 
-As we see, we added **extract** env configuration, and extract settings to c-3po plugin.
+As we see, we added **extract** environment configuration, and extract settings to c-3po plugin.
 
-Let's add extraction command to our **package.json **scripts section:
+Let's add the extraction command to our **package.json** scripts section:
 
 ```
 "scripts": {
@@ -140,32 +138,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: counter.js:6
-msgid "${ i } tick passed"
-msgid_plural "${ i } ticks passed"
-msgstr[0] ""
-msgstr[1] ""
-```
-
-We can observe that strings inside [**ngettext**](/ngettext.md)** **were extracted to template file. 
-Let's add another one that we have in our program, by tagging with [**t**](/tag-gettext--t-.md) function:
-
-```javascript
-import { ngettext, msgid, t } from 'c-3po';
-
-...
-console.log(t`starting count up to ${n}`);
-...
-```
-
-And after executing extract one again we will have this in .pot file:
-
-```
-msgid ""
-msgstr ""
-"Content-Type: text/plain; charset=utf-8\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
-
 #: counter.js:4
 msgid "starting count up to ${ n }"
 msgstr ""
@@ -177,19 +149,24 @@ msgstr[0] ""
 msgstr[1] ""
 ```
 
-### Step 5. Adding locale and merging .pot and po file
+We can observe that all strings from the sources were extracted to the template file. 
 
-Template files are used only on extraction step, translators are not working with them. After extraction phase, we need to merge existing translations with newly extracted. This is where gettext utility [msgmerge](https://www.gnu.org/software/gettext/manual/html_node/msgmerge-Invocation.html) is needed.
+### Step 5. Adding locale and merging **.pot** and **.po** file
 
-> You need to install [gettext](https://www.gnu.org/software/gettext/manual/gettext.html) utility and have the [msginit](https://www.gnu.org/software/gettext/manual/gettext.html#msginit-Invocation) command available inside the environment. Or you can just copy and paste uk.po file from the repository or this tutorial.
+Template files are used only on extraction step, translators are not working with them. 
+After extraction phase, we need to merge existing translations with newly extracted. 
+This is where gettext utility [msgmerge](https://www.gnu.org/software/gettext/manual/html_node/msgmerge-Invocation.html) 
+is needed.
 
-Let's assume we decided to add Ukrainian locale. Let's do it with the **msginit **command:
+> You need to install [gettext](https://www.gnu.org/software/gettext/manual/gettext.html) utility and have the [msginit](https://www.gnu.org/software/gettext/manual/gettext.html#msginit-Invocation) command available inside the environment. Or you can just copy and paste **uk.po** file from the repository or this tutorial.
+
+Let's assume we decided to add Ukrainian locale. Let's do it with the **msginit** command:
 
 ```
 msginit -i extract.pot -o uk.po -l uk
 ```
 
-**uk.po **will be created. This file will contain all appropriate to Ukrainian locale headers. Let's add translations:
+**uk.po** will be created. This file will contain all appropriate to Ukrainian locale headers. Let's add translations:
 
 ```
 msgid ""
@@ -212,9 +189,67 @@ msgstr[1] "минуло ${ i } тіка"
 msgstr[2] "минуло ${ i } тіків"
 ```
 
-### Step 6. Resolving translations \(applying translations from .po file\).
+### Step 6. Resolving translations (applying translations from .po file)
+There are 2 ways in which you can resolve translations from .po file with c-3po:
+1. Resolving translations at a runtime with pure c-3po library
+2. Resolving translations on a build step with babel transformations.
 
-Let's add another env configuration to our **.babelrc **file to be able to resolve uk locale:
+#### 6.1 Load translations at the runtime (dev mode)
+To be able to apply translations you should parse .po file to js object and call **addLocale**:
+
+```js
+import { addLocale, useLocale } from 'c-3po';
+import { loadFile } from 'c-3po/loader';
+const translationsObject = loadFile('i18n/uk.po');
+addLocale('uk', translationsObject);
+useLocale('uk');
+```
+
+Let's modify our program to load locale from **.po** file if **env.LOCALE** var is present:
+```js
+import { ngettext, msgid, t,  addLocale, useLocale } from 'c-3po';
+import { loadFile } from 'c-3po/loader';
+
+const locale = process.env.LOCALE;
+
+if (locale) {
+    console.log('[dev mode]');
+    const translationObj = loadFile(`${locale}.po`);
+    addLocale(locale, translationObj);
+    useLocale(locale);
+}
+
+//....
+```
+
+Add **counter-uk-dev** to scripts in **package.json**
+```js
+"scripts": {
+    // ...
+    "counter-uk-dev": "LOCALE=uk babel-node counter.js"
+}
+```
+
+Let's run it with **npm run counter-uk-dev**:
+```bash
+[dev mode]
+починаємо рахунок до 3
+минуло 0 тіків
+минув 1 тік
+минуло 2 тіка
+минуло 3 тіка
+```
+
+**[dev mode]** indicates that we are loading files from .po file in a runtime.
+
+### Load translations on a build step with babel-plugin-c-3po transformations
+c-3po will apply transformation if **[resolve.translation](configuration.md#configresolvetranslations-string)** 
+config is present. Transformation will replace original strings from sources with translations 
+from .po file at compile time. Also it will strip c-3po tags and functions. 
+This leads to faster execution time and smaller resulting bundle. 
+Consider to use c-3po transformations in production.
+
+Let's add another env configuration to our **.babelrc** file to be able to resolve uk locale:
 
 ```
 'resolve-uk': {
@@ -251,7 +286,7 @@ We can check how it works by executing
 node counter.uk.js
 ```
 
-And here is an localized output:
+And here is a localized output:
 
 ```
 починаємо рахунок до 3
@@ -260,6 +295,15 @@ And here is an localized output:
 минуло 2 тіка
 минуло 3 тіка
 ```
+
+To be able to make transform for default locale you should pass "default" to *translations* setting:
+
+````js 
+{ "resolve": { "translations": "default" } }
+````
+
+With the **[translations: default](configuration.md#configresolvetranslations-string)** setting c-3po will make plural functions working an will strip 
+all unnecessary c-3po tags and functions.
 
 All quickstart sources are [here](https://github.com/c-3po-org/c-3po/tree/master/examples/quickstart).
 

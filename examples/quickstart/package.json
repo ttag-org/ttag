@@ -7,12 +7,13 @@
     "counter": "BABEL_ENV=resolve-default babel-node counter.js",
     "extract": "BABEL_DISABLE_CACHE=1 BABEL_ENV=extract babel counter.js",
     "translate-uk": "BABEL_DISABLE_CACHE=1 BABEL_ENV=resolve-uk babel counter.js -o counter.uk.js",
+    "counter-uk-dev": "LOCALE=uk babel-node counter.js",
     "counter-uk": "npm run translate-uk && node counter.uk.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "c-3po": "0.0.5"
+    "c-3po": "0.4.6"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
