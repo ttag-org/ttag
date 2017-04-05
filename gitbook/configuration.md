@@ -18,7 +18,18 @@ Set's mode for the translations file reference.
 
 ### **Config.resolve.translations \(string\)**
 
-If this configuration is present, then all translations from specified locale \(en, us, uk\) will be placed in a resulting code.
+Specifies path to the *.po* file with translations that will be placed in sources.
+
+Example:
+```json
+{ "resolve": { "translations": "i18n/uk.po" } }
+``` 
+
+Can be set to *default* value to strip c-3po tags and resolve the default locale:
+
+```json
+{ "resolve": { "translations": "default" } }
+```
 
 ### **Config.resolve.unresolved \(string one of: 'fail', 'warn', 'skip'\)**
 
@@ -38,7 +49,7 @@ This setting can be useful if you want to ensure that all translations are prese
 
 Example: 
 ```json
-["c-3po", {"translations": "uk.po", "unresolved": "fail"}]
+{ "resolve": { "translations": "uk.po", "unresolved": "fail" } }
 ```
 
 ### Config.extractors.[FunctionName].invalidFormat \(string one of: 'fail', 'warn', 'skip'\)
@@ -59,9 +70,7 @@ Actions:
 
 Example:
 ```json
-["c-3po",
-  {"extractors": { "tag-gettext": { "invalidFormat": "skip" }}}
-]
+{"extractors": { "tag-gettext": { "invalidFormat": "skip" } } }
 ```
 
 ### Config.dedent \(boolean\)
