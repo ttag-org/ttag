@@ -11,6 +11,11 @@
         "plugins": [
             ["c-3po", {"resolve": { "translations": "uk.po" }}]
         ]
+    },
+    'resolve-default': {
+        "plugins": [
+            ["c-3po", {"resolve": { "translations": "default" }}]
+        ]
     }
   }
 }
