@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { assert, expect } from 'chai';
-import { getMsgid, transformTranslateObj } from '../src/utils';
+import { getMsgid, transformTranslateObj, dedentIfConfig } from '../src/utils';
 
 function getStrsExprs(strs, ...exprs) {
     return [strs, exprs];
@@ -26,5 +26,13 @@ describe('utils transformTranslateObj', () => {
         const translateObj = JSON.parse(fs.readFileSync('tests/fixtures/test-result-po-before-transform.json'));
         const expected = JSON.parse(fs.readFileSync('tests/fixtures/test-result-po-after-transform.json'));
         assert.deepEqual(transformTranslateObj(translateObj), expected);
+    });
+});
+
+describe('utils dedentIfConfig', () => {
+    it('should not dedent if no config', () => {
+        const source = '   test';
+        const result = dedentIfConfig(null, source);
+        expect(result).to.eql(source);
     });
 });

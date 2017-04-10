@@ -29,4 +29,14 @@ describe('t', () => {
         expect(t`not found`).to.eql('not found');
         useLocale('en');
     });
+    it('should dedent multiline', () => {
+        const result = t`multi
+        line
+        example`;
+        expect(result).to.eql('multi\nline\nexample');
+    });
+    it('should not dedent single line', () => {
+        const result = t`     single line`;
+        expect(result).to.eql('     single line');
+    })
 });
