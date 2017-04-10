@@ -1,29 +1,18 @@
-module.exports = ({ extract, locale }={}) => {
-    const c3po = {};
-
-    if (extract) {
-        c3po.extract = { output: 'template.pot'}
-    }
-
-    if (locale) {
-        c3po.resolve = { translations: `${locale}.po` };
-    }
-
-    return {
-        entry: './app.js',
-        output: {
-            filename: locale ? `./dist/${locale}/app.js` : './dist/app.js'
-        },
-        module: {
-            rules: [
-                {
-                    test: /\.(js|jsx)$/,
-                    use: {
+module.exports = {
+    entry: './app.js',
+    output: { filename: './dist/app.js' },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
                     loader: 'babel-loader',
-                    options: {plugins: [['c-3po', c3po]], cacheDirectory: !(c3po.extract || c3po.resolve) }
+                    options: {
+                        presets: ['env']
+                    }
                 }
-                }
-            ]
-        }
+            }
+        ]
     }
-};
+}

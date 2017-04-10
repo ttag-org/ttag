@@ -15,11 +15,11 @@
   "devDependencies": {
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
-    "babel-plugin-c-3po": "0.0.35",
-    "babel-preset-es2015": "^6.22.0",
+    "babel-plugin-c-3po": "0.4.0",
     "webpack": "^2.2.1"
   },
   "dependencies": {
-    "c-3po": "0.0.6"
+    "babel-preset-env": "^1.3.3",
+    "c-3po": "0.4.6"
   }
 }

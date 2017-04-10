@@ -1,11 +1,50 @@
 # Localization with webpack and c-3po
 
 This short tutorial will demonstrate how c-3po can be used with webpack.
+Both development and production setups will be described.
+
+1. Initial setup
+    1. Why should I care about dev and prod setup?
+    2. Application overview
+    3. Installation
+    4. Basic app setup (date time view).
+    5. Wrapping strings with c-3po functions and tags.
+    6. Server setup.
+2. Translations extraction.
+3. Dev setup.
+    1. Loading translations with loader
+4. Prod setup.
+    1. Loading translations with c-3po loader.
+    2. Reducing result bundle size with c-3po mock.
+ 
+
+## 1. Initial setup
+
+### 1.1 Why should I care about dev and prod setup?
+There are different requirements to development and production setup.
+
+Requirements for the dev setup:
+
+1. Faster builds.
+2. Simple setup.
+3. Fast feedback.
+
+Prod. setup:
+1. Smaller assets.
+2. Less work to load locale (faster locale load).
+
+According to this requirements c-3po provides you options for making
+efficient production and development setups.
+
+### 1.2 Application overview
+For demonstration purposes we will implement simple clock applicaiton.
+Something like implemented [here](https://jsfiddle.net/AlexMost/9wuafbL5/7/) but with the ability
+to dynamically switch the language.
+
 
 Sources - [here](https://github.com/c-3po-org/c-3po/tree/master/examples/webpack-setup)
-Live demo - [here](https://c-3po-org.github.io/webpack-demo/)
 
-### Step 1. Installation
+### 1.3 Installation
 
 1. Firstly we need to create separate folder run **npm init **and  execute [installation](/chapter1.md) instructions.
 ```bash
@@ -14,10 +53,10 @@ npm install --save c-3po && npm install --save-dev babel-plugin-c-3po
 2. Also we need to install webpack and babel loader for the webpack.
 > just following install instructions from [here](https://github.com/babel/babel-loader)
 ```bash
-npm install babel-loader babel-core babel-preset-es2015 webpack --save-dev
+npm install babel-loader babel-core babel-preset-env webpack --save-dev
 ```
 
-### Step 2. Setup app
+### 1.4 Basic app setup
 Now we are ready to make some basic setup for our application. It will consist of index.html 
 file and app.js. Let's add **./dist** directory and add **index.html** there:
 ```html
@@ -71,7 +110,11 @@ module.exports = {
     output: { filename: './dist/app.js' },
     module: {
         rules: [
-            { test: /\.(js|jsx)$/, loader: 'babel-loader' }
+            {
+              test: /\.js$/,
+              exclude: /(node_modules|bower_components)/,
+              use: { loader: 'babel-loader' }
+           }
         ]
     }
 }
@@ -79,22 +122,7 @@ module.exports = {
 
 And now we can execute **webpack** to build our **app.js** file and open index.html in browser.
 
-### Step 2. Plural forms
-The English language has only 2 plural forms and a  rule for the definition of what form we should be used (n!=1). c-3po uses en locale by default. So, you can just
-enable the c-3po plugin and use **ngettext** for describing plurals.
-
-Let's add c-3po plugin to our babel loader config (I will be using webpack 2 config format).
-
-```js
-// ...
-
-rules: [
-    {
-        test: /\.(js|jsx)$/,
-        use: { loader: 'babel-loader', options: {plugins: ['c-3po'] } }
-    }
-]
-```
+### 1.5 Wrapping strings with c-3po functions and tags
 
 Let's wrap our literals in **ngettext** and **t**:
 
@@ -122,27 +150,13 @@ how they are working in the browser:
 
 > ![Local image](./assets/webpack-demo-3.png)
 
-Now we see `1 second` instead of `1 seconds`. Let's examine how the size of our app.js
-changed:
+You can notice that plural forms are working without any extra configuration.
+This behaves so, because c-3po works with english locale out of the box.
 
-Before - 3.0K:
-```js
-total 8,0K
--rw-rw-r-- 1 www www 3,0K jan  2 11:47 app.js
--rw-rw-r-- 1 www www  198 jan  2 11:24 index.html
-```
+### 1.6 Server setup
+...
 
-After - 5.1K:
-```js
-total 12K   
--rw-rw-r-- 1 www www 5.1K jan  2 11:49 app.js
--rw-rw-r-- 1 www www  198 jan  2 11:24 index.html
-```
-
-Note that it's non-minified and non-gzipped code. So, you can see that c-3po adds minimal overhead.
-This is one of the main advantages of this library is that it has almost zero
-overhead(1.9K) in the resulting bundles.
-
+### ---------------------------------------
 ### Step 3. Extracting translations
 To be able to execute all commands from this step you need to install GNU **gettext** utility.
 (msginit, msgmerge commands should be available). The very generic description of h gettext translation phases are:
