@@ -121,5 +121,17 @@ export function transformTranslateObj(translateObj) {
 }
 
 export function dedentIfConfig(config, rawStr) {
-    return rawStr;
+    if (!config || !config.dedent) {
+        return rawStr;
+    }
+
+    if (! (typeof rawStr === 'string')) {
+        return rawStr;
+    }
+
+    if (rawStr.indexOf('\n') === -1) {
+        return rawStr;
+    }
+
+    return dedent(rawStr);
 }

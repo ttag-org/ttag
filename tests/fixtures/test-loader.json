@@ -32,7 +32,10 @@
           "test with ${ 0 } plural [translation]",
           "test with ${ 0 } plurals [translation]"
         ]
-      }
+      },
+      "this is multiline\ndemo for demonstrating\nmultiline strings":
+      { "msgid": "this is multiline\ndemo for demonstrating\nmultiline strings",
+        "msgstr": ["this is multiline\ndemo for demonstrating\nmultiline strings [translated]"] }
     }
   }
 }

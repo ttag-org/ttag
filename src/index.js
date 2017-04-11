@@ -4,7 +4,7 @@ import { getMsgid, msgid2Orig, buildStr, makePluralFunc,
 const config = {
     locales: {},
     currentLocale: 'en',
-    dedent: true
+    dedent: true,
 };
 
 function findTransObj(locale, str) {
@@ -20,7 +20,7 @@ export function t(strings, ...exprs) {
         const transObj = findTransObj(curLocale, id);
         result = transObj ? msgid2Orig(transObj.msgstr[0], exprs) : buildStr(strings, exprs);
     }
-    return result;
+    return dedentIfConfig(config, result);
 }
 
 const separator = /(\${\s*\d+\s*})/g;

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { t, useLocale } from '../src/index';
+import { t, useLocale, setDedent } from '../src/index';
 import { loadLocale } from '../src/loader';
 
 describe('t', () => {
@@ -29,14 +29,34 @@ describe('t', () => {
         expect(t`not found`).to.eql('not found');
         useLocale('en');
     });
+
     it('should dedent multiline', () => {
         const result = t`multi
         line
         example`;
         expect(result).to.eql('multi\nline\nexample');
     });
+
+    it('should not dedent if dedent false', () => {
+        setDedent(false);
+        const result = t`multi
+        line
+        example`;
+        expect(result).to.eql(result);
+        setDedent(true);
+    });
+
     it('should not dedent single line', () => {
         const result = t`     single line`;
         expect(result).to.eql('     single line');
-    })
+    });
+
+    it('should dedent found translation', () => {
+        setDedent(true);
+        const str = t`this is multiline
+        demo for demonstrating
+        multiline strings`;
+        const expected = `this is multiline\ndemo for demonstrating\nmultiline strings`;
+        expect(str).to.eql(expected);
+    });
 });

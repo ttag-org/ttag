@@ -35,4 +35,28 @@ describe('utils dedentIfConfig', () => {
         const result = dedentIfConfig(null, source);
         expect(result).to.eql(source);
     });
+    it('should not dedent if config.dedent is false', () => {
+        const source = '   test';
+        const result = dedentIfConfig({ dedent: false }, source);
+        expect(result).to.eql(source);
+    });
+
+    it('should return rawStr if it is not a string', () => {
+        const source = { test: 'test' };
+        const result = dedentIfConfig({ dedent: true }, source);
+        expect(result).to.eql(source);
+    });
+
+    it('should not dedent if has no \\n symbol', () => {
+        const source = '   test';
+        const result = dedentIfConfig({ dedent: true }, source);
+        expect(result).to.eql(source);
+    });
+    it('should dedent', () => {
+        const source = `test
+        test
+        test`;
+        const result = dedentIfConfig({ dedent: true }, source);
+        expect(result).to.eql('test\ntest\ntest');
+    });
 });
