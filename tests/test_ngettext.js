@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { ngettext, useLocale, msgid } from '../src/index';
+import { ngettext, useLocale, msgid, setHeaders } from '../src/index';
 import { loadLocale } from '../src/loader';
 
 describe('ngettext', () => {
@@ -36,11 +36,23 @@ describe('ngettext', () => {
         expect(others).to.eql('not found with 2 plurals');
         useLocale('en');
     });
+
     it('should dedent multiline', () => {
         const a = 1;
         const others = ngettext(
             msgid`test with ${a} plural
               test`, `test with ${a} plurals`, a);
         expect(others).to.eql('test with 1 plural\ntest');
+    });
+
+    it('should use uk locale with uk default headers', () => {
+        /* eslint-disable max-len */
+        const ukHeaders = {
+            'plural-forms': 'nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);',
+        };
+        setHeaders(ukHeaders);
+        const a = 2;
+        const result = ngettext(msgid`${a} банан`, `${a} банана`, `${a} бананів`, a);
+        expect(result).to.eql('2 банана');
     });
 });

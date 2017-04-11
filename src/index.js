@@ -5,6 +5,7 @@ const config = {
     locales: {},
     currentLocale: 'en',
     dedent: true,
+    headers: defaultHeaders,
 };
 
 function findTransObj(locale, str) {
@@ -76,7 +77,7 @@ export function ngettext(...args) {
     const id = getMsgid(args[0]._strs, args[0]._exprs);
     const n = args[args.length - 1];
     const trans = findTransObj(currentLocale, id);
-    const headers = trans ? locales[currentLocale].headers : defaultHeaders;
+    const headers = trans ? locales[currentLocale].headers : config.headers;
     const pluralStr = getPluralFunc(headers);
     const pluralFn = makePluralFunc(pluralStr);
     let result;
@@ -104,4 +105,8 @@ export function useLocale(locale) {
 
 export function setDedent(value) {
     config.dedent = Boolean(value);
+}
+
+export function setHeaders(headers) {
+    config.headers = headers;
 }
