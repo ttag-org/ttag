@@ -36,4 +36,11 @@ describe('ngettext', () => {
         expect(others).to.eql('not found with 2 plurals');
         useLocale('en');
     });
+    it('should dedent multiline', () => {
+        const a = 1;
+        const others = ngettext(
+            msgid`test with ${a} plural
+              test`, `test with ${a} plurals`, a);
+        expect(others).to.eql('test with 1 plural\ntest');
+    });
 });

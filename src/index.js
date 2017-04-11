@@ -79,14 +79,16 @@ export function ngettext(...args) {
     const headers = trans ? locales[currentLocale].headers : defaultHeaders;
     const pluralStr = getPluralFunc(headers);
     const pluralFn = makePluralFunc(pluralStr);
-
+    let result;
     if (!trans) {
         const forms = args.slice(1, -1);
         forms.unshift(args[0].toString());
-        return pluralFn(n, forms);
+        result = pluralFn(n, forms);
+    } else {
+        result = msgid2Orig(pluralFn(n, trans.msgstr), args[0]._exprs);
     }
 
-    return msgid2Orig(pluralFn(n, trans.msgstr), args[0]._exprs);
+    return dedentIfConfig(config, result);
 }
 
 export function addLocale(locale, data, replaceVariablesNames = true) {
