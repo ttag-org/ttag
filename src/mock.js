@@ -41,3 +41,7 @@ export function ngettext(str) {
 export function useLocale() {}
 
 export function addLocale() {}
+
+export function setDedent() {}
+
+export function setHeaders() {}

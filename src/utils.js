@@ -1,3 +1,5 @@
+import dedent from 'dedent';
+
 export const getMsgid = (str, exprs) => {
     return str.reduce((s, l, i) => s + l + (exprs[i] !== undefined && `\${ ${i} }` || ''), '');
 };
@@ -116,4 +118,20 @@ export function transformTranslateObj(translateObj) {
     }
     translateObj.translations = newTranslations;
     return translateObj;
+}
+
+export function dedentIfConfig(config, rawStr) {
+    if (!config || !config.dedent) {
+        return rawStr;
+    }
+
+    if (! (typeof rawStr === 'string')) {
+        return rawStr;
+    }
+
+    if (rawStr.indexOf('\n') === -1) {
+        return rawStr;
+    }
+
+    return dedent(rawStr);
 }
