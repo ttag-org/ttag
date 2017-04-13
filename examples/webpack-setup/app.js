@@ -1,4 +1,4 @@
-import { ngettext, msgid, t } from 'c-3po';
+import { ngettext, msgid, t, addLocale, useLocale } from 'c-3po';
 const content = document.getElementById('content');
 
 const view = (hours, minutes, seconds) => {
@@ -12,6 +12,12 @@ const view = (hours, minutes, seconds) => {
     <h3>${hoursTxt} ${minutesTxt} ${secondsTxt}</h3>
     `
 };
+
+if (process.env.NODE_ENV !== 'production') {
+    const ukLocale = require('./uk.po');
+    addLocale('uk', ukLocale);
+    useLocale('uk');
+}
 
 
 setInterval(() => {
