@@ -21,7 +21,7 @@
             "token": "UA-90721450-1"
         },
         "edit-link": {
-            "base": "https://github.com/USER/REPO/edit/BRANCH/path/to/book",
+            "base": "https://github.com/c-3po-org/c-3po/edit/master/gitbook",
             "label": "Edit This Page"
         }
     },
