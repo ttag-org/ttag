@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "build-uk": "webpack --env.locale=uk",
+    "build-uk": "NODE_ENV=production webpack --env.locale=uk",
+    "build-default": "NODE_ENV=production webpack --env.locale=default",
+    "build-prod": "npm run build-uk && npm run build-default",
+    "build-all": "npm run build && npm run build-prod",
+    "build-prod-min": "webpack -p && NODE_ENV=production webpack --env.locale=uk -p && NODE_ENV=production webpack --env.locale=default -p",
     "extract": "webpack --env.extract",
     "watch": "webpack -w",
     "server": "node server.js"
