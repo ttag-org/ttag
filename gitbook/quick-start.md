@@ -5,6 +5,8 @@ cycle with gettext and c-3po \(extraction, merging, resolving translations\). Fr
 it may seem a little bit complex but I tried to simplify all necessary steps as much as possible.
 Also, I will try to demonstrate 2 different setups for dev and prod environments.
 
+<!-- toc -->
+
 All quickstart sources are [here](https://github.com/c-3po-org/c-3po/tree/master/examples/quickstart).
 
 ### Step 1. Installation
@@ -242,7 +244,7 @@ Let's run it with **npm run counter-uk-dev**:
 
 **[dev mode]** indicates that we are loading files from .po file in a runtime.
 
-### Load translations on a build step with babel-plugin-c-3po transformations
+### Step 7. Load translations on a build step with babel-plugin-c-3po transformations
 c-3po will apply transformation if **[resolve.translation](configuration.md#configresolvetranslations-string)** 
 config is present. Transformation will replace original strings from sources with translations 
 from .po file at compile time. Also it will strip c-3po tags and functions. 

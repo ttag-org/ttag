@@ -4,7 +4,8 @@
         "anchorjs",
         "github-buttons",
         "github-edit",
-        "ga"
+        "ga",
+        "toc"
     ],
     "pluginsConfig": {
         "github-buttons": {
