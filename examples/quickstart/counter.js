@@ -1,4 +1,14 @@
-import { ngettext, msgid, t } from 'c-3po';
+import { ngettext, msgid, t,  addLocale, useLocale } from 'c-3po';
+import { loadFile } from 'c-3po/loader';
+
+const locale = process.env.LOCALE;
+
+if (locale) {
+	console.log('[dev mode]');
+	const translationObj = loadFile(`${locale}.po`);
+	addLocale(locale, translationObj);
+	useLocale(locale);
+}
 
 function startCount(n){
 	console.log(t`starting count up to ${n}`);

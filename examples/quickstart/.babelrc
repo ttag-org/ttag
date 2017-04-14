@@ -7,9 +7,14 @@
             ["c-3po", { "extract": { "output": "extract.pot" } }]
         ]
     },
-    'resolve-uk': {
+    "resolve-uk": {
         "plugins": [
             ["c-3po", {"resolve": { "translations": "uk.po" }}]
+        ]
+    },
+    'resolve-default': {
+        "plugins": [
+            ["c-3po", {"resolve": { "translations": "default" }}]
         ]
     }
   }

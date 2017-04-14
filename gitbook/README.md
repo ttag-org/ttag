@@ -1,18 +1,17 @@
 # c-3po
+--------
 
-**c-3po** is an awesome solution for localizing your javascript assets. It works closely with **GNU gettext** utility and doesn't aim to reimplement it's features, it just provides reliable **gettext** extraction features and can be used to resolve translations from **.po** files right into your sources. The key difference from existing solutions is that **c-3po** can produce a localized assets \(already with translated strings placed right into the code\).
+## Modern javascript i18n localization library based on es6 tagged templates and the good old GNU gettext
 
-### Features:
-
-The core features of this tool are:
-
-1. Works with GNU **gettext** tool \(.po files\).
-2. Use es6 tagged templates syntax for string formatting \(no extra formatting rules, no sprintf e.t.c\).
-3. The most intelligent **gettext** functions extraction from javascript sources \(babel plugin\).
-4. Resolves translations from .po files right into your code \(no runtime extra work in browser\).
-5. Works with everything that works with babel \(.jsx syntax for instance\).
-6. Fast feedback loop \(alerts when some string is missing translation right at compile time\)
-7. Designed to work with universal apps \(works on a backend and a frontend\).
+## Key features
+* Uses es6 template literals for string formatting (no need for sprintf).
+* Can precompile translations on a build step.
+* Uses babel plugin to extract and resolve translations, works with modern javascript AST.
+* Can be integrated in any build tool that works with babel.
+* Has options for both efficient [development and production setups](https://c-3po.js.org/localization-with-webpack-and-c-3po.html).
+* Has a builtin [validation](https://c-3po.js.org/validation.html) for translated strings format.
+* Can use any default locale in sources (not only English).
+* Handles [React (jsx) translations](jsx-tag-jt.md).
 
 ### Tools:
 
@@ -38,10 +37,6 @@ const helloMike = t`Hello ${name}`;
 // plurals (works for default locale out of the box)
 const n = 5;
 const msg = ngettext(msgid`${ n } task left`, `${ n } tasks left`, n)
-
-// plurals (just one form, other forms will be inside .po files)
-const n = 5;
-const msg = nt(n)`You have completed ${n} tasks`
 ```
 
 c-3po library aims to provide the most natural and reliable way to translate strings in a javascript sources. it provides some helper functions \(tags\) for making javascript templates translatable with all their shiny 
@@ -51,3 +46,5 @@ features like string interpolation, multiline e.t.c.
 * [Quick Start](https://c-3po.js.org/quick-start.html)
 * [Localization with webpack and c-3po](https://c-3po.js.org/localization-with-webpack-and-c-3po.html)
 
+## Slides from talks
+* [Kyivjs 2017](https://docs.google.com/presentation/d/1oj6ZaXfIfcClROe-4kOMMjnXFExn1gUfF6D30VyznWs/edit?usp=sharing)
