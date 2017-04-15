@@ -17,7 +17,6 @@
 * [ngettext](ngettext.md)
 * [jt (jsx-gettext)](jsx-tag-jt.md)
 * [gettext](gettext.md)
-* [nt \(tag-ngettext\)](tag-ngettext--nt-.md)
 
 ## Tutorials
 
