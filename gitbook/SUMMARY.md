@@ -5,6 +5,7 @@
 * [Introduction](README.md)
 * [Installation](chapter1.md)
 * [Configuration(babel plugin)](configuration.md)
+* [Configuration(c-3po lib API)](configuration-c-3po-lib.md)
 * [Leaving comments for the translator](translator-comments.md)
 * [Validation](validation.md)
 * [Multiline strings](multiline-strings.md)
