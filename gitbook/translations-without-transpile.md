@@ -36,7 +36,7 @@ Let's assume we have translation object in `ukLocale` var on a frontend.
 The way in which you are passing translations object to the frontend can
 vary, depending on what build tool you are using. Here is a quick example of how
 you can pass the translations object to the frontend with [webpack](https://github.com/c-3po-org/webpack-demo/blob/master/webpack-no-transpile.config.js#L34).
-To be able to use locale you should execute `addLocale` from `c-3po`.
+To be able to use locale you should execute **[addLocale](configuration-c-3po-lib.md#addlocale-string-locale-object-data-bool-replacevariablesnames)** from `c-3po`.
 
 ```js
 import { addLocale } from 'c-3po';
@@ -45,7 +45,7 @@ addLocale('uk', ukLocale)
 
 ## 3. Use locale [frontend]
 
-To select some registered locale you need to execute `useLocale` from `c-3po`
+To select some registered locale you need to execute **[useLocale](configuration-c-3po-lib.md#uselocale-string-locale)** from `c-3po`
  ```js
 import { addLocale, useLocale } from 'c-3po';
 useLocale('uk')
