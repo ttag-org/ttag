@@ -14,15 +14,6 @@ export function jt(strings, ...exprs) {
     return strings;
 }
 
-export function nt() {
-    return (strings, ...exprs) => {
-        if (strings && strings.reduce) {
-            return buildStr(strings, exprs);
-        }
-        return strings;
-    };
-}
-
 export function msgid(strings, ...exprs) {
     if (strings && strings.reduce) {
         return buildStr(strings, exprs);
