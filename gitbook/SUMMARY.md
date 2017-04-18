@@ -29,3 +29,4 @@
 
 * [Why to use msgid tag for ngettext](why-use-msgid-for-ngettext.md)
 * [Why .pot(.po) file is not generated/updated](why-po-is-not-updated.md)
+* [CHANGELOG](CHANGELOG.md)
