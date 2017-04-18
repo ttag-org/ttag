@@ -42,11 +42,13 @@ const msg = ngettext(msgid`${ n } task left`, `${ n } tasks left`, n)
 c-3po library aims to provide the most natural and reliable way to translate strings in a javascript sources. it provides some helper functions \(tags\) for making javascript templates translatable with all their shiny 
 features like string interpolation, multiline e.t.c.
 
+## Useful Links
+* [Changelog](CHANGELOG.md)
+* [Migration guide](MIGRATION.md)
+
 ## Tutorials
 * [Quick Start](https://c-3po.js.org/quick-start.html)
 * [Localization with webpack and c-3po](https://c-3po.js.org/localization-with-webpack-and-c-3po.html)
-
-## [CHANGELOG](CHANGELOG.md)
 
 ## Slides from talks
 * [Kyivjs 2017](https://docs.google.com/presentation/d/1oj6ZaXfIfcClROe-4kOMMjnXFExn1gUfF6D30VyznWs/edit?usp=sharing)
