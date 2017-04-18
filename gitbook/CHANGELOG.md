@@ -7,6 +7,8 @@
 4. Removed `nt`from the core lib.
 5. `pkg.module` support (details [here](https://github.com/rollup/rollup/wiki/pkg.module))
 
+Migration guide - [from 0.4.x to 0.5.x](/MIGRATION.html#from-04x-to-05x)
+
 
 ### 0.4.x
 Extracted format changed from `${ 0 }` to `${ name }`.

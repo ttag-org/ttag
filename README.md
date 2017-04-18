@@ -31,7 +31,6 @@ const msg = ngettext(msgid`${ n } task left`, `${ n } tasks left`, n)
 ```bash
 npm install --save c-3po
 npm install --save-dev babel-plugin-c-3po
-
 ```
 
 **c-3po babel plugin** - [https://github.com/c-3po-org/babel-plugin-c-3po](https://github.com/c-3po-org/babel-plugin-c-3po)
@@ -44,14 +43,16 @@ npm install --save-dev babel-plugin-c-3po
 But you can also play with it without transpile. Here is the [doc](https://c-3po.js.org/translations-without-transpile.html)
 about how to use c-3po without babel transpilation.
 
-### Quick demo - https://jsfiddle.net/AlexMost/9wuafbL5/11/
-### Docs - [https://c-3po.js.org](https://c-3po.js.org)
+## Useful links
+* [Documentation](https://c-3po.js.org)
+* [Changelog](https://c-3po.js.org/CHANGELOG.html)
+* [Migration guide](MIGRATION.md)
 
 ## Tutorials
 * [Quick Start](https://c-3po.js.org/quick-start.html)
 * [Localization with webpack and c-3po](https://c-3po.js.org/localization-with-webpack-and-c-3po.html)
 
-## [CHANGELOG](https://c-3po.js.org/CHANGELOG.html)
-
 ## Slides from talks
 * [Kyivjs 2017](https://docs.google.com/presentation/d/1oj6ZaXfIfcClROe-4kOMMjnXFExn1gUfF6D30VyznWs/edit?usp=sharing)
+
+### Quick view on Jsfiddle playground - https://jsfiddle.net/AlexMost/9wuafbL5/11/
