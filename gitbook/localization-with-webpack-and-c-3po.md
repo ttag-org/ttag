@@ -310,7 +310,7 @@ if (process.env.NODE_ENV !== 'production') {
     useLocale('uk');   
 }
 ```
-> Notice that we wrapped locale init logic in if condition, because we need that logic only during the dev setup.
+> Notice that locale init logic is wrapped with the if condition, because we need that logic only during the dev setup.
 > In the production mode all assets will be already translated on a build step. 
 
 Let's build our app with `npm run build` and you will see that all translations are applied.
