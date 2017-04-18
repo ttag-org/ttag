@@ -51,5 +51,7 @@ about how to use c-3po without babel transpilation.
 * [Quick Start](https://c-3po.js.org/quick-start.html)
 * [Localization with webpack and c-3po](https://c-3po.js.org/localization-with-webpack-and-c-3po.html)
 
+## [CHANGELOG](CHANGELOG.md)
+
 ## Slides from talks
 * [Kyivjs 2017](https://docs.google.com/presentation/d/1oj6ZaXfIfcClROe-4kOMMjnXFExn1gUfF6D30VyznWs/edit?usp=sharing)
