@@ -301,7 +301,7 @@ A couple of changes here:
 
 After this step, we can simply require `uk.po` file and apply `uk` locale on the application start.
 
-let's add this to **app.js**
+Let's create a separate **localeSetup.js** file:
 ```js
 import { addLocale, useLocale } from 'c-3po';
 if (process.env.NODE_ENV !== 'production') {
@@ -311,7 +311,16 @@ if (process.env.NODE_ENV !== 'production') {
 }
 ```
 > Notice that locale init logic is wrapped with the if condition, because we need that logic only during the dev setup.
-> In the production mode all assets will be already translated on a build step. 
+> In the production mode all assets will be already translated on a build step.
+ 
+After that we need to `import` **localeSetup.js** at the top of **app.js** file:
+
+```js
+import './localeSetup';
+```
+**`import './localeSetup'` must be the first import in your entry bundle, to setup locale before other exports evaluation**. 
+As you know, es6 exports are evaluated before module execution. So, to apply translations
+to exported values also, we need to make locale setup as soon as possible.
 
 Let's build our app with `npm run build` and you will see that all translations are applied.
 And here is what we can see in the browser:
