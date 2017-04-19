@@ -35,4 +35,4 @@ export function addLocale() {}
 
 export function setDedent() {}
 
-export function setHeaders() {}
+export function setDefaultHeaders() {}

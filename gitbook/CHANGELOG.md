@@ -1,4 +1,6 @@
 # CHANGELOG
+### 0.5.1
+Renamed `setHeaders` to `setDefaultHeaders` for consistency with babel plugin setting.
 
 ### 0.5.0
 1. Default headers setup - [doc](/configuration-c-3po-lib.html#setheaders-object-headers)

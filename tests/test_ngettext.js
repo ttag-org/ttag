@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { ngettext, useLocale, msgid, setHeaders } from '../src/index';
+import { ngettext, useLocale, msgid, setDefaultHeaders } from '../src/index';
 import { loadLocale } from '../src/loader';
 
 describe('ngettext', () => {
@@ -50,7 +50,7 @@ describe('ngettext', () => {
         const ukHeaders = {
             'plural-forms': 'nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);',
         };
-        setHeaders(ukHeaders);
+        setDefaultHeaders(ukHeaders);
         const a = 2;
         const result = ngettext(msgid`${a} банан`, `${a} банана`, `${a} бананів`, a);
         expect(result).to.eql('2 банана');

@@ -38,7 +38,7 @@ Example:
 setDedent(false);
 ```
 
-### setHeaders (object headers)
+### setDefaultHeaders (object headers)
 Sets .po file headers appropriate to locale
 
 arguments:
@@ -46,7 +46,7 @@ arguments:
 
 Example:
 ```js
-setHeaders({
+setDefaultHeaders({
 'plural-forms': 'nplurals=2; plural=(n!=1);'    
 });
 

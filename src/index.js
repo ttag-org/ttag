@@ -98,6 +98,14 @@ export function setDedent(value) {
     config.dedent = Boolean(value);
 }
 
-export function setHeaders(headers) {
+export function setDefaultHeaders(headers) {
     config.headers = headers;
+}
+
+export function setHeaders(headers) {
+    /* eslint-disable no-console */
+    (console.warn || console.log)(
+        '[DEPRECATED] setHeaders is deprecated, and will be removed in the' +
+        ' next minor version 0.6, use setDefaultHeaders instead');
+    setDefaultHeaders(headers);
 }
