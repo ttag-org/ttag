@@ -4,3 +4,4 @@ dist
 _book
 *.log
 .DS_Store
+coverage
