@@ -1,5 +1,6 @@
 # c-3po
 [![travis](https://api.travis-ci.org/c-3po-org/c-3po.svg?master)](https://travis-ci.org/c-3po-org/c-3po) [![codecov](https://codecov.io/gh/c-3po-org/c-3po/branch/master/graph/badge.svg)](https://codecov.io/gh/c-3po-org/c-3po)
+
 [![NPM](https://nodei.co/npm/c-3po.png?downloads=true)](https://nodei.co/npm/c-3po/)
 
 
