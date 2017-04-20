@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "test": "BABEL_ENV=test mocha --compilers js:babel-core/register tests",
+    "codecov-test": "BABEL_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha -- --compilers js:babel-core/register tests",
     "lib:build": "babel src --out-dir dist && webpack && NODE_ENV=production webpack -p",
     "lint": "eslint ./src ./tests",
     "fix": "eslint --fix ./src ./tests",
@@ -46,6 +47,7 @@
     "gitbook-cli": "2.3.0",
     "gitbook-plugin-ga": "1.0.1",
     "gitbook-plugin-github-buttons": "2.1.0",
+    "istanbul": "1.1.0-alpha.1",
     "mocha": "3.1.2",
     "sinon": "1.17.7",
     "webpack": "^2.3.2"

@@ -1,13 +1,15 @@
 language: node_js
 
 node_js:
-  - 7
-  - 6
   - 5
 
 before_script:
   - npm install
+  - npm install -g codecov
 
 script:
   - npm run lint
-  - npm test
+  - npm run codecov-test
+
+after_success:
+  - codecov
