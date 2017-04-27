@@ -1,6 +1,9 @@
 # CHANGELOG
 ### 0.5.1
+#### c-3po lib:
 Renamed `setHeaders` to `setDefaultHeaders` for consistency with babel plugin setting.
+#### c-3po-plugin
+Applied sort for file references. Can be handy for avoiding merge conflicts.
 
 ### 0.5.0
 1. Default headers setup - [doc](/configuration-c-3po-lib.html#setheaders-object-headers)
