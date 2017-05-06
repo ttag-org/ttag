@@ -1,4 +1,7 @@
 # CHANGELOG
+### 0.5.2
+#### c-3po-plugin
+Fix for `ngettext` validation in jsx (multiple presets [issue](https://github.com/c-3po-org/babel-plugin-c-3po/pull/81)). 
 ### 0.5.1
 #### c-3po lib:
 Renamed `setHeaders` to `setDefaultHeaders` for consistency with babel plugin setting.
