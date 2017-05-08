@@ -1,14 +1,22 @@
 # CHANGELOG
+
+<!-- toc -->
+
+### 0.5.3
+##### c-3po-plugin
+Fix for member expressions extraction with `this`. (checkout [PR](https://github.com/c-3po-org/babel-plugin-c-3po/pull/82) for the details)
+
 ### 0.5.2
-#### c-3po-plugin
+##### c-3po-plugin
 Fix for `ngettext` validation in jsx (multiple presets [issue](https://github.com/c-3po-org/babel-plugin-c-3po/pull/81)). 
 ### 0.5.1
-#### c-3po lib:
+##### c-3po lib:
 Renamed `setHeaders` to `setDefaultHeaders` for consistency with babel plugin setting.
-#### c-3po-plugin
+##### c-3po-plugin
 Applied sort for file references. Can be handy for avoiding merge conflicts.
 
 ### 0.5.0
+---------
 1. Default headers setup - [doc](/configuration-c-3po-lib.html#setheaders-object-headers)
 2. Multiline support for c-3po lib + setDedent setting - [doc](/configuration-c-3po-lib.html#setdedent-bool-value)
 3. Tutorial about [development and production setup with c-3po and webpack](/localization-with-webpack-and-c-3po.html)
