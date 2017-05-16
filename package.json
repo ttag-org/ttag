@@ -3,7 +3,6 @@
   "version": "0.5.3",
   "description": "",
   "main": "dist/index.js",
-  "module": "src/index.js",
   "keywords": [
     "gettext",
     "translations",
