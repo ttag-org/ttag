@@ -1,6 +1,12 @@
 # CHANGELOG
 
 <!-- toc -->
+### 0.5.4
+##### c-3po-plugin
+Fixed extraction for member expressions with computed properties. [PR](https://github.com/c-3po-org/babel-plugin-c-3po/pull/86)
+
+##### c-3po lib:
+Removed module attribute from package.json.
 
 ### 0.5.3
 ##### c-3po-plugin
