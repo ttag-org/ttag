@@ -1,6 +1,6 @@
 {
   "name": "c-3po",
-  "version": "0.5.4-0",
+  "version": "0.5.4",
   "description": "",
   "main": "dist/index.js",
   "keywords": [
