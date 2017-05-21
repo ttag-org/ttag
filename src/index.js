@@ -13,15 +13,19 @@ function findTransObj(locale, str) {
     return locales[locale] ? locales[locale].translations[''][str] : null;
 }
 
+function maybeDedent(str) {
+    return config.dedent ? dedentIfConfig(config, str) : str;
+}
+
 export function t(strings, ...exprs) {
     const curLocale = config.currentLocale;
     let result = strings;
     if (strings && strings.reduce) {
-        const id = getMsgid(strings, exprs);
+        const id = maybeDedent(getMsgid(strings, exprs));
         const transObj = findTransObj(curLocale, id);
         result = transObj ? msgid2Orig(transObj.msgstr[0], exprs) : buildStr(strings, exprs);
     }
-    return dedentIfConfig(config, result);
+    return maybeDedent(result);
 }
 
 const separator = /(\${\s*\d+\s*})/g;
@@ -80,7 +84,7 @@ export function ngettext(...args) {
         result = msgid2Orig(pluralFn(n, trans.msgstr), args[0]._exprs);
     }
 
-    return dedentIfConfig(config, result);
+    return maybeDedent(result);
 }
 
 export function addLocale(locale, data, replaceVariablesNames = true) {
