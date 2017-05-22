@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { ngettext, useLocale, msgid, setDefaultHeaders } from '../src/index';
+import { ngettext, useLocale, msgid, setDefaultHeaders, addLocale } from '../src/index';
 import { loadLocale } from '../src/loader';
 
 describe('ngettext', () => {
@@ -54,5 +54,32 @@ describe('ngettext', () => {
         const a = 2;
         const result = ngettext(msgid`${a} банан`, `${a} банана`, `${a} бананів`, a);
         expect(result).to.eql('2 банана');
+        setDefaultHeaders({ 'plural-forms': 'nplurals=2; plural=(n!=1);' });
+    });
+
+    it('should work with multiline dedent', () => {
+        const ukLocale = {
+            headers: {
+                'plural-forms': 'nplurals=3; ' +
+                'plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);',
+            },
+            translations: {
+                '': {
+                    '${ 0 }\nhour': {
+                        msgid: '${ 0 }\nhour',
+                        msgid_plural: '${ 0 }\nhours',
+                        msgstr: ['${ 0 }\nгодина', '${ 0 }\nгодини', '${ 0 }\nгодин'],
+                    },
+                },
+            },
+        };
+        addLocale('uk', ukLocale);
+        useLocale(('uk'));
+        const n = 2;
+        const result = ngettext(msgid`${n}
+            hour`,
+            `${n}
+            hours`, n);
+        expect(result).to.eql('2\nгодини');
     });
 });

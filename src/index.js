@@ -69,7 +69,7 @@ export function gettext(id) {
 
 export function ngettext(...args) {
     const { currentLocale, locales } = config;
-    const id = getMsgid(args[0]._strs, args[0]._exprs);
+    const id = maybeDedent(getMsgid(args[0]._strs, args[0]._exprs));
     const n = args[args.length - 1];
     const trans = findTransObj(currentLocale, id);
     const headers = trans ? locales[currentLocale].headers : config.headers;
