@@ -1,6 +1,11 @@
 # CHANGELOG
 
 <!-- toc -->
+### 0.5.5
+
+##### c-3po lib:
+Fix for multiline translations. [PR](https://github.com/c-3po-org/c-3po/pull/67)
+
 ### 0.5.4
 ##### c-3po-plugin
 Fixed extraction for member expressions with computed properties. [PR](https://github.com/c-3po-org/babel-plugin-c-3po/pull/86)
