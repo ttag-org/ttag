@@ -56,7 +56,7 @@ describe('t', () => {
         const str = t`this is multiline
         demo for demonstrating
         multiline strings`;
-        const expected = `this is multiline\ndemo for demonstrating\nmultiline strings`;
+        const expected = `this is multiline\ndemo for demonstrating\nmultiline strings [translated]`;
         expect(str).to.eql(expected);
     });
 });
