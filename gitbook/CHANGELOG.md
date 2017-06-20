@@ -1,6 +1,10 @@
 # CHANGELOG
 
 <!-- toc -->
+### 0.5.7
+##### c-3po-plugin
+Validation fix for the computed properties [PR](https://github.com/c-3po-org/babel-plugin-c-3po/issues/90)
+
 ### 0.5.6
 ##### c-3po-plugin
 Add validation for variable expressions mismatch. [PR](https://github.com/c-3po-org/babel-plugin-c-3po/pull/84)
