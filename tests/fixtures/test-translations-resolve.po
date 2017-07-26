@@ -1,0 +1,34 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: tests/fixtures/fixture.js:7
+msgid "test"
+msgstr "test [translation]"
+
+#: tests/fixtures/fixture.js:7
+#, fuzzy
+msgid "${ n } test"
+msgstr "${ m } testtt"
+
+#: tests/fixtures/fixture.js:8
+msgid "test ${ 0 } test"
+msgstr "test ${ 0 } test [translation]"
+
+#: tests/fixtures/fixture.js:9
+msgid "test with ${ 0 } plural"
+msgid_plural "test with ${ 0 } plurals"
+msgstr[0] "test with ${ 0 } plural [translation]"
+msgstr[1] "test with ${ 0 } plurals [translation]"
+
+#: tests/fixtures/fixture.js:10
+msgid ""
+"this is multiline\n"
+"demo for demonstrating\n"
+"multiline strings"
+msgstr ""
+"this is multiline\n"
+"demo for demonstrating\n"
+"multiline strings [translated]"

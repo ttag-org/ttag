@@ -8,9 +8,19 @@ const config = {
     headers: defaultHeaders,
 };
 
+function isFuzzy(translationObj) {
+    return (
+        translationObj && translationObj.comments &&
+        translationObj.comments.flag === 'fuzzy');
+}
+
 function findTransObj(locale, str) {
     const { locales } = config;
-    return locales[locale] ? locales[locale].translations[''][str] : null;
+    const translation = locales[locale] && locales[locale].translations[''][str]
+    if (translation) {
+        return isFuzzy(translation) ? null : translation;
+    }
+    return null;
 }
 
 function maybeDedent(str) {
