@@ -17,10 +17,7 @@ function isFuzzy(translationObj) {
 function findTransObj(locale, str) {
     const { locales } = config;
     const translation = locales[locale] && locales[locale].translations[''][str];
-    if (translation) {
-        return isFuzzy(translation) ? null : translation;
-    }
-    return null;
+    return translation && !isFuzzy(translation) ? translation : null;
 }
 
 function maybeDedent(str) {
