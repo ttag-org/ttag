@@ -1,6 +1,12 @@
 # CHANGELOG
 
 <!-- toc -->
+### 0.5.8
+Fixes for fuzzy translations issue - [68](https://github.com/c-3po-org/c-3po/issues/68)
+
+##### c-3po-plugin
+Validation fix for the computed properties [PR](https://github.com/c-3po-org/babel-plugin-c-3po/issues/90)
+
 ### 0.5.7
 ##### c-3po-plugin
 Validation fix for the computed properties [PR](https://github.com/c-3po-org/babel-plugin-c-3po/issues/90)
