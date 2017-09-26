@@ -24,24 +24,31 @@ function maybeDedent(str) {
     return config.dedent ? dedentIfConfig(config, str) : str;
 }
 
-export function t(strings, ...exprs) {
-    const curLocale = config.currentLocale;
+
+export function tWithLocale(locale, strings, ...exprs) {
     let result = strings;
     if (strings && strings.reduce) {
         const id = maybeDedent(getMsgid(strings, exprs));
-        const transObj = findTransObj(curLocale, id);
+        const transObj = findTransObj(locale, id);
         result = transObj ? msgid2Orig(transObj.msgstr[0], exprs) : buildStr(strings, exprs);
     }
     return maybeDedent(result);
 }
 
+
+export function t(strings, ...exprs) {
+    return tWithLocale(config.currentLocale, strings, ...exprs);
+}
+
+
 const separator = /(\${\s*\d+\s*})/g;
 const slotIdRegexp = /\${\s*(\d+)\s*}/;
 
-export function jt(strings, ...exprs) {
+
+export function jtWithLocale(locale, strings, ...exprs) {
     if (strings && strings.reduce) {
         const id = getMsgid(strings, exprs);
-        const transObj = findTransObj(config.currentLocale, id);
+        const transObj = findTransObj(locale, id);
         if (!transObj) return buildArr(strings, exprs);
 
         // splits string & capturing group into tokens
@@ -57,6 +64,10 @@ export function jt(strings, ...exprs) {
     return strings;
 }
 
+export function jt(strings, ...exprs) {
+    return jtWithLocale(config.currentLocale, strings, ...exprs);
+}
+
 export function msgid(strings, ...exprs) {
     /* eslint-disable no-new-wrappers */
     if (strings && strings.reduce) {
@@ -69,13 +80,12 @@ export function msgid(strings, ...exprs) {
     return strings;
 }
 
-export function gettext(id) {
-    const transObj = findTransObj(config.currentLocale, id);
+export function gettext(id, locale = null) {
+    const transObj = findTransObj(locale || config.currentLocale, id);
     return transObj ? transObj.msgstr[0] : id;
 }
 
-export function ngettext(...args) {
-    const { currentLocale, locales } = config;
+export function ngettextWithLocale({ currentLocale, locales }, ...args) {
     const id = maybeDedent(getMsgid(args[0]._strs, args[0]._exprs));
     const n = args[args.length - 1];
     const trans = findTransObj(currentLocale, id);
@@ -92,6 +102,10 @@ export function ngettext(...args) {
     }
 
     return maybeDedent(result);
+}
+
+export function ngettext(...args) {
+    return ngettextWithLocale(config, ...args);
 }
 
 export function addLocale(locale, data, replaceVariablesNames = true) {
