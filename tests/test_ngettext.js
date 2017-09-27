@@ -2,6 +2,24 @@ import { expect } from 'chai';
 import { ngettext, useLocale, msgid, setDefaultHeaders, addLocale } from '../src/index';
 import { loadLocale } from '../src/loader';
 
+
+const ukLocale = {
+    headers: {
+        'plural-forms': 'nplurals=3; ' +
+        'plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);',
+    },
+    translations: {
+        '': {
+            '${ 0 }\nhour': {
+                msgid: '${ 0 }\nhour',
+                msgid_plural: '${ 0 }\nhours',
+                msgstr: ['${ 0 }\nгодина', '${ 0 }\nгодини', '${ 0 }\nгодин'],
+            },
+        },
+    },
+};
+
+
 describe('ngettext', () => {
     before(() => {
         loadLocale('en', 'tests/fixtures/test-loader.mo');
@@ -58,21 +76,6 @@ describe('ngettext', () => {
     });
 
     it('should work with multiline dedent', () => {
-        const ukLocale = {
-            headers: {
-                'plural-forms': 'nplurals=3; ' +
-                'plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);',
-            },
-            translations: {
-                '': {
-                    '${ 0 }\nhour': {
-                        msgid: '${ 0 }\nhour',
-                        msgid_plural: '${ 0 }\nhours',
-                        msgstr: ['${ 0 }\nгодина', '${ 0 }\nгодини', '${ 0 }\nгодин'],
-                    },
-                },
-            },
-        };
         addLocale('uk', ukLocale);
         useLocale(('uk'));
         const n = 2;

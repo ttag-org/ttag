@@ -13,7 +13,11 @@ function isFuzzy(translationObj) {
 function findTransObj(locale, str) {
     const locales = conf.getAvailLocales();
     const translation = locales[locale] && locales[locale].translations[''][str];
-    return translation && !isFuzzy(translation) ? translation : null;
+    if (translation && !isFuzzy(translation)) {
+        translation._headers = locales[locale].headers;
+        return translation;
+    }
+    return null;
 }
 
 function findTranslation(str) {
@@ -81,12 +85,10 @@ export function gettext(id) {
 }
 
 export function ngettext(...args) {
-    const currentLocale = conf.getCurrentLocale();
-    const locales = conf.getAvailLocales();
     const id = maybeDedent(getMsgid(args[0]._strs, args[0]._exprs));
     const n = args[args.length - 1];
-    const trans = findTransObj(currentLocale, id);
-    const headers = trans ? locales[currentLocale].headers : conf.getHeaders();
+    const trans = findTranslation(id);
+    const headers = trans ? trans._headers : conf.getHeaders();
     const pluralStr = getPluralFunc(headers);
     const pluralFn = makePluralFunc(pluralStr);
     let result;
