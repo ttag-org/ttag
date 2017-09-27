@@ -29,9 +29,7 @@ function findTranslation(str) {
     return findTransObj(conf.getCurrentLocale(), str);
 }
 
-function maybeDedent(str) {
-    return conf.isDedent() ? dedentStr(str) : str;
-}
+const maybeDedent = (str) => conf.isDedent() ? dedentStr(str) : str;
 
 export function t(strings, ...exprs) {
     let result = strings;
