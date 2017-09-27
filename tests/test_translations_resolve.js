@@ -37,7 +37,7 @@ const locale1 = {
                 msgid: '${ 0 } hour1',
                 msgid_plural: '${ 0 } hours',
                 msgstr: ['${ 0 } hour [trans]', '${ 0 } hours [trans]'],
-            }
+            },
         },
     },
 };
@@ -71,7 +71,7 @@ const ukLocale = {
                 msgstr: ['${ 0 } година', '${ 0 } години', '${ 0 } годин'],
             },
         },
-    }
+    },
 };
 
 describe('test useLocales', () => {
