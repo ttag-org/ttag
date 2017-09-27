@@ -1,12 +1,16 @@
 import { getMsgid, msgid2Orig, buildStr, makePluralFunc,
     getPluralFunc, defaultHeaders, transformTranslateObj, buildArr, dedentIfConfig } from './utils';
+import { validateLocales } from './validate';
 
 const config = {
     locales: {},
+    localesOrder: [],
     currentLocale: 'en',
     dedent: true,
     headers: defaultHeaders,
 };
+
+const isProd = process && process.env && process.env.NODE_ENV === 'production';
 
 function isFuzzy(translationObj) {
     return (
@@ -20,16 +24,28 @@ function findTransObj(locale, str) {
     return translation && !isFuzzy(translation) ? translation : null;
 }
 
+function findTranslation(str) {
+    const locales = config.localesOrder;
+    if (locales.length) {
+        for (let i = 0; i < locales.length; i++) {
+            const translation = findTransObj(locales[i], str);
+            if (translation) {
+                return translation;
+            }
+        }
+    }
+    return findTransObj(config.currentLocale, str);
+}
+
 function maybeDedent(str) {
     return config.dedent ? dedentIfConfig(config, str) : str;
 }
 
 export function t(strings, ...exprs) {
-    const curLocale = config.currentLocale;
     let result = strings;
     if (strings && strings.reduce) {
         const id = maybeDedent(getMsgid(strings, exprs));
-        const transObj = findTransObj(curLocale, id);
+        const transObj = findTranslation(id);
         result = transObj ? msgid2Orig(transObj.msgstr[0], exprs) : buildStr(strings, exprs);
     }
     return maybeDedent(result);
@@ -41,7 +57,7 @@ const slotIdRegexp = /\${\s*(\d+)\s*}/;
 export function jt(strings, ...exprs) {
     if (strings && strings.reduce) {
         const id = getMsgid(strings, exprs);
-        const transObj = findTransObj(config.currentLocale, id);
+        const transObj = findTranslation(id);
         if (!transObj) return buildArr(strings, exprs);
 
         // splits string & capturing group into tokens
@@ -70,7 +86,7 @@ export function msgid(strings, ...exprs) {
 }
 
 export function gettext(id) {
-    const transObj = findTransObj(config.currentLocale, id);
+    const transObj = findTranslation(id);
     return transObj ? transObj.msgstr[0] : id;
 }
 
@@ -119,4 +135,9 @@ export function setHeaders(headers) {
         '[DEPRECATED] setHeaders is deprecated, and will be removed in the' +
         ' next minor version 0.6, use setDefaultHeaders instead');
     setDefaultHeaders(headers);
+}
+
+export function useLocales(locales) {
+    if (!isProd) validateLocales(locales, config);
+    config.localesOrder = locales;
 }
