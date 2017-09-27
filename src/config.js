@@ -3,50 +3,71 @@ const defaultHeaders = {
     'plural-forms': 'nplurals=2; plural=(n!=1);',
 };
 
-const config = {
-    locales: {},
-    currentLocales: [],
-    currentLocale: 'en',
-    dedent: true,
-    headers: defaultHeaders,
-};
-
-export function addLocale(locale, localeData) {
-    config.locales[locale] = localeData;
+function validateLocale(locale, availLocales) {
+    if (!availLocales[locale]) {
+        throw new Error(`
+                Locale '${locale}' is not found in config.
+                useLocales accepts only existing locales. Use addLocale function before.
+                Available locales: ${JSON.stringify(availLocales)}`);
+    }
 }
 
-export function setCurrentLocale(locale) {
-    config.currentLocale = locale;
+function validateLocales(locales, availLocales) {
+    if (!Array.isArray(locales)) {
+        throw new Error('useLocales accepts only array as the first argument');
+    }
+    locales.forEach((locale) => validateLocale(locale, availLocales));
 }
 
-export function setDedent(dedent) {
-    config.dedent = dedent;
-}
+const isProd = process && process.env && process.env.NODE_ENV === 'production';
 
-export function setHeaders(headers) {
-    config.headers = headers;
-}
+export default function Config() {
+    const config = {
+        locales: {},
+        currentLocales: [],
+        currentLocale: 'en',
+        dedent: true,
+        headers: defaultHeaders,
+    };
 
-export function setCurrentLocales(locales) {
-    config.currentLocales = locales;
-}
+    this.addLocale = (locale, localeData) => {
+        config.locales[locale] = localeData;
+    };
 
-export function getAvailLocales() {
-    return config.locales;
-}
+    this.setCurrentLocale = (locale) => {
+        config.currentLocale = locale;
+    };
 
-export function getCurrentLocales() {
-    return config.currentLocales;
-}
+    this.setDedent = (dedent) => {
+        config.dedent = dedent;
+    };
 
-export function getCurrentLocale() {
-    return config.currentLocale;
-}
+    this.setHeaders = (headers) => {
+        config.headers = headers;
+    };
 
-export function isDedent() {
-    return config.dedent;
-}
+    this.setCurrentLocales = (locales) => {
+        if (!isProd) validateLocales(locales, this.getAvailLocales());
+        config.currentLocales = locales;
+    };
 
-export function getHeaders() {
-    return config.headers;
+    this.getAvailLocales = () => {
+        return config.locales;
+    };
+
+    this.getCurrentLocales = () => {
+        return config.currentLocales;
+    };
+
+    this.getCurrentLocale = () => {
+        return config.currentLocale;
+    };
+
+    this.isDedent = () => {
+        return config.dedent;
+    };
+
+    this.getHeaders = () => {
+        return config.headers;
+    };
 }

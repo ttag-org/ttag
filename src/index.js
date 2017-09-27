@@ -1,10 +1,8 @@
 import { getMsgid, msgid2Orig, buildStr, makePluralFunc,
     getPluralFunc, transformTranslateObj, buildArr, dedentStr } from './utils';
-import { validateLocales } from './validate';
-import * as conf from './config';
+import Config from './config';
 
-
-const isProd = process && process.env && process.env.NODE_ENV === 'production';
+const conf = new Config();
 
 function isFuzzy(translationObj) {
     return (
@@ -125,6 +123,5 @@ export function setDefaultHeaders(headers) {
 }
 
 export function useLocales(locales) {
-    if (!isProd) validateLocales(locales, conf.getAvailLocales());
     conf.setCurrentLocales(locales);
 }
