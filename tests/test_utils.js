@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { assert, expect } from 'chai';
-import { getMsgid, transformTranslateObj, dedentIfConfig } from '../src/utils';
+import { getMsgid, transformTranslateObj, dedentStr } from '../src/utils';
 
 function getStrsExprs(strs, ...exprs) {
     return [strs, exprs];
@@ -29,34 +29,29 @@ describe('utils transformTranslateObj', () => {
     });
 });
 
-describe('utils dedentIfConfig', () => {
-    it('should not dedent if no config', () => {
-        const source = '   test';
-        const result = dedentIfConfig(null, source);
-        expect(result).to.eql(source);
-    });
+describe('utils dedentStr', () => {
     it('should not dedent if config.dedent is false', () => {
         const source = '   test';
-        const result = dedentIfConfig({ dedent: false }, source);
+        const result = dedentStr(source);
         expect(result).to.eql(source);
     });
 
     it('should return rawStr if it is not a string', () => {
         const source = { test: 'test' };
-        const result = dedentIfConfig({ dedent: true }, source);
+        const result = dedentStr(source);
         expect(result).to.eql(source);
     });
 
     it('should not dedent if has no \\n symbol', () => {
         const source = '   test';
-        const result = dedentIfConfig({ dedent: true }, source);
+        const result = dedentStr(source);
         expect(result).to.eql(source);
     });
     it('should dedent', () => {
         const source = `test
         test
         test`;
-        const result = dedentIfConfig({ dedent: true }, source);
+        const result = dedentStr(source);
         expect(result).to.eql('test\ntest\ntest');
     });
 });

@@ -54,12 +54,6 @@ export function getPluralFunc(headers) {
     return pluralFn;
 }
 
-export const defaultHeaders = {
-    'content-type': 'text/plain; charset=UTF-8',
-    'plural-forms': 'nplurals=2; plural=(n!=1);',
-};
-
-
 const variableREG = /\$\{ \w+(.\w+)* \}/g;
 
 function getObjectKeys(obj) {
@@ -120,11 +114,7 @@ export function transformTranslateObj(translateObj) {
     return translateObj;
 }
 
-export function dedentIfConfig(config, rawStr) {
-    if (!config || !config.dedent) {
-        return rawStr;
-    }
-
+export function dedentStr(rawStr) {
     if (! (typeof rawStr === 'string')) {
         return rawStr;
     }

@@ -61,8 +61,8 @@ describe('test useLocales', () => {
         addLocale('locale2', locale2);
         useLocales(['locale1', 'locale2']);
 
-        const result1 = t`Click1 ${ 1 } and ${ 2 }`;
-        const result2 = t`Click2 ${ 1 } and ${ 2 }`;
+        const result1 = t`Click1 ${1} and ${2}`;
+        const result2 = t`Click2 ${1} and ${2}`;
         expect(result1).to.eql('Click1 2 and 1 [translation]');
         expect(result2).to.eql('Click2 2 and 1 [translation]');
     });

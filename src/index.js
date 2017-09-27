@@ -1,14 +1,8 @@
 import { getMsgid, msgid2Orig, buildStr, makePluralFunc,
-    getPluralFunc, defaultHeaders, transformTranslateObj, buildArr, dedentIfConfig } from './utils';
+    getPluralFunc, transformTranslateObj, buildArr, dedentStr } from './utils';
 import { validateLocales } from './validate';
+import * as conf from './config';
 
-const config = {
-    locales: {},
-    localesOrder: [],
-    currentLocale: 'en',
-    dedent: true,
-    headers: defaultHeaders,
-};
 
 const isProd = process && process.env && process.env.NODE_ENV === 'production';
 
@@ -19,13 +13,13 @@ function isFuzzy(translationObj) {
 }
 
 function findTransObj(locale, str) {
-    const { locales } = config;
+    const locales = conf.getAvailLocales();
     const translation = locales[locale] && locales[locale].translations[''][str];
     return translation && !isFuzzy(translation) ? translation : null;
 }
 
 function findTranslation(str) {
-    const locales = config.localesOrder;
+    const locales = conf.getCurrentLocales();
     if (locales.length) {
         for (let i = 0; i < locales.length; i++) {
             const translation = findTransObj(locales[i], str);
@@ -34,11 +28,11 @@ function findTranslation(str) {
             }
         }
     }
-    return findTransObj(config.currentLocale, str);
+    return findTransObj(conf.getCurrentLocale(), str);
 }
 
 function maybeDedent(str) {
-    return config.dedent ? dedentIfConfig(config, str) : str;
+    return conf.isDedent() ? dedentStr(str) : str;
 }
 
 export function t(strings, ...exprs) {
@@ -91,11 +85,12 @@ export function gettext(id) {
 }
 
 export function ngettext(...args) {
-    const { currentLocale, locales } = config;
+    const currentLocale = conf.getCurrentLocale();
+    const locales = conf.getAvailLocales();
     const id = maybeDedent(getMsgid(args[0]._strs, args[0]._exprs));
     const n = args[args.length - 1];
     const trans = findTransObj(currentLocale, id);
-    const headers = trans ? locales[currentLocale].headers : config.headers;
+    const headers = trans ? locales[currentLocale].headers : conf.getHeaders();
     const pluralStr = getPluralFunc(headers);
     const pluralFn = makePluralFunc(pluralStr);
     let result;
@@ -114,30 +109,22 @@ export function addLocale(locale, data, replaceVariablesNames = true) {
     if (replaceVariablesNames) {
         data = transformTranslateObj(data);
     }
-    config.locales[locale] = data;
+    conf.addLocale(locale, data);
 }
 
 export function useLocale(locale) {
-    config.currentLocale = locale;
+    conf.setCurrentLocale(locale);
 }
 
 export function setDedent(value) {
-    config.dedent = Boolean(value);
+    conf.setDedent(Boolean(value));
 }
 
 export function setDefaultHeaders(headers) {
-    config.headers = headers;
-}
-
-export function setHeaders(headers) {
-    /* eslint-disable no-console */
-    (console.warn || console.log)(
-        '[DEPRECATED] setHeaders is deprecated, and will be removed in the' +
-        ' next minor version 0.6, use setDefaultHeaders instead');
-    setDefaultHeaders(headers);
+    conf.setHeaders(headers);
 }
 
 export function useLocales(locales) {
-    if (!isProd) validateLocales(locales, config);
-    config.localesOrder = locales;
+    if (!isProd) validateLocales(locales, conf.getAvailLocales());
+    conf.setCurrentLocales(locales);
 }
