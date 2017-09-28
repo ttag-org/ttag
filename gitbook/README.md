@@ -52,3 +52,7 @@ features like string interpolation, multiline e.t.c.
 
 ## Slides from talks
 * [Kyivjs 2017](https://docs.google.com/presentation/d/1oj6ZaXfIfcClROe-4kOMMjnXFExn1gUfF6D30VyznWs/edit?usp=sharing)
+* [Odessajs 2017](https://docs.google.com/presentation/d/1XB82-hTLQxP456Bk8UWJb-tZBsHnUHp4lJzmQorxNgs/edit?usp=sharing)
+
+## Talks
+* [Odessajs 2017 (video)](https://www.youtube.com/watch?v=9QjzpfA9LH4)
