@@ -59,5 +59,6 @@ about how to use c-3po without babel transpilation.
 
 ## Slides from talks
 * [Kyivjs 2017](https://docs.google.com/presentation/d/1oj6ZaXfIfcClROe-4kOMMjnXFExn1gUfF6D30VyznWs/edit?usp=sharing)
+* [Odessajs 2017] (https://docs.google.com/presentation/d/1XB82-hTLQxP456Bk8UWJb-tZBsHnUHp4lJzmQorxNgs/edit?usp=sharing)
 
 ### Quick view on Jsfiddle playground - https://jsfiddle.net/AlexMost/9wuafbL5/11/
