@@ -1,6 +1,14 @@
 # CHANGELOG
 
 <!-- toc -->
+### 0.6.0
+
+##### c-3po lib:
+Implemented useLocales method [PR](https://github.com/c-3po-org/c-3po/pull/71)
+
+##### c-3po-plugin
+Validation fix for the computed properties [PR](https://github.com/c-3po-org/babel-plugin-c-3po/issues/90)
+
 ### 0.5.8
 Fixes for fuzzy translations issue - [68](https://github.com/c-3po-org/c-3po/issues/68)
 
