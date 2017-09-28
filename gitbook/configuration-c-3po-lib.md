@@ -27,9 +27,9 @@ useLocale('uk');
 ```
 
 ### useLocales ([String] locales)
-If you want to have multiple locales for resolving translations, you can use this 
-method, it will try to resolve translations exactly in the same order as you will
-specify with `locales` argument.
+If you want to have multiple translations look up locations, you can use this 
+method. Library will try to resolve translations exactly in the same order as you will
+specify in the `locales` argument.
 
 argumets:
 * **locales ([String])**: Locales names (uk, en)
