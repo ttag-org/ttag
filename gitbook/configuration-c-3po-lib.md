@@ -26,6 +26,19 @@ Example:
 useLocale('uk');
 ```
 
+### useLocales ([String] locales)
+If you want to have multiple locales for resolving translations, you can use this 
+method, it will try to resolve translations exactly in the same order as you will
+specify with `locales` argument.
+
+argumets:
+* **locales ([String])**: Locales names (uk, en)
+
+Example:
+```js
+useLocales(['en_US', 'en']);
+```
+
 ### setDedent (bool value)
 Activates or deactivates dedent for multiline (details [here](multiline-strings.md)).
 Enabled by default.
