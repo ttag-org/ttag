@@ -88,8 +88,10 @@ Default headers for .pot file \(base file with extracted translations\).
 Default \(English locale\):
 
 ```
-'content-type': 'text/plain; charset=UTF-8'
-'plural-forms': 'nplurals=2; plural=(n!=1);'
+{
+   'content-type': 'text/plain; charset=UTF-8',
+   'plural-forms': 'nplurals=2; plural=(n!=1);'
+}
 ```
 
 ### Config.addComments **[ boolean | string ]**
