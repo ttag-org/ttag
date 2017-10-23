@@ -50,4 +50,31 @@ describe('jt', () => {
         useLocale('en2');
         expect(jt`Click ${100} and ${200}`).to.deep.eql(['Click ', 200, ' and ', 100, ' [translation]']);
     });
+
+    it('should strip leading spaces for multi-line msgid', () => {
+        const constant = 'CONSTANT';
+        const enLocale = {
+            headers: {
+                'plural-forms': 'nplurals=2; plural=(n!=1);',
+            },
+            translations: {
+                '': {
+                    'Test multi-line\nstring with ${ 0 }': {
+                        msgid: 'Test multi-line\nstring with ${ 0 }',
+                        msgstr: [
+                            'Test multi-line\nstring with ${ 0 } [translation]',
+                        ],
+                    },
+                },
+            },
+        };
+        loadLocale('en3', enLocale);
+        useLocale('en3');
+
+        // Spaces before "string with ${constant}" should be stripped.
+        expect(
+            jt`Test multi-line
+            string with ${constant}`
+        ).to.deep.eql(['Test multi-line\nstring with ', constant, ' [translation]']);
+    });
 });
