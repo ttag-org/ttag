@@ -1,6 +1,11 @@
 # CHANGELOG
 
 <!-- toc -->
+### 0.6.1
+
+##### c-3po lib:
+Fixed multiline for jt [PR](https://github.com/c-3po-org/c-3po/pull/76)
+
 ### 0.6.0
 
 ##### c-3po lib:
