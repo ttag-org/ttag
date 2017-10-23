@@ -50,7 +50,7 @@ const slotIdRegexp = /\${\s*(\d+)\s*}/;
 
 export function jt(strings, ...exprs) {
     if (strings && strings.reduce) {
-        const id = getMsgid(strings, exprs);
+        const id = maybeDedent(getMsgid(strings, exprs));
         const transObj = findTranslation(id);
         if (!transObj) return buildArr(strings, exprs);
 
