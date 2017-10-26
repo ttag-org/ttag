@@ -17,14 +17,14 @@ describe('contexts', () => {
                         ],
                     },
                 },
-                'ctx2': {
+                ctx2: {
                     'Click ${ 0 } and ${ 1 }': {
                         msgid: 'Click ${ 0 } and ${ 1 }',
                         msgstr: [
                             'Click ${ 1 } and ${ 0 } ctx2',
                         ],
                     },
-                }
+                },
             },
         };
         loadLocale('en2', enLocale);

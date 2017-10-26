@@ -148,5 +148,5 @@ export function c(context) {
         jt: jt.bind(ctx),
         gettext: gettext.bind(ctx),
         ngettext: ngettext.bind(ctx),
-    }
+    };
 }
