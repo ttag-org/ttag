@@ -8,7 +8,7 @@ function Context(context) {
     this.getContext = () => context;
 }
 
-const getContext = (obj) => {
+const getTransContext = (obj) => {
     if (obj instanceof Context) {
         return obj.getContext();
     }
@@ -50,7 +50,7 @@ export function t(strings, ...exprs) {
     let result = strings;
     if (strings && strings.reduce) {
         const id = maybeDedent(getMsgid(strings, exprs));
-        const context = getContext(this);
+        const context = getTransContext(this);
         const transObj = findTranslation(id, context);
         result = transObj ? msgid2Orig(transObj.msgstr[0], exprs) : buildStr(strings, exprs);
     }
@@ -63,7 +63,7 @@ const slotIdRegexp = /\${\s*(\d+)\s*}/;
 export function jt(strings, ...exprs) {
     if (strings && strings.reduce) {
         const id = maybeDedent(getMsgid(strings, exprs));
-        const context = getContext(this);
+        const context = getTransContext(this);
         const transObj = findTranslation(id, context);
         if (!transObj) return buildArr(strings, exprs);
 
@@ -93,7 +93,7 @@ export function msgid(strings, ...exprs) {
 }
 
 export function gettext(id) {
-    const context = getContext(this);
+    const context = getTransContext(this);
     const transObj = findTranslation(id, context);
     return transObj ? transObj.msgstr[0] : id;
 }
@@ -101,7 +101,7 @@ export function gettext(id) {
 export function ngettext(...args) {
     const id = maybeDedent(getMsgid(args[0]._strs, args[0]._exprs));
     const n = args[args.length - 1];
-    const context = getContext(this);
+    const context = getTransContext(this);
     const trans = findTranslation(id, context);
     const headers = trans ? trans._headers : conf.getHeaders();
     const pluralStr = getPluralFunc(headers);
