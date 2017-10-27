@@ -85,5 +85,15 @@ describe('contexts', () => {
         const result2 = gettext('test');
         expect(result2).to.eql('test default');
     });
+
+    it('should throw if context is not a string', () => {
+        const fn = () => c(111).gettext('test');
+        expect(fn).to.throw('String type is expected');
+    });
+
+    it('should switch to default context if provided context is not found', () => {
+        const result1 = c('ctx3').gettext('test');
+        expect(result1).to.eql('test default');
+    });
 });
 

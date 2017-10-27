@@ -1,10 +1,16 @@
 import { getMsgid, msgid2Orig, buildStr, makePluralFunc,
-    getPluralFunc, transformTranslateObj, buildArr, dedentStr } from './utils';
+    getPluralFunc, transformTranslateObj, buildArr, dedentStr, isDebug } from './utils';
 import Config from './config';
 
 const conf = new Config();
 
 function Context(context) {
+    if (isDebug) {
+        if (typeof context !== 'string') {
+            throw new Error('String type is expected as a first ' +
+                'argument to c() function.');
+        }
+    }
     this.getContext = () => context;
 }
 
@@ -23,7 +29,8 @@ function isFuzzy(translationObj) {
 
 function findTransObj(locale, str, ctx) {
     const locales = conf.getAvailLocales();
-    const translation = locales[locale] && locales[locale].translations[ctx][str];
+    const translations = locales[locale] && (locales[locale].translations[ctx] || locales[locale].translations['']);
+    const translation = translations && translations[str];
     if (translation && !isFuzzy(translation)) {
         translation._headers = locales[locale].headers;
         return translation;
