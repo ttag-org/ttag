@@ -1,5 +1,5 @@
 import { getMsgid, msgid2Orig, buildStr, makePluralFunc,
-    getPluralFunc, transformTranslateObj, buildArr, dedentStr, isDebug
+    getPluralFunc, transformTranslateObj, buildArr, dedentStr, isDebug,
 } from './utils';
 import Config from './config';
 
