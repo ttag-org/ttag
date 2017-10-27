@@ -1,5 +1,6 @@
 import { getMsgid, msgid2Orig, buildStr, makePluralFunc,
-    getPluralFunc, transformTranslateObj, buildArr, dedentStr, isDebug } from './utils';
+    getPluralFunc, transformTranslateObj, buildArr, dedentStr, isDebug
+} from './utils';
 import Config from './config';
 
 const conf = new Config();
@@ -29,7 +30,8 @@ function isFuzzy(translationObj) {
 
 function findTransObj(locale, str, ctx) {
     const locales = conf.getAvailLocales();
-    const translations = locales[locale] && (locales[locale].translations[ctx] || locales[locale].translations['']);
+    const translations = locales[locale] && (
+        locales[locale].translations[ctx] || locales[locale].translations['']);
     const translation = translations && translations[str];
     if (translation && !isFuzzy(translation)) {
         translation._headers = locales[locale].headers;
@@ -59,7 +61,8 @@ export function t(strings, ...exprs) {
         const id = maybeDedent(getMsgid(strings, exprs));
         const context = getTransContext(this);
         const transObj = findTranslation(id, context);
-        result = transObj ? msgid2Orig(transObj.msgstr[0], exprs) : buildStr(strings, exprs);
+        result = transObj ?
+            msgid2Orig(transObj.msgstr[0], exprs) : buildStr(strings, exprs);
     }
     return maybeDedent(result);
 }
