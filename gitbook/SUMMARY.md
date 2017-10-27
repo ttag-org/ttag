@@ -15,9 +15,10 @@
 ## functions
 
 * [t \(tag-gettext\)](tag-gettext--t-.md)
-* [ngettext](ngettext.md)
+* [Plurals (ngettext)](ngettext.md)
 * [jt (jsx-gettext)](jsx-tag-jt.md)
 * [gettext](gettext.md)
+* [contexts](contexts.md)
 
 ## Tutorials
 
