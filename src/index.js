@@ -1,5 +1,5 @@
 import { getMsgid, msgid2Orig, buildStr, makePluralFunc,
-    getPluralFunc, transformTranslateObj, buildArr, dedentStr, isDebug,
+    getPluralFunc, buildArr, dedentStr, isDebug,
 } from './utils';
 import Config from './config';
 
@@ -129,10 +129,7 @@ export function ngettext(...args) {
 }
 
 export function addLocale(locale, data, replaceVariablesNames = true) {
-    if (replaceVariablesNames) {
-        data = transformTranslateObj(data);
-    }
-    conf.addLocale(locale, data);
+    conf.addLocale(locale, data, replaceVariablesNames);
 }
 
 export function useLocale(locale) {
