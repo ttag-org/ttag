@@ -54,6 +54,15 @@ export function getPluralFunc(headers) {
     return pluralFn;
 }
 
+const pluralNumRegex = /^nplurals ?= ?(\d);/;
+export function getPluralFormsNumber(headers) {
+    let pluralFnCount = pluralNumRegex.exec(headers['plural-forms'])[1];
+    if (pluralFnCount[pluralFnCount.length - 1] === ';') {
+        pluralFnCount = pluralFnCount.slice(0, -1);
+    }
+    return parseInt(pluralFnCount, 10);
+}
+
 const variableREG = /\$\{ \w+(.\w+)* \}/g;
 
 function getObjectKeys(obj) {
