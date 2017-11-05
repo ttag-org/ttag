@@ -9,6 +9,14 @@ function validateLocale(locale, availLocales) {
     }
 }
 
+export function validateLocaleCode(locale) {
+    if (process.env.NODE_ENV !== 'production') {
+        if (typeof locale !== 'string') {
+            throw new Error(`Expected locale code to be a string but recieved ${typeof locale} insttead`);
+        }
+    }
+}
+
 export function validateLocaleData(data) {
     if (process.env.NODE_ENV !== 'production') {
         // eslint-disable-next-line
@@ -22,6 +30,12 @@ export function validateLocaleData(data) {
         if (!data.headers) {
             throw new Error(`
             Locale data sould contain headers "${JSON.stringify(data)}".
+            see - ${addLocaleDoc}
+            `);
+        }
+        if (!data.headers['plural-forms'] && !data.headers['Plural-Forms']) {
+            throw new Error(`
+            Locale data.headers should contain 'Plural-Forms' attribute "${JSON.stringify(data)}".
             see - ${addLocaleDoc}
             `);
         }

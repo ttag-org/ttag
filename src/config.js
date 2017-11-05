@@ -1,5 +1,5 @@
 import { transformTranslateObj } from './utils';
-import { validateLocaleData, validateLocales } from './validation';
+import { validateLocaleData, validateLocales, validateLocaleCode } from './validation';
 
 const defaultHeaders = {
     'content-type': 'text/plain; charset=UTF-8',
@@ -18,6 +18,7 @@ export default function Config() {
     };
 
     this.addLocale = (locale, localeData, replaceVariablesNames) => {
+        if (!isProd) validateLocaleCode(locale);
         if (!isProd) validateLocaleData(localeData);
         if (replaceVariablesNames) {
             localeData = transformTranslateObj(localeData);
