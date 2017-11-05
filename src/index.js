@@ -128,8 +128,8 @@ export function ngettext(...args) {
     return maybeDedent(result);
 }
 
-export function addLocale(locale, data, replaceVariablesNames = true) {
-    conf.addLocale(locale, data, replaceVariablesNames);
+export function addLocale(locale, data) {
+    conf.addLocale(locale, data);
 }
 
 export function useLocale(locale) {

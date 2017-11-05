@@ -17,12 +17,10 @@ export default function Config() {
         headers: defaultHeaders,
     };
 
-    this.addLocale = (locale, localeData, replaceVariablesNames) => {
+    this.addLocale = (locale, localeData) => {
         if (!isProd) validateLocaleCode(locale);
         if (!isProd) validateLocaleData(localeData);
-        if (replaceVariablesNames) {
-            localeData = transformTranslateObj(localeData);
-        }
+        localeData = transformTranslateObj(localeData);
         config.locales[locale] = localeData;
     };
 

@@ -6,10 +6,6 @@ arguments:
 * **locale (string)**: Locale name (uk, en)
 * **poData (object)**: parsed data from .po file. Usually received by library that parses .po files data.
 For example - [gettext-parser](https://github.com/smhg/gettext-parser).
-* **[replaceVariablesNames] (bool)**: Default value - `true`. Optional argument. When `true`
-all `${ name }` expressions will be changed to `${ 0 }`. 
-    > This argument exists for compatibility reasons with older versions when named placeholders
-    in translations like `${ name }` were not supported.
 
 Example:
 ```js
