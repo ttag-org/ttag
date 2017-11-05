@@ -4,15 +4,22 @@
 Register locale translations.
 arguments:
 * **locale (string)**: Locale name (uk, en)
-* **data (object)**: parsed data from .po file.
-* **[replaceVariablesNames] (bool)**: Default value - `true`. Optional argument. When `true`
-all `${ name }` expressions will be changed to `${ 0 }`. 
-    > This argument exists for compatibility reasons with older versions when named placeholders
-    in translations like `${ name }` were not supported.
+* **poData (object)**: parsed data from .po file. Usually received by library that parses .po files data.
+For example - [gettext-parser](https://github.com/smhg/gettext-parser).
 
 Example:
 ```js
-addLocale('uk', ukLocaleObject);
+const poData = {
+    'headers': {
+        'plural-forms': 'nplurals=2; plural=(n!=1);'
+    },
+    'translations': {
+        '': {
+            'test': { 'msgid': 'test', 'msgstr': 'test translation' }
+        }
+    }
+}
+addLocale('en', poData);
 ```
 
 ### useLocale (string locale)

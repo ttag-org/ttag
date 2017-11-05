@@ -1,23 +1,10 @@
+import { transformTranslateObj } from './utils';
+import { validateLocaleData, validateLocales, validateLocaleCode } from './validation';
+
 const defaultHeaders = {
     'content-type': 'text/plain; charset=UTF-8',
     'plural-forms': 'nplurals=2; plural=(n!=1);',
 };
-
-function validateLocale(locale, availLocales) {
-    if (!availLocales[locale]) {
-        throw new Error(`
-                Locale '${locale}' is not found in config.
-                useLocales accepts only existing locales. Use addLocale function before.
-                Available locales: ${JSON.stringify(availLocales)}`);
-    }
-}
-
-function validateLocales(locales, availLocales) {
-    if (!Array.isArray(locales)) {
-        throw new Error('useLocales accepts only array as the first argument');
-    }
-    locales.forEach((locale) => validateLocale(locale, availLocales));
-}
 
 const isProd = process && process.env && process.env.NODE_ENV === 'production';
 
@@ -31,6 +18,9 @@ export default function Config() {
     };
 
     this.addLocale = (locale, localeData) => {
+        if (!isProd) validateLocaleCode(locale);
+        if (!isProd) validateLocaleData(localeData);
+        localeData = transformTranslateObj(localeData);
         config.locales[locale] = localeData;
     };
 
