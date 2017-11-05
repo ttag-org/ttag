@@ -1,6 +1,7 @@
 import { getMsgid, msgid2Orig, buildStr, makePluralFunc,
     getPluralFunc, buildArr, dedentStr, isDebug,
 } from './utils';
+import { validateNgettextMsgid, validateNgettextNumber } from './validation';
 import Config from './config';
 
 const conf = new Config();
@@ -109,8 +110,10 @@ export function gettext(id) {
 }
 
 export function ngettext(...args) {
+    if (isDebug) validateNgettextMsgid(args[0]);
     const id = maybeDedent(getMsgid(args[0]._strs, args[0]._exprs));
     const n = args[args.length - 1];
+    if (isDebug) validateNgettextNumber(n);
     const context = getTransContext(this);
     const trans = findTranslation(id, context);
     const headers = trans ? trans._headers : conf.getHeaders();

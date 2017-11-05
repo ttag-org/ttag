@@ -62,3 +62,28 @@ export function validateLocales(locales, availLocales) {
         locales.forEach((locale) => validateLocale(locale, availLocales));
     }
 }
+
+export function validateNgettextMsgid(str) {
+    if (process.env.NODE_ENV !== 'production') {
+        const ngettextDoc = 'https://c-3po.js.org/ngettext.html#usage';
+        if (! (str.hasOwnProperty('_strs') && str.hasOwnProperty('_exprs'))) {
+            throw new Error(
+                `The first argument for ngettext must be tagged with 'msgid' tag.
+                see - ${ngettextDoc};
+                `
+            );
+        }
+    }
+}
+
+export function validateNgettextNumber(n) {
+    if (process.env.NODE_ENV !== 'production') {
+        const ngettextDoc = 'https://c-3po.js.org/ngettext.html#usage';
+        if (! (typeof n === 'number')) {
+            throw new Error(
+                `The last argument to ngettext - '${n}' expected to be a number. Got '${typeof n}' instead.
+                see - ${ngettextDoc}`
+            );
+        }
+    }
+}

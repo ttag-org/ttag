@@ -85,4 +85,20 @@ describe('ngettext', () => {
             hours`, n);
         expect(result).to.eql('2\nгодини');
     });
+
+    it('should throw if first argument is not tagged with msgid', () => {
+        addLocale('uk', ukLocale);
+        useLocale(('uk'));
+        const a = 2;
+        const fn = () => ngettext(`${a} банан`, `${a} банана`, `${a} бананів`, a);
+        expect(fn).to.throw('The first argument for ngettext must be tagged with \'msgid\' tag.');
+    });
+
+    it('should throw if the last argument is not a number', () => {
+        addLocale('uk', ukLocale);
+        useLocale(('uk'));
+        const a = 2;
+        const fn = () => ngettext(msgid`${a} банан`, `${a} банана`, `${a} бананів`);
+        expect(fn).to.throw("The last argument to ngettext - '2 бананів' expected to be a number. Got 'string' instead");
+    });
 });
