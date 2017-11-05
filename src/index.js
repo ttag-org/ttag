@@ -1,7 +1,8 @@
 import { getMsgid, msgid2Orig, buildStr, makePluralFunc,
     getPluralFunc, buildArr, dedentStr, isDebug,
 } from './utils';
-import { validateNgettextMsgid, validateNgettextNumber } from './validation';
+import { validateNgettextMsgid, validateNgettextNumber,
+    validateNgettextPluralForms } from './validation';
 import Config from './config';
 
 const conf = new Config();
@@ -117,6 +118,7 @@ export function ngettext(...args) {
     const context = getTransContext(this);
     const trans = findTranslation(id, context);
     const headers = trans ? trans._headers : conf.getHeaders();
+    if (isDebug) validateNgettextPluralForms(conf.getHeaders(), args.length - 1);
     const pluralStr = getPluralFunc(headers);
     const pluralFn = makePluralFunc(pluralStr);
     let result;
