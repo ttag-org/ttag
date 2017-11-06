@@ -85,4 +85,30 @@ describe('ngettext', () => {
             hours`, n);
         expect(result).to.eql('2\nгодини');
     });
+
+    it('should throw if first argument is not tagged with msgid', () => {
+        addLocale('uk', ukLocale);
+        useLocale(('uk'));
+        const a = 2;
+        const fn = () => ngettext(`${a} банан`, `${a} банана`, `${a} бананів`, a);
+        expect(fn).to.throw('The first argument for ngettext must be tagged with \'msgid\' tag.');
+    });
+
+    it('should throw if the last argument is not a number', () => {
+        addLocale('uk', ukLocale);
+        useLocale(('uk'));
+        const a = 2;
+        const fn = () => ngettext(msgid`${a} банан`, `${a} банана`, `${a} бананів`);
+        expect(fn).to.throw("The last argument to ngettext - '2 бананів' expected to be a number. Got 'string' instead");
+    });
+
+    it('should throw if has invalid number of plural forms', () => {
+        const ukHeaders = {
+            'plural-forms': 'nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);',
+        };
+        setDefaultHeaders(ukHeaders);
+        const a = 2;
+        const fn = () => ngettext(msgid`${a} банан`, `${a} банана`, a);
+        expect(fn).to.throw('ngettext expects 3 for the current default locale, but received - 2');
+    });
 });
