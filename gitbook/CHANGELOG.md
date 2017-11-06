@@ -1,6 +1,13 @@
 # CHANGELOG
 
 <!-- toc -->
+### 0.7.0
+---------
+1. Added context's feature to c-3po lib and babel-plugin-c-3po [see doc](contexts.md)
+2. Validation for libarary (addLocale, ngettext).
+3. Skipped deprecated *replaceVariableNames* argument for addLocale func.
+
+
 ### 0.6.1
 
 ##### c-3po lib:

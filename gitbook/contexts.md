@@ -48,6 +48,38 @@ msgctx: "profile"
 msgstr: "Здоровенькі були ${ name }"
 ```
 
+### Translations extract
+```js
+import { c, t } from 'c-3po';
+
+c('email').t`Hello ${ name }`; // email context
+```
+
+will be extracted to this:
+
+```
+msgid: "Hello ${ name }"
+msgctx: "email"
+msgstr: ""
+```
+
+### Translations resolve
+Suppose we have translated phrase in .po:
+
+```
+msgid: "Hello ${ name }"
+msgctx: "email"
+msgstr: "Вітаємо ${ name }"
+```
+
+The result js for uk locale will be
+
+```js
+t`Вітаємо ${ name }`.
+```
+
+As you can see, the appropriate translation phrase is on it's place and all context calls are stripped.
+
 ### c format
 
 **valid:**
