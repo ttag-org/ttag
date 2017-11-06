@@ -1,3 +1,5 @@
+import { getPluralFormsNumber } from './utils';
+
 function validateLocale(locale, availLocales) {
     if (process.env.NODE_ENV !== 'production') {
         if (!availLocales[locale]) {
@@ -60,5 +62,43 @@ export function validateLocales(locales, availLocales) {
             throw new Error('useLocales accepts only array as the first argument');
         }
         locales.forEach((locale) => validateLocale(locale, availLocales));
+    }
+}
+
+export function validateNgettextMsgid(str) {
+    if (process.env.NODE_ENV !== 'production') {
+        const ngettextDoc = 'https://c-3po.js.org/ngettext.html#usage';
+        if (! (str.hasOwnProperty('_strs') && str.hasOwnProperty('_exprs'))) {
+            throw new Error(
+                `The first argument for ngettext must be tagged with 'msgid' tag.
+                see - ${ngettextDoc};
+                `
+            );
+        }
+    }
+}
+
+export function validateNgettextNumber(n) {
+    if (process.env.NODE_ENV !== 'production') {
+        const ngettextDoc = 'https://c-3po.js.org/ngettext.html#usage';
+        if (! (typeof n === 'number')) {
+            throw new Error(
+                `The last argument to ngettext - '${n}' expected to be a number. Got '${typeof n}' instead.
+                see - ${ngettextDoc}`
+            );
+        }
+    }
+}
+
+export function validateNgettextPluralForms(headers, actualFormsCount) {
+    if (process.env.NODE_ENV !== 'production') {
+        const expectedFormsCount = getPluralFormsNumber(headers);
+        if (actualFormsCount !== expectedFormsCount) {
+            throw new Error(
+                // eslint-disable-next-line max-len
+                `ngettext expects ${expectedFormsCount} for the current default locale, but received - ${actualFormsCount}.
+                Default locale headers: ${JSON.stringify(headers)}`
+            );
+        }
     }
 }
