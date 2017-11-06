@@ -17,6 +17,8 @@ c('email').ngettext(msgid`${ n } banana`, `${ n } bananas`, n);
 c('email').gettext('Hello');
 ```
 
+#### Live example https://jsfiddle.net/AlexMost/tqqxut52/2/
+
 ### Example
 For instance, we can have different translations for the same phrase
 `Hello ${ name }`. Depending on the context, there may be reasons

@@ -15,6 +15,8 @@
 * Can use any default locale in sources (not only English).
 * Handles [React (jsx) translations](jsx-tag-jt.md).
 
+#### Live example https://jsfiddle.net/AlexMost/9wuafbL5/30/
+
 ### Tools:
 
 The whole solution consists of 2 parts:
