@@ -10,8 +10,9 @@
 
 ## Key features
 * Uses es6 template literals for string formatting (no need for sprintf).
+* Contexts [support](https://c-3po.js.org/contexts.html)
 * Can precompile translations on a build step.
-* Uses babel plugin to extract and resolve translations, works with modern javascript AST.
+* Plurals support [ngettext](https://c-3po.js.org/ngettext.html).
 * Can be integrated in any build tool that works with babel.
 * Has options for both efficient [development and production setups](https://c-3po.js.org/localization-with-webpack-and-c-3po.html).
 * Has a builtin [validation](https://c-3po.js.org/validation.html) for translated strings format.
