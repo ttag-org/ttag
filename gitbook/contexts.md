@@ -1,9 +1,9 @@
 # Message contexts
 
-c-3po supports gettext's standard feature - contexts. This means that
-the same word can have multiple translations, depending on the usage context.
+c-3po supports gettext's standard feature - contexts.
+The same word can have multiple translations, depending on the usage context.
 
-You can use `c` wotj any of c-3po functions: `t`, `jt`, `ngettext`, `gettext`.
+You can use `c` with any of c-3po functions: `t`, `jt`, `ngettext`, `gettext`.
 
 > If provided context is not found in your translations then default will be used.
 
