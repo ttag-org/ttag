@@ -31,6 +31,7 @@
     "url": "https://github.com/c-3po-org/c-3po.git/issues"
   },
   "homepage": "https://github.com/c-3po-org/c-3po.git#readme",
+  "typings":"index.d.ts",
   "devDependencies": {
     "@evo/eslint-config-uaprom": "1.0.7",
     "babel-cli": "6.18.0",
