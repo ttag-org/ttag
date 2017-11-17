@@ -1,6 +1,6 @@
 {
   "name": "c-3po",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "",
   "main": "dist/index.js",
   "keywords": [
@@ -31,7 +31,7 @@
     "url": "https://github.com/c-3po-org/c-3po.git/issues"
   },
   "homepage": "https://github.com/c-3po-org/c-3po.git#readme",
-  "typings":"index.d.ts",
+  "typings": "index.d.ts",
   "devDependencies": {
     "@evo/eslint-config-uaprom": "1.0.7",
     "babel-cli": "6.18.0",
