@@ -1,6 +1,10 @@
 # CHANGELOG
 
 <!-- toc -->
+### 0.7.2
+##### c-3po lib
+Added typescript types definitions [PR-89](https://github.com/c-3po-org/c-3po/pull/89) [PR-88](https://github.com/c-3po-org/c-3po/pull/88)
+
 ### 0.7.0
 ---------
 1. Added context's feature to c-3po lib and babel-plugin-c-3po [see doc](contexts.md)
