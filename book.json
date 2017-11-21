@@ -5,13 +5,16 @@
         "github-buttons",
         "github-edit",
         "ga",
-        "toc"
+        "atoc"
     ],
     "pluginsConfig": {
         "github-buttons": {
-          "repo": "c-3po-org/c-3po",
-          "types": ["star"],
-          "size": "small"
+            "buttons": [{
+                "user": "c-3po-org",
+                "repo": "c-3po",
+                "type": "star",
+                "size": "small"
+            }]
         },
         "github-edit": {
             "repo": "c-3po-org/c-3po",
