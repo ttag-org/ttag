@@ -12,19 +12,10 @@ All quickstart sources are [here](https://github.com/c-3po-org/c-3po/tree/master
 ### Step 1. Installation
 
 1. Firstly we need to create separate folder run **npm init **and  execute [installation](/chapter1.md) instructions. 
-2. babel-cli and es2015 presets should be available.
+2. Our little program will be using es6 imports so we need babel node and babel presets to run them:
 
 ```
-npm install --save-dev babel-cli
-npm install --save-dev babel-preset-es2015
-```
-
-1. Add **.babelrc **file. 
-
-```
-{
-  "presets": ["es2015"]
-}
+npm install --save-dev babel-cli babel-preset-env babel-core
 ```
 
 ### Step 2. Simple counter program
@@ -47,6 +38,7 @@ startCount(3);
 When can execute this file and see this in output:
 
 ```
+node index.js
 starting count up to 3
 0 ticks passed
 1 ticks passed
@@ -54,6 +46,7 @@ starting count up to 3
 3 ticks passed
 ```
 
+----
 As we see our program works but it uses the wrong plural form for `1 ticks passed` (must be `1 tick passed`).
 Let's fix it.
 
