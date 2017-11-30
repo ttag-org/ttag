@@ -38,16 +38,16 @@ t`Hello ${ name }` // default context
 
 .po file (example for Ukrainian translations):
 ```
-msgid: "Hello ${ name }"
-msgstr: "Привіт ${ name }"
+msgid "Hello ${ name }"
+msgstr "Привіт ${ name }"
 
-msgid: "Hello ${ name }"
-msgctx: "email"
-msgstr: "Вітаємо ${ name }"
+msgctxt "email"
+msgid "Hello ${ name }"
+msgstr "Вітаємо ${ name }"
 
-msgid: "Hello ${ name }"
-msgctx: "profile"
-msgstr: "Здоровенькі були ${ name }"
+msgctxt "profile"
+msgid "Hello ${ name }"
+msgstr "Здоровенькі були ${ name }"
 ```
 
 ### Translations extract
@@ -60,18 +60,18 @@ c('email').t`Hello ${ name }`; // email context
 will be extracted to this:
 
 ```
-msgid: "Hello ${ name }"
-msgctx: "email"
-msgstr: ""
+msgctxt "email"
+msgid "Hello ${ name }"
+msgstr ""
 ```
 
 ### Translations resolve
 Suppose we have translated phrase in .po:
 
 ```
-msgid: "Hello ${ name }"
-msgctx: "email"
-msgstr: "Вітаємо ${ name }"
+msgctxt "email"
+msgid "Hello ${ name }"
+msgstr "Вітаємо ${ name }"
 ```
 
 The result js for uk locale will be
