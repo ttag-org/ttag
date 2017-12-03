@@ -4,16 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "app": "babel-node --presets env -- index.js"
+    "counter": "babel-node --presets env counter.js",
+    "counter-uk": "LOCALE=uk babel-node --presets env counter.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "c-3po-cli": "0.0.13"
   },
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-preset-env": "^1.6.1"
+    "c-3po": "^0.7.2"
   }
 }
