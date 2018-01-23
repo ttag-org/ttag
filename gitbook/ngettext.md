@@ -91,11 +91,14 @@ because at the time of the first release it was a single language for your proje
 At some point, you decided to localize your strings and want to use ngettext for plurals. 
 Ukrainian language has 3 plural forms, but standard ngettext has only 2 arguments for them, 
 so which one of those 3 plural forms must be passed to ngettext function? 
-c-3po suggests quite a nice solution for this problem. 
+c-3po suggests quite a nice solution for this problem.
+
 You can configure the number of plural forms arguments for ngettext by 
 **[defaultHeaders](configuration.md#configdefaultheaders-object)** property in config 
 or by headers in Ukrainian the **locale .po file**. But still c-3po will use 
-**defaultHeaders** on resolve if translations was not found. 
+**defaultHeaders** on resolve if translations was not found.
+Also if you are resolving your translation at runtime you can use **[setDefaultHeaders](configuration-c-3po-lib.html#setdefaultheaders-object-headers)** function from c-3po library API.
+
 By default c-3po uses this headers:
 
 ```

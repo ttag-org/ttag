@@ -12,6 +12,12 @@
 * [Aliasing](aliasing.md)
 * [Ignoring code blocks](c-3po-ignore.md)
 
+## Tutorials
+
+* [Quick Start](quick-start.md)
+* [Localization with webpack and c-3po](localization-with-webpack-and-c-3po.md)
+* [Translate without translpile](translations-without-transpile.md)
+
 ## functions
 
 * [t \(tag-gettext\)](tag-gettext--t-.md)
@@ -19,12 +25,6 @@
 * [jt (jsx-gettext)](jsx-tag-jt.md)
 * [gettext](gettext.md)
 * [contexts](contexts.md)
-
-## Tutorials
-
-* [Quick Start](quick-start.md)
-* [Localization with webpack and c-3po](localization-with-webpack-and-c-3po.md)
-* [Translate without translpile](translations-without-transpile.md)
 
 ## FAQ
 
