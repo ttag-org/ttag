@@ -1,4 +1,5 @@
 import dedent from 'dedent';
+import { getPluralFunc as getPluralFn } from 'plural-forms/dist/minimal';
 
 export const getMsgid = (str, exprs) => {
     return str.reduce((s, l, i) => s + l + (exprs[i] !== undefined && `\${ ${i} }` || ''), '');
@@ -52,15 +53,6 @@ export function getPluralFunc(headers) {
         pluralFn = pluralFn.slice(0, -1);
     }
     return pluralFn;
-}
-
-const pluralNumRegex = /^nplurals ?= ?(\d);/;
-export function getPluralFormsNumber(headers) {
-    let pluralFnCount = pluralNumRegex.exec(headers['plural-forms'])[1];
-    if (pluralFnCount[pluralFnCount.length - 1] === ';') {
-        pluralFnCount = pluralFnCount.slice(0, -1);
-    }
-    return parseInt(pluralFnCount, 10);
 }
 
 const variableREG = /\$\{ \w+(.\w+)* \}/g;
@@ -136,3 +128,13 @@ export function dedentStr(rawStr) {
 }
 
 export const isDebug = ! (process && process.env.NODE_ENV === 'production');
+
+export function getPluralFnForTrans(trans, config) {
+    const headers = config.getCurrentLocaleHeaders();
+    const language = headers.language | headers.Language;
+    if (language) {
+        return getPluralFn(language);
+    }
+    const pluralStr = getPluralFunc(headers);
+    return makePluralFunc(pluralStr);
+}

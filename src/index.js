@@ -1,5 +1,5 @@
-import { getMsgid, msgid2Orig, buildStr, makePluralFunc,
-    getPluralFunc, buildArr, dedentStr, isDebug,
+import { getMsgid, msgid2Orig, buildStr, getPluralFnForTrans,
+     buildArr, dedentStr, isDebug,
 } from './utils';
 import { validateNgettextMsgid, validateNgettextNumber,
     validateNgettextPluralForms } from './validation';
@@ -36,7 +36,6 @@ function findTransObj(locale, str, ctx) {
         locales[locale].translations[ctx] || locales[locale].translations['']);
     const translation = translations && translations[str];
     if (translation && !isFuzzy(translation)) {
-        translation._headers = locales[locale].headers;
         return translation;
     }
     return null;
@@ -48,6 +47,7 @@ function findTranslation(str, ctx) {
         for (let i = 0; i < locales.length; i++) {
             const translation = findTransObj(locales[i], str, ctx);
             if (translation) {
+                conf.setCurrentLocale(locales[i]);
                 return translation;
             }
         }
@@ -112,25 +112,24 @@ export function gettext(id) {
 
 export function ngettext(...args) {
     if (isDebug) validateNgettextMsgid(args[0]);
+
     const id = maybeDedent(getMsgid(args[0]._strs, args[0]._exprs));
     const n = args[args.length - 1];
     if (isDebug) validateNgettextNumber(n);
-    const context = getTransContext(this);
-    const trans = findTranslation(id, context);
-    const headers = trans ? trans._headers : conf.getHeaders();
-    if (isDebug) validateNgettextPluralForms(conf.getHeaders(), args.length - 1);
-    const pluralStr = getPluralFunc(headers);
-    const pluralFn = makePluralFunc(pluralStr);
-    let result;
-    if (!trans) {
-        const forms = args.slice(1, -1);
-        forms.unshift(args[0].toString());
-        result = pluralFn(n, forms);
-    } else {
-        result = msgid2Orig(pluralFn(n, trans.msgstr), args[0]._exprs);
-    }
 
-    return maybeDedent(result);
+    const forms = args.slice(1, -1);
+    forms.unshift(args[0].toString());
+    if (isDebug) validateNgettextPluralForms(conf.getDefaultPluralFormsCount(), forms.length);
+
+    const trans = findTranslation(id, getTransContext(this));
+    if (trans) {
+        const pluralFn = getPluralFnForTrans(trans, conf);
+        return maybeDedent(
+            msgid2Orig(pluralFn(n, trans.msgstr), args[0]._exprs)
+        );
+    }
+    const pluralFn = conf.getDefaultPluralFn();
+    return maybeDedent(pluralFn(n, forms));
 }
 
 export function addLocale(locale, data) {
@@ -145,12 +144,12 @@ export function setDedent(value) {
     conf.setDedent(Boolean(value));
 }
 
-export function setDefaultHeaders(headers) {
-    conf.setHeaders(headers);
-}
-
 export function useLocales(locales) {
     conf.setCurrentLocales(locales);
+}
+
+export function setDefaultLang(lang) {
+    conf.setDefaultLang(lang);
 }
 
 export function c(context) {

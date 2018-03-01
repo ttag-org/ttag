@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { t, ngettext, msgid, useLocale, addLocale, useLocales, setDefaultHeaders } from '../src/index';
+import { t, ngettext, msgid, useLocale, addLocale, useLocales, setDefaultLang } from '../src/index';
 import { loadLocale } from './loader';
 
 describe('translations resolve', () => {
@@ -87,7 +87,7 @@ describe('test useLocales', () => {
     });
 
     it('should apply locales after calling useLocales with t', () => {
-        setDefaultHeaders(locale1.headers);
+        setDefaultLang('en');
         addLocale('ukLocale', ukLocale);
         useLocales(['ukLocale', 'locale1']);
         const n = 5;
