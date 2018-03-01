@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { gettext, useLocale } from '../src/index';
-import { loadLocale } from '../src/loader';
+import { loadLocale } from './loader';
 
 describe('gettext', () => {
     before(() => {

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { ngettext, useLocale, msgid, setDefaultHeaders, addLocale } from '../src/index';
-import { loadLocale } from '../src/loader';
+import { loadLocale } from './loader';
 
 
 const ukLocale = {

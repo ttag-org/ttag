@@ -1,5 +1,10 @@
 import { t, ngettext, msgid, addLocale, useLocale } from 'c-3po';
-import { loadFile } from 'c-3po/loader';
+import fs from 'fs';
+import gt from 'gettext-parser';
+
+function loadFile(filePath) {
+    gt.po.parse(fs.readFileSync(filePath));
+}
 
 const locale = process.env.LOCALE;
 

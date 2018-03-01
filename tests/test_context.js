@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { t, jt, c, useLocale, ngettext, msgid, gettext } from '../src/index';
-import { loadLocale } from '../src/loader';
+import { loadLocale } from './loader';
 
 describe('contexts', () => {
     before(() => {
