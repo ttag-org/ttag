@@ -119,11 +119,17 @@ c-3po update uk.po counter.js
 Now, you can open `uk.po` file and add translations to extracted strings.
 
 ### 4. Load translations
-To be able to apply translations you should parse .po file to js object and call **addLocale**:
+To be able to apply translations you should parse .po file. We recommend to use `gettext-parser` package for that purpose:
 
 ```js
 import { addLocale, useLocale } from 'c-3po';
-import { loadFile } from 'c-3po/loader';
+import fs from 'fs';
+import gt from 'gettext-parser';
+
+function loadFile(filePath) {
+    gt.po.parse(fs.readFileSync(filePath));
+}
+
 addLocale('uk', loadFile('i18n/uk.po'));
 useLocale('uk');
 ```
@@ -131,7 +137,12 @@ useLocale('uk');
 Let's modify our program to load locale from **.po** file if **env.LOCALE** var is present:
 ```js
 import { ngettext, msgid, t,  addLocale, useLocale } from 'c-3po';
-import { loadFile } from 'c-3po/loader';
+import fs from 'fs';
+import gt from 'gettext-parser';
+
+function loadFile(filePath) {
+    gt.po.parse(fs.readFileSync(filePath));
+}
 
 const locale = process.env.LOCALE;
 

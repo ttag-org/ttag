@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import gParser from 'gettext-parser';
-import { addLocale } from './index';
+import { addLocale } from '../src/index';
 
 export function loadFile(filepath) {
     const fileContent = fs.readFileSync(filepath);
