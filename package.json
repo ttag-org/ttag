@@ -45,6 +45,7 @@
     "eslint-plugin-jsx-a11y": "1.5.5",
     "eslint-plugin-react": "5.2.2",
     "gitbook-cli": "^2.3.2",
+    "gitbook-plugin-atoc": "^1.0.3",
     "gitbook-plugin-ga": "2.0.0",
     "gitbook-plugin-github-buttons": "^3.0.0",
     "istanbul": "1.1.0-alpha.1",
@@ -54,7 +55,6 @@
   },
   "dependencies": {
     "dedent": "^0.7.0",
-    "gettext-parser": "1.2.2",
-    "gitbook-plugin-atoc": "^1.0.3"
+    "gettext-parser": "1.2.2"
   }
 }
