@@ -93,26 +93,12 @@ Ukrainian language has 3 plural forms, but standard ngettext has only 2 argument
 so which one of those 3 plural forms must be passed to ngettext function? 
 c-3po suggests quite a nice solution for this problem.
 
-You can configure the number of plural forms arguments for ngettext by 
-**[defaultHeaders](configuration.md#configdefaultheaders-object)** property in config 
-or by headers in Ukrainian the **locale .po file**. But still c-3po will use 
-**defaultHeaders** on resolve if translations was not found.
-Also if you are resolving your translation at runtime you can use **[setDefaultHeaders](configuration-c-3po-lib.html#setdefaultheaders-object-headers)** function from c-3po library API.
+By default c-3po uses 'en' language (English), but if you want to use **ngettext** with Ukrainian locale, you should call [setDefaultLang](#configuration-c-3po-lib.html#setdefaultlang-string-lang):
 
-By default c-3po uses this headers:
-
-```
-'content-type': 'text/plain; charset=UTF-8'
-'plural-forms': 'nplurals=2; plural=(n!=1);'
+```js
+setDefaultLang('uk');
 ```
 
-So, if you want to use **ngettext** with Ukrainian locale, you should change [defaultHeaders](#configdefaultheaders-object) setting to:
-
-```
-'content-type': 'text/plain; charset=UTF-8'
-'plural-forms': 'nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);',
-```
-
-> Here is a link where you can search for an appropriate headers for some other locales - [http://docs.translatehouse.org/projects/localization-guide/en/latest/l10n/pluralforms.html](http://docs.translatehouse.org/projects/localization-guide/en/latest/l10n/pluralforms.html)
+> Here is a link where you can search for languages ISO codes - [http://docs.translatehouse.org/projects/localization-guide/en/latest/l10n/pluralforms.html](http://docs.translatehouse.org/projects/localization-guide/en/latest/l10n/pluralforms.html)
 
 So, you need to make sure to use correct defaultHeaders. Those headers must correspond to your default locale.

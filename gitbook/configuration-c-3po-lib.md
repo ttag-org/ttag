@@ -58,16 +58,15 @@ Example:
 setDedent(false);
 ```
 
-### setDefaultHeaders (object headers)
-Sets .po file headers appropriate to locale
+### setDefaultLang (string lang)
+Sets default language that is used in your sources strings. This setting is used for plural forms extraction.
+Different language have different plural forms numbers and formulas.
 
 arguments:
-* **headers (object)**: headers from .po file
+* **lang (string)**: ISO code for the language. See all available codes here https://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html
 
 Example:
 ```js
-setDefaultHeaders({
-'plural-forms': 'nplurals=2; plural=(n!=1);'    
-});
+setDefaultLang('uk');
 
 ```
