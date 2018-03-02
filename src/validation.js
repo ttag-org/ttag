@@ -1,4 +1,4 @@
-import { getPluralFormsNumber } from './utils';
+import { hasLang, getAvailLangs } from 'plural-forms';
 
 function validateLocale(locale, availLocales) {
     if (process.env.NODE_ENV !== 'production') {
@@ -90,14 +90,23 @@ export function validateNgettextNumber(n) {
     }
 }
 
-export function validateNgettextPluralForms(headers, actualFormsCount) {
+export function validateNgettextPluralForms(expectedFormsCount, actualFormsCount) {
     if (process.env.NODE_ENV !== 'production') {
-        const expectedFormsCount = getPluralFormsNumber(headers);
         if (actualFormsCount !== expectedFormsCount) {
             throw new Error(
                 // eslint-disable-next-line max-len
-                `ngettext expects ${expectedFormsCount} for the current default locale, but received - ${actualFormsCount}.
-                Default locale headers: ${JSON.stringify(headers)}`
+                `ngettext expects ${expectedFormsCount} for the current default locale, but received - ${actualFormsCount}.`
+            );
+        }
+    }
+}
+
+export function validateLang(lang) {
+    if (process.env.NODE_ENV !== 'production') {
+        const langs = getAvailLangs().join(',');
+        if (!hasLang(lang)) {
+            throw new Error(
+                `Unknown lang code - ${lang}. Lang should be one of: ${langs}.`
             );
         }
     }

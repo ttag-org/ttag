@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { assert, expect } from 'chai';
-import { getMsgid, transformTranslateObj, dedentStr, getPluralFormsNumber } from '../src/utils';
+import { getMsgid, transformTranslateObj, dedentStr } from '../src/utils';
 
 function getStrsExprs(strs, ...exprs) {
     return [strs, exprs];
@@ -53,15 +53,5 @@ describe('utils dedentStr', () => {
         test`;
         const result = dedentStr(source);
         expect(result).to.eql('test\ntest\ntest');
-    });
-});
-
-describe('utils getPluralFormsNumber', () => {
-    it('should fetch plural forms number', () => {
-        const headers = {
-            'content-type': 'text/plain; charset=UTF-8',
-            'plural-forms': 'nplurals=2; plural=(n!=1);',
-        };
-        expect(getPluralFormsNumber(headers)).to.eql(2);
     });
 });

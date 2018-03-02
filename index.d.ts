@@ -25,7 +25,7 @@ export declare function ngettext(...args: (StringWithRawData|string|number)[]): 
 export declare function addLocale(locale: string, data: LocaleData): void;
 export declare function useLocale(locale: string): void;
 export declare function setDedent(value: Boolean): void;
-export declare function setDefaultHeaders(headers: Headers): void;
+export declare function setDefaultLang(lang: string): void;
 export declare function useLocales(locales: string[]): void;
 
 declare interface BindedFunctions {

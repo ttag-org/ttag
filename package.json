@@ -55,6 +55,7 @@
     "webpack": "^2.3.2"
   },
   "dependencies": {
-    "dedent": "^0.7.0"
+    "dedent": "^0.7.0",
+    "plural-forms": "^0.2.0"
   }
 }

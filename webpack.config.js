@@ -1,5 +1,7 @@
 const path = require('path');
 const isProd = process.env.NODE_ENV === 'production';
+const webpack = require('webpack');
+
 module.exports = {
     entry: './src/index.js',
     output: {
@@ -9,7 +11,14 @@ module.exports = {
     },
     module: {
         rules: [
-            {test: /\.(js|jsx)$/, use: 'babel-loader'}
+            { test: /\.(js|jsx)$/, use: 'babel-loader', exclude: /node_modules/ }
         ]
-    }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+            }
+        }),
+    ]
 };
