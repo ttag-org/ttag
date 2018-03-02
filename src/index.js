@@ -2,7 +2,7 @@ import { getMsgid, msgid2Orig, buildStr, getPluralFnForTrans,
      buildArr, dedentStr, isDebug,
 } from './utils';
 import { validateNgettextMsgid, validateNgettextNumber,
-    validateNgettextPluralForms } from './validation';
+    validateNgettextPluralForms, validateLang } from './validation';
 import Config from './config';
 
 const conf = new Config();
@@ -149,6 +149,7 @@ export function useLocales(locales) {
 }
 
 export function setDefaultLang(lang) {
+    if (isDebug) validateLang(lang);
     conf.setDefaultLang(lang);
 }
 

@@ -1,3 +1,5 @@
+import { hasLang, getAvailLangs } from 'plural-forms';
+
 function validateLocale(locale, availLocales) {
     if (process.env.NODE_ENV !== 'production') {
         if (!availLocales[locale]) {
@@ -94,6 +96,17 @@ export function validateNgettextPluralForms(expectedFormsCount, actualFormsCount
             throw new Error(
                 // eslint-disable-next-line max-len
                 `ngettext expects ${expectedFormsCount} for the current default locale, but received - ${actualFormsCount}.`
+            );
+        }
+    }
+}
+
+export function validateLang(lang) {
+    if (process.env.NODE_ENV !== 'production') {
+        const langs = getAvailLangs().join(',');
+        if (!hasLang(lang)) {
+            throw new Error(
+                `Unknown lang code - ${lang}. Lang should be one of: ${langs}.`
             );
         }
     }

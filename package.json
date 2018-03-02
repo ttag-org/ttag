@@ -56,6 +56,6 @@
   },
   "dependencies": {
     "dedent": "^0.7.0",
-    "plural-forms": "^0.1.2"
+    "plural-forms": "^0.2.0"
   }
 }

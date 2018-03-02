@@ -105,4 +105,9 @@ describe('ngettext', () => {
         const fn = () => ngettext(msgid`${a} банан`, `${a} банана`, a);
         expect(fn).to.throw('ngettext expects 3 for the current default locale, but received - 2');
     });
+
+    it('should throw if not existing lang code', () => {
+        const fn = () => setDefaultLang('ukk');
+        expect(fn).to.throw('Unknown lang code - ukk. Lang should be one of:');
+    });
 });
