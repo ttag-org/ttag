@@ -115,3 +115,15 @@ t`translated string`
 
 The resulting entries in .po(.pot) file will be sorted alphabetically by msgid. Can be helpful
 for avoiding merge conflicts.
+
+### Config.numberedExpressions \(boolean\)
+> false by default
+
+Example:
+
+```js
+t`Hello ${ name }`
+```
+
+By default this will be extracted to `Hello ${ name }` in the .po file. Only variable names are allowed to be inside expressions. With `numberedExpression:true` the former example will be extracted to `Hello ${ 0 }`. This will allow you to use any expression inside string literals (function calls, jsx e.t.c)
+

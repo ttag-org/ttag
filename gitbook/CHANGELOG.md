@@ -1,6 +1,23 @@
 # CHANGELOG
 
 <!-- toc -->
+### 0.8.0
+#### c-3po lib
+* Deleted `setDefaultHeaders` method. You should call new [setDefaultLang](#configuration-c-3po-lib.html#setdefaultlang-string-lang) to change
+the default language.
+* removed `c-3po/loader` and `gettext-parser` dependency, beacause it is little bit out of the scope of the library. You should import and call parser separately.
+
+```js
+import gt from 'gettext-parser';
+import fs from 'fs';
+
+gt.po.parse(fs.readFileSync('file.po'));
+```
+
+#### c-3po-plugin
+* Deleted `defaultHeaders` setting from the config. You should use [defaultLang](#configuration.html#configdefaultlang-string) instead.
+* Added new setting [numberedExpressions](configuration.html#confignumberedexpressions-boolean) to allow any expressions inside translated strings.
+
 ### 0.7.3
 ##### c-3po-plugin
 Fixed issue with contexts extraction
