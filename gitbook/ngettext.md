@@ -84,35 +84,21 @@ There is a new extra function in our file - \_tag\_ngettext, but you don't need 
 
 ### Plural forms that are different from default \(English\)
 
-There are cases when your source code uses string literals from some different language 
-than English. And here is the point when usage of ngettext becomes not so clear. 
-For instance, you decided to write string literals in Ukrainian in your sources, 
+It is possible that your are using different language than English in strings in the sources. And here is the point when usage of ngettext becomes not so clear. 
+For instance, you decided to write strings in Ukrainian, 
 because at the time of the first release it was a single language for your project. 
 At some point, you decided to localize your strings and want to use ngettext for plurals. 
 Ukrainian language has 3 plural forms, but standard ngettext has only 2 arguments for them, 
 so which one of those 3 plural forms must be passed to ngettext function? 
 c-3po suggests quite a nice solution for this problem.
 
-You can configure the number of plural forms arguments for ngettext by 
-**[defaultHeaders](configuration.md#configdefaultheaders-object)** property in config 
-or by headers in Ukrainian the **locale .po file**. But still c-3po will use 
-**defaultHeaders** on resolve if translations was not found.
-Also if you are resolving your translation at runtime you can use **[setDefaultHeaders](configuration-c-3po-lib.html#setdefaultheaders-object-headers)** function from c-3po library API.
+By default c-3po uses 'en' language (English), but if you want to use **ngettext** with Ukrainian locale, you should call [setDefaultLang](#configuration-c-3po-lib.html#setdefaultlang-string-lang) for the library and [defaultLang](#configuration.html#configdefaultlang-string) for the plugin accordingly.
 
-By default c-3po uses this headers:
+```js
+setDefaultLang('uk');
 
-```
-'content-type': 'text/plain; charset=UTF-8'
-'plural-forms': 'nplurals=2; plural=(n!=1);'
+// 3 forms will be extracted
+ngettext(msgid`${ n }form1`, `${ n } form2`, `${ n } form3`, n);
 ```
 
-So, if you want to use **ngettext** with Ukrainian locale, you should change [defaultHeaders](#configdefaultheaders-object) setting to:
-
-```
-'content-type': 'text/plain; charset=UTF-8'
-'plural-forms': 'nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);',
-```
-
-> Here is a link where you can search for an appropriate headers for some other locales - [http://docs.translatehouse.org/projects/localization-guide/en/latest/l10n/pluralforms.html](http://docs.translatehouse.org/projects/localization-guide/en/latest/l10n/pluralforms.html)
-
-So, you need to make sure to use correct defaultHeaders. Those headers must correspond to your default locale.
+> Here is a link where you can search for languages ISO codes - [http://docs.translatehouse.org/projects/localization-guide/en/latest/l10n/pluralforms.html](http://docs.translatehouse.org/projects/localization-guide/en/latest/l10n/pluralforms.html)

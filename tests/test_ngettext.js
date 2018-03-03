@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { ngettext, useLocale, msgid, setDefaultHeaders, addLocale } from '../src/index';
-import { loadLocale } from '../src/loader';
+import { ngettext, useLocale, msgid, addLocale, setDefaultLang } from '../src/index';
+import { loadLocale } from './loader';
 
 
 const ukLocale = {
@@ -65,14 +65,11 @@ describe('ngettext', () => {
 
     it('should use uk locale with uk default headers', () => {
         /* eslint-disable max-len */
-        const ukHeaders = {
-            'plural-forms': 'nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);',
-        };
-        setDefaultHeaders(ukHeaders);
+        setDefaultLang('uk');
         const a = 2;
         const result = ngettext(msgid`${a} банан`, `${a} банана`, `${a} бананів`, a);
         expect(result).to.eql('2 банана');
-        setDefaultHeaders({ 'plural-forms': 'nplurals=2; plural=(n!=1);' });
+        setDefaultLang('en');
     });
 
     it('should work with multiline dedent', () => {
@@ -103,12 +100,14 @@ describe('ngettext', () => {
     });
 
     it('should throw if has invalid number of plural forms', () => {
-        const ukHeaders = {
-            'plural-forms': 'nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);',
-        };
-        setDefaultHeaders(ukHeaders);
+        setDefaultLang('uk');
         const a = 2;
         const fn = () => ngettext(msgid`${a} банан`, `${a} банана`, a);
         expect(fn).to.throw('ngettext expects 3 for the current default locale, but received - 2');
+    });
+
+    it('should throw if not existing lang code', () => {
+        const fn = () => setDefaultLang('ukk');
+        expect(fn).to.throw('Unknown lang code - ukk. Lang should be one of:');
     });
 });

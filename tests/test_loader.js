@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import sinon from 'sinon';
-import { loadLocale, __RewireAPI__ as rew } from '../src/loader';
+import { loadLocale, __RewireAPI__ as rew } from './loader';
 import fs from 'fs';
 
 describe('loader', () => {

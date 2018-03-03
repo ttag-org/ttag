@@ -81,18 +81,11 @@ Configures wether multiline strings should be dedented - [/multiline-strings.md]
 
 Points at what functions \(t, ngettext, gettext e.t.c\) should be discovered without import in file.
 
-### Config.defaultHeaders** \(Object\)**
+### Config.defaultLang** \(string\)**
 
-Default headers for .pot file \(base file with extracted translations\).
+Default language ISO code that is used for strings in the source code. (English by default).
 
-Default \(English locale\):
-
-```
-{
-   'content-type': 'text/plain; charset=UTF-8',
-   'plural-forms': 'nplurals=2; plural=(n!=1);'
-}
-```
+> See available language codes - https://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html
 
 ### Config.addComments **[ boolean | string ]**
 > Disabled by default
@@ -122,3 +115,15 @@ t`translated string`
 
 The resulting entries in .po(.pot) file will be sorted alphabetically by msgid. Can be helpful
 for avoiding merge conflicts.
+
+### Config.numberedExpressions \(boolean\)
+> false by default
+
+Example:
+
+```js
+t`Hello ${ name }`
+```
+
+By default this will be extracted to `Hello ${ name }` in the .po file. Only variable names are allowed to be inside expressions. With `numberedExpression:true` the former example will be extracted to `Hello ${ 0 }`. This will allow you to use any expression inside string literals (function calls, jsx e.t.c)
+

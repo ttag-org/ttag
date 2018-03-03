@@ -39,12 +39,14 @@
     "babel-loader": "^6.4.0",
     "babel-plugin-rewire": "1.0.0",
     "babel-preset-es2015": "6.18.0",
+    "gettext-parser": "1.2.2",
     "chai": "3.5.0",
     "eslint": "2.13.1",
     "eslint-plugin-import": "1.16.0",
     "eslint-plugin-jsx-a11y": "1.5.5",
     "eslint-plugin-react": "5.2.2",
     "gitbook-cli": "^2.3.2",
+    "gitbook-plugin-atoc": "^1.0.3",
     "gitbook-plugin-ga": "2.0.0",
     "gitbook-plugin-github-buttons": "^3.0.0",
     "istanbul": "1.1.0-alpha.1",
@@ -54,7 +56,6 @@
   },
   "dependencies": {
     "dedent": "^0.7.0",
-    "gettext-parser": "1.2.2",
-    "gitbook-plugin-atoc": "^1.0.3"
+    "plural-forms": "^0.2.0"
   }
 }

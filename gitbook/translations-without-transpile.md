@@ -20,12 +20,18 @@ the runtime:
 ## 1. Loading translation object (po to JSON) [backend]
 Let's imagine you have .po file with translations (more about how to extract translations
 [here](quick-start.md#step-4-extracting-translations-to-pot-file)).
-You can use `loadFile` from `c-3po/loader`. This one will load translations object
+We recommend to use `gettext-parser` for `.po` files loading. This one will load translations object
 from .po or .mo file. This step must be executed during the build
 step somewhere on a backend to prepare json with a translations.
 
 ```js
-import { loadFile } from 'c-3po/loader';
+import fs from 'fs';
+import gt from 'gettext-parser';
+
+function loadFile(filePath) {
+    gt.po.parse(fs.readFileSync(filePath));
+}
+
 const ukLocale = loadFile('uk.po');
 ```
 

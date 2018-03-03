@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { t, useLocale, setDedent } from '../src/index';
-import { loadLocale } from '../src/loader';
+import { loadLocale } from './loader';
 
 describe('t', () => {
     before(() => {

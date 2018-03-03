@@ -1,10 +1,6 @@
 import { transformTranslateObj } from './utils';
 import { validateLocaleData, validateLocales, validateLocaleCode } from './validation';
-
-const defaultHeaders = {
-    'content-type': 'text/plain; charset=UTF-8',
-    'plural-forms': 'nplurals=2; plural=(n!=1);',
-};
+import { getPluralFunc, getNPlurals } from 'plural-forms/dist/minimal';
 
 const isProd = process && process.env && process.env.NODE_ENV === 'production';
 
@@ -14,7 +10,7 @@ export default function Config() {
         currentLocales: [],
         currentLocale: 'en',
         dedent: true,
-        headers: defaultHeaders,
+        defaultLang: 'en',
     };
 
     this.addLocale = (locale, localeData) => {
@@ -30,10 +26,6 @@ export default function Config() {
 
     this.setDedent = (dedent) => {
         config.dedent = dedent;
-    };
-
-    this.setHeaders = (headers) => {
-        config.headers = headers;
     };
 
     this.setCurrentLocales = (locales) => {
@@ -57,7 +49,19 @@ export default function Config() {
         return config.dedent;
     };
 
-    this.getHeaders = () => {
-        return config.headers;
+    this.setDefaultLang = (lang) => {
+        config.defaultLang = lang;
+    };
+
+    this.getDefaultPluralFn = () => {
+        return getPluralFunc(config.defaultLang);
+    };
+
+    this.getDefaultPluralFormsCount = () => {
+        return getNPlurals(config.defaultLang);
+    };
+
+    this.getCurrentLocaleHeaders = () => {
+        return config.locales[config.currentLocale].headers;
     };
 }

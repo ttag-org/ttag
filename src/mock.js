@@ -35,6 +35,6 @@ export function addLocale() {}
 
 export function setDedent() {}
 
-export function setDefaultHeaders() {}
+export function setDefaultLang() {}
 
 export function useLocales() {}
