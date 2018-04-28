@@ -1,5 +1,5 @@
 {
-    "title": "c-3po javascript es6 localization tool",
+    "title": "ttag javascript es6 localization tool",
     "plugins": [
         "anchorjs",
         "github-buttons",
@@ -10,21 +10,21 @@
     "pluginsConfig": {
         "github-buttons": {
             "buttons": [{
-                "user": "c-3po-org",
-                "repo": "c-3po",
+                "user": "ttag",
+                "repo": "ttag",
                 "type": "star",
                 "size": "small"
             }]
         },
         "github-edit": {
-            "repo": "c-3po-org/c-3po",
+            "repo": "ttag/ttag",
             "branch": "master"
         },
         "ga": {
             "token": "UA-90721450-1"
         },
         "edit-link": {
-            "base": "https://github.com/c-3po-org/c-3po/edit/master/gitbook",
+            "base": "https://github.com/ttag/ttag/edit/master/gitbook",
             "label": "Edit This Page"
         }
     },

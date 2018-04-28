@@ -3,32 +3,32 @@
 ## General
 
 * [Introduction](README.md)
-* [Installation](chapter1.md)
+* [Installation](installation.md)
 * [Configuration(babel plugin)](configuration.md)
-* [Configuration(c-3po lib API)](configuration-c-3po-lib.md)
-* [Leaving comments for the translator](translator-comments.md)
+* [Configuration(ttag lib API)](configuration-lib.md)
+* [Leaving comments for translators](translator-comments.md)
 * [Validation](validation.md)
 * [Multiline strings](multiline-strings.md)
 * [Aliasing](aliasing.md)
-* [Ignoring code blocks](c-3po-ignore.md)
+* [Ignoring code blocks](ignore-code-blocks.md)
 
 ## Tutorials
 
 * [Quick Start](quick-start.md)
-* [Localization with webpack and c-3po](localization-with-webpack-and-c-3po.md)
-* [Translate without translpile](translations-without-transpile.md)
+* [Localization with webpack](localization-with-webpack.md)
+* [Translate without transpilation](translations-without-transpile.md)
 
 ## functions
 
-* [t \(tag-gettext\)](tag-gettext--t-.md)
-* [Plurals (ngettext)](ngettext.md)
-* [jt (jsx-gettext)](jsx-tag-jt.md)
-* [gettext](gettext.md)
-* [contexts](contexts.md)
+* [`t` (template literals)](reference-t-tag.md)
+* [`ngettext` (pluralization)](reference-ngettext.md)
+* [`jt` (`jsx` support)](reference-jt-tag.md)
+* [`gettext` (simple strings)](reference-gettext.md)
+* [`c` (contexts)](reference-contexts.md)
 
 ## FAQ
 
-* [Why to use msgid tag for ngettext](why-use-msgid-for-ngettext.md)
-* [Why .pot(.po) file is not generated/updated](why-po-is-not-updated.md)
-* [CHANGELOG](CHANGELOG.md)
+* [Why use msgid tag for ngettext?](why-use-msgid-for-ngettext.md)
+* [Why .pot/.po files are not generated or updated?](why-po-is-not-updated.md)
 * [Migration Guide](MIGRATION.md)
+* [CHANGELOG](CHANGELOG.md)

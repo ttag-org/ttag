@@ -1,19 +1,24 @@
-# c-3po
---------
+# ttag
+------
 
-## Modern javascript i18n localization library based on es6 tagged templates and the good old GNU gettext
+> This project was [formely named `c-3po`](https://github.com/c-3po-org/c-3po/issues/105) and later on renamed to `ttag`.
+> Some of the talks, presentations, and documentation _may_ still reference it by the old name.
+
+## Modern javascript i18n localization library based on ES6 tagged templates and the good old GNU gettext
 
 ## Key features
-* Uses es6 template literals for string formatting (no need for sprintf).
-* Can precompile translations on a build step.
-* Support for plurals [ngettext](ngettext.md)
-* Contexts support [contexts](contexts.md)
-* Uses babel plugin to extract and resolve translations, works with modern javascript AST.
-* Can be integrated in any build tool that works with babel.
-* Has options for both efficient [development and production setups](https://c-3po.js.org/localization-with-webpack-and-c-3po.html).
-* Has a builtin [validation](https://c-3po.js.org/validation.html) for translated strings format.
-* Can use any default locale in sources (not only English).
-* Handles [React (jsx) translations](jsx-tag-jt.md).
+* Uses ES6 [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
+  for string formatting (no need for `sprintf`).
+* It can precompile translations on a build step.
+* [Support for plurals](reference-ngettext.md) with `ngettext`
+* Standard gettext [contexts](reference-contexts.md) supported
+* Uses a [babel plugin](https://github.com/ttag/babel-plugin-tag) to extract and resolve translations,
+  works with modern javascript AST.
+* It can be integrated in any build tool that works with babel.
+* Has options for both efficient [development and production setups](localization-with-webpack.md).
+* Has a built-in [validation](validation.md) for translated strings format.
+* It can use any default locale in sources (not only English).
+* Handles [React (jsx) translations](reference-jt-tag.md).
 
 #### Live example https://jsfiddle.net/AlexMost/9wuafbL5/30/
 
@@ -21,18 +26,18 @@
 
 The whole solution consists of 2 parts:
 
-1. **c-3po library** - [https://github.com/c-3po-org/c-3po](https://github.com/c-3po-org/c-3po)
-2. **c-3po babel plugin** - [https://github.com/c-3po-org/babel-plugin-c-3po](https://github.com/c-3po-org/babel-plugin-c-3po)
+1. **ttag library** - [https://github.com/ttag/ttag](https://github.com/ttag/ttag)
+2. **ttag babel plugin** - [https://github.com/ttag/babel-plugin-ttag](https://github.com/ttag/babel-plugin-ttag)
 
 ### How it looks like in the code:
 
-Here is a usage of some **c-3po** functions:
+Here is a usage of some **ttag** functions:
 
 ```js
-import { t, nt, ngettext, msgid } from 'c-3po'
+import { t, nt, ngettext, msgid } from 'ttag'
 
 // simple string literals
-const hello = t`Hello c-3po`;
+const hello = t`Hello ttag`;
 
 // formatted strings
 const name = 'Mike';
@@ -43,16 +48,17 @@ const n = 5;
 const msg = ngettext(msgid`${ n } task left`, `${ n } tasks left`, n)
 ```
 
-c-3po library aims to provide the most natural and reliable way to translate strings in a javascript sources. it provides some helper functions \(tags\) for making javascript templates translatable with all their shiny 
-features like string interpolation, multiline e.t.c.
+The `ttag` library aims to provide the most natural and reliable way to translate strings in JavaScript sources. It 
+provides some helper functions (tags) for making JavaScript templates as translatable with all their shiny 
+features like string interpolation, multiline etc.
 
 ## Useful Links
 * [Changelog](CHANGELOG.md)
 * [Migration guide](MIGRATION.md)
 
 ## Tutorials
-* [Quick Start](https://c-3po.js.org/quick-start.html)
-* [Localization with webpack and c-3po](https://c-3po.js.org/localization-with-webpack-and-c-3po.html)
+* [Quick start](quick-start.md)
+* [Localization with webpack and ttag](localization-with-webpack.md)
 
 ## Slides from talks
 * [Kyivjs 2017](https://docs.google.com/presentation/d/1oj6ZaXfIfcClROe-4kOMMjnXFExn1gUfF6D30VyznWs/edit?usp=sharing)

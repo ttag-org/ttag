@@ -3,21 +3,21 @@
 From the first glance, it is not clear why we should use *msgid* tag for the first argument of ngettext
 function.
  
-**The main reason for this is to be able to use c-3po without babel transpile.**
+**The main reason for this is to be able to use ttag without babel transpile.**
 
 ### Details:
 
 Valid ngettext usage:
 
 ```js
-import { ngettext, msgid } from 'c-3po'
+import { ngettext, msgid } from 'ttag'
 
 function test(n) {
     return ngettext(msgid`${n} time clicked`, `${n} times clicked`, n)
 }
 ``` 
 
-For instance, we have a universal(isomorphic) application and our translations must be applied on the server side at a runtime. So, **c-3po** should be able to match an appropriate translation without 
+For instance, we have a universal(isomorphic) application and our translations must be applied on the server side at a runtime. So, **ttag** should be able to match an appropriate translation without 
 additional transpilation steps. To find the translation it should 
 get a proper **msgid** from ngettext's first argument. Let's imagine we are executing the function
 described above:

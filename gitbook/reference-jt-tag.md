@@ -1,20 +1,20 @@
 # jt \(jsx-tag\)
 
 ### Overview
-jt is working in the same way as [t](tag-gettext--t-.md) but allows you to
+jt is working in the same way as [t](reference-t-tag.md) but allows you to
 use jsx elements in tagged template expressions. The biggest difference between `jt` and `t` is that `t` concatenates translations and expressions all together into a single string, while `jt` returns **an array** of translated strings and expressions.
 
 This tag is useful if you are building your UI with React (or another lib that uses jsx).
 
 ## Live demo
-> this demo works without transpile step, consider using babel-plugin-c-3po for production usage
+> this demo works without transpile step, consider using babel-plugin-ttag for production usage
 
 https://jsfiddle.net/ravkuapg/7/
 
 ### Usage:
 
 ```jsx
-import { jt } from 'c-3po';
+import { jt } from 'ttag';
 
 function Button() {
     const btn = <button key="btn">{ t`me` }</button>;
@@ -50,7 +50,7 @@ jt`Click ${ <button> me </button> }` // jsx expressions must be referenced throu
 Here is an example of what will be extracted to .pot
 
 ```js
-import { jt } from 'c-3po';
+import { jt } from 'ttag';
 jt`Click ${btn}`
 ```
 
@@ -73,7 +73,7 @@ msgstr "Click ${ btn } [translated]"
 The resulting compiled file will contain this:
 
 ```js
-import { jt } from 'c-3po'
+import { jt } from 'ttag'
 ['Click ', btn, ' [translated]']
 ```
 
@@ -83,4 +83,4 @@ If the array item is a React element, you may need to [add `key` property on the
 
 ### Default resolve
 
-By default, if no translation was found, c-3po returns an array of the source strings and expressions.
+By default, if no translation was found, ttag returns an array of the source strings and expressions.

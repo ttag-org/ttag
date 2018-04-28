@@ -1,15 +1,20 @@
 # Quick Start
 
-These are 4 quick steps that will allow you to setup the full translation 
-cycle with gettext and c-3po \(extraction, merging, resolving translations\).
+In a few steps you will be able to setup the full translation cycle with gettext and ttag.
+This example uses ES6 features, so you need to install Babel to transpile all its source code:
+
+```bash
+npm install --save-dev babel-cli babel-preset-env babel-core
+```
+
+> All sources for this tutorial can be found under the [`examples`](https://github.com/ttag/ttag/tree/master/examples/quickstart)
+> directory.
 
 <!-- toc -->
 
-All quickstart sources are [here](https://github.com/c-3po-org/c-3po/tree/master/examples/quickstart).
-
 ### 1. Simple counter program
 
-Let's setup some simple js file \(**counter.js**\), that we will try to localize later.
+Let's setup some simple JavaScript file `counter.js` that we will localize later.
 
 ```js
 // counter.js
@@ -36,26 +41,22 @@ starting count up to 3
 3 ticks passed
 ```
 
-Program works but it uses wrong plural form for `1 ticks passed` (must be `1 tick passed`).
+The program works but it uses the wrong plural form for the first iteration: `1 ticks passed`. It should be `1 tick passed`.
+
 Let's fix it.
 
-### 2. Wrap strings with c-3po tags and functions
+### 2. Wrap strings with ttag tags and functions
 
-We will use es6 imports, so we need babel node and babel presets to run them:
-```bash
-npm install --save-dev babel-cli babel-preset-env babel-core
-```
-
-Let's install  **c-3po** library also:
+Install the ttag library:
 
 ```bash
-npm install --save c-3po
+npm install --save ttag
 ```
 
-Now we can wrap strings with c-3po functions and tags to make them translatable:
+Now we can wrap strings with ttag functions and tags to make them translatable:
 
 ```js
-import { t, ngettext, msgid } from 'c-3po';
+import { t, ngettext, msgid } from 'ttag';
 
 function startCount(n){
     console.log(t`starting count up to ${n}`); // using 't' tag for 1 to 1 translations
@@ -65,9 +66,11 @@ function startCount(n){
     }
 }
 ```
-> doc for `t` tag - [https://c-3po.js.org/tag-gettext--t-.html](tag-gettext--t-.md)
 
-> doc for ngettext - [https://c-3po.js.org/ngettext.html](ngettext.md)
+For more information, please check:
+
+* `t` tag [reference documentation](reference-t-tag.md)
+* `ngettext` function [reference documentation](reference-ngettext.md)
 
 Adding `counter` script to the package.json:
 
@@ -79,7 +82,13 @@ Adding `counter` script to the package.json:
 }
 ```
 
-Excecuting **npm run counter.**
+Run the program again, this time using Babel:
+
+```bash
+npm run counter
+```
+
+Output:
 
 ```
 starting count up to 3
@@ -92,51 +101,49 @@ starting count up to 3
 As we see, plural forms are working out of the box without no extra configuration for the English locale.
 
 ### 3. Setup localization
-Gettext standard is based on manipulation with `.po` files. In general, `.po` file is a special file format
-for adding/updating/editing translations.
-Let's install [c-3po-cli](https://github.com/c-3po-org/c-3po-cli) for `.po` files manipulations:
+Gettext standard is based on manipulation with `.po` files. In general, a `.po` file is a special file format
+for adding, updating, and editing translations.
+
+Let's install [`ttag-cli`](https://github.com/ttag/ttag-cli) for `.po` file manipulation:
 
 ```bash
-npm install -g c-3po-cli  # then c-3po cli should be available globally
+npm install -g ttag-cli
 ``` 
 
-#### Create .po file
+> After installtion, the `ttag` command should be available globally
+
+#### Create a `.po` file
 Let's assume that we want to translate our program to Ukrainian language.
 
 ```bash
-c-3po init uk uk.po
+ttag init uk uk.po
 ```
 
 This will create a new .po file with all settings for the Ukrainian language
-> see all available languages [here](http://docs.translatehouse.org/projects/localization-guide/en/latest/l10n/pluralforms.html)
 
-#### Update .po file
-To sync all strings in your sources with the `.po` file, you can use `c-3po update` command.
+> See all available languages at the [GNU gettext manual](https://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html)
+
+#### Update the `.po` file
+To sync all strings in your sources with the `.po` file, you can use `ttag update` command.
 
 ```bash
-c-3po update uk.po counter.js
+ttag update uk.po counter.js
 ```
 Now, you can open `uk.po` file and add translations to extracted strings.
 
 ### 4. Load translations
-To be able to apply translations you should parse .po file. We recommend to use `gettext-parser` package for that purpose:
+To be able to apply translations you should parse the `.po` file. We recommend to use the 
+[`gettext-parser` package](https://www.npmjs.com/package/gettext-parser) for that purpose:
 
-```js
-import { addLocale, useLocale } from 'c-3po';
-import fs from 'fs';
-import gt from 'gettext-parser';
-
-function loadFile(filePath) {
-    gt.po.parse(fs.readFileSync(filePath));
-}
-
-addLocale('uk', loadFile('i18n/uk.po'));
-useLocale('uk');
+```bash
+npm install --save-dev gettext-parser
 ```
 
-Let's modify our program to load locale from **.po** file if **env.LOCALE** var is present:
+Let's modify our program to load the locale from the `.po` file if the `LOCALE` environment variable
+is present:
+
 ```js
-import { ngettext, msgid, t,  addLocale, useLocale } from 'c-3po';
+import { ngettext, msgid, t,  addLocale, useLocale } from 'ttag';
 import fs from 'fs';
 import gt from 'gettext-parser';
 
@@ -155,14 +162,15 @@ if (locale) {
 //....
 ```
 
-Add **counter-uk** to scripts in **package.json**
+Change the `counter` entry of the `scripts` section to include the locale set as an environment variable:
+
 ```js
 "scripts": {
-    "counter-uk": "LOCALE=uk babel-node --presets env counter.js"
+    "counter": "LOCALE=uk babel-node --presets env counter.js"
 }
 ```
 
-Let's run it with **npm run counter-uk-dev**:
+Let's run it with `npm run counter`
 ```bash
 починаємо рахунок до 3
 минуло 0 тіків
@@ -171,4 +179,8 @@ Let's run it with **npm run counter-uk-dev**:
 минуло 3 тіка
 ```
 
-> c-3po cli is a wrapper around [babel-plugin-c-3po](https://github.com/c-3po-org/babel-plugin-c-3po)
+> Note: `ttag-cli` is a wrapper around [babel-plugin-ttag](https://github.com/ttag/babel-plugin-ttag)
+
+**Where to go now?**  
+
+If you use webpack on your build process, check [Localization with webpack](localization-with-webpack.md) section of the documentation.
