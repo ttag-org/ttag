@@ -1,78 +1,85 @@
-# Translations validation with babel-c-3po-plugin
+# Translations validation with babel-plugin-ttag
 
-One of the key features of *c-3po* library is the built-in validation of the translations format.
-Validation is happening when the c-3po plugin is enabled in babel config.
+One of the key features of the `ttag` library is the built-in validation of the translations format.
+Validation is happening when `babel-plugin-ttag` is enabled in the babel configuration.
 
 ### Why do we need translations validation?
 
 1. Making extracted translatable strings readable for the translator (nontechnical person).
-2. Having control over which strings are not translated (CI integration e.t.c).
-3. Validating *c-3po* functions format to prevent bugs.
+2. Having control over which strings are not translated (CI integration for example).
+3. Validating `ttag` functions calls with the appropriate format to prevent bugs.
 
 ## Format validation
-Format validation errors enabled for all tags and functions by default.
+Format validation errors are enabled for all tags and functions by default.
 
 ```js
-import { t } from 'c-3po';
+import { t } from 'ttag';
 function test(username) {
     return t`${username}`;   
 }
 ```
+
 Error:
 
 ```bash
 ERROR in ./app.js
 Module build failed: SyntaxError: Can not translate '${ username }'
 
-  1 | import { t } from 'c-3po';
+  1 | import { t } from 'ttag';
   2 | function test(username) {
 > 3 |     return t`${username}`;
     |            ^
   4 | }
 ```
 
-This error occurred because there is no meaningful information for 
-the translator in `${ username }` string.
+This error occurred because there is no meaningful information for  the translator in `${ username }` string.
 
-> More about `t` tag format [here](tag-gettext--t-.md#tag-gettext-format)
+> More about the `t` tag format can be found in the [function reference](reference-t-tag.md#tag-gettext-format)
 
 ### Disabling format validation
-You can disable validation by `c-3po` config - [extractors.invalidFormat](configuration.md#configextractorsfunctionnameinvalidformat-string-one-of-fail-warn-skip)
+You can disable validation by changing 
+[`extractors.[FunctionName].invalidFormat`](configuration.md#configextractorsfunctionnameinvalidformat-string)
+configuration value.
 
-Example .babelrc:
+Example `.babelrc` file:
+
 ```json
 {
  "plugins": [
-    ["c-3po",
+    ["ttag",
       {"extractors": { "tag-gettext": { "invalidFormat": "skip" }}}
     ]]
 }
 ```
 
-## Translations are not found
-You can configure c-3po to fail when some translation is not found (disabled by default).
-This can be integrated somewhere during CI job if you want to ensure that all strings
-have appropriate translations inside .po files.
+## Missing translations
+You can configure ttag to fail when some translation are not found. This setting is disabled by default.
+This can be integrated somewhere on your CI workflow if you want to ensure that all strings
+have appropriate translations inside `.po` files prior to a deply, for example.
+
+Enable build failure by changing [`resolve.unresolved`](configuration.md#configresolveunresolved-string)
+configuration value.
 
 Example:
+
+```json
+{
+ "plugins": [
+    ["ttag",
+      {"translations": "uk.po", "unresolved": "fail"}
+    ]]
+}
+```
+
+Error:
+
 ```bash
 Module build failed: SyntaxError: No "unresolved" in "uk.po" file
 
-  1 | import { ngettext, msgid, t } from 'c-3po';
+  1 | import { ngettext, msgid, t } from 'ttag';
   2 | function test(username) {
 > 3 |     return t`unresolved`;
     |            ^
   4 | }
 
-```
-
-Config to enable this ([resolve.unresolved](configuration.md#configresolveunresolved-string-one-of-fail-warn-skip)):
-
-```json
-{
- "plugins": [
-    ["c-3po",
-      {"translations": "uk.po", "unresolved": 'fail'}
-    ]]
-}
 ```
