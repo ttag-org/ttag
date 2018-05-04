@@ -1,4 +1,4 @@
-# c-3po
+# ttag
 [![travis](https://api.travis-ci.org/ttag-org/ttag.svg?master)](https://travis-ci.org/ttag-org/ttag) [![codecov](https://codecov.io/gh/ttag-org/ttag/branch/master/graph/badge.svg)](https://codecov.io/gh/ttag-org/ttag)
 
 [![NPM](https://nodei.co/npm/ttag.png?downloads=true)](https://nodei.co/npm/ttag/)
@@ -41,7 +41,7 @@ npm install --save ttag
 npm install --save-dev babel-plugin-ttag
 ```
 
-**c-3po babel plugin** - [https://github.com/ttag-org/babel-plugin-ttag](https://github.com/ttag-org/babel-plugin-ttag)
+**ttag babel plugin** - [https://github.com/ttag-org/babel-plugin-ttag](https://github.com/ttag-org/babel-plugin-ttag)
 
 ## Usage from CDN
 
