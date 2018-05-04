@@ -6,7 +6,7 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: isProd ? 'c3po.min.js':  'c3po.js',
+        filename: isProd ? 'ttag.min.js':  'ttag.js',
         libraryTarget: 'umd'
     },
     module: {
