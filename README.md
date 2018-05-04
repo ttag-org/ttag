@@ -4,8 +4,7 @@
 [![NPM](https://nodei.co/npm/ttag.png?downloads=true)](https://nodei.co/npm/ttag/)
 
 > :warning: This project [was previously named `c-3po`](https://github.com/ttag-org/ttag/issues/105).
-> Some of the talks, presentations, and documentation _may_ reference it with both names. The current
-> version published on NPM doesn't change any APIs yet.
+> Some of the talks, presentations, and documentation _may_ reference it with both names.
 
 
 ## Modern javascript i18n localization library based on ES6 tagged templates and the good old GNU gettext
