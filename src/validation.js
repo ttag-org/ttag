@@ -1,4 +1,4 @@
-import { hasLang, getAvailLangs } from 'plural-forms';
+import { hasLang, getAvailLangs } from 'plural-forms/dist/minimal';
 
 function validateLocale(locale, availLocales) {
     if (process.env.NODE_ENV !== 'production') {
