@@ -1,9 +1,9 @@
 # c-3po
-[![travis](https://api.travis-ci.org/c-3po-org/c-3po.svg?master)](https://travis-ci.org/c-3po-org/c-3po) [![codecov](https://codecov.io/gh/c-3po-org/c-3po/branch/master/graph/badge.svg)](https://codecov.io/gh/c-3po-org/c-3po)
+[![travis](https://api.travis-ci.org/ttag-org/ttag.svg?master)](https://travis-ci.org/ttag-org/ttag) [![codecov](https://codecov.io/gh/ttag-org/ttag/branch/master/graph/badge.svg)](https://codecov.io/gh/ttag-org/ttag)
 
-[![NPM](https://nodei.co/npm/c-3po.png?downloads=true)](https://nodei.co/npm/c-3po/)
+[![NPM](https://nodei.co/npm/ttag.png?downloads=true)](https://nodei.co/npm/ttag/)
 
-> :warning: This project [was previously named `c-3po`](https://github.com/c-3po-org/c-3po/issues/105).
+> :warning: This project [was previously named `c-3po`](https://github.com/ttag-org/ttag/issues/105).
 > Some of the talks, presentations, and documentation _may_ reference it with both names. The current
 > version published on NPM doesn't change any APIs yet.
 
@@ -41,13 +41,13 @@ npm install --save ttag
 npm install --save-dev babel-plugin-ttag
 ```
 
-**c-3po babel plugin** - [https://github.com/c-3po-org/babel-plugin-c-3po](https://github.com/c-3po-org/babel-plugin-c-3po)
+**c-3po babel plugin** - [https://github.com/ttag-org/babel-plugin-ttag](https://github.com/ttag-org/babel-plugin-ttag)
 
 ## Usage from CDN
 
-[https://unpkg.com/c-3po/dist/c3po.min.js](https://unpkg.com/c-3po/dist/c3po.min.js)
+[https://unpkg.com/ttag/dist/ttag.min.js](https://unpkg.com/ttag/dist/ttag.min.js)
 
-> This project is designed to work in pair with [babel-plugin-ttag](https://github.com/c-3po-org/babel-plugin-c-3po).  
+> This project is designed to work in pair with [babel-plugin-ttag](https://github.com/ttag-org/babel-plugin-ttag).  
 > But you can also play with it [without transpilation](https://c-3po.js.org/translations-without-transpile.html).
 
 ## Useful links
