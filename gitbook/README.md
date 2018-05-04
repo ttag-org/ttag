@@ -1,7 +1,7 @@
 # ttag
 ------
 
-> This project was [formely named `c-3po`](https://github.com/c-3po-org/c-3po/issues/105) and later on renamed to `ttag`.
+> This project was [formely named `c-3po`](https://github.com/ttag-org/ttag/issues/105) and later on renamed to `ttag`.
 > Some of the talks, presentations, and documentation _may_ still reference it by the old name.
 
 ## Modern javascript i18n localization library based on ES6 tagged templates and the good old GNU gettext
@@ -20,7 +20,7 @@
 * It can use any default locale in sources (not only English).
 * Handles [React (jsx) translations](reference-jt-tag.md).
 
-#### Live example https://jsfiddle.net/AlexMost/9wuafbL5/30/
+#### Live example https://jsfiddle.net/0atw0hgh/
 
 ### Tools:
 
