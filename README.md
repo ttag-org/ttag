@@ -3,7 +3,7 @@
 
 [![NPM](https://nodei.co/npm/c-3po.png?downloads=true)](https://nodei.co/npm/c-3po/)
 
-> :warning: This project [will soon be renamed to `ttag`](https://github.com/c-3po-org/c-3po/issues/105).
+> :warning: This project [was previously named `c-3po`](https://github.com/c-3po-org/c-3po/issues/105).
 > Some of the talks, presentations, and documentation _may_ reference it with both names. The current
 > version published on NPM doesn't change any APIs yet.
 
