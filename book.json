@@ -3,7 +3,6 @@
     "plugins": [
         "anchorjs",
         "github-buttons",
-        "github-edit",
         "ga",
         "atoc"
     ],

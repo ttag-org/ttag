@@ -1,11 +1,10 @@
-# c-3po
-[![travis](https://api.travis-ci.org/c-3po-org/c-3po.svg?master)](https://travis-ci.org/c-3po-org/c-3po) [![codecov](https://codecov.io/gh/c-3po-org/c-3po/branch/master/graph/badge.svg)](https://codecov.io/gh/c-3po-org/c-3po)
+# ttag
+[![travis](https://api.travis-ci.org/ttag-org/ttag.svg?master)](https://travis-ci.org/ttag-org/ttag) [![codecov](https://codecov.io/gh/ttag-org/ttag/branch/master/graph/badge.svg)](https://codecov.io/gh/ttag-org/ttag)
 
-[![NPM](https://nodei.co/npm/c-3po.png?downloads=true)](https://nodei.co/npm/c-3po/)
+[![NPM](https://nodei.co/npm/ttag.png?downloads=true)](https://nodei.co/npm/ttag/)
 
-> :warning: This project [will soon be renamed to `ttag`](https://github.com/c-3po-org/c-3po/issues/105).
-> Some of the talks, presentations, and documentation _may_ reference it with both names. The current
-> version published on NPM doesn't change any APIs yet.
+> :warning: This project [was previously named `c-3po`](https://github.com/ttag-org/ttag/issues/105).
+> Some of the talks, presentations, and documentation _may_ reference it with both names.
 
 
 ## Modern javascript i18n localization library based on ES6 tagged templates and the good old GNU gettext
@@ -23,7 +22,7 @@
 
 ## Usage example
 ```js
-import { t, ngettext, msgid } from 'c-3po'
+import { t, ngettext, msgid } from 'ttag'
 
 // formatted strings
 const name = 'Mike';
@@ -37,24 +36,24 @@ const msg = ngettext(msgid`${ n } task left`, `${ n } tasks left`, n)
 ## Installation
 
 ```bash
-npm install --save c-3po
-npm install --save-dev babel-plugin-c-3po
+npm install --save ttag
+npm install --save-dev babel-plugin-ttag
 ```
 
-**c-3po babel plugin** - [https://github.com/c-3po-org/babel-plugin-c-3po](https://github.com/c-3po-org/babel-plugin-c-3po)
+**ttag babel plugin** - [https://github.com/ttag-org/babel-plugin-ttag](https://github.com/ttag-org/babel-plugin-ttag)
 
 ## Usage from CDN
 
-[https://unpkg.com/c-3po/dist/c3po.min.js](https://unpkg.com/c-3po/dist/c3po.min.js)
+[https://unpkg.com/ttag/dist/ttag.min.js](https://unpkg.com/ttag/dist/ttag.min.js)
 
-> This project is designed to work in pair with [babel-plugin-c-3po](https://github.com/c-3po-org/babel-plugin-c-3po).  
+> This project is designed to work in pair with [babel-plugin-ttag](https://github.com/ttag-org/babel-plugin-ttag).  
 > But you can also play with it [without transpilation](https://c-3po.js.org/translations-without-transpile.html).
 
 ## Useful links
 * [Documentation](https://c-3po.js.org)
 * [Changelog](https://c-3po.js.org/CHANGELOG.html)
 * [Migration guide](MIGRATION.md)
-* [Quick view on JsFiddle playground](https://jsfiddle.net/AlexMost/9wuafbL5/11/)
+* [Quick view on JsFiddle playground](https://jsfiddle.net/0atw0hgh/)
 
 ## Tutorials
 * [Quick Start](https://c-3po.js.org/quick-start.html)

@@ -24,7 +24,7 @@ Fixed issue with contexts extraction
 
 ### 0.7.2
 ##### c-3po lib
-Added typescript types definitions [PR-89](https://github.com/c-3po-org/c-3po/pull/89) [PR-88](https://github.com/c-3po-org/c-3po/pull/88)
+Added typescript types definitions [PR-89](https://github.com/ttag-org/ttag/pull/89) [PR-88](https://github.com/ttag-org/ttag/pull/88)
 
 ### 0.7.0
 ---------
@@ -36,49 +36,49 @@ Added typescript types definitions [PR-89](https://github.com/c-3po-org/c-3po/pu
 ### 0.6.1
 
 ##### c-3po lib:
-Fixed multiline for jt [PR](https://github.com/c-3po-org/c-3po/pull/76)
+Fixed multiline for jt [PR](https://github.com/ttag-org/ttag/pull/76)
 
 ### 0.6.0
 
 ##### c-3po lib:
-Implemented useLocales method [PR](https://github.com/c-3po-org/c-3po/pull/71)
+Implemented useLocales method [PR](https://github.com/ttag-org/ttag/pull/71)
 
 ##### c-3po-plugin
-Validation fix for the computed properties [PR](https://github.com/c-3po-org/babel-plugin-c-3po/issues/90)
+Validation fix for the computed properties [PR](https://github.com/ttag-org/babel-plugin-ttag/issues/90)
 
 ### 0.5.8
-Fixes for fuzzy translations issue - [68](https://github.com/c-3po-org/c-3po/issues/68)
+Fixes for fuzzy translations issue - [68](https://github.com/ttag-org/ttag/issues/68)
 
 ##### c-3po-plugin
-Validation fix for the computed properties [PR](https://github.com/c-3po-org/babel-plugin-c-3po/issues/90)
+Validation fix for the computed properties [PR](https://github.com/ttag-org/babel-plugin-ttag/issues/90)
 
 ### 0.5.7
 ##### c-3po-plugin
-Validation fix for the computed properties [PR](https://github.com/c-3po-org/babel-plugin-c-3po/issues/90)
+Validation fix for the computed properties [PR](https://github.com/ttag-org/babel-plugin-ttag/issues/90)
 
 ### 0.5.6
 ##### c-3po-plugin
-Add validation for variable expressions mismatch. [PR](https://github.com/c-3po-org/babel-plugin-c-3po/pull/84)
+Add validation for variable expressions mismatch. [PR](https://github.com/ttag-org/babel-plugin-ttag/pull/84)
 
 ### 0.5.5
 
 ##### c-3po lib:
-Fix for multiline translations. [PR](https://github.com/c-3po-org/c-3po/pull/67)
+Fix for multiline translations. [PR](https://github.com/ttag-org/ttag/pull/67)
 
 ### 0.5.4
 ##### c-3po-plugin
-Fixed extraction for member expressions with computed properties. [PR](https://github.com/c-3po-org/babel-plugin-c-3po/pull/86)
+Fixed extraction for member expressions with computed properties. [PR](https://github.com/ttag-org/babel-plugin-ttag/pull/86)
 
 ##### c-3po lib:
 Removed module attribute from package.json.
 
 ### 0.5.3
 ##### c-3po-plugin
-Fix for member expressions extraction with `this`. (checkout [PR](https://github.com/c-3po-org/babel-plugin-c-3po/pull/82) for the details)
+Fix for member expressions extraction with `this`. (checkout [PR](https://github.com/ttag-org/babel-plugin-ttag/pull/82) for the details)
 
 ### 0.5.2
 ##### c-3po-plugin
-Fix for `ngettext` validation in jsx (multiple presets [issue](https://github.com/c-3po-org/babel-plugin-c-3po/pull/81)). 
+Fix for `ngettext` validation in jsx (multiple presets [issue](https://github.com/ttag-org/babel-plugin-ttag/pull/81)). 
 ### 0.5.1
 ##### c-3po lib:
 Renamed `setHeaders` to `setDefaultHeaders` for consistency with babel plugin setting.
