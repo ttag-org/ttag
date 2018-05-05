@@ -56,6 +56,8 @@
   },
   "dependencies": {
     "dedent": "^0.7.0",
+    "gitbook-plugin-anchorjs": "^2.0.0",
+    "gitbook-plugin-ga": "^1.0.1",
     "plural-forms": "^0.2.0"
   }
 }

@@ -4,7 +4,7 @@ Migration guide for the `ttag` and `babel-plugin-ttag`
 > This project was [formely named `c-3po`](https://github.com/ttag-org/ttag/issues/105) and some of the
 > changes here only apply _before_ the project was renamed to `ttag`
 
-## 1.0.0
+## 1.0.1
 
 The project was renamed from `c-3po` to `ttag`: all references to the old project name have to be 
 changed to use the `ttag` package name on both installation and code usage:  

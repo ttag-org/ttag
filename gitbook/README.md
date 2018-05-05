@@ -3,6 +3,8 @@
 
 > This project was [formely named `c-3po`](https://github.com/ttag-org/ttag/issues/105) and later on renamed to `ttag`.
 > Some of the talks, presentations, and documentation _may_ still reference it by the old name.
+> All new features will be applied to `ttag` package, the old `c-3po` packages will be supported only with bugfixes.
+> Follow this simple [migration guide](/MIGRATION.html#101)
 
 ## Modern javascript i18n localization library based on ES6 tagged templates and the good old GNU gettext
 
