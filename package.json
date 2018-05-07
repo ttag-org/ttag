@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/c-3po-org/c-3po.git#readme",
   "typings": "index.d.ts",
-  "deprecated": "🙌  Thanks for using c-3po: the library was renamed to ttag. New features will be added to ttag package. Follow the migration guide - https://c-3po.js.org/MIGRATION.html#101 ",
+  "deprecated": "🙌  Thanks for using c-3po: the library was renamed to ttag. New features will be added to ttag package. Please, follow the migration guide - https://c-3po.js.org/MIGRATION.html#101",
   "devDependencies": {
     "@evo/eslint-config-uaprom": "1.0.7",
     "babel-cli": "6.18.0",
