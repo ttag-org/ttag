@@ -7,7 +7,7 @@ This example uses ES6 features, so you need to install Babel to transpile all it
 npm install --save-dev babel-cli babel-preset-env babel-core
 ```
 
-> All sources for this tutorial can be found under the [`examples`](https://github.com/ttag/ttag/tree/master/examples/quickstart)
+> All sources for this tutorial can be found under the [`examples`](https://github.com/ttag-org/ttag/tree/master/examples/quickstart)
 > directory.
 
 <!-- toc -->
@@ -104,7 +104,7 @@ As we see, plural forms are working out of the box without no extra configuratio
 Gettext standard is based on manipulation with `.po` files. In general, a `.po` file is a special file format
 for adding, updating, and editing translations.
 
-Let's install [`ttag-cli`](https://github.com/ttag/ttag-cli) for `.po` file manipulation:
+Let's install [`ttag-cli`](https://github.com/ttag-org/ttag-cli) for `.po` file manipulation:
 
 ```bash
 npm install -g ttag-cli

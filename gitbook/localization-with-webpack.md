@@ -29,7 +29,7 @@ According to this requirements, ttag provides you options for making efficient p
 For demonstration purposes, we will implement simple clock application.
 An [example is available](https://jsfiddle.net/AlexMost/9wuafbL5/7/) on JSFiddle.
 
-All [sources for this example](https://github.com/ttag/ttag/tree/master/examples/webpack-setup) are available
+All [sources for this example](https://github.com/ttag-org/ttag/tree/master/examples/webpack-setup) are available
 under the `examples` directory of the `ttag` repository.
 
 ### 1.3 Installation
@@ -226,7 +226,7 @@ locale headers:
 msginit -i template.pot -o uk.po -l uk
 ```
 
-> Tip: If you want to skip this, just copy and paste it from the [example source](https://github.com/ttag/ttag/blob/master/examples/webpack-setup/uk.po).
+> Tip: If you want to skip this, just copy and paste it from the [example source](https://github.com/ttag-org/ttag/blob/master/examples/webpack-setup/uk.po).
 
 Either if you generated the `uk.po` from the `pot` file or copied from the example source - the next step will be to 
 add translations to `uk.po`. Translations can be added by translators (nontechnical persons) and developers.

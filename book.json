@@ -16,14 +16,14 @@
             }]
         },
         "github-edit": {
-            "repo": "ttag/ttag",
+            "repo": "ttag-org/ttag",
             "branch": "master"
         },
         "ga": {
             "token": "UA-90721450-1"
         },
         "edit-link": {
-            "base": "https://github.com/ttag/ttag/edit/master/gitbook",
+            "base": "https://github.com/ttag-org/ttag/edit/master/gitbook",
             "label": "Edit This Page"
         }
     },

@@ -28,7 +28,7 @@
 
 The whole solution consists of 2 parts:
 
-1. **ttag library** - [https://github.com/ttag/ttag](https://github.com/ttag/ttag)
+1. **ttag library** - [https://github.com/ttag-org/ttag](https://github.com/ttag-org/ttag)
 2. **ttag babel plugin** - [https://github.com/ttag/babel-plugin-ttag](https://github.com/ttag/babel-plugin-ttag)
 
 ### How it looks like in the code:

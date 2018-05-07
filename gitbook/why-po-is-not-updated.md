@@ -13,4 +13,4 @@ Consider using env var `BABEL_DISABLE_CACHE=1` to disable babel cache.
 
 You can set `cacheDirectory` option to `false` in `babel-loader` settings.
 
-> You can check this [issue](https://github.com/ttag/ttag/issues/9) for more details.
+> You can check this [issue](https://github.com/ttag-org/ttag/issues/9) for more details.
