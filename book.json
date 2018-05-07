@@ -9,7 +9,7 @@
     "pluginsConfig": {
         "github-buttons": {
             "buttons": [{
-                "user": "ttag",
+                "user": "ttag-org",
                 "repo": "ttag",
                 "type": "star",
                 "size": "small"
