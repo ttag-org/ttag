@@ -1,6 +1,13 @@
 # CHANGELOG
 
 <!-- toc -->
+### 1.0.3
+### ttag
+Fixed behavior for untranslated strings - https://github.com/ttag-org/ttag/issues/111
+
+### 1.0.1
+Renaming project to `ttag` and `babel-ttag-plugin`
+
 ### 0.8.0
 #### c-3po lib
 * Deleted `setDefaultHeaders` method. You should call new [setDefaultLang](#configuration-c-3po-lib.html#setdefaultlang-string-lang) to change
