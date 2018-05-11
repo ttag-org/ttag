@@ -2,7 +2,7 @@
 
 <!-- toc -->
 ### 1.0.3
-### ttag
+#### ttag
 Fixed behavior for untranslated strings - https://github.com/ttag-org/ttag/issues/111
 
 ### 1.0.1
