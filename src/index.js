@@ -30,12 +30,18 @@ function isFuzzy(translationObj) {
         translationObj.comments.flag === 'fuzzy');
 }
 
+function hasTranslations(translationObj) {
+    if (!translationObj.msgstr) return false;
+
+    return translationObj.msgstr.reduce((r, trans) => r && trans.length, true);
+}
+
 function findTransObj(locale, str, ctx) {
     const locales = conf.getAvailLocales();
     const translations = locales[locale] && (
         locales[locale].translations[ctx] || locales[locale].translations['']);
     const translation = translations && translations[str];
-    if (translation && !isFuzzy(translation)) {
+    if (translation && !isFuzzy(translation) && hasTranslations(translation)) {
         return translation;
     }
     return null;

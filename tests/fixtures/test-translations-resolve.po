@@ -32,3 +32,7 @@ msgstr ""
 "this is multiline\n"
 "demo for demonstrating\n"
 "multiline strings [translated]"
+
+#: test/fixtures/fixtures:13
+msgid "An untranslated entry"
+msgstr ""
