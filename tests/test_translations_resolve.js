@@ -18,6 +18,11 @@ describe('translations resolve', () => {
         expect(result).to.not.contain('testtt');
         expect(result).to.eql('5 test');
     });
+
+    it('should use msgid when entry is not translated yet', () => {
+        const result = t`An untranslated entry`;
+        expect(result).to.eql('An untranslated entry');
+    });
 });
 
 
