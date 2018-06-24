@@ -52,7 +52,7 @@ npm install --save-dev babel-plugin-ttag
 ## Useful links
 * [Documentation](https://c-3po.js.org)
 * [Changelog](https://c-3po.js.org/CHANGELOG.html)
-* [Migration guide](MIGRATION.md)
+* [Migration guide](https://c-3po.js.org/MIGRATION.html)
 * [Quick view on JsFiddle playground](https://jsfiddle.net/0atw0hgh/)
 
 ## Tutorials
