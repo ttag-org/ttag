@@ -79,6 +79,7 @@ Configures whether multiline strings should be dedented. For more information, p
 
 ### Config.discover (Array<String>)
 > Default: `false`
+
 By default, ttag will be looking for translations in file if it has an appropriate `import` or `require`
 
 ```js
