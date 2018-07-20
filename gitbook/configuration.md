@@ -79,8 +79,16 @@ Configures whether multiline strings should be dedented. For more information, p
 
 ### Config.discover (Array<String>)
 > Default: `false`
+By default, ttag will be looking for translations in file if it has an appropriate `import` or `require`
 
-Points at what functions (`t`, `ngettext`, or `gettext`) should be discovered without and explicit import in a file.
+```js
+import { t } from 'ttag'
+// or
+const { t } = require('ttag');
+```
+
+If you are not using none of commonjs or es6 imports you can set this setting to `true` to discover translation strings without explicit `import` statement or `require` call.
+
 
 ### Config.defaultLang** (String)**
 > Default: `'en'`
