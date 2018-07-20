@@ -1,6 +1,11 @@
 # CHANGELOG
 
 <!-- toc -->
+### 1.1.0-0
+#### babel-plugin-ttag
+ttag now can discover translations from `require` and can be used in purely nodejs projects with commonjs modules. https://github.com/ttag-org/ttag/issues/44
+
+
 ### 1.0.3
 #### ttag
 Fixed behavior for untranslated strings - https://github.com/ttag-org/ttag/issues/111
