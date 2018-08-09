@@ -103,17 +103,23 @@ const Features = props => (
   <Block layout="fourColumn">
     {[
       {
-        content: 'This is the content of my feature',
+        content: 'Use simple es6 tags to make strings translatable. Provides simple ttag-cli tool for translations extraction',
         image: imgUrl('docusaurus.svg'),
         imageAlign: 'top',
-        title: 'Feature One',
+        title: 'Usability',
       },
       {
-        content: 'The content of my second feature',
+        content: 'Can be easily integrated with almost any build tool as it uses babel-plugin for strings extraction',
         image: imgUrl('docusaurus.svg'),
         imageAlign: 'top',
-        title: 'Feature Two',
+        title: 'Integration',
       },
+      {
+        content: 'Allows you to place translations in to the sources on a build step',
+        image: imgUrl('docusaurus.svg'),
+        imageAlign: 'top',
+        title: 'Performance',
+      }
     ]}
   </Block>
 );
@@ -122,8 +128,11 @@ const FeatureCallout = props => (
   <div
     className="productShowcaseSection paddingBottom"
     style={{textAlign: 'center'}}>
-    <h2>Feature Callout</h2>
-    <MarkdownBlock>These are features of this project</MarkdownBlock>
+    <h2>Based on gettext</h2>
+    <MarkdownBlock>
+      Gettext is a simple localization format with the rich ecosystem.
+      Ttag has support for plurals, contexts, translator comments and much more.
+    </MarkdownBlock>
   </div>
 );
 
