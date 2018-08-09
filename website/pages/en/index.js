@@ -109,7 +109,7 @@ const Features = props => (
         title: 'Usability',
       },
       {
-        content: 'Can be easily integrated with almost any build tool as it uses babel-plugin for strings extraction',
+        content: 'Can be easily integrated with almost any workflow as it uses babel-plugin for strings extraction',
         image: imgUrl('docusaurus.svg'),
         imageAlign: 'top',
         title: 'Integration',
@@ -137,28 +137,28 @@ const FeatureCallout = props => (
 );
 
 const LearnHowContent = `
-Simple use case
+#### Simple use case:
 \`\`\`js
 import { t } from "ttag";
 
 t\`This string will be translated\`;
 \`\`\`
 
-Plurals
+#### Plurals:
 \`\`\`js
 import { ngettext, msgid } from "ttag";
 
 ngettext(msgid\`\${n} banana\`, \`\${n} bananas\`, n);
 \`\`\`
 
-Contexts
+#### Contexts:
 \`\`\`js
 import { c } from "ttag";
 
 c('email').t\`this text will be in email context\`;
 \`\`\`
 
-JSX
+#### JSX:
 \`\`\`jsx
 import { jt } from "ttag";
 
@@ -179,11 +179,30 @@ const LearnHow = props => (
   </Block>
 );
 
-const TryOut = props => (
-  <Block id="try">
+const CliDescriptionContent = `
+Command line utility that is used for translations extraction and different .po files manipulations.
+
+#### Simple translations extraction to .po file:
+\`\`\`sh
+ttag extract index.js 
+\`\`\`
+
+#### Update .po file with new translations:
+\`\`\`sh
+ttag update out.po index.js 
+\`\`\`
+
+#### Create a new file with all strings replaced with translations from .po file:
+\`\`\`sh
+ttag replace out.po index.js index-translated.js
+\`\`\`
+`;
+
+const CliDescription = props => (
+  <Block id="try" align="left">
     {[
       {
-        content: 'Talk about trying this out',
+        content: CliDescriptionContent,
         image: imgUrl('docusaurus.svg'),
         imageAlign: 'left',
         title: 'ttag cli',
@@ -246,7 +265,7 @@ class Index extends React.Component {
           <Features />
           <FeatureCallout />
           <LearnHow />
-          <TryOut />
+          <CliDescription />
           <Description />
           <Showcase language={language} />
         </div>
