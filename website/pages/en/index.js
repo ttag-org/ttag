@@ -95,7 +95,7 @@ const Block = props => (
     padding={['bottom', 'top']}
     id={props.id}
     background={props.background}>
-    <GridBlock align="center" contents={props.children} layout={props.layout} />
+    <GridBlock align={props.align || 'center'} contents={props.children} layout={props.layout} />
   </Container>
 );
 
@@ -103,7 +103,7 @@ const Features = props => (
   <Block layout="fourColumn">
     {[
       {
-        content: 'Use simple es6 tags to make strings translatable. Provides simple ttag-cli tool for translations extraction',
+        content: 'Just tag your strings to make them translatable. Use simple ttag-cli tool for translations extraction',
         image: imgUrl('docusaurus.svg'),
         imageAlign: 'top',
         title: 'Usability',
@@ -128,7 +128,7 @@ const FeatureCallout = props => (
   <div
     className="productShowcaseSection paddingBottom"
     style={{textAlign: 'center'}}>
-    <h2>Based on gettext</h2>
+    <h2>Based on GNU gettext</h2>
     <MarkdownBlock>
       Gettext is a simple localization format with the rich ecosystem.
       Ttag has support for plurals, contexts, translator comments and much more.
@@ -136,14 +136,44 @@ const FeatureCallout = props => (
   </div>
 );
 
+const LearnHowContent = `
+Simple use case
+\`\`\`js
+import { t } from "ttag";
+
+t\`This string will be translated\`;
+\`\`\`
+
+Plurals
+\`\`\`js
+import { ngettext, msgid } from "ttag";
+
+ngettext(msgid\`\${n} banana\`, \`\${n} bananas\`, n);
+\`\`\`
+
+Contexts
+\`\`\`js
+import { c } from "ttag";
+
+c('email').t\`this text will be in email context\`;
+\`\`\`
+
+JSX
+\`\`\`jsx
+import { jt } from "ttag";
+
+jt\`can use \$\{\<JSXElement\/\>\} inside the translations\`;
+\`\`\`
+`;
+
 const LearnHow = props => (
-  <Block background="light">
+  <Block background="light" align="left">
     {[
       {
-        content: 'Talk about learning how to use this',
+        content: LearnHowContent,
         image: imgUrl('docusaurus.svg'),
         imageAlign: 'right',
-        title: 'Learn How',
+        title: 'Just so simple to use',
       },
     ]}
   </Block>
@@ -156,7 +186,7 @@ const TryOut = props => (
         content: 'Talk about trying this out',
         image: imgUrl('docusaurus.svg'),
         imageAlign: 'left',
-        title: 'Try it Out',
+        title: 'ttag cli',
       },
     ]}
   </Block>
