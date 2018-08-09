@@ -76,7 +76,7 @@ class HomeSplash extends React.Component {
     let language = this.props.language || '';
     return (
       <SplashContainer>
-        <Logo img_src={imgUrl('docusaurus.svg')} />
+        <Logo img_src={imgUrl('ttag.svg')} />
         <div className="inner">
           <ProjectTitle />
           <PromoSection>
@@ -104,19 +104,19 @@ const Features = props => (
     {[
       {
         content: 'Just tag your strings to make them translatable. Use simple ttag-cli tool for translations extraction',
-        image: imgUrl('docusaurus.svg'),
+        image: imgUrl('ttag.svg'),
         imageAlign: 'top',
         title: 'Usability',
       },
       {
         content: 'Can be easily integrated with almost any workflow as it uses babel-plugin for strings extraction',
-        image: imgUrl('docusaurus.svg'),
+        image: imgUrl('ttag.svg'),
         imageAlign: 'top',
         title: 'Integration',
       },
       {
         content: 'Allows you to place translations in to the sources on a build step',
-        image: imgUrl('docusaurus.svg'),
+        image: imgUrl('ttag.svg'),
         imageAlign: 'top',
         title: 'Performance',
       }
@@ -171,7 +171,7 @@ const LearnHow = props => (
     {[
       {
         content: LearnHowContent,
-        image: imgUrl('docusaurus.svg'),
+        image: imgUrl('ttag.svg'),
         imageAlign: 'right',
         title: 'Just so simple to use',
       },
@@ -203,7 +203,7 @@ const CliDescription = props => (
     {[
       {
         content: CliDescriptionContent,
-        image: imgUrl('docusaurus.svg'),
+        image: imgUrl('ttag.svg'),
         imageAlign: 'left',
         title: 'ttag cli',
       },
@@ -216,7 +216,7 @@ const Description = props => (
     {[
       {
         content: 'This is another description of how this project is useful',
-        image: imgUrl('docusaurus.svg'),
+        image: imgUrl('ttag.svg'),
         imageAlign: 'right',
         title: 'Description',
       },

@@ -14,7 +14,7 @@ const users = [
     caption: 'User1',
     // You will need to prepend the image path with your baseUrl
     // if it is not '/', like: '/test-site/img/docusaurus.svg'.
-    image: '/img/docusaurus.svg',
+    image: '/img/ttag.svg',
     infoLink: 'https://www.facebook.com',
     pinned: true,
   },
@@ -46,8 +46,8 @@ const siteConfig = {
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/docusaurus.svg',
-  footerIcon: 'img/docusaurus.svg',
+  headerIcon: 'img/ttag.svg',
+  footerIcon: 'img/ttag.svg',
   favicon: 'img/favicon.png',
 
   /* colors for website */
