@@ -11,12 +11,12 @@
 
 ## Key features
 * Uses ES6 template literals for string formatting (no need for sprintf).
-* Contexts [support](https://c-3po.js.org/contexts.html)
+* Contexts [support](https://ttag.org/contexts.html)
 * It can precompile translations on a build step.
-* Plurals support [ngettext](https://c-3po.js.org/ngettext.html).
+* Plurals support [ngettext](https://ttag.js.org/ngettext.html).
 * It can be integrated in any build tool that works with babel.
-* Has options for both efficient [development and production setups](https://c-3po.js.org/localization-with-webpack-and-c-3po.html).
-* Has a builtin [validation](https://c-3po.js.org/validation.html) for translated strings format.
+* Has options for both efficient [development and production setups](https://ttag.js.org/localization-with-webpack-and-c-3po.html).
+* Has a builtin [validation](https://ttag.js.org/validation.html) for translated strings format.
 * It can use any default locale in sources (not only English).
 * Handles [React (jsx) translations](jsx-tag-jt.md).
 
@@ -47,17 +47,17 @@ npm install --save-dev babel-plugin-ttag
 [https://unpkg.com/ttag/dist/ttag.min.js](https://unpkg.com/ttag/dist/ttag.min.js)
 
 > This project is designed to work in pair with [babel-plugin-ttag](https://github.com/ttag-org/babel-plugin-ttag).  
-> But you can also play with it [without transpilation](https://c-3po.js.org/translations-without-transpile.html).
+> But you can also play with it [without transpilation](https://ttag.js.org/translations-without-transpile.html).
 
 ## Useful links
-* [Documentation](https://c-3po.js.org)
-* [Changelog](https://c-3po.js.org/CHANGELOG.html)
-* [Migration guide](https://c-3po.js.org/MIGRATION.html)
+* [Documentation](https://ttag.js.org)
+* [Changelog](https://ttag.js.org/CHANGELOG.html)
+* [Migration guide](https://ttag.js.org/MIGRATION.html)
 * [Quick view on JsFiddle playground](https://jsfiddle.net/0atw0hgh/)
 
 ## Tutorials
-* [Quick Start](https://c-3po.js.org/quick-start.html)
-* [Localization with webpack](https://c-3po.js.org/localization-with-webpack-and-c-3po.html)
+* [Quick Start](https://ttag.js.org/quick-start.html)
+* [Localization with webpack](https://ttag.js.org/localization-with-webpack-and-c-3po.html)
 
 ## Slides from talks
 * [Kyivjs 2017](https://docs.google.com/presentation/d/1oj6ZaXfIfcClROe-4kOMMjnXFExn1gUfF6D30VyznWs/edit?usp=sharing)
