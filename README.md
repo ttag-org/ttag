@@ -18,7 +18,7 @@
 * Has options for both efficient [development and production setups](https://ttag.js.org/localization-with-webpack-and-c-3po.html).
 * Has a builtin [validation](https://ttag.js.org/validation.html) for translated strings format.
 * It can use any default locale in sources (not only English).
-* Handles [React (jsx) translations](jsx-tag-jt.md).
+* Handles [React (jsx) translations](https://ttag.js.org/reference-jt-tag.html).
 
 ## Usage example
 ```js
