@@ -104,19 +104,19 @@ const Features = props => (
     {[
       {
         content: 'Just tag your strings to make them translatable. Use simple ttag-cli tool for translations extraction',
-        image: imgUrl('ttag.svg'),
+        image: imgUrl('good.svg'),
         imageAlign: 'top',
         title: 'Usability',
       },
       {
         content: 'Can be easily integrated with almost any workflow as it uses babel-plugin for strings extraction',
-        image: imgUrl('ttag.svg'),
+        image: imgUrl('gear.svg'),
         imageAlign: 'top',
         title: 'Integration',
       },
       {
         content: 'Allows you to place translations in to the sources on a build step',
-        image: imgUrl('ttag.svg'),
+        image: imgUrl('rocket.svg'),
         imageAlign: 'top',
         title: 'Performance',
       }
@@ -171,7 +171,7 @@ const LearnHow = props => (
     {[
       {
         content: LearnHowContent,
-        image: imgUrl('ttag.svg'),
+        image: imgUrl('ttag-library.svg'),
         imageAlign: 'right',
         title: 'Just so simple to use',
       },
@@ -203,7 +203,7 @@ const CliDescription = props => (
     {[
       {
         content: CliDescriptionContent,
-        image: imgUrl('ttag.svg'),
+        image: imgUrl('ttag-cli.svg'),
         imageAlign: 'left',
         title: 'ttag cli',
       },
