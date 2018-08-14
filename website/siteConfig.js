@@ -11,11 +11,27 @@
 /* List of projects/orgs using your project for the users page */
 const users = [
   {
-    caption: 'User1',
-    // You will need to prepend the image path with your baseUrl
-    // if it is not '/', like: '/test-site/img/docusaurus.svg'.
-    image: '/img/ttag.svg',
-    infoLink: 'https://www.facebook.com',
+    caption: 'prom.ua',
+    image: '/img/prom-ua.png',
+    infoLink: 'https://prom.ua',
+    pinned: true,
+  },
+  {
+    caption: 'bigl.ua',
+    image: '/img/bigl.png',
+    infoLink: 'https://bigl.ua',
+    pinned: true,
+  },
+  {
+    caption: 'zakupki.prom.ua',
+    image: '/img/zakupki.svg',
+    infoLink: 'https://zakupki.prom.ua',
+    pinned: true,
+  },
+  {
+    caption: 'metabase.com',
+    image: '/img/metabase.png',
+    infoLink: 'https://metabase.com/',
     pinned: true,
   },
 ];
