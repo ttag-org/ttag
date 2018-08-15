@@ -57,7 +57,7 @@ npm install --save-dev babel-plugin-ttag
 
 ## Tutorials
 * [Quick Start](https://ttag.js.org/quick-start.html)
-* [Localization with webpack](https://ttag.js.org/localization-with-webpack-and-c-3po.html)
+* [Localization with webpack](https://ttag.js.org/localization-with-webpack.html)
 
 ## Slides from talks
 * [Kyivjs 2017](https://docs.google.com/presentation/d/1oj6ZaXfIfcClROe-4kOMMjnXFExn1gUfF6D30VyznWs/edit?usp=sharing)
