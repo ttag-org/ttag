@@ -11,11 +11,11 @@
 
 ## Key features
 * Uses ES6 template literals for string formatting (no need for sprintf).
-* Contexts [support](https://ttag.org/contexts.html)
+* Contexts [support](https://ttag.js.org/reference-contexts.html)
 * It can precompile translations on a build step.
-* Plurals support [ngettext](https://ttag.js.org/ngettext.html).
+* Plurals support [ngettext](https://ttag.js.org/reference-ngettext.html).
 * It can be integrated in any build tool that works with babel.
-* Has options for both efficient [development and production setups](https://ttag.js.org/localization-with-webpack-and-c-3po.html).
+* Has options for both efficient [development and production setups](https://ttag.js.org/localization-with-webpack.html).
 * Has a builtin [validation](https://ttag.js.org/validation.html) for translated strings format.
 * It can use any default locale in sources (not only English).
 * Handles [React (jsx) translations](https://ttag.js.org/reference-jt-tag.html).
