@@ -172,7 +172,7 @@ const LearnHow = props => (
       {
         content: LearnHowContent,
         image: imgUrl('ttag-library.svg'),
-        imageAlign: 'right',
+        imageAlign: 'left',
         title: 'Just so simple to use',
       },
     ]}
@@ -215,10 +215,10 @@ const Description = props => (
   <Block background="dark">
     {[
       {
-        content: 'This is another description of how this project is useful',
+        content: 'Follow this link to get started - [document](docs/quickstart.html)',
         image: imgUrl('ttag.svg'),
         imageAlign: 'right',
-        title: 'Description',
+        title: 'Quickstart',
       },
     ]}
   </Block>

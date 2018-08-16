@@ -9,6 +9,7 @@
 // site configuration options.
 
 /* List of projects/orgs using your project for the users page */
+
 const users = [
   {
     caption: 'prom.ua',
@@ -26,6 +27,12 @@ const users = [
     caption: 'zakupki.prom.ua',
     image: '/img/zakupki.svg',
     infoLink: 'https://zakupki.prom.ua',
+    pinned: true,
+  },
+  {
+    caption: 'kabanchik.ua',
+    image: '/img/kabanchik.png',
+    infoLink: 'https://kabanchik.ua/',
     pinned: true,
   },
   {
@@ -54,8 +61,9 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'intro', label: 'About'},
-    {blog: true, label: 'Blog'},
+    { doc: 'quickstart', label: 'Docs' },
+    { blog: true, label: 'Blog' },
+    { href: 'https://github.com/ttag-org/ttag/', label: 'Github' }
   ],
 
   // If you have users set above, you add it here:
@@ -104,7 +112,7 @@ const siteConfig = {
   /* Open Graph and Twitter card images */
   ogImage: 'img/docusaurus.png',
   twitterImage: 'img/docusaurus.png',
-
+  repoUrl: 'https://github.com/ttag-org/ttag',
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',

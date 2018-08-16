@@ -1,5 +1,11 @@
 {
   "docs": {
-    "Intro": ["intro"]
+    "Getting Started": [
+      "quickstart",
+      "installation"
+    ]
+  },
+  "about": {
+    "About": ["intro"]
   }
 }

@@ -14,3 +14,8 @@
 
 @media only screen and (min-width: 1500px) {
 }
+
+.main-library-block {
+    width: 300px;
+    margin: 30px;
+};
