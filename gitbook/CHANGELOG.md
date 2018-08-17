@@ -1,9 +1,9 @@
 # CHANGELOG
 
 <!-- toc -->
-### 1.2.0
+### 1.2.1
 #### ttag-cli
-Added `po2js` command (thanks @vharitonsky - https://github.com/ttag-org/ttag-cli/pull/40)
+Added `po2json` command (thanks @vharitonsky - https://github.com/ttag-org/ttag-cli/pull/40)
 
 ### 1.1.0
 Fix for `addComments` - https://github.com/ttag-org/babel-plugin-ttag/issues/105
