@@ -15,7 +15,7 @@ npm install --save-dev babel-cli babel-preset-env babel-core
 
 <!-- toc -->
 
-### 1. Simple counter program
+## 1. Simple counter program
 
 Let's setup some simple JavaScript file `counter.js` that we will localize later.
 
@@ -48,7 +48,7 @@ The program works but it uses the wrong plural form for the first iteration: `1 
 
 Let's fix it.
 
-### 2. Wrap strings with ttag tags and functions
+## 2. Wrap strings with ttag tags and functions
 
 Install the ttag library:
 
@@ -103,7 +103,7 @@ starting count up to 3
 
 As we see, plural forms are working out of the box without no extra configuration for the English locale.
 
-### 3. Setup localization
+## 3. Setup localization
 Gettext standard is based on manipulation with `.po` files. In general, a `.po` file is a special file format
 for adding, updating, and editing translations.
 
@@ -115,7 +115,7 @@ npm install -g ttag-cli
 
 > After installtion, the `ttag` command should be available globally
 
-#### Create a `.po` file
+### Create a `.po` file
 Let's assume that we want to translate our program to Ukrainian language.
 
 ```bash
@@ -126,7 +126,7 @@ This will create a new .po file with all settings for the Ukrainian language
 
 > See all available languages at the [GNU gettext manual](https://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html)
 
-#### Update the `.po` file
+### Update the `.po` file
 To sync all strings in your sources with the `.po` file, you can use `ttag update` command.
 
 ```bash
@@ -134,7 +134,7 @@ ttag update uk.po counter.js
 ```
 Now, you can open `uk.po` file and add translations to extracted strings.
 
-### 4. Load translations
+## 4. Load translations
 To be able to apply translations you should parse the `.po` file. We recommend to use the 
 [`gettext-parser` package](https://www.npmjs.com/package/gettext-parser) for that purpose:
 

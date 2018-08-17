@@ -3,8 +3,17 @@ id: installation
 title: Installation
 ---
 
+## Library installation
+
 ```bash
-npm install --save ttag && npm install --save-dev babel-plugin-ttag
+npm install --save ttag
 ```
 
-> Here is an example of `ttag` translations setup with webpack - [https://github.com/ttag-org/ttag-demo](https://github.com/ttag-org/ttag-demo)
+## CLI installation
+For the whole translation process you also need to install `ttag-cli`.
+
+```bash
+npm install -g ttag-cli
+```
+
+

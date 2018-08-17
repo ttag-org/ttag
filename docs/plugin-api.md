@@ -5,14 +5,18 @@ title: babel-plugin-ttag API
 
 `ttag` configuration is a simple JavaScript object (**Config**).
 
-### Config.extract.output (string)
-> Default: `'polyglot_result.pot'`
+## Config.extract.output
+`type: string`
+
+`Default: 'polyglot_result.pot'`
 
 Specifies a file where to save extracted translations (`.pot` file). If this setting is present then `babel-plugin-ttag`
 will extract translations.
 
-### Config.extract.location (string)
-> Default: `'full'`
+## Config.extract.location
+`type: string`
+
+`Default: 'full'`
 
 Configure how file references are attached to translation files. File references may help translators to identify where
 a given translatable text is used in the code base.
@@ -23,8 +27,11 @@ One of the following values are valid:
 * `'file'` - only file location without line number
 * `'never'` - don't attach any file reference
 
-### Config.resolve.translations (string)
-> Default: `null`
+## Config.resolve.translations
+`type: string`
+
+`Default: null`
+
 Specifies the path to the `.po` file with translations that will be placed in sources.
 
 Example:
@@ -38,8 +45,10 @@ It can be set to `'default'` to strip `ttag` tags and resolve the default locale
 { "resolve": { "translations": "default" } }
 ```
 
-### Config.resolve.unresolved (string)
-> Default: `'skip'`
+## Config.resolve.unresolved
+`type: string`
+
+`Default: 'skip'`
 
 Controls how to handle missing translation strings in the `.po` file.
 
@@ -57,9 +66,12 @@ Example:
 { "resolve": { "translations": "uk.po", "unresolved": "fail" } }
 ```
 
-### Config.extractors.[FunctionName].invalidFormat (string)
-> Default: `'fail'`
-> Available function names: `tag-gettext`, `ngettext`, `gettext`, and `tag-ngettext`
+## Config.extractors.[FunctionName].invalidFormat
+`type: 'fail' | 'warn' | 'skip'`
+
+`FunctionName: 'tag-gettext' | 'gettext' | 'tag-ngettext' | 'jsxtag-gettext'`
+
+`Default: 'fail'`
 
 Controls how to handle functions using a translatable text containing an invalid format.
 
@@ -74,14 +86,18 @@ Example:
 {"extractors": { "tag-gettext": { "invalidFormat": "skip" } } }
 ```
 
-### Config.dedent (boolean)
-> Default: `true`
+## Config.dedent
+`type: bool`
+
+`Default: true`
 
 Configures whether multiline strings should be dedented. For more information, please check the 
 [multiline strings](multiline-strings.md) section of the documentation.
 
-### Config.discover (Array<String>)
-> Default: `false`
+## Config.discover
+`type: string[]`
+
+`Default: false`
 
 By default, ttag will be looking for translations in file if it has an appropriate `import` or `require`
 
@@ -94,15 +110,19 @@ const { t } = require('ttag');
 If you are not using none of commonjs or es6 imports you can set this setting to `true` to discover translation strings without explicit `import` statement or `require` call.
 
 
-### Config.defaultLang** (String)**
-> Default: `'en'`
+## Config.defaultLang
+`type: string`
+
+`Default: 'en'`
 
 Default language ISO code that is used for strings in the source code. (English by default).
 
 > See available language codes - https://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html
 
-### Config.addComments [ boolean | String ]
-> Default: `'false'`
+## Config.addComments
+`type: bool | string`
+
+`Default: 'false'`
 
 Set this to `true` to extract leading comments before a translatable string.
 ```js
@@ -125,14 +145,18 @@ addComments: 'translator:'
 t`translated string`
 ```
 
-### Config.sortByMsgid
-> Default: `'false'`
+## Config.sortByMsgid
+`type: bool`
+
+`Default: false`
 
 The resulting entries in `.po` (or `.pot`) file will be sorted alphabetically by `msgid`. It can be helpful
 to reduce merge conflicts.
 
-### Config.numberedExpressions (boolean)
-> Default: `false`
+## Config.numberedExpressions
+`type: bool`
+
+`Default: false`
 
 Example:
 

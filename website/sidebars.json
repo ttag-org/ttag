@@ -1,8 +1,15 @@
 {
   "docs": {
     "Getting Started": [
-      "quickstart",
-      "installation"
+      "installation",
+      "quickstart"
+    ],
+    "Tags and Functions": [
+      "tag-gettext",
+      "jsx-gettext",
+      "context",
+      "ngettext",
+      "gettext"
     ],
     "API": [
       "library-api",

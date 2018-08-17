@@ -164,8 +164,6 @@ import { jt } from "ttag";
 
 jt\`can use \$\{\<JSXElement\/\>\} inside the translations\`;
 \`\`\`
-
-## [ttag API docs here](docs/library-api.html)
 `;
 
 const LearnHow = props => (
