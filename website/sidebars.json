@@ -3,6 +3,10 @@
     "Getting Started": [
       "quickstart",
       "installation"
+    ],
+    "API": [
+      "library-api",
+      "plugin-api"
     ]
   },
   "about": {

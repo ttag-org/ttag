@@ -7,11 +7,14 @@
     "babel-plugin-configuration": "Configuration for babel-plugin-ttag",
     "installation": "Installation",
     "intro": "ttag",
+    "library-api": "ttag API",
+    "plugin-api": "babel-plugin-ttag API",
     "quickstart": "Quickstart",
     "Docs": "Docs",
     "Blog": "Blog",
     "Github": "Github",
     "Getting Started": "Getting Started",
+    "API": "API",
     "About": "About"
   },
   "pages-strings": {
