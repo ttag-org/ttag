@@ -80,9 +80,9 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <ProjectTitle />
           <PromoSection>
-            <Button href="#try">Try It Out</Button>
-            <Button href={docUrl('doc1.html', language)}>Example Link</Button>
-            <Button href={docUrl('doc2.html', language)}>Example Link 2</Button>
+            <Button href={docUrl('quickstart.html', language)}>Docs</Button>
+            <Button href='https://jsfiddle.net/0atw0hgh/'>Demo</Button>
+            <Button href='https://github.com/ttag-org/ttag'>Github</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -164,6 +164,8 @@ import { jt } from "ttag";
 
 jt\`can use \$\{\<JSXElement\/\>\} inside the translations\`;
 \`\`\`
+
+## [ttag API docs here](docs/library-api.html)
 `;
 
 const LearnHow = props => (
