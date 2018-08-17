@@ -1,6 +1,6 @@
 {
   "name": "ttag",
-  "version": "1.2.1-0",
+  "version": "1.2.1",
   "description": "",
   "main": "dist/index.js",
   "keywords": [
