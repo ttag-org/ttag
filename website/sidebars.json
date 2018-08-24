@@ -11,6 +11,13 @@
       "ngettext",
       "gettext"
     ],
+    "Features": [
+      "translations-validation",
+      "aliasing",
+      "multiline-strings",
+      "translator-comments",
+      "ignore"
+    ],
     "API": [
       "library-api",
       "plugin-api"

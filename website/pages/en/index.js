@@ -215,7 +215,7 @@ const Description = props => (
   <Block background="dark">
     {[
       {
-        content: 'Follow this link to get started - [document](docs/quickstart.html)',
+        content: 'Follow [this reference to get started quick](docs/quickstart.html)',
         image: imgUrl('ttag.svg'),
         imageAlign: 'right',
         title: 'Quickstart',

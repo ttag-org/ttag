@@ -72,8 +72,8 @@ function startCount(n){
 
 For more information, please check:
 
-* `t` tag [reference documentation](reference-t-tag.md)
-* `ngettext` function [reference documentation](reference-ngettext.md)
+* `t` tag [reference documentation](tag-gettext.html)
+* `ngettext` function [reference documentation](ngettext.html)
 
 Adding `counter` script to the package.json:
 
