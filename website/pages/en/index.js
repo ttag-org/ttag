@@ -51,7 +51,7 @@ const SplashContainer = props => (
 );
 
 const Logo = props => (
-  <div className="projectLogo">
+  <div className="projectLogo" id="projectLogo">
     <img src={props.img_src} />
   </div>
 );
