@@ -11,8 +11,17 @@ module.exports = {
     },
     module: {
         rules: [
-            { test: /\.(js|jsx)$/, use: 'babel-loader', exclude: /node_modules/ }
-        ]
+            {
+                test: /\.(js|jsx)$/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                    },
+                },
+                exclude: /node_modules/,
+            },
+        ],
     },
     plugins: [
         new webpack.DefinePlugin({
