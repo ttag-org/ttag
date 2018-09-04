@@ -110,7 +110,7 @@ npm install --save-dev ttag-cli
 
 > After installtion, the `ttag` command should be available in npm scripts.
 
-### Create a `.po` file
+### Create `.po` file
 Let's assume that we want to translate our program to Ukrainian language.
 
 ```bash
@@ -121,7 +121,7 @@ This will create a new `uk.po` file with all appropriate headers for the Ukraini
 
 > See all available languages at the [GNU gettext manual](https://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html)
 
-### Update the `.po` file
+### Update `.po` file
 Use `ttag update` command for translations extraction/update to `.po` file from the source files:
 
 ```bash
