@@ -3,17 +3,28 @@ id: installation
 title: Installation
 ---
 
-## Library installation
+## ttag
 
+### Install with npm
 ```bash
 npm install --save ttag
 ```
+### Install with yarn
+```bash
+yarn add ttag
+```
 
-## CLI installation
+## ttag-cli
 For the whole translation process you also need to install `ttag-cli`.
 
+### Install with npm
 ```bash
-npm install -g ttag-cli
+npm install --save-dev ttag-cli
+```
+
+### Install with yarn
+```bash
+yarn add ttag-cli --dev
 ```
 
 

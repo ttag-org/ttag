@@ -12,7 +12,7 @@ In a few steps you will be able to setup the full translation cycle with `ttag` 
 
 ## 1. Simple counter program
 
-Let's setup some simple JavaScript file `counter.js` and add localization process to it.
+Let's setup some simple counter program - `counter.js`:
 
 ```js
 // counter.js
@@ -27,10 +27,8 @@ function startCount(n){
 startCount(3);
 ```
 
-Let's execute `counter.js` file:
-
-```
-node index.js
+```bash
+node counter.js
 
 starting count up to 3
 0 ticks passed
@@ -70,25 +68,11 @@ For more information, please check:
 * `t` tag [reference documentation](tag-gettext.html)
 * `ngettext` function [reference documentation](ngettext.html)
 
-Adding `counter` script to the package.json:
-
-```json
-{
-"scripts": {
-    "counter": "node counter.js"
-  }
-}
-```
-
-Run the program again, this time using Babel:
+Let's see what our program outputs now:
 
 ```bash
-npm run counter
-```
+node counter.js
 
-Output:
-
-```
 starting count up to 3
 0 ticks passed
 1 tick passed
@@ -102,7 +86,7 @@ As we see, plural forms are working out of the box without no extra configuratio
 Gettext standard is based on manipulation with `.po` files. In general, a `.po` file is a special file format
 for adding, updating, and editing translations.
 
-Let's install [`ttag-cli`](https://github.com/ttag-org/ttag-cli) for `.po` different manipulations with `.po/pot` files:
+Let's install [`ttag-cli`](https://github.com/ttag-org/ttag-cli) for `.po` different po/pot files manipulations:
 
 ```bash
 npm install --save-dev ttag-cli
@@ -130,38 +114,38 @@ ttag update uk.po counter.js
 Now, you can open `uk.po` file and add translations to extracted strings.
 
 ## 4. Load translations
-To be able to import translations from the `uk.po` file, we can simply convert our `uk.po` file to JSON format with `po2json` command:
+After all translations are added by the translator to the `uk.po` file, we need load those translations somehow. 
+There are 2 ways in which you can apply translations from `.po` file. Each of them has their pros and cons. Both of them are quite easy to setup, so you decide which one suits better for you.
+
+### Runtime load
+With `ttag-cli` we can simply convert our `uk.po` file to JSON format with `po2json` command:
 
 ```bash
 ttag po2json uk.po > uk.po.json
 ```
 
-The last step is to modify our program to load locale from the `.po` file if the `LOCALE` environment variable is present:
+The last step is to modify our program to load locale from the `.po.json` file if the `LOCALE` environment variable is present:
 
 ```js
 const { ngettext, msgid, t, addLocale, useLocale } = require('ttag');
 
-const locale = process.env.LOCALE;
+const locale = process.env.LOCALE; // uk
 
 if (locale) {
-    const translationObj = require(`./${locale}.po`);
-    addLocale(locale, translationObj);
-    useLocale(locale);
+    const translationObj = require(`./${locale}.po.json`); // will load uk.po.json
+    addLocale(locale, translationObj); // adding locale to ttag
+    useLocale(locale); // make uk locale active
 }
 
 //....
 ```
 
-Let's add new `counter-uk` script which will run localized version of our program:
+Let's run our script with env LOCALE:
 
-```js
-"scripts": {
-    "counter-uk": "LOCALE=uk node counter.js"
-}
-```
-
-Let's run it with `npm run counter`
 ```bash
+LOCALE=uk node counter.js
+
+
 починаємо рахунок до 3
 минуло 0 тіків
 минув 1 тік
@@ -169,16 +153,16 @@ Let's run it with `npm run counter`
 минуло 3 тіка
 ```
 
-## 5. Precompile translations
-`ttag replace` command will generate `counter.uk.js` file with all strings replaced with the translations from the `uk.po` file:
+### Precompile translations
+Another approach is to produce separate output file for each locale, with all translations already placed in code. In our case, `ttag replace` command can generate standalone localized `counter.uk.js` file:
 
 ```bash
 ttag replace uk.po counter.uk.js counter.js
 ```
 
-So no you can simply run `node counter.uk.js` and see the the localized output.
+So, you can simply run `node counter.uk.js` and see the the localized output.
 
-This approach performs much better, because it eliminates all translations load boilerplate.
+This approach performs much better, because it eliminates all the translations loading boilerplate.
 
 
 > Note: `ttag-cli` is a wrapper around [babel-plugin-ttag](https://github.com/ttag/babel-plugin-ttag)
