@@ -4,20 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "counter": "babel-node --presets env counter.js",
-    "counter-uk": "LOCALE=uk babel-node --presets env counter.js",
-    "update": "c-3po update uk.po counter.js",
-    "check": "c-3po check uk.po counter.js"
+    "counter": "node counter.js",
+    "counter-uk": "npm run convert && LOCALE=uk node counter.js",
+    "convert": "npm run update && ttag po2json uk.po > uk.po.json",
+    "update": "ttag update uk.po counter.js"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "c-3po-cli": "0.1.0"
-  },
   "dependencies": {
-    "c-3po": "^0.7.2"
+    "ttag": "^1.2.1"
+  },
+  "devDependencies": {
+    "ttag-cli": "^1.3.0-1"
   }
 }

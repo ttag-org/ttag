@@ -3,12 +3,7 @@ id: quickstart
 title: Quickstart
 ---
 
-In a few steps you will be able to setup the full translation cycle with gettext and ttag.
-This example uses ES6 features, so you need to install Babel to transpile all its source code:
-
-```bash
-npm install --save-dev babel-cli babel-preset-env babel-core
-```
+In a few steps you will be able to setup the full translation cycle with `ttag` and `ttag-cli`.
 
 > All sources for this tutorial can be found under the [`examples`](https://github.com/ttag-org/ttag/tree/master/examples/quickstart)
 > directory.
@@ -17,7 +12,7 @@ npm install --save-dev babel-cli babel-preset-env babel-core
 
 ## 1. Simple counter program
 
-Let's setup some simple JavaScript file `counter.js` that we will localize later.
+Let's setup some simple JavaScript file `counter.js` and we want to setup localization process for it.
 
 ```js
 // counter.js
@@ -59,7 +54,7 @@ npm install --save ttag
 Now we can wrap strings with ttag functions and tags to make them translatable:
 
 ```js
-import { t, ngettext, msgid } from 'ttag';
+const { t, ngettext, msgid } = require('ttag');
 
 function startCount(n){
     console.log(t`starting count up to ${n}`); // using 't' tag for 1 to 1 translations
@@ -80,7 +75,7 @@ Adding `counter` script to the package.json:
 ```json
 {
 "scripts": {
-    "counter": "babel-node --presets env counter.js"
+    "counter": "node counter.js"
   }
 }
 ```
@@ -110,10 +105,10 @@ for adding, updating, and editing translations.
 Let's install [`ttag-cli`](https://github.com/ttag-org/ttag-cli) for `.po` file manipulation:
 
 ```bash
-npm install -g ttag-cli
+npm install --save-dev ttag-cli
 ``` 
 
-> After installtion, the `ttag` command should be available globally
+> After installtion, the `ttag` command should be available in npm scripts.
 
 ### Create a `.po` file
 Let's assume that we want to translate our program to Ukrainian language.
@@ -122,12 +117,12 @@ Let's assume that we want to translate our program to Ukrainian language.
 ttag init uk uk.po
 ```
 
-This will create a new .po file with all settings for the Ukrainian language
+This will create a new `uk.po` file with all appropriate headers for the Ukrainian language
 
 > See all available languages at the [GNU gettext manual](https://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html)
 
 ### Update the `.po` file
-To sync all strings in your sources with the `.po` file, you can use `ttag update` command.
+To extract all strings in your sources with the `.po` file, you can use `ttag update` command.
 
 ```bash
 ttag update uk.po counter.js
@@ -135,29 +130,21 @@ ttag update uk.po counter.js
 Now, you can open `uk.po` file and add translations to extracted strings.
 
 ## 4. Load translations
-To be able to apply translations you should parse the `.po` file. We recommend to use the 
-[`gettext-parser` package](https://www.npmjs.com/package/gettext-parser) for that purpose:
+To be able to import translations from the `uk.po` file, we can simply convert our `uk.po` file to JSON format - `uk.po.json`:
 
 ```bash
-npm install --save-dev gettext-parser
+ttag po2json uk.po > uk.po.json
 ```
 
-Let's modify our program to load the locale from the `.po` file if the `LOCALE` environment variable
-is present:
+Let's modify our program to load locale from the `.po` file if the `LOCALE` environment variable is present:
 
 ```js
-import { ngettext, msgid, t,  addLocale, useLocale } from 'ttag';
-import fs from 'fs';
-import gt from 'gettext-parser';
-
-function loadFile(filePath) {
-    gt.po.parse(fs.readFileSync(filePath));
-}
+const { ngettext, msgid, t, addLocale, useLocale } = require('ttag');
 
 const locale = process.env.LOCALE;
 
 if (locale) {
-    const translationObj = loadFile(`${locale}.po`);
+    const translationObj = require(`./${locale}.po`);
     addLocale(locale, translationObj);
     useLocale(locale);
 }
@@ -165,11 +152,11 @@ if (locale) {
 //....
 ```
 
-Change the `counter` entry of the `scripts` section to include the locale set as an environment variable:
+Let's add new `counter-uk` script which will run localized version of our program:
 
 ```js
 "scripts": {
-    "counter": "LOCALE=uk babel-node --presets env counter.js"
+    "counter-uk": "LOCALE=uk node counter.js"
 }
 ```
 
@@ -184,6 +171,4 @@ Let's run it with `npm run counter`
 
 > Note: `ttag-cli` is a wrapper around [babel-plugin-ttag](https://github.com/ttag/babel-plugin-ttag)
 
-**Where to go now?**  
-
-If you use webpack on your build process, check [Localization with webpack](localization-with-webpack.md) section of the documentation.
+Feel free to post any questions and issues [here](https://github.com/ttag-org/ttag/issues)
