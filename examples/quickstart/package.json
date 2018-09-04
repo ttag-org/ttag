@@ -7,6 +7,7 @@
     "counter": "node counter.js",
     "counter-uk": "npm run convert && LOCALE=uk node counter.js",
     "convert": "npm run update && ttag po2json uk.po > uk.po.json",
+    "precompile": "ttag replace uk.po counter.uk.js counter.js",
     "update": "ttag update uk.po counter.js"
   },
   "author": "",

@@ -169,6 +169,18 @@ Let's run it with `npm run counter`
 минуло 3 тіка
 ```
 
+## 5. Precompile translations
+`ttag replace` command will generate `counter.uk.js` file with all strings replaced with the translations from the `uk.po` file:
+
+```bash
+ttag replace uk.po counter.uk.js counter.js
+```
+
+So no you can simply run `node counter.uk.js` and see the the localized output.
+
+This approach performs much better, because it eliminates all translations load boilerplate.
+
+
 > Note: `ttag-cli` is a wrapper around [babel-plugin-ttag](https://github.com/ttag/babel-plugin-ttag)
 
 Feel free to post any questions and issues [here](https://github.com/ttag-org/ttag/issues)
