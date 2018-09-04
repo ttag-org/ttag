@@ -12,7 +12,7 @@ In a few steps you will be able to setup the full translation cycle with `ttag` 
 
 ## 1. Simple counter program
 
-Let's setup some simple JavaScript file `counter.js` and we want to setup localization process for it.
+Let's setup some simple JavaScript file `counter.js` and add localization process to it.
 
 ```js
 // counter.js
@@ -39,7 +39,7 @@ starting count up to 3
 3 ticks passed
 ```
 
-The program works but it uses the wrong plural form for the first iteration: `1 ticks passed`. It should be `1 tick passed`.
+The program works but, as you can see, it uses the wrong plural form for `1 ticks passed` instead of `1 tick passed`.
 
 Let's fix it.
 
@@ -51,7 +51,7 @@ Install the ttag library:
 npm install --save ttag
 ```
 
-Now we can wrap strings with ttag functions and tags to make them translatable:
+To fix the issue above, the only thing we need is just to use `ngettext` from `ttag` library:
 
 ```js
 const { t, ngettext, msgid } = require('ttag');
@@ -102,7 +102,7 @@ As we see, plural forms are working out of the box without no extra configuratio
 Gettext standard is based on manipulation with `.po` files. In general, a `.po` file is a special file format
 for adding, updating, and editing translations.
 
-Let's install [`ttag-cli`](https://github.com/ttag-org/ttag-cli) for `.po` file manipulation:
+Let's install [`ttag-cli`](https://github.com/ttag-org/ttag-cli) for `.po` different manipulations with `.po/pot` files:
 
 ```bash
 npm install --save-dev ttag-cli
@@ -122,7 +122,7 @@ This will create a new `uk.po` file with all appropriate headers for the Ukraini
 > See all available languages at the [GNU gettext manual](https://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html)
 
 ### Update the `.po` file
-To extract all strings in your sources with the `.po` file, you can use `ttag update` command.
+Use `ttag update` command for translations extraction/update to `.po` file from the source files:
 
 ```bash
 ttag update uk.po counter.js
@@ -130,13 +130,13 @@ ttag update uk.po counter.js
 Now, you can open `uk.po` file and add translations to extracted strings.
 
 ## 4. Load translations
-To be able to import translations from the `uk.po` file, we can simply convert our `uk.po` file to JSON format - `uk.po.json`:
+To be able to import translations from the `uk.po` file, we can simply convert our `uk.po` file to JSON format with `po2json` command:
 
 ```bash
 ttag po2json uk.po > uk.po.json
 ```
 
-Let's modify our program to load locale from the `.po` file if the `LOCALE` environment variable is present:
+The last step is to modify our program to load locale from the `.po` file if the `LOCALE` environment variable is present:
 
 ```js
 const { ngettext, msgid, t, addLocale, useLocale } = require('ttag');
