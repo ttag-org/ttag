@@ -103,6 +103,18 @@ ttag init uk uk.po
 
 This will create a new `uk.po` file with all appropriate headers for the Ukrainian language
 
+```
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Plural-Forms: nplurals = 3; plural = (n % 10 === 1 && n % 100 !== 11 ? 0 : "
+"n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+```
+
 > See all available languages at the [GNU gettext manual](https://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html)
 
 ### Update `.po` file
@@ -111,10 +123,24 @@ Use `ttag update` command for translations extraction/update to `.po` file from 
 ```bash
 ttag update uk.po counter.js
 ```
-Now, you can open `uk.po` file and add translations to extracted strings.
+
+Now, you can open `uk.po` file and add translations in `msgstr`.
+
+```po
+#: counter.js:12
+msgid "starting count up to ${ n }"
+msgstr ""
+
+#: counter.js:14
+msgid "${ i } tick passed"
+msgid_plural "${ i } ticks passed"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+```
 
 ## 4. Load translations
-After all translations are added by the translator to the `uk.po` file, we need load those translations somehow. 
+After all translations are added by the translator to the `uk.po` file, we need to load those translations somehow. 
 There are 2 ways in which you can apply translations from `.po` file. Each of them has their pros and cons. Both of them are quite easy to setup, so you decide which one suits better for you.
 
 ### Runtime load
