@@ -26,7 +26,7 @@ https://jsfiddle.net/AlexMost/mc2pd1on/2/
 You may noticed that the first argument for `ngettext` is tagged with `msgid` tag. 
 This may seem a little bit weird, but this is the only way to find translations by **msgid** without code 
 transpilation with babel plugin. User friendly checks on extract and resolve steps will not let you forgive about that.
-More details about why we are using `msgid` tag are [here](why-use-msgid-for-ngettext.md).
+More details about why we are using `msgid` tag are <a href="/blog/2018/09/06/why-msgid.html">here</a>
 
 ## Format
 
