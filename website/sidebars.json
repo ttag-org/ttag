@@ -21,6 +21,9 @@
     "API": [
       "library-api",
       "plugin-api"
+    ],
+    "CHANGELOG": [
+      "changelog"
     ]
   },
   "about": {
