@@ -138,6 +138,7 @@ const FeatureCallout = props => (
 
 const LearnHowContent = `
 #### Simple use case:
+
 \`\`\`js
 import { t } from "ttag";
 
@@ -173,7 +174,7 @@ const LearnHow = props => (
         content: LearnHowContent,
         image: imgUrl('ttag-library.svg'),
         imageAlign: 'left',
-        title: 'Just so simple to use',
+        title: '[ttag library](https://github.com/ttag-org/ttag)',
       },
     ]}
   </Block>
@@ -205,7 +206,7 @@ const CliDescription = props => (
         content: CliDescriptionContent,
         image: imgUrl('ttag-cli.svg'),
         imageAlign: 'left',
-        title: 'ttag cli',
+        title: '[ttag cli](https://github.com/ttag-org/ttag-cli)',
       },
     ]}
   </Block>

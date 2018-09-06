@@ -1,7 +1,13 @@
-# Localization with webpack
+---
+title: Localization setup with babel-plugin-ttag and webpack (the hard way)
+author: Alexander Mostovenko
+authorURL: https://twitter.com/MostovenkoA
+authorFBID: alexander.mostovenko
+---
 
-This short tutorial will demonstrate how ttag can be used with webpack. Both development and production setups will be 
-described.
+This post will describe hardcore but flexible setup with webpack and `babel-plugin-ttag` (without `ttag-cli`). We recommend to use simpler approach with `ttag-cli`, but if you want more flexibility in your translation process - this post is for you.
+
+<!--truncate-->
 
 > This tutorial is based on Webpack 2. It should work in a similar way with webpack 3/4 wihout much
 > changes

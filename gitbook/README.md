@@ -51,7 +51,7 @@ const msg = ngettext(msgid`${ n } task left`, `${ n } tasks left`, n)
 ```
 
 The `ttag` library aims to provide the most natural and reliable way to translate strings in JavaScript sources. It 
-provides some helper functions (tags) for making JavaScript templates as translatable with all their shiny 
+provides some helper functions (tags) for making JavaScript templates translatable with all their shiny 
 features like string interpolation, multiline etc.
 
 ## Useful Links
