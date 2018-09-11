@@ -3,7 +3,6 @@ id: changelog
 title: Changelog
 ---
 
-<!-- toc -->
 ### 1.2.1
 #### ttag-cli
 Added `po2json` command (thanks @vharitonsky - https://github.com/ttag-org/ttag-cli/pull/40)
