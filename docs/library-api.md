@@ -11,8 +11,7 @@ Register locale translations.
 Arguments:
 
 * `locale: string` Locale name (i.e.: `'uk'`, `'en'`)
-* `poData: Object` parsed data from a `.po` file. An example library that is able to do this is 
-  [`gettext-parser`](https://github.com/smhg/gettext-parser).
+* `poData: Object` parsed data from a `.po` file.
 
 Example:
 ```js
