@@ -1,0 +1,29 @@
+{
+  "docs": {
+    "Getting Started": [
+      "installation",
+      "quickstart"
+    ],
+    "Tags and Functions": [
+      "tag-gettext",
+      "jsx-gettext",
+      "context",
+      "ngettext",
+      "gettext"
+    ],
+    "Features": [
+      "translations-validation",
+      "aliasing",
+      "multiline-strings",
+      "translator-comments",
+      "ignore"
+    ],
+    "API": [
+      "library-api",
+      "plugin-api"
+    ],
+    "CHANGELOG": [
+      "changelog"
+    ]
+  }
+}

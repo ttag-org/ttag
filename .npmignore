@@ -1,5 +1,6 @@
 tests
-gitbook
+website
+docs
 _book
 book.json
 CNAME

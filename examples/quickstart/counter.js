@@ -1,15 +1,9 @@
-import { t, ngettext, msgid, addLocale, useLocale } from 'c-3po';
-import fs from 'fs';
-import gt from 'gettext-parser';
-
-function loadFile(filePath) {
-    gt.po.parse(fs.readFileSync(filePath));
-}
+const { t, ngettext, msgid, addLocale, useLocale } = require('ttag');
 
 const locale = process.env.LOCALE;
 
 if (locale) {
-    const translationObj = loadFile(`${locale}.po`);
+    const translationObj = require(`./${locale}.po.json`);
     addLocale(locale, translationObj);
     useLocale(locale);
 }
