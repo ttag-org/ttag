@@ -99,15 +99,15 @@ Configures whether multiline strings should be dedented. For more information, p
 
 `Default: false`
 
-By default, ttag will be looking for translations in file if it has an appropriate `import` or `require`
+If your translation function is used as a global variable (`window.gettext` e.t.c), you can use this option to extract tanslations without explicit import or require of ttag functions:
 
-```js
-import { t } from 'ttag'
-// or
-const { t } = require('ttag');
+Example
+```json
+{
+    "plugins": ["ttag", { "discover": ["t", "gettext"]}]
+}
 ```
 
-If you are not using none of commonjs or es6 imports you can set this setting to `true` to discover translation strings without explicit `import` statement or `require` call.
 
 
 ## Config.defaultLang
