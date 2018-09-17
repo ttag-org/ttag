@@ -5,12 +5,22 @@ title: gettext
 
 > Consider using [the `t`](reference-t-tag.md) function \(less code, supports template expressions\)
 
+The default alias for `gettext` function is `_`.
+
 ## Usage
 
 ```js
 import { gettext } from 'ttag'
 
 gettext('simple gettext');
+```
+
+or 
+
+```js
+import { _ } from 'ttag'
+
+_('simple gettext');
 ```
 
 ## Try

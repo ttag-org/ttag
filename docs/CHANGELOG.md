@@ -2,12 +2,25 @@
 id: changelog
 title: Changelog
 ---
+## 1.3.1
+1.3.x version comes with a couple important changes:
 
-### 1.2.1
+#### ttag-cli
+Added `discover` and `numberedExpressions` - https://github.com/ttag-org/ttag-cli#update-opts-pofile-src
+
+#### ttag
+`gettext` has a default alias - `_`.
+
+#### babel-plugin-ttag 
+All dependencies were updated to use @babel 7
+
+Read more about details in our [blog](/blog/2018/09/17/1.3.1-release.html)
+
+## 1.2.1
 #### ttag-cli
 Added `po2json` command (thanks @vharitonsky - https://github.com/ttag-org/ttag-cli/pull/40)
 
-### 1.1.0
+#### 1.1.0
 Fix for `addComments` - https://github.com/ttag-org/babel-plugin-ttag/issues/105
 
 ## 1.1.0-0
