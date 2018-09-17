@@ -116,6 +116,8 @@ export function gettext(id) {
     return transObj ? transObj.msgstr[0] : id;
 }
 
+export const _ = gettext;
+
 export function ngettext(...args) {
     if (isDebug) validateNgettextMsgid(args[0]);
 

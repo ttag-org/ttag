@@ -25,6 +25,8 @@ export function gettext(text) {
     return text;
 }
 
+export const _ = gettext;
+
 export function ngettext(str) {
     return str;
 }
