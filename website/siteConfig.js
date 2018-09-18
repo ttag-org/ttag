@@ -46,7 +46,7 @@ const users = [
 const siteConfig = {
   title: 'ttag' /* title for your website */,
   tagline: 'Modern javascript i18n localization tool based on es6 tags',
-  url: 'https://your-docusaurus-test-site.com' /* your website url */,
+  url: 'https://ttag.js.org' /* your website url */,
   baseUrl: '/' /* base url for your project */,
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
@@ -54,7 +54,7 @@ const siteConfig = {
 
   // Used for publishing and more
   projectName: 'ttag',
-  organizationName: 'facebook',
+  organizationName: 'ttag',
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
   //   organizationName: 'JoelMarcey'
