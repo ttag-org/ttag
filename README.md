@@ -39,7 +39,12 @@ npm install --save ttag
 ```
 ## CLI
 You may also need to install ttag-cli for `po` files manipulation.
+
 **ttag cli** - [https://github.com/ttag-org/ttag-cli](https://github.com/ttag-org/ttag-cli)
+
+```bash
+npm install --save-dev ttag-cli
+```
 
 ## Usage from CDN
 
