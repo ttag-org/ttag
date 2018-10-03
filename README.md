@@ -15,9 +15,9 @@
 * It can precompile translations on a build step.
 * Plurals support [ngettext](https://ttag.js.org/docs/ngettext.html).
 * It can be integrated in any build tool that works with babel.
-* Has a builtin [validation](https://ttag.js.org/validation.html) for translated strings format.
+* Has a builtin [validation](https://ttag.js.org/docs/translations-validation.html) for translated strings format.
 * It can use any default locale in sources (not only English).
-* Handles [React (jsx) translations](https://ttag.js.org/docs/translations-validation.html).
+* Handles [React (jsx) translations](https://ttag.js.org/docs/jsx-gettext.html).
 
 ## Usage example
 ```js
