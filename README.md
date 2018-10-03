@@ -11,14 +11,13 @@
 
 ## Key features
 * Uses ES6 template literals for string formatting (no need for sprintf).
-* Contexts [support](https://ttag.js.org/reference-contexts.html)
+* Contexts [support](https://ttag.js.org/docs/context.html)
 * It can precompile translations on a build step.
-* Plurals support [ngettext](https://ttag.js.org/reference-ngettext.html).
+* Plurals support [ngettext](https://ttag.js.org/docs/ngettext.html).
 * It can be integrated in any build tool that works with babel.
-* Has options for both efficient [development and production setups](https://ttag.js.org/localization-with-webpack.html).
 * Has a builtin [validation](https://ttag.js.org/validation.html) for translated strings format.
 * It can use any default locale in sources (not only English).
-* Handles [React (jsx) translations](https://ttag.js.org/reference-jt-tag.html).
+* Handles [React (jsx) translations](https://ttag.js.org/docs/translations-validation.html).
 
 ## Usage example
 ```js
@@ -37,10 +36,10 @@ const msg = ngettext(msgid`${ n } task left`, `${ n } tasks left`, n)
 
 ```bash
 npm install --save ttag
-npm install --save-dev babel-plugin-ttag
 ```
-
-**ttag babel plugin** - [https://github.com/ttag-org/babel-plugin-ttag](https://github.com/ttag-org/babel-plugin-ttag)
+## CLI
+You may also need to install ttag-cli for `po` files manipulation.
+**ttag cli** - [https://github.com/ttag-org/ttag-cli](https://github.com/ttag-org/ttag-cli)
 
 ## Usage from CDN
 
@@ -51,19 +50,17 @@ npm install --save-dev babel-plugin-ttag
 
 ## Useful links
 * [Documentation](https://ttag.js.org)
-* [Changelog](https://ttag.js.org/CHANGELOG.html)
-* [Migration guide](https://ttag.js.org/MIGRATION.html)
+* [Changelog](https://ttag.js.org/docs/changelog.html)
 * [Quick view on JsFiddle playground](https://jsfiddle.net/0atw0hgh/)
 
 ## Tutorials
-* [Quick Start](https://ttag.js.org/quick-start.html)
-* [Localization with webpack](https://ttag.js.org/localization-with-webpack.html)
+* [Quick Start](https://ttag.js.org/docs/quickstart.html)
 
 ## Slides from talks
 * [Kyivjs 2017](https://docs.google.com/presentation/d/1oj6ZaXfIfcClROe-4kOMMjnXFExn1gUfF6D30VyznWs/edit?usp=sharing)
 * [Odessajs 2017](https://docs.google.com/presentation/d/1XB82-hTLQxP456Bk8UWJb-tZBsHnUHp4lJzmQorxNgs/edit?usp=sharing)
 
 ## Talks
-* [Odessajs 2017 (video)](https://www.youtube.com/watch?v=9QjzpfA9LH4)
+* [Odessajs 2017 (video RU)](https://www.youtube.com/watch?v=9QjzpfA9LH4)
 
 
