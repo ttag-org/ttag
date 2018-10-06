@@ -2,6 +2,11 @@
 id: changelog
 title: Changelog
 ---
+## 1.3.4
+
+#### babel-plugin-ttag
+Added support for require aliases - https://github.com/ttag-org/babel-plugin-ttag/pull/112
+
 ## 1.3.1
 1.3.x version comes with a couple important changes:
 
@@ -11,7 +16,7 @@ Added `discover` and `numberedExpressions` - https://github.com/ttag-org/ttag-cl
 #### ttag
 `gettext` has a default alias - `_`.
 
-#### babel-plugin-ttag 
+#### babel-plugin-ttag
 All dependencies were updated to use @babel 7
 
 Read more about details in our [blog](/blog/2018/09/17/1.3.1-release.html)
