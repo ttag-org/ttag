@@ -11,7 +11,7 @@ syntax. This translation can still be recognized and extracted by `ttag-cli` and
 ```js
 import { t as i18n } from 'ttag'
 
-i18n`this translation will work`
+i18n`this translation will be extracted`
 ```
 
 ## commonjs require
@@ -19,5 +19,5 @@ i18n`this translation will work`
 ```js
 const { t: i18n } = require('ttag');
 
-i18n`this translation will work`
+i18n`this translation will be extracted`
 ```
