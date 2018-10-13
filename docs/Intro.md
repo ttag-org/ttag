@@ -17,7 +17,7 @@ title: ttag
 * It can precompile translations on a build step.
 * [Support for plurals](reference-ngettext.md) with `ngettext`
 * Standard gettext [contexts](reference-contexts.md) supported
-* Uses a [babel plugin](https://github.com/ttag/babel-plugin-tag) to extract and resolve translations,
+* Uses a [babel plugin](https://github.com/ttag-org/babel-plugin-tag) to extract and resolve translations,
   works with modern javascript AST.
 * It can be integrated in any build tool that works with babel.
 * Has options for both efficient [development and production setups](localization-with-webpack.md).
@@ -32,7 +32,7 @@ title: ttag
 The whole solution consists of 2 parts:
 
 1. **ttag library** - [https://github.com/ttag-org/ttag](https://github.com/ttag-org/ttag)
-2. **ttag babel plugin** - [https://github.com/ttag/babel-plugin-ttag](https://github.com/ttag/babel-plugin-ttag)
+2. **ttag babel plugin** - [https://github.com/ttag-org/babel-plugin-ttag](https://github.com/ttag-org/babel-plugin-ttag)
 
 ### How it looks like in the code:
 
