@@ -191,6 +191,6 @@ So, you can simply run `node counter.uk.js` and see the the localized output.
 This approach performs much better, because it eliminates all the translations loading boilerplate.
 
 
-> Note: `ttag-cli` is a wrapper around [babel-plugin-ttag](https://github.com/ttag/babel-plugin-ttag)
+> Note: `ttag-cli` is a wrapper around [babel-plugin-ttag](https://github.com/ttag-org/babel-plugin-ttag)
 
 Feel free to post any questions and issues [here](https://github.com/ttag-org/ttag/issues)
