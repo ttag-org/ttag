@@ -51,7 +51,7 @@ npm install --save-dev ttag-cli
 [https://unpkg.com/ttag/dist/ttag.min.js](https://unpkg.com/ttag/dist/ttag.min.js)
 
 > This project is designed to work in pair with [babel-plugin-ttag](https://github.com/ttag-org/babel-plugin-ttag).  
-> But you can also play with it [without transpilation](https://ttag.js.org/translations-without-transpile.html).
+> But you can also play with it [without transpilation](https://ttag.js.org/docs/quickstart.html).
 
 ## Useful links
 * [Documentation](https://ttag.js.org)
