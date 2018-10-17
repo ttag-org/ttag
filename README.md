@@ -1,5 +1,6 @@
 # ttag
 [![travis](https://api.travis-ci.org/ttag-org/ttag.svg?master)](https://travis-ci.org/ttag-org/ttag) [![codecov](https://codecov.io/gh/ttag-org/ttag/branch/master/graph/badge.svg)](https://codecov.io/gh/ttag-org/ttag)
+[![downloads](https://img.shields.io/npm/dt/ttag.svg)
 
 [![NPM](https://nodei.co/npm/ttag.png?downloads=true)](https://nodei.co/npm/ttag/)
 
