@@ -219,7 +219,7 @@ const Description = props => (
         content: 'Follow [this reference to get started quick](docs/quickstart.html)',
         image: imgUrl('ttag.svg'),
         imageAlign: 'right',
-        title: 'Quickstart',
+        title: 'Getting started',
       },
     ]}
   </Block>
