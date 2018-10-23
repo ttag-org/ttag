@@ -1,6 +1,6 @@
 ---
 id: quickstart
-title: Quickstart
+title: Quick start
 ---
 
 In a few steps you will be able to setup the full translation cycle with `ttag` and `ttag-cli`.
