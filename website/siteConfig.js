@@ -45,7 +45,7 @@ const users = [
 
 const siteConfig = {
   title: 'ttag' /* title for your website */,
-  tagline: 'Modern javascript i18n localization tool based on es6 tags',
+  tagline: 'Modern javascript i18n tool based on es6 tags',
   url: 'https://ttag.js.org' /* your website url */,
   baseUrl: '/' /* base url for your project */,
   // For github.io type URLs, you would set the url and baseUrl like:
