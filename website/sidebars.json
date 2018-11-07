@@ -2,7 +2,8 @@
   "docs": {
     "Getting Started": [
       "installation",
-      "quickstart"
+      "quickstart",
+      "create-react-app"
     ],
     "Tags and Functions": [
       "tag-gettext",

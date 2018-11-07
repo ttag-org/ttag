@@ -19,6 +19,7 @@
 * Has a builtin [validation](https://ttag.js.org/docs/translations-validation.html) for translated strings format.
 * It can use any default locale in sources (not only English).
 * Handles [React (jsx) translations](https://ttag.js.org/docs/jsx-gettext.html).
+* Can be easily integrated with Create React App. [CRA doc](https://ttag.js.org/docs/create-react-app.html)
 
 ## Usage example
 ```js
