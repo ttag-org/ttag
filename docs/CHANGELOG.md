@@ -2,6 +2,10 @@
 id: changelog
 title: Changelog
 ---
+## 1.4.2
+CRA support, integration with `babel-plugin-macro` + better typings.
+Read the [blog post](/blog/2018/11/07/1.4.2-relase.html) for details.
+
 ## 1.3.4
 
 #### babel-plugin-ttag

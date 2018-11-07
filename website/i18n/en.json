@@ -3,7 +3,7 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "Modern javascript i18n localization tool based on es6 tags",
+    "tagline": "Modern javascript i18n tool based on es6 tags",
     "aliasing": "Aliasing",
     "changelog": "Changelog",
     "babel-plugin-configuration": "Configuration for babel-plugin-ttag",
