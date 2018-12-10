@@ -2,6 +2,11 @@
 id: changelog
 title: Changelog
 ---
+## 1.5.0
+This update touches only `ttag-cli`. 
+`extractLocation` option is added to `extract` and `update` commands.
+https://github.com/ttag-org/ttag/issues/135
+
 ## 1.4.2
 CRA support, integration with `babel-plugin-macro` + better typings.
 Read the [blog post](/blog/2018/11/07/1.4.2-relase.html) for details.
