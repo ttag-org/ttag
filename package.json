@@ -9,8 +9,8 @@
     "i18n"
   ],
   "scripts": {
-    "test": "BABEL_ENV=test mocha --compilers js:@babel/register tests",
-    "codecov-test": "BABEL_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha -- --compilers js:@babel/register tests",
+    "test": "BABEL_ENV=test mocha --require @babel/register tests",
+    "codecov-test": "BABEL_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha -- --require @babel/register tests",
     "lib:build": "babel src --out-dir dist && webpack && NODE_ENV=production webpack -p",
     "lint": "eslint ./src ./tests",
     "fix": "eslint --fix ./src ./tests",
@@ -27,7 +27,7 @@
     "url": "git+https://github.com/ttag-org/ttag.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ttag-org/ttag.git/issues"
   },
