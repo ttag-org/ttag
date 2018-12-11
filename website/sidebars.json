@@ -3,7 +3,8 @@
     "Getting Started": [
       "installation",
       "quickstart",
-      "create-react-app"
+      "create-react-app",
+      "gatsby"
     ],
     "Tags and Functions": [
       "tag-gettext",
