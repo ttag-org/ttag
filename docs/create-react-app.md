@@ -9,7 +9,7 @@ At the end of this short tutorial you will learn how to set up the localization 
 * **Demo with precompiled translations** - https://ttag-org.github.io/CRA-precompile-example/
 
 ## Step 1. Installation
-Follow this steps to setup CRA and install ttag dependencies.
+Follow these steps to setup CRA and install ttag dependencies.
 
 ```bash
 npx create-react-app ttag-app

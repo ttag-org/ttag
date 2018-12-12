@@ -9,6 +9,7 @@
     "babel-plugin-configuration": "Configuration for babel-plugin-ttag",
     "context": "c (context)",
     "create-react-app": "Create React App",
+    "gatsby": "Gatsby",
     "gettext": "gettext",
     "ignore": "Ignoring code blocks",
     "installation": "Installation",
