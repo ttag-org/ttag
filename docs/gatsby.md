@@ -45,7 +45,8 @@ import { t } from 'ttag';
 ```
 
 ## Step 4. Update the translation file and add a translation
-On this step, we will use `update` command from `ttag-cli` to extract translations from the sources.
+
+In this step, we will use `update` command from `ttag-cli` to extract translations from the sources.
 This will also update references to the translated string and remove strings that aren't present in the source files.
 
 ```bash
@@ -143,5 +144,5 @@ If you like, there is a [default starter](https://www.gatsbyjs.org/starters/gats
 preconfigured with the above outlined steps:
 
 ```bash
-gatsby new my-ttag-site https://github.com/jaredh159/gatsby-starter-ttag
+gatsby new my-ttag-site https://github.com/ttag-org/gatsby-starter-ttag
 ```
