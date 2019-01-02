@@ -1,5 +1,3 @@
-import { object } from "prop-types";
-
 // TypeScript Version: 2.3
 export class StringWithRawData extends String {
     _strs: string[];
