@@ -4,7 +4,7 @@ title: Typescript
 ---
 
 
-This short tutorial will show you how you can setup localization with ttag and typescript. This tutorial is almost identical to the [quickstart](quickstart.html).
+This short tutorial will show how you can setup localization with ttag and typescript. This tutorial is almost identical to the [quickstart](quickstart.html).
 
 > All sources for this tutorial can be found under the [`examples`](https://github.com/ttag-org/ttag/tree/master/examples/typescript)
 > directory.
