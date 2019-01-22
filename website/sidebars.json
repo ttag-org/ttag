@@ -3,6 +3,7 @@
     "Getting Started": [
       "installation",
       "quickstart",
+      "typescript",
       "create-react-app",
       "gatsby"
     ],

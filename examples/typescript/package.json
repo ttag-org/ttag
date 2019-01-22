@@ -1,0 +1,19 @@
+{
+  "name": "typescript-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ttag": "^1.6.0",
+    "ttag-cli": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.18",
+    "ts-node": "^8.0.1"
+  }
+}

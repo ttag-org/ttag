@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "outDir": "dist",
+        "lib":["es5", "es6", "dom"],
+        "strictNullChecks": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "downlevelIteration":true,
+        "baseUrl": ".",
+        "pretty": true,
+        "paths": {
+            "*": ["./node_modules/@types/*", "*"]
+        }
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
