@@ -1,23 +1,22 @@
 ---
-id: quickstart
-title: Quick start
+id: typescript
+title: Typescript
 ---
 
-In a few steps you will be able to setup the full translation cycle with `ttag` and `ttag-cli`.
 
-> All sources for this tutorial can be found under the [`examples`](https://github.com/ttag-org/ttag/tree/master/examples/quickstart)
+This shor tutorial will show you how you can setup localization with ttag and typescript. This tutorial is almost identical to the [quickstart](quickstart.html).
+
+> All sources for this tutorial can be found under the [`examples`](https://github.com/ttag-org/ttag/tree/master/examples/typescript)
 > directory.
-
-<!-- toc -->
 
 ## 1. Simple counter program
 
-Let's setup some simple counter program - `counter.js`:
+For the demonstration purpose we will write a counter program.
 
-```js
-// counter.js
+```ts
+// counter.ts
 
-function startCount(n){
+function startCount(n: number): void {
     console.log(`starting count up to ${n}`);
     for (let i = 0; i <= n; i++) {
        console.log(`${i} ticks passed`);
@@ -27,8 +26,9 @@ function startCount(n){
 startCount(3);
 ```
 
+
 ```bash
-node counter.js
+ts-node counter.ts
 
 starting count up to 3
 0 ticks passed
@@ -43,6 +43,8 @@ Let's fix it.
 
 ## 2. Wrap strings with ttag tags and functions
 
+ttag library goes with typescript typings out of the box. So, we can simply install and use it.
+
 Install the ttag library:
 
 ```bash
@@ -51,14 +53,16 @@ npm install --save ttag
 
 To fix the issue above, the only thing we need is just to use `ngettext` from `ttag` library:
 
-```js
-const { t, ngettext, msgid } = require('ttag');
+```ts
+import { ngettext, msgid, t } from 'ttag';
 
-function startCount(n){
+function startCount(n: number): void {
     console.log(t`starting count up to ${n}`); // using 't' tag for 1 to 1 translations
     for (let i = 0; i <= n; i++) {
-       // use ngettext function for handling plural forms
-       console.log(ngettext(msgid`${i} tick passed`, `${i} ticks passed`, i));
+       console.log(
+           // use ngettext function for handling plural forms
+           ngettext(msgid`${i} tick passed`, `${i} ticks passed`, i)
+        );
     }
 }
 ```
@@ -71,7 +75,7 @@ For more information, please check:
 Let's see what our program outputs now:
 
 ```bash
-node counter.js
+ts-node counter.ts
 
 starting count up to 3
 0 ticks passed
@@ -121,19 +125,17 @@ msgstr ""
 Use `ttag update` command for translations extraction/update to `.po` file from the source files:
 
 ```bash
-ttag update uk.po counter.js
+ttag update uk.po counter.ts
 ```
 
 Now, you can open `uk.po` file and add translations in `msgstr`.
 
-> ttag-cli can be used for js, ts, jsx, tsx files out of the box. Read more about typescript support [here](typescript.html)
-
 ```po
-#: counter.js:12
+#: counter.ts:12
 msgid "starting count up to ${ n }"
 msgstr ""
 
-#: counter.js:14
+#: counter.ts:14
 msgid "${ i } tick passed"
 msgid_plural "${ i } ticks passed"
 msgstr[0] ""
@@ -154,8 +156,8 @@ ttag po2json uk.po > uk.po.json
 
 The last step is to modify our program to load locale from the `.po.json` file if the `LOCALE` environment variable is present:
 
-```js
-const { ngettext, msgid, t, addLocale, useLocale } = require('ttag');
+```ts
+import { ngettext, msgid, t, addLocale, useLocale } from 'ttag';
 
 const locale = process.env.LOCALE; // uk
 
@@ -171,7 +173,7 @@ if (locale) {
 Let's run our script with env LOCALE:
 
 ```bash
-LOCALE=uk node counter.js
+LOCALE=uk ts-node counter.js
 
 
 починаємо рахунок до 3
@@ -185,7 +187,7 @@ LOCALE=uk node counter.js
 Another approach is to produce separate output file for each locale, with all translations already placed in code. In our case, `ttag replace` command can generate standalone localized `counter.uk.js` file:
 
 ```bash
-ttag replace uk.po counter.uk.js counter.js
+ttag replace uk.po counter.uk.js counter.ts
 ```
 
 So, you can simply run `node counter.uk.js` and see the the localized output.

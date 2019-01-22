@@ -109,7 +109,7 @@ const Features = props => (
         title: 'Usability',
       },
       {
-        content: 'Can be easily integrated with almost any workflow as it uses babel-plugin for strings extraction',
+        content: 'Can be easily integrated with almost any workflow as it uses babel-plugin for strings extraction. Can be easily used with the [typescript](docs/typescript.html).',
         image: imgUrl('gear.svg'),
         imageAlign: 'top',
         title: 'Integration',
@@ -182,6 +182,7 @@ const LearnHow = props => (
 
 const CliDescriptionContent = `
 Command line utility that is used for translations extraction and different .po files manipulations.
+Works with **js**, **jsx**, **ts**, **tsx** files out of the box.
 
 #### Simple translations extraction to .po file:
 \`\`\`sh

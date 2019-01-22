@@ -2,6 +2,13 @@
 id: changelog
 title: Changelog
 ---
+## 1.6.0
+
+#### ttag-cli
+This minor release adds some new useful features to *ttag-cli*
+- ttag cli can extract translations from `ts` and `tsx` by default - https://github.com/ttag-org/ttag-cli/pull/58
+- ttag validate will now return status 1 if validation fails - https://github.com/ttag-org/ttag-cli/pull/59
+
 ## 1.5.0
 This update touches only `ttag-cli`. 
 `extractLocation` option is added to `extract` and `update` commands.
