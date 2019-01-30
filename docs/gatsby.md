@@ -50,7 +50,7 @@ In this step, we will use `update` command from `ttag-cli` to extract translatio
 This will also update references to the translated string and remove strings that aren't present in the source files.
 
 ```bash
-npx ttag udpate i18n/es.po src/
+npx ttag update i18n/es.po src/
 ```
 
 After this, we should see that the new translation was added to the `i18n/es.po` file:
