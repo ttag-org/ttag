@@ -36,7 +36,7 @@ npx ttag init uk i18n/translations.po
 Let's `src/App.js` and t tag to `Learn React` string (just to see how it works on a single string)
 
 ```jsx
-import { t } from 'ttag.macro';
+import { t } from 'ttag';
 
 //... some jsx code
 <a className="App-link">
