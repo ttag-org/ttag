@@ -26,7 +26,7 @@ For this example, we will create `.po` file with all appropriate settings for th
 
 ```bash
 mkdir i18n # create a separate dir where we will keep all translation files
-npx ttag init uk i18n/translations.po
+npx ttag init uk i18n/uk.po
 ```
 
 > You can find the list of all available language codes here - https://www.w3.org/International/O-charset-lang.html
