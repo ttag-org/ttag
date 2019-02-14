@@ -1,4 +1,4 @@
-import { addLocale, useLocale } from 'c-3po';
+import { addLocale, useLocale } from 'ttag';
 
 if (process.env.NODE_ENV !== 'production') {
     const ukLocale = require('./uk.po');
