@@ -22,16 +22,16 @@ export function validateLocaleCode(locale) {
 export function validateLocaleData(data) {
     if (process.env.NODE_ENV !== 'production') {
         // eslint-disable-next-line
-        const addLocaleDoc = 'https://c-3po.js.org/configuration-c-3po-lib.html#addlocale-string-locale-object-data-bool-replacevariablesnames';
+        const addLocaleDoc = 'https://ttag.js.org/docs/library-api.html#addlocale';
         if (!data) {
             throw new Error(`
-            Locale data sould not be empty.
+            Locale data should not be empty.
             see - ${addLocaleDoc}
             `);
         }
         if (!data.headers) {
             throw new Error(`
-            Locale data sould contain headers "${JSON.stringify(data)}".
+            Locale data should contain headers "${JSON.stringify(data)}".
             see - ${addLocaleDoc}
             `);
         }
@@ -43,7 +43,7 @@ export function validateLocaleData(data) {
         }
         if (!data.translations) {
             throw new Error(`
-            Locale data sould contain translations "${JSON.stringify(data)}".
+            Locale data should contain translations "${JSON.stringify(data)}".
             see - ${addLocaleDoc}
             `);
         }

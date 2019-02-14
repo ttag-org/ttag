@@ -8,11 +8,11 @@ describe('config addLocale', () => {
     });
     it('should throw if locale data is empty', () => {
         const fn = () => config.addLocale('uk', undefined);
-        expect(fn).to.throw('Locale data sould not be empty');
+        expect(fn).to.throw('Locale data should not be empty');
     });
     it('should throw if locale data has no headers', () => {
         const fn = () => config.addLocale('uk', {});
-        expect(fn).to.throw('Locale data sould contain headers "{}"');
+        expect(fn).to.throw('Locale data should contain headers "{}"');
     });
     it('should throw if headers has no Plural-Forms', () => {
         const poData = {
@@ -30,7 +30,7 @@ describe('config addLocale', () => {
             },
         };
         const fn = () => config.addLocale('uk', poData);
-        expect(fn).to.throw('Locale data sould contain translations');
+        expect(fn).to.throw('Locale data should contain translations');
     });
     it('should throw if translations is empty', () => {
         const poData = {
