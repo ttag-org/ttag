@@ -34,8 +34,8 @@ msgstr[1] "${ seconds } секунди"
 msgstr[2] "${ seconds } секунд"
 
 #: app.js:10
-msgid "webpack with c-3po localization demo"
-msgstr "Демо локалізації з c-3po та webpack"
+msgid "webpack with ttag localization demo"
+msgstr "Демо локалізації з ttag та webpack"
 
 #: app.js:11
 msgid "Current time is"
