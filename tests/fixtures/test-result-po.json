@@ -22,24 +22,24 @@
           "test [translation]"
         ]
       },
-      "test ${ 0 } test": {
-        "msgid": "test ${ 0 } test",
+      "test ${0} test": {
+        "msgid": "test ${0} test",
         "comments": {
           "reference": "tests/fixtures/fixture.js:8"
         },
         "msgstr": [
-          "test ${ 0 } test [translation]"
+          "test ${0} test [translation]"
         ]
       },
-      "test with ${ 0 } plural": {
-        "msgid": "test with ${ 0 } plural",
+      "test with ${0} plural": {
+        "msgid": "test with ${0} plural",
         "comments": {
           "reference": "tests/fixtures/fixture.js:9"
         },
-        "msgid_plural": "test with ${ 0 } plurals",
+        "msgid_plural": "test with ${0} plurals",
         "msgstr": [
-          "test with ${ 0 } plural [translation]",
-          "test with ${ 0 } plurals [translation]"
+          "test with ${0} plural [translation]",
+          "test with ${0} plurals [translation]"
         ]
       },
       "this is multiline\ndemo for demonstrating\nmultiline strings": {
