@@ -25,12 +25,12 @@ describe('translations resolve', () => {
     });
     it('should resolve translation without spaces inside translation', () => {
         const a = 'works';
-        const result = t`test space ${ a }`;
+        const result = t`test space ${a}`;
         expect(result).to.eql('test space works [translation]');
     });
     it('should resolve translation without spaces in msgid', () => {
         const a = 'works';
-        const result = t`test msigd space ${ a }`;
+        const result = t`test msigd space ${a}`;
         expect(result).to.eql('test msgid space works [translation]');
     });
     it('should resolve computed expressions', () => {
