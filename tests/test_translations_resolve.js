@@ -23,6 +23,21 @@ describe('translations resolve', () => {
         const result = t`An untranslated entry`;
         expect(result).to.eql('An untranslated entry');
     });
+    it('should resolve translation without spaces inside translation', () => {
+        const a = 'works';
+        const result = t`test space ${a}`;
+        expect(result).to.eql('test space works [translation]');
+    });
+    it('should resolve translation without spaces in msgid', () => {
+        const a = 'works';
+        const result = t`test msigd space ${a}`;
+        expect(result).to.eql('test msgid space works [translation]');
+    });
+    it('should resolve computed expressions', () => {
+        const a = ['works'];
+        const result = t`test resolve computed exprs ${a[0]}`;
+        expect(result).to.eql('test resolve computed exprs works [translation]');
+    });
 });
 
 

@@ -2,8 +2,10 @@ import dedent from 'dedent';
 import { getPluralFunc as getPluralFn } from 'plural-forms/dist/minimal';
 
 export const getMsgid = (str, exprs) => {
-    return str.reduce((s, l, i) => s + l + (exprs[i] !== undefined && `\${ ${i} }` || ''), '');
+    return str.reduce((s, l, i) => s + l + (exprs[i] !== undefined && `\${${i}}` || ''), '');
 };
+
+const removeSpaces = (str) => str.replace(/\s/g, '');
 
 const mem = {};
 const memoize1 = (f) => (arg) => {
@@ -55,7 +57,7 @@ export function getPluralFunc(headers) {
     return pluralFn;
 }
 
-const variableREG = /\$\{ \w+(.\w+)* \}/g;
+const variableREG = /\$\{\s*([.\w+\[\]])*\s*\}/g;
 
 function getObjectKeys(obj) {
     const keys = [];
@@ -69,7 +71,7 @@ function getObjectKeys(obj) {
 
 function replaceVariables(str, obj) {
     return str.replace(variableREG, (variable) => {
-        return `\$\{ ${obj[variable]} \}`;
+        return `\$\{${obj[removeSpaces(variable)]}\}`;
     });
 }
 
@@ -81,7 +83,7 @@ function transformTranslate(translate) {
 
     const variableNumberMap = {};
     variables.forEach((variable, i) => {
-        variableNumberMap[variable] = i;
+        variableNumberMap[removeSpaces(variable)] = i;
     });
 
     const msgid = replaceVariables(translate.msgid, variableNumberMap);

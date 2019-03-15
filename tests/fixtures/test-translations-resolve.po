@@ -36,3 +36,15 @@ msgstr ""
 #: test/fixtures/fixtures:13
 msgid "An untranslated entry"
 msgstr ""
+
+#: tests/fixtures/fixture.js:8
+msgid "test space ${ a }"
+msgstr "test space ${a} [translation]"
+
+#: tests/fixtures/fixture.js:8
+msgid "test msigd space ${a}"
+msgstr "test msgid space ${ a } [translation]"
+
+#: tests/fixtures/fixture.js:9
+msgid "test resolve computed exprs ${a[0]}"
+msgstr "test resolve computed exprs ${a[0] } [translation]"
