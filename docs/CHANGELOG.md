@@ -2,6 +2,13 @@
 id: changelog
 title: Changelog
 ---
+### 1.7.4
+#### ttag-cli
+Fixed wrong plural forms in the headers in .po - https://github.com/ttag-org/ttag/issues/154
+
+#### ttag
+Fixed translations expressions substitution - https://github.com/ttag-org/ttag/issues/153
+
 ## 1.6.0
 
 #### ttag-cli
