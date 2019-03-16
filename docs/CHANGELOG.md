@@ -4,7 +4,7 @@ title: Changelog
 ---
 
 ## 1.7.5
-### ttag-cli
+#### ttag-cli
 Fixed merge method with predefined charset - https://github.com/ttag-org/ttag-cli/issues/56
 
 ## 1.7.4
