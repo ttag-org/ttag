@@ -2,7 +2,12 @@
 id: changelog
 title: Changelog
 ---
-### 1.7.4
+
+## 1.7.5
+### ttag-cli
+Fixed merge method with predefined charset - https://github.com/ttag-org/ttag-cli/issues/56
+
+## 1.7.4
 #### ttag-cli
 Fixed wrong plural forms in the headers in .po - https://github.com/ttag-org/ttag/issues/154
 
