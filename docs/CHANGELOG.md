@@ -2,6 +2,9 @@
 id: changelog
 title: Changelog
 ---
+## 1.7.6
+### ttag-cli
+Fixed postinstall script for windows - https://github.com/ttag-org/ttag-cli/issues/67#event-2238630687
 
 ## 1.7.5
 #### ttag-cli
