@@ -10,6 +10,9 @@
 
 ## Modern javascript i18n localization library based on ES6 tagged templates and the good old GNU gettext
 
+* **Docs** - [https://ttag.js.org/](https://ttag.js.org/)
+* **Changelog** - [https://ttag.js.org/docs/changelog.html](https://ttag.js.org/docs/changelog.html)
+
 ## Key features
 * Uses ES6 template literals for string formatting (no need for sprintf).
 * Contexts [support](https://ttag.js.org/docs/context.html)
