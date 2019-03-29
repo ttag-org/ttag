@@ -2,8 +2,9 @@
 id: changelog
 title: Changelog
 ---
-## 1.7.6
+## 1.7.7
 ### ttag-cli
+Fixed comments extraction for windows - https://github.com/ttag-org/babel-plugin-ttag/pull/125
 Fixed postinstall script for windows - https://github.com/ttag-org/ttag-cli/issues/67#event-2238630687
 
 ## 1.7.5
