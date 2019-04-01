@@ -2,6 +2,10 @@
 id: changelog
 title: Changelog
 ---
+## 1.7.8
+### ttag-cli
+Flow support - https://github.com/ttag-org/ttag-cli/pull/69
+
 ## 1.7.7
 ### ttag-cli
 Fixed comments extraction for windows - https://github.com/ttag-org/babel-plugin-ttag/pull/125
