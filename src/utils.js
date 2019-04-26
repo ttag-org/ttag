@@ -129,8 +129,6 @@ export function dedentStr(rawStr) {
     return dedent(rawStr);
 }
 
-export const isDebug = ! (process && process.env.NODE_ENV === 'production');
-
 export function getPluralFnForTrans(trans, config) {
     const headers = config.getCurrentLocaleHeaders();
     const language = headers.language | headers.Language;
