@@ -2,7 +2,7 @@ import { transformTranslateObj } from './utils';
 import { validateLocaleData, validateLocales, validateLocaleCode } from './validation';
 import { getPluralFunc, getNPlurals } from 'plural-forms/dist/minimal';
 
-const isProd = process && process.env && process.env.NODE_ENV === 'production';
+const isProd = process.env.NODE_ENV === 'production';
 
 export default function Config() {
     const config = {

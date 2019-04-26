@@ -6,8 +6,8 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: isProd ? 'ttag.min.js':  'ttag.js',
-        libraryTarget: 'umd'
+        filename: isProd ? 'ttag.min.js' : 'ttag.js',
+        libraryTarget: 'umd',
     },
     module: {
         rules: [
@@ -26,7 +26,7 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'dev'),
             }
         }),
     ]

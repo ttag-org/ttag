@@ -129,7 +129,15 @@ export function dedentStr(rawStr) {
     return dedent(rawStr);
 }
 
-export const isDebug = ! (process && process.env.NODE_ENV === 'production');
+let tryIsDebug = false;
+
+try {
+    tryIsDebug = process.env.NODE_ENV === 'production';
+} catch (err) {
+    tryIsDebug = false;
+}
+
+export const isDebug = tryIsDebug;
 
 export function getPluralFnForTrans(trans, config) {
     const headers = config.getCurrentLocaleHeaders();
