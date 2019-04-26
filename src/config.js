@@ -2,8 +2,6 @@ import { transformTranslateObj } from './utils';
 import { validateLocaleData, validateLocales, validateLocaleCode } from './validation';
 import { getPluralFunc, getNPlurals } from 'plural-forms/dist/minimal';
 
-const isProd = process.env.NODE_ENV === 'production';
-
 export default function Config() {
     const config = {
         locales: {},
@@ -14,8 +12,8 @@ export default function Config() {
     };
 
     this.addLocale = (locale, localeData) => {
-        if (!isProd) validateLocaleCode(locale);
-        if (!isProd) validateLocaleData(localeData);
+        if (process.env.NODE_ENV !== 'production') validateLocaleCode(locale);
+        if (process.env.NODE_ENV !== 'production') validateLocaleData(localeData);
         localeData = transformTranslateObj(localeData);
         config.locales[locale] = localeData;
     };
@@ -29,7 +27,7 @@ export default function Config() {
     };
 
     this.setCurrentLocales = (locales) => {
-        if (!isProd) validateLocales(locales, this.getAvailLocales());
+        if (process.env.NODE_ENV !== 'production') validateLocales(locales, this.getAvailLocales());
         config.currentLocales = locales;
     };
 

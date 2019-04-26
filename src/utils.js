@@ -129,16 +129,6 @@ export function dedentStr(rawStr) {
     return dedent(rawStr);
 }
 
-let tryIsDebug = false;
-
-try {
-    tryIsDebug = process.env.NODE_ENV === 'production';
-} catch (err) {
-    tryIsDebug = false;
-}
-
-export const isDebug = tryIsDebug;
-
 export function getPluralFnForTrans(trans, config) {
     const headers = config.getCurrentLocaleHeaders();
     const language = headers.language | headers.Language;

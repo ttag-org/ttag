@@ -1,6 +1,5 @@
 import { getMsgid, msgid2Orig, buildStr, getPluralFnForTrans,
-     buildArr, dedentStr, isDebug,
-} from './utils';
+     buildArr, dedentStr } from './utils';
 import { validateNgettextMsgid, validateNgettextNumber,
     validateNgettextPluralForms, validateLang } from './validation';
 import Config from './config';
@@ -8,7 +7,7 @@ import Config from './config';
 const conf = new Config();
 
 function Context(context) {
-    if (isDebug) {
+    if (process.env.NODE_ENV !== 'production') {
         if (typeof context !== 'string') {
             throw new Error('String type is expected as a first ' +
                 'argument to c() function.');
@@ -119,15 +118,17 @@ export function gettext(id) {
 export const _ = gettext;
 
 export function ngettext(...args) {
-    if (isDebug) validateNgettextMsgid(args[0]);
+    if (process.env.NODE_ENV !== 'production') validateNgettextMsgid(args[0]);
 
     const id = maybeDedent(getMsgid(args[0]._strs, args[0]._exprs));
     const n = args[args.length - 1];
-    if (isDebug) validateNgettextNumber(n);
+    if (process.env.NODE_ENV !== 'production') validateNgettextNumber(n);
 
     const forms = args.slice(1, -1);
     forms.unshift(args[0].toString());
-    if (isDebug) validateNgettextPluralForms(conf.getDefaultPluralFormsCount(), forms.length);
+    if (process.env.NODE_ENV !== 'production') {
+        validateNgettextPluralForms(conf.getDefaultPluralFormsCount(), forms.length);
+    }
 
     const trans = findTranslation(id, getTransContext(this));
     if (trans) {
@@ -157,7 +158,7 @@ export function useLocales(locales) {
 }
 
 export function setDefaultLang(lang) {
-    if (isDebug) validateLang(lang);
+    if (process.env.NODE_ENV !== 'production') validateLang(lang);
     conf.setDefaultLang(lang);
 }
 

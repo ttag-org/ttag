@@ -2,7 +2,7 @@
   "name": "ttag",
   "version": "1.7.8",
   "description": "",
-  "main": "dist/index.js",
+  "main": "index.js",
   "keywords": [
     "gettext",
     "translations",
