@@ -32,7 +32,7 @@ describe('config addLocale', () => {
         const fn = () => config.addLocale('uk', poData);
         expect(fn).to.throw('Locale data should contain translations');
     });
-    it('should throw if translations is empty', () => {
+    it('should throw if translations is empty for the verbose format', () => {
         const poData = {
             headers: {
                 'plural-forms': 'nplurals=2; plural=(n!=1);',
@@ -41,6 +41,16 @@ describe('config addLocale', () => {
         };
         const fn = () => config.addLocale('uk', poData);
         expect(fn).to.throw('Locale data.translations should have at least 1 key');
+    });
+    it('should throw if translations is empty for the compact format', () => {
+        const poData = {
+            headers: {
+                'plural-forms': 'nplurals=2; plural=(n!=1);',
+            },
+            contexts: {},
+        };
+        const fn = () => config.addLocale('uk', poData);
+        expect(fn).to.throw('Locale data.contexts should have at least 1 key');
     });
     it('should throw if locale code is not string', () => {
         const poData = {

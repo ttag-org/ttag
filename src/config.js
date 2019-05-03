@@ -1,4 +1,4 @@
-import { transformTranslateObj } from './utils';
+import { transformTranslateObj, transformCompactObj } from './utils';
 import { validateLocaleData, validateLocales, validateLocaleCode } from './validation';
 import { getPluralFunc, getNPlurals } from 'plural-forms/dist/minimal';
 
@@ -14,7 +14,13 @@ export default function Config() {
     this.addLocale = (locale, localeData) => {
         if (process.env.NODE_ENV !== 'production') validateLocaleCode(locale);
         if (process.env.NODE_ENV !== 'production') validateLocaleData(localeData);
-        localeData = transformTranslateObj(localeData);
+        if (localeData.translations) {
+            localeData = transformTranslateObj(localeData);
+        } else if (localeData.contexts) {
+            localeData = transformCompactObj(localeData);
+        } else {
+            throw new Error('Invalid locale data format');
+        }
         config.locales[locale] = localeData;
     };
 

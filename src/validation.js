@@ -41,15 +41,21 @@ export function validateLocaleData(data) {
             see - ${addLocaleDoc}
             `);
         }
-        if (!data.translations) {
+        if (!data.translations && !data.contexts) {
             throw new Error(`
-            Locale data should contain translations "${JSON.stringify(data)}".
+            Locale data should contain translations or contexts property "${JSON.stringify(data)}".
             see - ${addLocaleDoc}
             `);
         }
-        if (! Object.keys(data.translations).length) {
+        if (data.translations && !Object.keys(data.translations).length) {
             throw new Error(`
             Locale data.translations should have at least 1 key"${JSON.stringify(data)}".
+            see - ${addLocaleDoc}
+            `);
+        }
+        if (data.contexts && !Object.keys(data.contexts).length) {
+            throw new Error(`
+            Locale data.contexts should have at least 1 key"${JSON.stringify(data)}".
             see - ${addLocaleDoc}
             `);
         }

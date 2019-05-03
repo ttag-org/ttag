@@ -29,19 +29,33 @@ function isFuzzy(translationObj) {
         translationObj.comments.flag === 'fuzzy');
 }
 
-function hasTranslations(translationObj) {
-    if (!translationObj.msgstr) return false;
-
-    return translationObj.msgstr.reduce((r, trans) => r && trans.length, true);
+function hasTranslations(msgstr) {
+    if (!msgstr) return false;
+    for (let i = 0; i < msgstr.length; i++) {
+        if (!msgstr[i].length) return false;
+    }
+    return true;
 }
 
 function findTransObj(locale, str, ctx) {
     const locales = conf.getAvailLocales();
-    const translations = locales[locale] && (
-        locales[locale].translations[ctx] || locales[locale].translations['']);
-    const translation = translations && translations[str];
-    if (translation && !isFuzzy(translation) && hasTranslations(translation)) {
-        return translation;
+    const localeData = locales[locale];
+    if (!localeData) return null;
+    // verbose format
+    if (localeData.translations) {
+        const translations = localeData.translations[ctx] || localeData.translations[''];
+        const translation = translations && translations[str];
+        if (translation && !isFuzzy(translation) && hasTranslations(translation.msgstr)) {
+            return translation.msgstr;
+        }
+    }
+    // compact format
+    if (localeData.contexts) {
+        const translations = localeData.contexts[ctx] || localeData.contexts[''];
+        const translation = translations && translations[str];
+        if (translation && hasTranslations(translation)) {
+            return translation;
+        }
     }
     return null;
 }
@@ -67,9 +81,9 @@ export function t(strings, ...exprs) {
     if (strings && strings.reduce) {
         const id = maybeDedent(getMsgid(strings, exprs));
         const context = getTransContext(this);
-        const transObj = findTranslation(id, context);
-        result = transObj ?
-            msgid2Orig(transObj.msgstr[0], exprs) : buildStr(strings, exprs);
+        const trans = findTranslation(id, context);
+        result = trans ?
+            msgid2Orig(trans[0], exprs) : buildStr(strings, exprs);
     }
     return maybeDedent(result);
 }
@@ -81,12 +95,12 @@ export function jt(strings, ...exprs) {
     if (strings && strings.reduce) {
         const id = maybeDedent(getMsgid(strings, exprs));
         const context = getTransContext(this);
-        const transObj = findTranslation(id, context);
-        if (!transObj) return buildArr(strings, exprs);
+        const trans = findTranslation(id, context);
+        if (!trans) return buildArr(strings, exprs);
 
         // splits string & capturing group into tokens
         //
-        const translatedTokens = transObj.msgstr[0].split(separator);
+        const translatedTokens = trans[0].split(separator);
 
         return translatedTokens.map((token) => {
             const slotIdMatch = token.match(slotIdRegexp);
@@ -111,8 +125,8 @@ export function msgid(strings, ...exprs) {
 
 export function gettext(id) {
     const context = getTransContext(this);
-    const transObj = findTranslation(id, context);
-    return transObj ? transObj.msgstr[0] : id;
+    const trans = findTranslation(id, context);
+    return trans ? trans[0] : id;
 }
 
 export const _ = gettext;
@@ -132,9 +146,9 @@ export function ngettext(...args) {
 
     const trans = findTranslation(id, getTransContext(this));
     if (trans) {
-        const pluralFn = getPluralFnForTrans(trans, conf);
+        const pluralFn = getPluralFnForTrans(conf);
         return maybeDedent(
-            msgid2Orig(pluralFn(n, trans.msgstr), args[0]._exprs)
+            msgid2Orig(pluralFn(n, trans), args[0]._exprs)
         );
     }
     const pluralFn = conf.getDefaultPluralFn();

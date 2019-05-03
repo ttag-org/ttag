@@ -1,6 +1,7 @@
 import fs from 'fs';
 import { assert, expect } from 'chai';
-import { getMsgid, transformTranslateObj, dedentStr } from '../src/utils';
+import { getMsgid, transformTranslateObj, dedentStr,
+    transformCompactObj } from '../src/utils';
 
 function getStrsExprs(strs, ...exprs) {
     return [strs, exprs];
@@ -26,6 +27,36 @@ describe('utils transformTranslateObj', () => {
         const translateObj = JSON.parse(fs.readFileSync('tests/fixtures/test-result-po-before-transform.json'));
         const expected = JSON.parse(fs.readFileSync('tests/fixtures/test-result-po-after-transform.json'));
         assert.deepEqual(transformTranslateObj(translateObj), expected);
+    });
+});
+
+describe('utils transformCompactObj', () => {
+    it('should transform compact format', () => {
+        const compactObj = {
+            headers: {
+                'plural-forms': 'nplurals=2; plural=(n!=1);\n',
+            },
+            contexts: {
+                '': {
+                    'test ${ a.b.c } ${ d } ${ e } test': [
+                        'test ${ e } ${ d } ${ a.b.c } test [translation]',
+                    ],
+                },
+            },
+        };
+        const expectedObj = {
+            headers: {
+                'plural-forms': 'nplurals=2; plural=(n!=1);\n',
+            },
+            contexts: {
+                '': {
+                    'test ${0} ${1} ${2} test': [
+                        'test ${2} ${1} ${0} test [translation]',
+                    ],
+                },
+            },
+        };
+        assert.deepEqual(transformCompactObj(compactObj), expectedObj);
     });
 });
 
