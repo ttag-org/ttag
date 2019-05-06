@@ -118,3 +118,29 @@ describe('test useLocales', () => {
         expect(result2).to.eql('1 hour [trans]');
     });
 });
+
+const ukCompactLocale = {
+    headers: {
+        'plural-forms': 'nplurals=3; ' +
+        'plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);',
+    },
+    contexts: {
+        '': {
+            '${ 0 } hour': ['${ 0 } година', '${ 0 } години', '${ 0 } годин'],
+        },
+    },
+};
+
+describe('test compact format', () => {
+    it('should work with ttag compact format', () => {
+        setDefaultLang('en');
+        addLocale('ukLocale', ukCompactLocale);
+        useLocale('ukLocale');
+        const n = 5;
+        const n2 = 1;
+        const result1 = ngettext(msgid`${n} hour`, `${n} hours`, n);
+        const result2 = ngettext(msgid`${n2} hour1`, `${n2} hours`, n2);
+        expect(result1).to.eql('5 годин');
+        expect(result2).to.eql('1 hour [trans]');
+    });
+});

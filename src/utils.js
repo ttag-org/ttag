@@ -75,17 +75,21 @@ function replaceVariables(str, obj) {
     });
 }
 
+function getVariablesMap(msgid) {
+    const variableNumberMap = {};
+    const variables = msgid.match(variableREG);
+    if (!variables) return null;
+    for (let i = 0; i < variables.length; i++) {
+        variableNumberMap[removeSpaces(variables[i])] = i;
+    }
+    return variableNumberMap;
+}
+
 function transformTranslate(translate) {
-    const variables = translate.msgid.match(variableREG);
-    if (!variables) {
+    const variableNumberMap = getVariablesMap(translate.msgid);
+    if (!variableNumberMap) {
         return translate;
     }
-
-    const variableNumberMap = {};
-    variables.forEach((variable, i) => {
-        variableNumberMap[removeSpaces(variable)] = i;
-    });
-
     const msgid = replaceVariables(translate.msgid, variableNumberMap);
 
     const newTranslate = { msgid };
@@ -95,8 +99,9 @@ function transformTranslate(translate) {
     }
 
     newTranslate.msgstr = [];
-    for (const str of translate.msgstr) {
-        newTranslate.msgstr.push(replaceVariables(str, variableNumberMap));
+    const transStrs = translate.msgstr;
+    for (let i = 0; i < transStrs.length; i++) {
+        newTranslate.msgstr.push(replaceVariables(transStrs[i], variableNumberMap));
     }
     newTranslate.comments = translate.comments;
     return newTranslate;
@@ -104,10 +109,14 @@ function transformTranslate(translate) {
 
 export function transformTranslateObj(translateObj) {
     const newTranslations = {};
-    for (const key of getObjectKeys(translateObj.translations)) {
+    const transKeys = getObjectKeys(translateObj.translations);
+    for (let i = 0; i < transKeys.length; i++) {
+        const key = transKeys[i];
         const translation = translateObj.translations[key];
         const newTranslation = {};
-        for (const msgid of getObjectKeys(translation)) {
+        const msgids = getObjectKeys(translation);
+        for (let j = 0; j < msgids.length; j++) {
+            const msgid = msgids[j];
             const newTranslate = transformTranslate(translation[msgid]);
             newTranslation[newTranslate.msgid] = newTranslate;
         }
@@ -115,6 +124,39 @@ export function transformTranslateObj(translateObj) {
     }
     translateObj.translations = newTranslations;
     return translateObj;
+}
+
+function transformCompactTranslate(msgid, translations) {
+    const variableNumberMap = getVariablesMap(msgid);
+    if (!variableNumberMap) {
+        return msgid;
+    }
+    const newMsgid = replaceVariables(msgid, variableNumberMap);
+    const newTranslations = translations.map((trans) => {
+        return replaceVariables(trans, variableNumberMap);
+    });
+    return [newMsgid, newTranslations];
+}
+
+export function transformCompactObj(compactObj) {
+    const newObj = { headers: compactObj.headers };
+    const newContexts = {};
+    const keys = getObjectKeys(compactObj.contexts);
+    for (let i = 0; i < keys.length; i++) {
+        const ctx = keys[i];
+        const newContext = {};
+        const msgids = getObjectKeys(compactObj.contexts[ctx]);
+        for (let j = 0; j < msgids.length; j++) {
+            const msgid = msgids[j];
+            const translations = compactObj.contexts[ctx][msgid];
+            const [newMsgid, newTranslations] = transformCompactTranslate(
+                msgid, translations);
+            newContext[newMsgid] = newTranslations;
+        }
+        newContexts[ctx] = newContext;
+    }
+    newObj.contexts = newContexts;
+    return newObj;
 }
 
 export function dedentStr(rawStr) {
@@ -129,7 +171,7 @@ export function dedentStr(rawStr) {
     return dedent(rawStr);
 }
 
-export function getPluralFnForTrans(trans, config) {
+export function getPluralFnForTrans(config) {
     const headers = config.getCurrentLocaleHeaders();
     const language = headers.language | headers.Language;
     if (language) {
