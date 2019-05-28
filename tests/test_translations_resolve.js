@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { t, ngettext, msgid, useLocale, addLocale, useLocales, setDefaultLang } from '../src/index';
+import { t, ngettext, msgid, useLocale, addLocale, useLocales, setDefaultLang, c } from '../src/index';
 import { loadLocale } from './loader';
 
 describe('translations resolve', () => {
@@ -142,5 +142,33 @@ describe('test compact format', () => {
         const result2 = ngettext(msgid`${n2} hour1`, `${n2} hours`, n2);
         expect(result1).to.eql('5 годин');
         expect(result2).to.eql('1 hour [trans]');
+    });
+});
+
+
+const compactFmt = {
+    headers: {
+        'plural-forms': 'nplurals=2; plural=(n > 1);',
+    },
+    contexts: {
+        '': {},
+        Title: {
+            Language: ['Langue'],
+        },
+        Label: {
+            'Default language': ['Langue par défaut'],
+        },
+    },
+};
+
+describe('test compact format regression', () => {
+    it('should work with ttag compact format', () => {
+        setDefaultLang('fr_FR');
+        addLocale('fr_FR', compactFmt);
+        useLocale('fr_FR');
+        const result1 = c('Title').t`Language`;
+        expect(result1).to.eql('Langue');
+        const result2 = c('Label').t`Default language`;
+        expect(result2).to.eql('Langue par défaut');
     });
 });

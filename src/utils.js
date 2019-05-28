@@ -129,7 +129,7 @@ export function transformTranslateObj(translateObj) {
 function transformCompactTranslate(msgid, translations) {
     const variableNumberMap = getVariablesMap(msgid);
     if (!variableNumberMap) {
-        return msgid;
+        return [msgid, translations];
     }
     const newMsgid = replaceVariables(msgid, variableNumberMap);
     const newTranslations = translations.map((trans) => {
