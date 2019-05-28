@@ -58,6 +58,35 @@ describe('utils transformCompactObj', () => {
         };
         assert.deepEqual(transformCompactObj(compactObj), expectedObj);
     });
+    it('should transform compact format without expressions', () => {
+        const compactObj = {
+            headers: {
+                'plural-forms': 'nplurals=2; plural=(n!=1);\n',
+            },
+            contexts: {
+                '': {},
+                test: {
+                    test: [
+                        'test [translation]',
+                    ],
+                },
+            },
+        };
+        const expectedObj = {
+            headers: {
+                'plural-forms': 'nplurals=2; plural=(n!=1);\n',
+            },
+            contexts: {
+                '': {},
+                test: {
+                    test: [
+                        'test [translation]',
+                    ],
+                },
+            },
+        };
+        expect(transformCompactObj(compactObj)).to.deep.equal(expectedObj);
+    });
 });
 
 describe('utils dedentStr', () => {
