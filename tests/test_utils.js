@@ -1,7 +1,6 @@
 import fs from 'fs';
 import { assert, expect } from 'chai';
-import { getMsgid, transformTranslateObj, dedentStr,
-    transformCompactObj } from '../src/utils';
+import { getMsgid, msgid2Orig, transformTranslateObj, dedentStr, transformCompactObj } from '../src/utils';
 
 function getStrsExprs(strs, ...exprs) {
     return [strs, exprs];
@@ -21,6 +20,14 @@ describe('utils getMsgid', () => {
     });
 });
 
+describe('utils msgid2Orig', () => {
+    it('should work with exprs containing dollar signs', () => {
+        const a = '$1';
+        const [strs, exprs] = getStrsExprs`test ${a}`;
+        const id = getMsgid(strs, exprs);
+        expect(msgid2Orig(id, exprs)).to.be.eql('test $1');
+    });
+});
 
 describe('utils transformTranslateObj', () => {
     it('should transform translate object', () => {
