@@ -16,7 +16,7 @@ const memoize1 = (f) => (arg) => {
     return mem[arg];
 };
 
-const reg = (i) => new RegExp(`\\$\\{([\\s]+?|\\s?)${i}([\\s]+?|\\s?)}`);
+const reg = (i) => new RegExp(`\\$\\{(?:[\\s]+?|\\s?)${i}(?:[\\s]+?|\\s?)}`);
 const memReg = memoize1(reg);
 
 export const msgid2Orig = (id, exprs) => {
