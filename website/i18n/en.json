@@ -4,35 +4,83 @@
     "next": "Next",
     "previous": "Previous",
     "tagline": "Modern javascript i18n tool based on es6 tags",
-    "aliasing": "Aliasing",
-    "changelog": "Changelog",
-    "babel-plugin-configuration": "Configuration for babel-plugin-ttag",
-    "context": "c (context)",
-    "create-react-app": "Create React App",
-    "gatsby": "Gatsby",
-    "gettext": "gettext",
-    "ignore": "Ignoring code blocks",
-    "installation": "Installation",
-    "intro": "ttag",
-    "jsx-gettext": "jt (jsx gettext)",
-    "library-api": "ttag API",
-    "multiline-strings": "Multiline strings",
-    "ngettext": "ngettext (plurals)",
-    "plugin-api": "babel-plugin-ttag API",
-    "quickstart": "Quick start",
-    "tag-gettext": "t (gettext tag)",
-    "translations-validation": "Translations validation",
-    "translator-comments": "Comments for translators",
-    "typescript": "Typescript",
-    "webpack": "Webpack integration",
-    "Docs": "Docs",
-    "Blog": "Blog",
-    "Github": "Github",
-    "Getting Started": "Getting Started",
-    "Tags and Functions": "Tags and Functions",
-    "Features": "Features",
-    "API": "API",
-    "CHANGELOG": "CHANGELOG"
+    "docs": {
+      "aliasing": {
+        "title": "Aliasing"
+      },
+      "changelog": {
+        "title": "Changelog"
+      },
+      "babel-plugin-configuration": {
+        "title": "Configuration for babel-plugin-ttag"
+      },
+      "context": {
+        "title": "c (context)"
+      },
+      "create-react-app": {
+        "title": "Create React App"
+      },
+      "gatsby": {
+        "title": "Gatsby"
+      },
+      "gettext": {
+        "title": "gettext"
+      },
+      "ignore": {
+        "title": "Ignoring code blocks"
+      },
+      "installation": {
+        "title": "Installation"
+      },
+      "intro": {
+        "title": "ttag"
+      },
+      "jsx-gettext": {
+        "title": "jt (jsx gettext)"
+      },
+      "library-api": {
+        "title": "ttag API"
+      },
+      "multiline-strings": {
+        "title": "Multiline strings"
+      },
+      "ngettext": {
+        "title": "ngettext (plurals)"
+      },
+      "plugin-api": {
+        "title": "babel-plugin-ttag API"
+      },
+      "quickstart": {
+        "title": "Quick start"
+      },
+      "tag-gettext": {
+        "title": "t (gettext tag)"
+      },
+      "translations-validation": {
+        "title": "Translations validation"
+      },
+      "translator-comments": {
+        "title": "Comments for translators"
+      },
+      "typescript": {
+        "title": "Typescript"
+      },
+      "webpack": {
+        "title": "Webpack integration"
+      }
+    },
+    "links": {
+      "Docs": "Docs",
+      "Blog": "Blog",
+      "Github": "Github"
+    },
+    "categories": {
+      "Getting Started": "Getting Started",
+      "Tags and Functions": "Tags and Functions",
+      "Features": "Features",
+      "API": "API",
+      "CHANGELOG": "CHANGELOG"
+    }
   },
   "pages-strings": {
     "Help Translate|recruit community translators for your project": "Help Translate",
