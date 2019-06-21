@@ -220,7 +220,7 @@ plugins: [
 
 That's enough to produce additional localized bundles.
 
-**npm run build** outptu:
+**npm run build** output:
 
 ![webpack output](/img/output-with-ttag-plugin.png)
 
