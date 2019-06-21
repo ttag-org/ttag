@@ -3,12 +3,11 @@ id: webpack
 title: Webpack integration
 ---
 
-In a few steps you will be able to setup the full translation cycle with `ttag` and webpack build system. Depending on your application you can choose to precompile translations on a build step (each locale has separate bundles) or to load translations at a runtime.
+This tutorial will show you, how to setup the full translation cycle with **ttag** library and **webpack**. Depending on your application you can chose to [precompile](#precompiled-translations) translations on a build step (each locale has separate bundle) or to load translations in a [runtime](#runtime-translations).
 
 <!-- toc -->
 
 ## Create and update translation files
-
 Assume that you have already installed webpack, babel-loader and ttag and have the folowing initial structure:
 
 ```bash
@@ -67,7 +66,7 @@ module.exports = {
 To be able to add translations you should add `.po` files and `extract` all tagged strings. Here are simple 2 steps to do this:
 
 ### Step 1. Create .po file
-
+`.po` file is a file for translators, it contains translations for the specific locale.
 To be able to create/modify/update `.po` files let's install `ttag-cli`.
 
 ```bash
@@ -105,7 +104,7 @@ We can do that simply with `ttag-cli`:
 npx ttag update i18n/uk.po ./src
 ```
 <details>
-<summary>dist/uk.po</summary>
+<summary>i18n/uk.po</summary>
 ```po
 msgid ""
 msgstr ""
@@ -122,10 +121,34 @@ msgstr ""
 ```
 </details>
 
+After that translator can modify it to add translation to our string:
+
+<details>
+<summary>i18n/uk.po</summary>
+```po
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Plural-Forms: nplurals = 3; plural = (n % 10 == 1 && n % 100 != 11 ? 0 : n "
+"% 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);\n"
+"Language: uk\n"
+"mime-version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/index.js:3
+msgid "Hello with ttag"
+msgstr "Привіт з ttag"
+```
+</details>
+
+At this moment we are redy to setup precompiled or runtime translations with **webpack**.
+
 ## Precompiled translations
 
+* Live example - https://ttag-org.github.io/webpack-precompile-example/
+* Sources - https://github.com/ttag-org/webpack-precompile-example
+
 The easiest way to precompile translations from the `.po` files is to use [ttag-webpack-plugin](https://github.com/ttag-org/ttag-webpack-plugin)
->This plugin adds `babel-plugin-ttag` to your existing babel loader. If you want to have more advanced control and include this plugin directly you can also look at [Setup localization with babel-plugin-ttag and webpack](/blog/2018/09/05/hardcore-webpack-setup.html)
 
 In this example we will use 2 separate static html files **index.html** and **index-uk.html** that will load different locales. Let's add them to the project root:
 
@@ -201,10 +224,82 @@ That's enough to produce additional localized bundles.
 
 ![webpack output](/img/output-with-ttag-plugin.png)
 
+So, now you can use localized asset in the appropriate html files (*index.html* and *index-uk.html*).
+> In a real world you may have a server that will set `src` to `main.js` or `main-uk.js`, but for the demo purpose we are simply using static html.
+
 See the working example here: <a href="https://ttag-org.github.io/webpack-precompile-example/" target="_blank">https://ttag-org.github.io/webpack-precompile-example/</a>
 
 
 Sources - https://github.com/ttag-org/webpack-precompile-example
 
+>`ttag-webpack-plugin` simply adds `babel-plugin-ttag` to your existing babel loader configuration. If you want to have more advanced control and include this plugin directly you can also look at [Setup localization with babel-plugin-ttag and webpack](/blog/2018/09/05/hardcore-webpack-setup.html)
+
 ## Runtime translations
+
+* Live example - https://ttag-org.github.io/webpack-runtime-example/
+* Sources - https://github.com/ttag-org/webpack-runtime-example
+
+In case if you have a huge number of locales, it may be not reasonable to build a separate bundle for each. So, you can decide to apply translations in a runtime. 
+
+Let's consider we have a basic **index.html** file:
+
+<details>
+<summary>index.html</summary>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>ttag with webpack | precompile</title>
+  </head>
+  <body>
+    <ul>
+      <li><a href="#" id='en-select'>en</a></li>
+      <li><a href="#" id='uk-select'>uk</a></li>
+    </ul>
+    <div id="content"></div>
+    <script type="text/javascript" src="./dist/main.js"></script>
+  </body>
+</html>
+</details>
+
+### Transform .po to .json
+
+To be able to load locale, you should transform it to json. You can use `ttag-cli` for that:
+
+```sh
+npm i -d ttag-cli
+```
+
+Run `po2json` cmd:
+
+```
+npx ttag po2json i18n/uk.po --format=compact > dist/uk.po.json
+```
+
+After this step, your translations can be required and applied at a runtime.
+
+### Apply translations:
+
+After `po.json` file is ready we must add some logic that will call `addLocale` and `useLocale`.
+
+Example: 
+
+```js
+import { addLocale, useLocale } from "ttag";
+
+// This is just a basic i18n init logic that
+// 1. Retreives locale data from cookie
+// 2. Downloads its data 
+// 3. Activates it in ttag
+function i18nInit() {
+  const locale = cookies.get('lang');
+  if (locale === 'uk') {
+    const data = await import('../dist/uk.po.json');
+    addLocale(locale, data);
+    useLocale(locale);
+  }
+}
+```
+
+Refer to the sources to see other implementation details - https://github.com/ttag-org/webpack-runtime-example.
 
