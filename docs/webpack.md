@@ -3,12 +3,12 @@ id: webpack
 title: Webpack integration
 ---
 
-This tutorial will show you, how to setup the full translation cycle with **ttag** library and **webpack**. Depending on your application you can chose to [precompile](#precompiled-translations) translations on a build step (each locale has separate bundle) or to load translations in a [runtime](#runtime-translations).
+This tutorial will show you, how to set up the full translation cycle with **ttag** library and **webpack**. Depending on a requirements, you can choose to [precompile](#precompiled-translations) translations on a build step (each locale has separate bundle) or to load translations in a [runtime](#runtime-translations).
 
 <!-- toc -->
 
 ## Create and update translation files
-Assume that you have already installed webpack, babel-loader and ttag and have the folowing initial structure:
+Assume that you have already installed webpack, babel-loader, and ttag and have the following initial structure:
 
 ```bash
 .
@@ -61,7 +61,7 @@ module.exports = {
 
 ![webpack output](/img/output-without-ttag-plugin.png)
 
-> For more details you can look through the sources [`here`](https://github.com/ttag-org/webpack-precompile-example).
+> For more details, you can look through the sources [`here`](https://github.com/ttag-org/webpack-precompile-example).
 
 To be able to add translations you should add `.po` files and `extract` all tagged strings. Here are simple 2 steps to do this:
 
@@ -73,7 +73,7 @@ To be able to create/modify/update `.po` files let's install `ttag-cli`.
 npm i -D ttag-cli
 ```
 
-For this short example we will create 1 localization file, lets assume we want to add Ukrainian localization to our site.
+For this short example, we will create 1 localization file, let's assume we want to add Ukrainian localization to our site.
 
 ```bash
 npx ttag init uk i18n/po
@@ -141,7 +141,7 @@ msgstr "Привіт з ttag"
 ```
 </details>
 
-At this moment we are redy to setup precompiled or runtime translations with **webpack**.
+At this moment we are ready to setup precompiled or runtime translations with **webpack**.
 
 ## Precompiled translations
 
@@ -150,7 +150,7 @@ At this moment we are redy to setup precompiled or runtime translations with **w
 
 The easiest way to precompile translations from the `.po` files is to use [ttag-webpack-plugin](https://github.com/ttag-org/ttag-webpack-plugin)
 
-In this example we will use 2 separate static html files **index.html** and **index-uk.html** that will load different locales. Let's add them to the project root:
+In this example, we will use 2 separate static HTML files **index.html** and **index-uk.html** that will load different locales. Let's add them to the project root:
 
 <details>
 <summary>index.html</summary>
@@ -204,7 +204,7 @@ Let's install and use `ttag-webpack-plugin`
 npm i -D ttag-webpack-plugin
 ```
 
-To produce additional localized bundles just use it like this
+To produce additional localized bundles just add it to the webpack plugins:
 
 ```js
 const TtagWebpackPlugin = require('ttag-webpack-plugin');
@@ -224,8 +224,8 @@ That's enough to produce additional localized bundles.
 
 ![webpack output](/img/output-with-ttag-plugin.png)
 
-So, now you can use localized asset in the appropriate html files (*index.html* and *index-uk.html*).
-> In a real world you may have a server that will set `src` to `main.js` or `main-uk.js`, but for the demo purpose we are simply using static html.
+So, now you can use a localized asset in an appropriate HTML files (*index.html* and *index-uk.html*).
+> In a real world, you may have a server that will set `src` to `main.js` or `main-uk.js`, but for the demo purpose, we are simply using static HTML.
 
 See the working example here: <a href="https://ttag-org.github.io/webpack-precompile-example/" target="_blank">https://ttag-org.github.io/webpack-precompile-example/</a>
 
@@ -301,5 +301,5 @@ function i18nInit() {
 }
 ```
 
-Refer to the sources to see other implementation details - https://github.com/ttag-org/webpack-runtime-example.
+Refer to the sources to see more implementation details - https://github.com/ttag-org/webpack-runtime-example.
 
