@@ -116,6 +116,10 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
+  algolia: {
+    apiKey: '42e5d47bee16e5851b457e187224f831',
+    indexName: 'ttag',
+  },
 };
 
 module.exports = siteConfig;
