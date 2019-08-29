@@ -16,6 +16,11 @@ describe('t', () => {
         expect(t`test ${1} test`).to.eql('test 1 test [translation]');
     });
 
+    it('should resolve translation with expressions when variable is undefined', () => {
+        const a = undefined;
+        expect(t`test ${a} test`).to.eql('test undefined test [translation]');
+    });
+
     it('should use the same str if no translation found', () => {
         expect(t`not found`).to.eql('not found');
     });

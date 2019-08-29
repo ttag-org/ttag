@@ -18,6 +18,12 @@ describe('utils getMsgid', () => {
         const [strs, exprs] = getStrsExprs`test ${a}`;
         expect(getMsgid(strs, exprs)).to.be.eql('test ${0}');
     });
+
+    it('should resolve msgid when variabled in expression is undefined', () => {
+        const a = undefined;
+        const [strs, exprs] = getStrsExprs`test ${a}`;
+        expect(getMsgid(strs, exprs)).to.be.eql('test ${0}');
+    });
 });
 
 describe('utils msgid2Orig', () => {
