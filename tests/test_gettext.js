@@ -4,7 +4,7 @@ import { loadLocale } from './loader';
 
 describe('gettext', () => {
     before(() => {
-        loadLocale('en', 'tests/fixtures/test-loader.mo');
+        loadLocale('en', 'tests/fixtures/test-loader.po');
         useLocale('en');
     });
 

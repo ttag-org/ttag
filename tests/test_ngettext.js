@@ -22,7 +22,7 @@ const ukLocale = {
 
 describe('ngettext', () => {
     before(() => {
-        loadLocale('en', 'tests/fixtures/test-loader.mo');
+        loadLocale('en', 'tests/fixtures/test-loader.po');
         useLocale('en');
     });
 
