@@ -2,7 +2,14 @@ import dedent from 'dedent';
 import { getPluralFunc as getPluralFn } from 'plural-forms/dist/minimal';
 
 export const getMsgid = (str, exprs) => {
-    return str.reduce((s, l, i) => s + l + (exprs[i] !== undefined && `\${${i}}` || ''), '');
+    const result = [];
+    const exprsLenght = exprs.length;
+    const strLength = str.length;
+    for (let i = 0; i < strLength; i++) {
+        const expr = i < exprsLenght ? `\${${i}}` : '';
+        result.push(str[i] + expr);
+    }
+    return result.join('');
 };
 
 const removeSpaces = (str) => str.replace(/\s/g, '');
