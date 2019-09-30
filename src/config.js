@@ -1,6 +1,6 @@
 import { transformTranslateObj, transformCompactObj } from './utils';
 import { validateLocaleData, validateLocales, validateLocaleCode } from './validation';
-import { getPluralFunc, getNPlurals } from 'plural-forms/dist/minimal';
+import { getPluralFunc, getNPlurals } from 'plural-forms/minimal-safe';
 
 export default function Config() {
     const config = {

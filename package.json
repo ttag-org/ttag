@@ -58,6 +58,6 @@
   },
   "dependencies": {
     "dedent": "^0.7.0",
-    "plural-forms": "0.3.3"
+    "plural-forms": "^0.3.10"
   }
 }
