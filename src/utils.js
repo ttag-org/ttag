@@ -1,5 +1,5 @@
 import dedent from 'dedent';
-import { getPluralFunc as getPluralFn } from 'plural-forms/dist/minimal';
+import { getPluralFunc as getPluralFn } from 'plural-forms/minimal-safe';
 
 export const getMsgid = (str, exprs) => {
     const result = [];
