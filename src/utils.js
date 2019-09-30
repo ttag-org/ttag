@@ -180,7 +180,7 @@ export function dedentStr(rawStr) {
 
 export function getPluralFnForTrans(config) {
     const headers = config.getCurrentLocaleHeaders();
-    const language = headers.language | headers.Language;
+    const language = headers.language || headers.Language;
     if (language) {
         return getPluralFn(language);
     }
