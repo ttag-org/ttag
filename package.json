@@ -50,7 +50,7 @@
     "eslint-plugin-import": "1.16.0",
     "eslint-plugin-jsx-a11y": "1.5.5",
     "eslint-plugin-react": "5.2.2",
-    "gettext-parser": "^2.0.0",
+    "gettext-parser": "4.0.0",
     "istanbul": "1.1.0-alpha.1",
     "mocha": "^5.2.0",
     "sinon": "1.17.7",

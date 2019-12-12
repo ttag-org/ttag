@@ -57,7 +57,11 @@ export function makePluralFunc(pluralStr) {
 
 const pluralRegex = /\splural ?=?([\s\S]*);?/;
 export function getPluralFunc(headers) {
-    let pluralFn = pluralRegex.exec(headers['plural-forms'])[1];
+    const pluralFormsHeader = headers['plural-forms'] || headers['Plural-Forms'];
+    if (!pluralFormsHeader) {
+        throw new Error('po. data should include "language" or "plural-form" header for ngettext');
+    }
+    let pluralFn = pluralRegex.exec(pluralFormsHeader)[1];
     if (pluralFn[pluralFn.length - 1] === ';') {
         pluralFn = pluralFn.slice(0, -1);
     }
