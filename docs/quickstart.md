@@ -92,7 +92,7 @@ Let's install [`ttag-cli`](https://github.com/ttag-org/ttag-cli) for `.po` diffe
 npm install --save-dev ttag-cli
 ``` 
 
-> After installtion, the `ttag` command should be available in npm scripts.
+> After installation, the `ttag` command should be available in npm scripts.
 
 ### Create `.po` file
 Let's assume that we want to translate our program to Ukrainian language.
