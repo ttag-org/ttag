@@ -46,7 +46,7 @@
     "babel-loader": "^8.0.0",
     "chai": "3.5.0",
     "dtslint": "^0.4.2",
-    "eslint": "2.13.1",
+    "eslint": "4.18.2",
     "eslint-plugin-import": "1.16.0",
     "eslint-plugin-jsx-a11y": "1.5.5",
     "eslint-plugin-react": "5.2.2",
