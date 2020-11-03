@@ -173,7 +173,7 @@ if (locale) {
 Let's run our script with env LOCALE:
 
 ```bash
-LOCALE=uk ts-node counter.js
+LOCALE=uk ts-node counter.ts
 
 
 починаємо рахунок до 3
