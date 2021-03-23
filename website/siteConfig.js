@@ -41,6 +41,12 @@ const users = [
     infoLink: 'https://metabase.com/',
     pinned: true,
   },
+  {
+    caption: 'remotehour.com',
+    image: '/img/remotehour.png',
+    infoLink: 'https://remotehour.com/',
+    pinned: true,
+  },
 ];
 
 const siteConfig = {
