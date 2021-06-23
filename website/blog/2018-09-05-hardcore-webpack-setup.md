@@ -38,7 +38,7 @@ under the `examples` directory of the `ttag` repository.
 
 ### 1.3 Installation
 
-1. First we need to create separate folder run `npm init` and  follow all [installation](installation.md) instructions.
+1. First we need to create separate folder run `npm init` and  follow all [installation](/docs/installation.md) instructions.
 
 ```bash
 mkdir ttag-counter
@@ -101,7 +101,7 @@ setInterval(() => {
 ```
 This is simple program that will display the current time:
 
-> ![Local image](./assets/webpack-demo-2.jpg)
+> ![Local image](/img/blog/webpack-demo-2.jpg)
 
 Let's make setup for webpack. Here is our `webpack.config.js`:
 
@@ -144,18 +144,18 @@ const view = (hours, minutes, seconds) => {
 };
 ```
 
-> Tip: Check both `ngettext` [function reference](reference-ngettext.md) and `t` [function reference](reference-t-tag.md)
+> Tip: Check both `ngettext` [function reference](/docs/ngettext.html) and `t` [function reference](/docs/tag-gettext.html)
 
 Let's rebuild webpack and see what do we have in a browser:
 
-> ![Local image](./assets/webpack-demo-3.png)
+> ![Local image](/img/blog/webpack-demo-3.png)
 
 You can notice that plural forms are working without any extra configuration (i.e.: `1 second` is displayed properly).
 This is because ttag uses English locale by default.
 
 ### 2. Extracting translations to the .pot file
 Let's extract our translations to template file (`.pot`). ttag will extract translations only if it has
-[`extract.output`](configuration.md#configextractoutput-string)` setting, 
+[`extract.output`](/docs/plugin-api.html#configextractoutput)` setting, 
 let's modify our webpack.config.js to be able to work in the extract mode.
 
 ```js
@@ -357,14 +357,14 @@ to exported values also, we need to make locale setup as soon as possible.
 Let's build our app with `npm run build` and you will see that all translations are applied.
 And here is what we can see in the browser:
 
-> ![Local image](./assets/webpack-demo-4.png)
+> ![Local image](/img/blog/webpack-demo-4.png)
 
 A few cool things here:
 
 1. Translations are working.
 2. You can run webpack in watch mode and it will watch for changes in `.po` files and will rebuild app if
    some translation is added or changed.
-3. [Validation](validation.md) is also working, just great!
+3. [Validation](/docs/translations-validation.html) is also working, just great!
 
 I hope you have understood the main idea of how we can load locale in development mode. In the real app, you will don't know
 what locale is selected on a build step, so you may decide to place it somewhere in the initial app state or pass it
@@ -383,7 +383,7 @@ It will strip all ttag tags and functions and place all translations in their pl
 that feature is that we should make a separate build for each locale. I think it's not a big trade off for
 making your end user happier.
 
-`babel-pugin-ttag` will apply translations from some locale if [`resolve.translations`](configuration.html#configresolvetranslations-string)
+`babel-pugin-ttag` will apply translations from some locale if [`resolve.translations`](/docs/plugin-api.html#configresolvetranslations)
 setting is present.`resolve.translations` must be set to the path to the `.po` file.
 
 > Note: we also should strip ttag tags and functions for the default locale. Default locale is

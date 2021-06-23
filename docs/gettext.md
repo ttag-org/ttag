@@ -3,7 +3,7 @@ id: gettext
 title: gettext
 ---
 
-> Consider using [the `t`](reference-t-tag.md) function \(less code, supports template expressions\)
+> Consider using [the `t`](tag-gettext.html) function \(less code, supports template expressions\)
 
 The default alias for `gettext` function is `_`.
 

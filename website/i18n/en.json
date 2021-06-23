@@ -3,16 +3,13 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "Modern javascript i18n tool based on es6 tags",
+    "tagline": "Modern javascript i18n localization library based on ES6 tagged templates",
     "docs": {
       "aliasing": {
         "title": "Aliasing"
       },
       "changelog": {
         "title": "Changelog"
-      },
-      "babel-plugin-configuration": {
-        "title": "Configuration for babel-plugin-ttag"
       },
       "context": {
         "title": "c (context)"
