@@ -3,7 +3,7 @@ id: jsx-gettext
 title: jt (jsx gettext)
 ---
 
-`jt` is working in the same way as [t](reference-t-tag.md), but allows you to
+`jt` is working in the same way as [t](tag-gettext.html), but allows you to
 use jsx elements inside the tagged template expressions. The biggest difference between `jt` and `t` is that `t` concatenates translations and expressions all together into a single string, while `jt` returns **an array** of the translated strings and expressions that can be used in `jsx`.
 
 This tag is useful if you are building your UI with React (or another lib that uses jsx).

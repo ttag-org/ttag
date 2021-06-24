@@ -52,7 +52,7 @@ const SplashContainer = props => (
 
 const Logo = props => (
   <div className="projectLogo" id="projectLogo">
-    <img src={props.img_src} />
+    <img src={props.img_src} alt="ttag logo" />
   </div>
 );
 
@@ -186,12 +186,12 @@ Works with **js**, **jsx**, **ts**, **tsx** files out of the box.
 
 #### Simple translations extraction to .po file:
 \`\`\`sh
-ttag extract index.js 
+ttag extract index.js
 \`\`\`
 
 #### Update .po file with new translations:
 \`\`\`sh
-ttag update out.po index.js 
+ttag update out.po index.js
 \`\`\`
 
 #### Create a new file with all strings replaced with translations from .po file:

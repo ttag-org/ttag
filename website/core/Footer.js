@@ -8,14 +8,14 @@
 const React = require('react');
 
 class Footer extends React.Component {
-  docUrl(doc, language) {
+  docUrl(doc) {
     const baseUrl = this.props.config.baseUrl;
-    return baseUrl + 'docs/' + (language ? language + '/' : '') + doc;
+    return baseUrl + 'docs/' + doc;
   }
 
-  pageUrl(doc, language) {
+  pageUrl(doc) {
     const baseUrl = this.props.config.baseUrl;
-    return baseUrl + (language ? language + '/' : '') + doc;
+    return baseUrl + doc;
   }
 
   render() {
@@ -35,19 +35,19 @@ class Footer extends React.Component {
           </a>
           <div>
             <h5>Docs</h5>
-            <a href={this.docUrl('quickstart.html', this.props.language)}>
+            <a href={this.docUrl('quickstart.html')}>
               Quick Start
             </a>
-            <a href={this.docUrl('library-api.html', this.props.language)}>
+            <a href={this.docUrl('library-api.html')}>
               ttag API
             </a>
-            <a href={this.docUrl('plugin-api.html', this.props.language)}>
+            <a href={this.docUrl('plugin-api.html')}>
               babel-plugin-ttag API
             </a>
           </div>
           <div>
             <h5>Community</h5>
-            <a href={this.pageUrl('users.html', this.props.language)}>
+            <a href={this.pageUrl('users.html')}>
               User Showcase
             </a>
             <a

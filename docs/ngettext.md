@@ -97,7 +97,7 @@ Ukrainian language has 3 plural forms, but standard ngettext has only 2 argument
 so which one of those 3 plural forms must be passed to `ngettext` function? 
 ttag suggests a quite a nice solution for this problem.
 
-By default ttag uses 'en' language (English), but if you want to use `ngettext` with Ukrainian locale, you should call [setDefaultLang](configuration-lib.md#setdefaultlangstring-lang) for the library and [defaultLang](configuration.md#configdefaultlang-string) for the plugin accordingly.
+By default ttag uses 'en' language (English), but if you want to use `ngettext` with Ukrainian locale, you should call [setDefaultLang](library-api.html#setdefaultlang) for the library and [defaultLang](plugin-api.html#configdefaultlang) for the plugin accordingly.
 
 ```js
 setDefaultLang('uk');
