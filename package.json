@@ -1,6 +1,6 @@
 {
   "name": "ttag",
-  "version": "1.7.24",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "keywords": [
@@ -53,11 +53,20 @@
     "gettext-parser": "4.0.0",
     "istanbul": "1.1.0-alpha.1",
     "mocha": "^5.2.0",
+    "react": "^17.0.2",
     "sinon": "1.17.7",
     "webpack": "^2.3.2"
   },
   "dependencies": {
     "dedent": "^0.7.0",
     "plural-forms": "^0.5.3"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
   }
 }
