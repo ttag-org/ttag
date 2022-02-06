@@ -76,7 +76,7 @@ npm i -D ttag-cli
 For this short example, we will create 1 localization file, let's assume we want to add Ukrainian localization to our site.
 
 ```bash
-npx ttag init uk i18n/po
+npx ttag init uk i18n/uk.po
 ```
 > **init** accepts 2 arguments: **uk**  is the language (need it for the plurals headers, default is **en**) and **i18n/uk.po** is the path to the translations file
 
