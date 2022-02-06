@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { createElement, cloneElement } from 'react';
 import { jt, useLocale } from '../src/index';
 import { loadLocale } from './loader';
 
@@ -18,6 +19,19 @@ describe('jt', () => {
 
     it('should use the same str if no translation found', () => {
         expect(jt`not found`).to.deep.eql(['not found']);
+    });
+
+    it('should add key to react element', () => {
+        const elem = createElement('div');
+        const clonedWithKey = cloneElement(elem, { key: 1 });
+
+        expect(jt`test ${elem} test`).to.deep.eql(['test ', clonedWithKey, ' test [translation]']);
+    });
+
+    it('should ignore react elements with keys', () => {
+        const elemWithKey = createElement('div', { key: 'test' });
+
+        expect(jt`test ${elemWithKey}`).to.deep.eql(['test ', elemWithKey, '']);
     });
 
     it('should use the same str with expressions if no translation found', () => {

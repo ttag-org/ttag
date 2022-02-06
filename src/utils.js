@@ -1,5 +1,6 @@
 import dedent from 'dedent';
 import { getPluralFunc as getPluralFn } from 'plural-forms/minimal-safe';
+import { isValidElement, cloneElement } from 'react';
 
 export const getMsgid = (str, exprs) => {
     const result = [];
@@ -38,6 +39,14 @@ export const buildArr = (strs, exprs) => {
     return strs.reduce((r, s, i) => {
         return (exprs[i] !== undefined) ? r.concat(s, exprs[i]) : r.concat(s);
     }, []);
+};
+
+export const addReactKeysWhereNeeded = (item, idx) => {
+    if (isValidElement(item) && !item.key) {
+        return cloneElement(item, { key: idx.toString() });
+    }
+
+    return item;
 };
 
 function pluralFnBody(pluralStr) {

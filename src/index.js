@@ -1,5 +1,5 @@
 import { getMsgid, msgid2Orig, buildStr, getPluralFnForTrans,
-     buildArr, dedentStr } from './utils';
+     buildArr, dedentStr, addReactKeysWhereNeeded } from './utils';
 import { validateNgettextMsgid, validateNgettextNumber,
     validateNgettextPluralForms, validateLang } from './validation';
 import Config from './config';
@@ -130,7 +130,7 @@ export function TTag() {
             const id = maybeDedent(getMsgid(strings, exprs));
             const context = getTransContext(this);
             const trans = findTranslation(id, context);
-            if (!trans) return buildArr(strings, exprs);
+            if (!trans) return buildArr(strings, exprs).map(addReactKeysWhereNeeded);
 
             // splits string & capturing group into tokens
             //
@@ -140,7 +140,7 @@ export function TTag() {
                 const slotIdMatch = token.match(slotIdRegexp);
                 // slotIdMatch is not null only when the token is a variable slot (${xx})
                 return slotIdMatch ? exprs[+slotIdMatch[1]] : token;
-            });
+            }).map(addReactKeysWhereNeeded);
         }
         return strings;
     }
