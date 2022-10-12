@@ -12,6 +12,9 @@ msgstr "test [translation]"
 msgid "test ${ 0 } test"
 msgstr "test ${ 0 } test [translation]"
 
+msgid "test ${ 0 } test ${ 0 } test"
+msgstr "test ${ 0 } test ${ 0 } test [translation]"
+
 #: tests/fixtures/fixture.js:9
 msgid "test with ${ 0 } plural"
 msgid_plural "test with ${ 0 } plurals"
