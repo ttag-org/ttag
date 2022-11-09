@@ -54,7 +54,7 @@
     "istanbul": "1.1.0-alpha.1",
     "mocha": "^5.2.0",
     "sinon": "1.17.7",
-    "webpack": "^2.3.2"
+    "webpack": "^5.75.0"
   },
   "dependencies": {
     "dedent": "^0.7.0",
