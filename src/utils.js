@@ -12,13 +12,13 @@ export const getMsgid = (str, exprs) => {
     return result.join('');
 };
 
-const stringableRewindingIterator = (values = []) => ({
-  values: [],
-  index: -1,
-  toString() {
-    this.index = (this.index + 1) % this.values.length;
-    return this.values[this.index].toString();
-  }
+const stringableRewindingIterator = () => ({
+    values: [],
+    index: -1,
+    toString() {
+        this.index = (this.index + 1) % this.values.length;
+        return this.values[this.index].toString();
+    },
 });
 
 const removeSpaces = (str) => str.replace(/\s/g, '');
