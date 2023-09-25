@@ -12,6 +12,15 @@ export const getMsgid = (str, exprs) => {
     return result.join('');
 };
 
+const stringableRewindingIterator = (values = []) => ({
+  values: [],
+  index: -1,
+  toString() {
+    this.index = (this.index + 1) % this.values.length;
+    return this.values[this.index].toString();
+  }
+});
+
 const removeSpaces = (str) => str.replace(/\s/g, '');
 
 const mem = {};
@@ -91,7 +100,9 @@ function getVariablesMap(msgid) {
     const variables = msgid.match(variableREG);
     if (!variables) return null;
     for (let i = 0; i < variables.length; i++) {
-        variableNumberMap[removeSpaces(variables[i])] = i;
+        const k = removeSpaces(variables[i]);
+        variableNumberMap[k] = variableNumberMap[k] || stringableRewindingIterator();
+        variableNumberMap[k].values.push(i);
     }
     return variableNumberMap;
 }

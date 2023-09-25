@@ -16,6 +16,10 @@ describe('jt', () => {
         expect(jt`test ${1} test`).to.deep.eql(['test ', 1, ' test [translation]']);
     });
 
+    it('should resolve translation with expression that is used multiple times', () => {
+        expect(jt`test ${1} test ${1} test`).to.deep.eql(['test ', 1, ' test ', 1, ' test [translation]']);
+    });
+
     it('should use the same str if no translation found', () => {
         expect(jt`not found`).to.deep.eql(['not found']);
     });
