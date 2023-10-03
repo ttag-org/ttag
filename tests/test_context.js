@@ -12,9 +12,7 @@ describe('contexts', () => {
                 '': {
                     'Click ${ 0 } and ${ 1 }': {
                         msgid: 'Click ${ 0 } and ${ 1 }',
-                        msgstr: [
-                            'Click ${ 1 } and ${ 0 } ctx default',
-                        ],
+                        msgstr: ['Click ${ 1 } and ${ 0 } ctx default'],
                     },
                     '${ 0 } hour': {
                         msgid: '${ 0 } hour',
@@ -29,9 +27,7 @@ describe('contexts', () => {
                 ctx2: {
                     'Click ${ 0 } and ${ 1 }': {
                         msgid: 'Click ${ 0 } and ${ 1 }',
-                        msgstr: [
-                            'Click ${ 1 } and ${ 0 } ctx2',
-                        ],
+                        msgstr: ['Click ${ 1 } and ${ 0 } ctx2'],
                     },
                     '${ 0 } hour': {
                         msgid: '${ 0 } hour',
@@ -67,9 +63,7 @@ describe('contexts', () => {
 
     it('should resolve translation from the context for the ngettext', () => {
         const n = 1;
-        const result1 =
-            c('ctx2')
-            .ngettext(msgid`${n} hour`, `${n} hours`, n);
+        const result1 = c('ctx2').ngettext(msgid`${n} hour`, `${n} hours`, n);
 
         expect(result1).to.eql('1 hour ctx2');
 
@@ -96,4 +90,3 @@ describe('contexts', () => {
         expect(result1).to.eql('test default');
     });
 });
-

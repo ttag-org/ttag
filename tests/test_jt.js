@@ -43,9 +43,7 @@ describe('jt', () => {
                 '': {
                     'Click ${ 0 } and ${ 1 }': {
                         msgid: 'Click ${ 0 } and ${ 1 }',
-                        msgstr: [
-                            'Click ${ 1 } and ${ 0 } [translation]',
-                        ],
+                        msgstr: ['Click ${ 1 } and ${ 0 } [translation]'],
                     },
                 },
             },
@@ -65,9 +63,7 @@ describe('jt', () => {
                 '': {
                     'Test multi-line\nstring with ${ 0 }': {
                         msgid: 'Test multi-line\nstring with ${ 0 }',
-                        msgstr: [
-                            'Test multi-line\nstring with ${ 0 } [translation]',
-                        ],
+                        msgstr: ['Test multi-line\nstring with ${ 0 } [translation]'],
                     },
                 },
             },
@@ -78,7 +74,7 @@ describe('jt', () => {
         // Spaces before "string with ${constant}" should be stripped.
         expect(
             jt`Test multi-line
-            string with ${constant}`
+            string with ${constant}`,
         ).to.deep.eql(['Test multi-line\nstring with ', constant, ' [translation]']);
     });
 });

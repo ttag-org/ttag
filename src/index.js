@@ -1,14 +1,11 @@
-import { getMsgid, msgid2Orig, buildStr, getPluralFnForTrans,
-     buildArr, dedentStr } from './utils';
-import { validateNgettextMsgid, validateNgettextNumber,
-    validateNgettextPluralForms, validateLang } from './validation';
+import { getMsgid, msgid2Orig, buildStr, getPluralFnForTrans, buildArr, dedentStr } from './utils';
+import { validateNgettextMsgid, validateNgettextNumber, validateNgettextPluralForms, validateLang } from './validation';
 import Config from './config';
 
 function Context(context) {
     if (process.env.NODE_ENV !== 'production') {
         if (typeof context !== 'string') {
-            throw new Error('String type is expected as a first ' +
-                'argument to c() function.');
+            throw new Error('String type is expected as a first ' + 'argument to c() function.');
         }
     }
     this.getContext = () => context;
@@ -22,9 +19,7 @@ const getTransContext = (obj) => {
 };
 
 function isFuzzy(translationObj) {
-    return (
-        translationObj && translationObj.comments &&
-        translationObj.comments.flag === 'fuzzy');
+    return translationObj && translationObj.comments && translationObj.comments.flag === 'fuzzy';
 }
 
 function hasTranslations(msgstr) {
@@ -119,8 +114,7 @@ export function TTag() {
             const id = maybeDedent(getMsgid(strings, exprs));
             const context = getTransContext(this);
             const trans = findTranslation(id, context);
-            result = trans ?
-                msgid2Orig(trans[0], exprs) : buildStr(strings, exprs);
+            result = trans ? msgid2Orig(trans[0], exprs) : buildStr(strings, exprs);
         }
         return maybeDedent(result);
     }
@@ -161,9 +155,7 @@ export function TTag() {
         const trans = findTranslation(id, getTransContext(this));
         if (trans) {
             const pluralFn = getPluralFnForTrans(conf);
-            return maybeDedent(
-                msgid2Orig(pluralFn(n, trans), args[0]._exprs)
-            );
+            return maybeDedent(msgid2Orig(pluralFn(n, trans), args[0]._exprs));
         }
         const pluralFn = conf.getDefaultPluralFn();
         return maybeDedent(pluralFn(n, forms));
@@ -215,4 +207,3 @@ export const setDefaultLang = globalTTag.setDefaultLang;
 export const t = globalTTag.t;
 export const useLocale = globalTTag.useLocale;
 export const useLocales = globalTTag.useLocales;
-

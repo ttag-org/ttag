@@ -13,12 +13,13 @@ Validation is happening when `babel-plugin-ttag` is enabled in the babel configu
 3. Validating `ttag` functions calls with the appropriate format to prevent bugs.
 
 ## Format validation
+
 Format validation errors are enabled for all tags and functions by default.
 
 ```js
 import { t } from 'ttag';
 function test(username) {
-    return t`${username}`;   
+    return t`${username}`;
 }
 ```
 
@@ -35,12 +36,13 @@ Module build failed: SyntaxError: Can not translate '${ username }'
   4 | }
 ```
 
-This error occurred because there is no meaningful information for  the translator in `${ username }` string.
+This error occurred because there is no meaningful information for the translator in `${ username }` string.
 
 > More about the `t` tag format can be found in the [function reference](tag-gettext.html#format)
 
 ### Disabling format validation
-You can disable validation by changing 
+
+You can disable validation by changing
 [`extractors.[FunctionName].invalidFormat`](plugin-api.html#configextractors-functionname-invalidformat)
 configuration value.
 
@@ -48,14 +50,12 @@ Example `.babelrc` file:
 
 ```json
 {
- "plugins": [
-    ["ttag",
-      {"extractors": { "tag-gettext": { "invalidFormat": "skip" }}}
-    ]]
+    "plugins": [["ttag", { "extractors": { "tag-gettext": { "invalidFormat": "skip" } } }]]
 }
 ```
 
 ## Missing translations
+
 You can configure ttag to fail when some translation are not found. This setting is disabled by default.
 This can be integrated somewhere on your CI workflow if you want to ensure that all strings
 have appropriate translations inside `.po` files prior to a deply, for example.
@@ -67,10 +67,7 @@ Example:
 
 ```json
 {
- "plugins": [
-    ["ttag",
-      {"translations": "uk.po", "unresolved": "fail"}
-    ]]
+    "plugins": [["ttag", { "translations": "uk.po", "unresolved": "fail" }]]
 }
 ```
 

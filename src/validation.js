@@ -74,11 +74,11 @@ export function validateLocales(locales, availLocales) {
 export function validateNgettextMsgid(str) {
     if (process.env.NODE_ENV !== 'production') {
         const ngettextDoc = 'https://ttag.js.org/docs/ngettext.html';
-        if (! (str.hasOwnProperty('_strs') && str.hasOwnProperty('_exprs'))) {
+        if (!(str.hasOwnProperty('_strs') && str.hasOwnProperty('_exprs'))) {
             throw new Error(
                 `The first argument for ngettext must be tagged with 'msgid' tag.
                 see - ${ngettextDoc};
-                `
+                `,
             );
         }
     }
@@ -87,10 +87,10 @@ export function validateNgettextMsgid(str) {
 export function validateNgettextNumber(n) {
     if (process.env.NODE_ENV !== 'production') {
         const ngettextDoc = 'https://ttag.js.org/docs/ngettext.html';
-        if (! (typeof n === 'number')) {
+        if (!(typeof n === 'number')) {
             throw new Error(
                 `The last argument to ngettext - '${n}' expected to be a number. Got '${typeof n}' instead.
-                see - ${ngettextDoc}`
+                see - ${ngettextDoc}`,
             );
         }
     }
@@ -101,7 +101,7 @@ export function validateNgettextPluralForms(expectedFormsCount, actualFormsCount
         if (actualFormsCount !== expectedFormsCount) {
             throw new Error(
                 // eslint-disable-next-line max-len
-                `ngettext expects ${expectedFormsCount} for the current default locale, but received - ${actualFormsCount}.`
+                `ngettext expects ${expectedFormsCount} for the current default locale, but received - ${actualFormsCount}.`,
             );
         }
     }
@@ -111,9 +111,7 @@ export function validateLang(lang) {
     if (process.env.NODE_ENV !== 'production') {
         const langs = getAvailLangs().join(',');
         if (!hasLang(lang)) {
-            throw new Error(
-                `Unknown lang code - ${lang}. Lang should be one of: ${langs}.`
-            );
+            throw new Error(`Unknown lang code - ${lang}. Lang should be one of: ${langs}.`);
         }
     }
 }

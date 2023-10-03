@@ -14,8 +14,8 @@ This tag is useful if you are building your UI with React (or another lib that u
 import { jt } from 'ttag';
 
 function Button() {
-    const btn = <button key="btn">{ t`me` }</button>;
-    return <span>{jt`Click ${ btn }`}</span>
+    const btn = <button key='btn'>{t`me`}</button>;
+    return <span>{jt`Click ${btn}`}</span>;
 }
 ```
 
@@ -30,20 +30,20 @@ To make localized strings more clear and reliable for translators there are some
 ### Valid
 
 ```js
-jt`Hello Mike`                       // valid.
-jt`Hello ${ name }`                  // valid. (identifiers are allowed)
+jt`Hello Mike`; // valid.
+jt`Hello ${name}`; // valid. (identifiers are allowed)
 
-const btn = <button key="btn">{ t`me` }</button>
-jt`Click ${ btn }` // even though btn stores a jsx element, it is valid because `btn` is an identifier.
+const btn = <button key='btn'>{t`me`}</button>;
+jt`Click ${btn}`; // even though btn stores a jsx element, it is valid because `btn` is an identifier.
 ```
 
 ### Invalid
 
 ```js
-jt`Hello ${getUserName()}` // function calls are not allowed.
-jt``                       // empty strings are not allowed.
-jt`${greeting} ${name}`    // strings that does not contain meaningful information are not allowed.
-jt`Click ${ <button> me </button> }` // jsx expressions must be referenced through a variables 
+jt`Hello ${getUserName()}`; // function calls are not allowed.
+jt``; // empty strings are not allowed.
+jt`${greeting} ${name}`; // strings that does not contain meaningful information are not allowed.
+jt`Click ${(<button> me </button>)}`; // jsx expressions must be referenced through a variables
 ```
 
 ## Extract
@@ -52,7 +52,7 @@ All translations can be extracted to `.po` file with `ttag-cli` tool.
 
 ```js
 import { jt } from 'ttag';
-jt`Click ${btn}`
+jt`Click ${btn}`;
 ```
 
 ```po
@@ -74,8 +74,8 @@ msgstr "Click ${ btn } [translated]"
 The resulting compiled file will contain this:
 
 ```js
-import { jt } from 'ttag'
-['Click ', btn, ' [translated]']
+import { jt } from 'ttag';
+['Click ', btn, ' [translated]'];
 ```
 
 When put inside curly braces `{ }` within jsx context, the returned array will be [directly consumed by jsx](https://facebook.github.io/react/docs/lists-and-keys.html).

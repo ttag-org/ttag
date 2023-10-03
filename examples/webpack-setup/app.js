@@ -8,14 +8,13 @@ const view = (hours, minutes, seconds) => {
     const secondsTxt = ngettext(msgid`${seconds} second`, `${seconds} seconds`, seconds);
 
     return `
-    <h1>${ t`webpack with ttag localization demo` }</h1>
-    <h2>${ t`Current time is` }</h2>
+    <h1>${t`webpack with ttag localization demo`}</h1>
+    <h2>${t`Current time is`}</h2>
     <h3>${hoursTxt} ${minutesTxt} ${secondsTxt}</h3>
-    `
+    `;
 };
 
 setInterval(() => {
     const date = new Date();
     content.innerHTML = view(date.getHours(), date.getMinutes(), date.getSeconds());
 }, 1000);
-

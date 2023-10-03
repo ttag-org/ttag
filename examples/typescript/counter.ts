@@ -8,13 +8,10 @@ if (locale) {
     useLocale(locale); // make uk locale active
 }
 
-
 function startCount(n: number): void {
     console.log(t`starting count up to ${n}`);
     for (let i = 0; i <= n; i++) {
-       console.log(
-           ngettext(msgid`${i} tick passed`, `${i} ticks passed`, i)
-        );
+        console.log(ngettext(msgid`${i} tick passed`, `${i} ticks passed`, i));
     }
 }
 

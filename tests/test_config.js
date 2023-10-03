@@ -21,7 +21,7 @@ describe('config addLocale', () => {
             },
         };
         const fn = () => config.addLocale('uk', poData);
-        expect(fn).to.throw('Locale data.headers should contain \'Plural-Forms\' attribute');
+        expect(fn).to.throw("Locale data.headers should contain 'Plural-Forms' attribute");
     });
     it('should throw if data has no translations', () => {
         const poData = {

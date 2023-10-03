@@ -21,10 +21,7 @@ export function loadLocale(locale, filepath) {
         return addLocale(locale, loadFile(filepath));
     }
 
-    if (
-        filepath && typeof filepath === 'object' &&
-        filepath.translations && filepath.headers
-    ) {
+    if (filepath && typeof filepath === 'object' && filepath.translations && filepath.headers) {
         return addLocale(locale, filepath);
     }
 
