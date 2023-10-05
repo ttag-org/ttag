@@ -41,7 +41,7 @@ c('context').t`This is inside a contex`;
 // $ExpectType { 'content-type': string; 'plural-forms': string; }
 const localeHeaders: Headers = {
     'content-type': 'a-content-type',
-    'plural-forms': 'plural-form-string'
+    'plural-forms': 'plural-form-string',
 };
 
 // $ExpectType { 'Any key to translate': string; }
@@ -52,7 +52,7 @@ const translations: Translations = {
 // $ExpectType { headers: Headers; translations: Translations; }
 const localeData: LocaleData = {
     headers: localeHeaders,
-    translations
+    translations,
 };
 // $ExpectType void
 addLocale('pt-BR', localeData);

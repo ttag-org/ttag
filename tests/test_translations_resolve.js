@@ -40,7 +40,6 @@ describe('translations resolve', () => {
     });
 });
 
-
 const locale1 = {
     headers: {
         'plural-forms': 'nplurals=2; plural=(n!=1);',
@@ -49,9 +48,7 @@ const locale1 = {
         '': {
             'Click1 ${ 0 } and ${ 1 }': {
                 msgid: 'Click1 ${ 0 } and ${ 1 }',
-                msgstr: [
-                    'Click1 ${ 1 } and ${ 0 } [translation]',
-                ],
+                msgstr: ['Click1 ${ 1 } and ${ 0 } [translation]'],
             },
             '${ 0 } hour1': {
                 msgid: '${ 0 } hour1',
@@ -70,9 +67,7 @@ const locale2 = {
         '': {
             'Click2 ${ 0 } and ${ 1 }': {
                 msgid: 'Click2 ${ 0 } and ${ 1 }',
-                msgstr: [
-                    'Click2 ${ 1 } and ${ 0 } [translation]',
-                ],
+                msgstr: ['Click2 ${ 1 } and ${ 0 } [translation]'],
             },
         },
     },
@@ -80,8 +75,9 @@ const locale2 = {
 
 const ukLocale = {
     headers: {
-        'plural-forms': 'nplurals=3; ' +
-        'plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);',
+        'plural-forms':
+            'nplurals=3; ' +
+            'plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);',
     },
     translations: {
         '': {
@@ -121,8 +117,9 @@ describe('test useLocales', () => {
 
 const ukCompactLocale = {
     headers: {
-        'plural-forms': 'nplurals=3; ' +
-        'plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);',
+        'plural-forms':
+            'nplurals=3; ' +
+            'plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);',
     },
     contexts: {
         '': {
@@ -144,7 +141,6 @@ describe('test compact format', () => {
         expect(result2).to.eql('1 hour [trans]');
     });
 });
-
 
 const compactFmt = {
     headers: {

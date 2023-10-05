@@ -2,11 +2,11 @@ import { expect } from 'chai';
 import { ngettext, useLocale, msgid, addLocale, setDefaultLang } from '../src/index';
 import { loadLocale } from './loader';
 
-
 const ukLocale = {
     headers: {
-        'plural-forms': 'nplurals=3; ' +
-        'plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);',
+        'plural-forms':
+            'nplurals=3; ' +
+            'plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);',
     },
     translations: {
         '': {
@@ -18,7 +18,6 @@ const ukLocale = {
         },
     },
 };
-
 
 describe('ngettext', () => {
     before(() => {
@@ -59,7 +58,10 @@ describe('ngettext', () => {
         const a = 1;
         const others = ngettext(
             msgid`test with ${a} plural
-              test`, `test with ${a} plurals`, a);
+              test`,
+            `test with ${a} plurals`,
+            a,
+        );
         expect(others).to.eql('test with 1 plural\ntest');
     });
 
@@ -74,29 +76,34 @@ describe('ngettext', () => {
 
     it('should work with multiline dedent', () => {
         addLocale('uk', ukLocale);
-        useLocale(('uk'));
+        useLocale('uk');
         const n = 2;
-        const result = ngettext(msgid`${n}
+        const result = ngettext(
+            msgid`${n}
             hour`,
             `${n}
-            hours`, n);
+            hours`,
+            n,
+        );
         expect(result).to.eql('2\nгодини');
     });
 
     it('should throw if first argument is not tagged with msgid', () => {
         addLocale('uk', ukLocale);
-        useLocale(('uk'));
+        useLocale('uk');
         const a = 2;
         const fn = () => ngettext(`${a} банан`, `${a} банана`, `${a} бананів`, a);
-        expect(fn).to.throw('The first argument for ngettext must be tagged with \'msgid\' tag.');
+        expect(fn).to.throw("The first argument for ngettext must be tagged with 'msgid' tag.");
     });
 
     it('should throw if the last argument is not a number', () => {
         addLocale('uk', ukLocale);
-        useLocale(('uk'));
+        useLocale('uk');
         const a = 2;
         const fn = () => ngettext(msgid`${a} банан`, `${a} банана`, `${a} бананів`);
-        expect(fn).to.throw("The last argument to ngettext - '2 бананів' expected to be a number. Got 'string' instead");
+        expect(fn).to.throw(
+            "The last argument to ngettext - '2 бананів' expected to be a number. Got 'string' instead",
+        );
     });
 
     it('should throw if has invalid number of plural forms', () => {

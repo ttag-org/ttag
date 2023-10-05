@@ -51,9 +51,7 @@ describe('utils transformCompactObj', () => {
             },
             contexts: {
                 '': {
-                    'test ${ a.b.c } ${ d } ${ e } test': [
-                        'test ${ e } ${ d } ${ a.b.c } test [translation]',
-                    ],
+                    'test ${ a.b.c } ${ d } ${ e } test': ['test ${ e } ${ d } ${ a.b.c } test [translation]'],
                 },
             },
         };
@@ -63,9 +61,7 @@ describe('utils transformCompactObj', () => {
             },
             contexts: {
                 '': {
-                    'test ${0} ${1} ${2} test': [
-                        'test ${2} ${1} ${0} test [translation]',
-                    ],
+                    'test ${0} ${1} ${2} test': ['test ${2} ${1} ${0} test [translation]'],
                 },
             },
         };
@@ -79,9 +75,7 @@ describe('utils transformCompactObj', () => {
             contexts: {
                 '': {},
                 test: {
-                    test: [
-                        'test [translation]',
-                    ],
+                    test: ['test [translation]'],
                 },
             },
         };
@@ -92,9 +86,7 @@ describe('utils transformCompactObj', () => {
             contexts: {
                 '': {},
                 test: {
-                    test: [
-                        'test [translation]',
-                    ],
+                    test: ['test [translation]'],
                 },
             },
         };

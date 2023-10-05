@@ -45,7 +45,7 @@ export const buildStr = (strs, exprs) => {
 
 export const buildArr = (strs, exprs) => {
     return strs.reduce((r, s, i) => {
-        return (exprs[i] !== undefined) ? r.concat(s, exprs[i]) : r.concat(s);
+        return exprs[i] !== undefined ? r.concat(s, exprs[i]) : r.concat(s);
     }, []);
 };
 
@@ -81,7 +81,8 @@ const variableREG = /\$\{\s*([.\w+\[\]])*\s*\}/g;
 
 function getObjectKeys(obj) {
     const keys = [];
-    for (const key in obj) {  // eslint-disable-line no-restricted-syntax
+    for (const key in obj) {
+        // eslint-disable-line no-restricted-syntax
         if (obj.hasOwnProperty(key)) {
             keys.push(key);
         }
@@ -171,8 +172,7 @@ export function transformCompactObj(compactObj) {
         for (let j = 0; j < msgids.length; j++) {
             const msgid = msgids[j];
             const translations = compactObj.contexts[ctx][msgid];
-            const [newMsgid, newTranslations] = transformCompactTranslate(
-                msgid, translations);
+            const [newMsgid, newTranslations] = transformCompactTranslate(msgid, translations);
             newContext[newMsgid] = newTranslations;
         }
         newContexts[ctx] = newContext;
@@ -182,7 +182,7 @@ export function transformCompactObj(compactObj) {
 }
 
 export function dedentStr(rawStr) {
-    if (! (typeof rawStr === 'string')) {
+    if (!(typeof rawStr === 'string')) {
         return rawStr;
     }
 

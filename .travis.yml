@@ -1,19 +1,19 @@
 language: node_js
 
 node_js:
-  - 8
-  - 10
-  - lts/*
-  - node
+    - 8
+    - 10
+    - lts/*
+    - node
 
 before_script:
-  - npm install
-  - npm install -g codecov
+    - npm install
+    - npm install -g codecov
 
 script:
-  - npm run lint
-  - npm run dtslint
-  - npm run codecov-test
+    - npm run lint
+    - npm run dtslint
+    - npm run codecov-test
 
 after_success:
-  - codecov
+    - codecov

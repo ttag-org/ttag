@@ -20,6 +20,8 @@
     "doc:publish": "npm run doc:install && npm run doc:build && cp CNAME website/build/ttag && cd website/build/ttag && git init && git commit --allow-empty -m 'update book' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update book' && git push git@github.com:ttag-org/ttag.git gh-pages --force",
     "preversion": "npm run lint && npm run test",
     "prepublish": "npm run lib:build",
+    "prettier-check": "prettier . --check",
+    "prettier-fix": "prettier . --write",
     "dtslint": "dtslint types"
   },
   "repository": {
@@ -53,6 +55,7 @@
     "gettext-parser": "4.0.0",
     "istanbul": "1.1.0-alpha.1",
     "mocha": "^5.2.0",
+    "prettier": "^3.0.3",
     "sinon": "1.17.7",
     "webpack": "^2.3.2"
   },

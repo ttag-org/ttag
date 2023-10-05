@@ -17,10 +17,10 @@ Let's setup some simple counter program - `counter.js`:
 ```js
 // counter.js
 
-function startCount(n){
+function startCount(n) {
     console.log(`starting count up to ${n}`);
     for (let i = 0; i <= n; i++) {
-       console.log(`${i} ticks passed`);
+        console.log(`${i} ticks passed`);
     }
 }
 
@@ -54,19 +54,19 @@ To fix the issue above, the only thing we need is just to use `ngettext` from `t
 ```js
 const { t, ngettext, msgid } = require('ttag');
 
-function startCount(n){
+function startCount(n) {
     console.log(t`starting count up to ${n}`); // using 't' tag for 1 to 1 translations
     for (let i = 0; i <= n; i++) {
-       // use ngettext function for handling plural forms
-       console.log(ngettext(msgid`${i} tick passed`, `${i} ticks passed`, i));
+        // use ngettext function for handling plural forms
+        console.log(ngettext(msgid`${i} tick passed`, `${i} ticks passed`, i));
     }
 }
 ```
 
 For more information, please check:
 
-* `t` tag [reference documentation](tag-gettext.html)
-* `ngettext` function [reference documentation](ngettext.html)
+-   `t` tag [reference documentation](tag-gettext.html)
+-   `ngettext` function [reference documentation](ngettext.html)
 
 Let's see what our program outputs now:
 
@@ -83,6 +83,7 @@ starting count up to 3
 As we see, plural forms are working out of the box without no extra configuration for the English locale.
 
 ## 3. Setup localization
+
 Gettext standard is based on manipulation with `.po` files. In general, a `.po` file is a special file format
 for adding, updating, and editing translations.
 
@@ -90,11 +91,12 @@ Let's install [`ttag-cli`](https://github.com/ttag-org/ttag-cli) for `.po` diffe
 
 ```bash
 npm install --save-dev ttag-cli
-``` 
+```
 
 > After installation, the `ttag` command should be available in npm scripts.
 
 ### Create `.po` file
+
 Let's assume that we want to translate our program to Ukrainian language.
 
 ```bash
@@ -118,6 +120,7 @@ msgstr ""
 > See all available languages at the [GNU gettext manual](https://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html)
 
 ### Update `.po` file
+
 Use `ttag update` command for translations extraction/update to `.po` file from the source files:
 
 ```bash
@@ -142,10 +145,12 @@ msgstr[2] ""
 ```
 
 ## 4. Load translations
-After all translations are added by the translator to the `uk.po` file, we need to load those translations somehow. 
+
+After all translations are added by the translator to the `uk.po` file, we need to load those translations somehow.
 There are 2 ways in which you can apply translations from `.po` file. Each of them has their pros and cons. Both of them are quite easy to setup, so you decide which one suits better for you.
 
 ### Runtime load
+
 With `ttag-cli` we can simply convert our `uk.po` file to JSON format with `po2json` command:
 
 ```bash
@@ -182,6 +187,7 @@ LOCALE=uk node counter.js
 ```
 
 ### Precompile translations
+
 Another approach is to produce separate output file for each locale, with all translations already placed in code. In our case, `ttag replace` command can generate standalone localized `counter.uk.js` file:
 
 ```bash
@@ -191,7 +197,6 @@ ttag replace uk.po counter.uk.js counter.js
 So, you can simply run `node counter.uk.js` and see the the localized output.
 
 This approach performs much better, because it eliminates all the translations loading boilerplate.
-
 
 > Note: `ttag-cli` is a wrapper around [babel-plugin-ttag](https://github.com/ttag-org/babel-plugin-ttag)
 

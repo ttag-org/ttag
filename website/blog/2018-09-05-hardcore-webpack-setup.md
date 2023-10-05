@@ -15,6 +15,7 @@ This post will describe hardcore but flexible setup with webpack and `babel-plug
 ## 1. Initial setup
 
 ### 1.1 Why should I care about dev and prod setup?
+
 There are different requirements to development and production setups.
 
 Requirements for the dev setup:
@@ -24,12 +25,14 @@ Requirements for the dev setup:
 3. Fast feedback.
 
 Production setup:
+
 1. Smaller assets.
 2. Less work to load locale (faster locale load).
 
 According to this requirements, ttag provides you options for making efficient production and development setups.
 
 ### 1.2 Application overview
+
 For demonstration purposes, we will implement simple clock application.
 An [example is available](https://jsfiddle.net/AlexMost/9wuafbL5/7/) on JSFiddle.
 
@@ -38,7 +41,7 @@ under the `examples` directory of the `ttag` repository.
 
 ### 1.3 Installation
 
-1. First we need to create separate folder run `npm init` and  follow all [installation](/docs/installation.md) instructions.
+1. First we need to create separate folder run `npm init` and follow all [installation](/docs/installation.md) instructions.
 
 ```bash
 mkdir ttag-counter
@@ -48,30 +51,32 @@ npm install --save ttag && npm install --save-dev babel-plugin-ttag
 ```
 
 2. Also we need to install webpack and babel loader for webpack.
-> Tip: follow the installation instructions from [Babel official documetntaion](https://github.com/babel/babel-loader)
+    > Tip: follow the installation instructions from [Babel official documetntaion](https://github.com/babel/babel-loader)
 
 ```bash
 npm install  --save-dev babel-loader babel-core babel-preset-env webpack
 ```
 
 ### 1.4 Basic app setup
-Now we are ready to make a basic setup for our application. It will consist of an `index.html`  and `app.js` files.
+
+Now we are ready to make a basic setup for our application. It will consist of an `index.html` and `app.js` files.
 
 Let's add `./dist` directory and add `index.html` there:
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Webpack with ttag demo</title>
-</head>
-<body>
-<div id="content"></div>
-<script src="./app.js"></script>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Webpack with ttag demo</title>
+    </head>
+    <body>
+        <div id="content"></div>
+        <script src="./app.js"></script>
+    </body>
 </html>
 ```
+
 Nothing special, just some html boilerplate.
 
 Let's add `app.js` file also, that will contain our simple business logic:
@@ -86,19 +91,18 @@ const view = (hours, minutes, seconds) => {
     const secondsTxt = `${seconds} seconds`;
 
     return `
-    <h1>${ t`webpack with ttag localization demo` }</h1>
-    <h2>${ t`Current time is` }</h2>
+    <h1>${t`webpack with ttag localization demo`}</h1>
+    <h2>${t`Current time is`}</h2>
     <h3>${hoursTxt} ${minutesTxt} ${secondsTxt}</h3>
-    `
+    `;
 };
-
 
 setInterval(() => {
     const date = new Date();
     content.innerHTML = view(date.getHours(), date.getMinutes(), date.getSeconds());
 }, 1000);
-
 ```
+
 This is simple program that will display the current time:
 
 > ![Local image](/img/blog/webpack-demo-2.jpg)
@@ -112,13 +116,13 @@ module.exports = {
     module: {
         rules: [
             {
-              test: /\.js$/,
-              exclude: /(node_modules|bower_components)/,
-              use: { loader: 'babel-loader' }
-           }
-        ]
-    }
-}
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: { loader: 'babel-loader' },
+            },
+        ],
+    },
+};
 ```
 
 And now we can execute `webpack` to build our `app.js` file and open `index.html` in a browser.
@@ -126,7 +130,6 @@ And now we can execute `webpack` to build our `app.js` file and open `index.html
 ### 1.5 Wrapping strings with ttag functions and tags
 
 Let's wrap our literals in `ngettext` and `t`:
-
 
 ```js
 import { ngettext, msgid, t } from 'ttag';
@@ -137,10 +140,10 @@ const view = (hours, minutes, seconds) => {
     const secondsTxt = ngettext(msgid`${seconds} second`, `${seconds} seconds`, seconds);
 
     return `
-    <h1>${ t`webpack with ttag localization demo` }</h1>
-    <h2>${ t`Current time is` }</h2>
+    <h1>${t`webpack with ttag localization demo`}</h1>
+    <h2>${t`Current time is`}</h2>
     <h3>${hoursTxt} ${minutesTxt} ${secondsTxt}</h3>
-    `
+    `;
 };
 ```
 
@@ -154,23 +157,25 @@ You can notice that plural forms are working without any extra configuration (i.
 This is because ttag uses English locale by default.
 
 ### 2. Extracting translations to the .pot file
+
 Let's extract our translations to template file (`.pot`). ttag will extract translations only if it has
-[`extract.output`](/docs/plugin-api.html#configextractoutput)` setting, 
+[`extract.output`](/docs/plugin-api.html#configextractoutput)` setting,
 let's modify our webpack.config.js to be able to work in the extract mode.
 
 ```js
-module.exports = ({ extract } = {}) => { // webpack 2+ can accept env object
+module.exports = ({ extract } = {}) => {
+    // webpack 2+ can accept env object
     const ttag = {};
 
     if (extract) {
         // translations will be extracted to template.pot
-        ttag.extract = { output: 'template.pot'}
+        ttag.extract = { output: 'template.pot' };
     }
-    
+
     return {
         entry: './app.js',
         output: {
-            filename: './dist/app.js'
+            filename: './dist/app.js',
         },
         module: {
             rules: [
@@ -178,17 +183,19 @@ module.exports = ({ extract } = {}) => { // webpack 2+ can accept env object
                     test: /\.(js|jsx)$/,
                     use: {
                         loader: 'babel-loader',
-                        options: {plugins: [['ttag', ttag]]}
-                    }
-                }
-            ]
-        }
-    }
+                        options: { plugins: [['ttag', ttag]] },
+                    },
+                },
+            ],
+        },
+    };
 };
 ```
+
 Let's extract all translated strings by executing `webpack --env.extract`.
 
 The resulting extracted `.pot` file:
+
 ```
 msgid ""
 msgstr ""
@@ -223,7 +230,8 @@ msgstr ""
 ```
 
 ## 3. Add a locale (`.po` file)
-Let's add Ukrainian locale (`uk`). We can use `msginit` tool for creation of `.po` file with all appropriate to `uk` 
+
+Let's add Ukrainian locale (`uk`). We can use `msginit` tool for creation of `.po` file with all appropriate to `uk`
 locale headers:
 
 ```bash
@@ -232,7 +240,7 @@ msginit -i template.pot -o uk.po -l uk
 
 > Tip: If you want to skip this, just copy and paste it from the [example source](https://github.com/ttag-org/ttag/blob/master/examples/webpack-setup/uk.po).
 
-Either if you generated the `uk.po` from the `pot` file or copied from the example source - the next step will be to 
+Either if you generated the `uk.po` from the `pot` file or copied from the example source - the next step will be to
 add translations to `uk.po`. Translations can be added by translators (nontechnical persons) and developers.
 
 It's up to your process.
@@ -272,11 +280,13 @@ msgstr "Поточний час"
 
 > In the future you will add more string literals to your app, and you will need to update `.po` files.
 > we suggest you to use `msgmerge` for that. Here is an example:
-> ````bash
+>
+> ```bash
 > msgmerge uk.po template.pot -U
-> ````
+> ```
 
 ## 4. Localization with dev setup
+
 As mentioned earlier, the requirements for the development setup are:
 
 1. Faster builds.
@@ -285,7 +295,7 @@ As mentioned earlier, the requirements for the development setup are:
 
 To be able to use our translation we need to load the `.po` file somehow.
 
-Let's use [po-gettext-loader](https://www.npmjs.com/package/po-gettext-loader) with 
+Let's use [po-gettext-loader](https://www.npmjs.com/package/po-gettext-loader) with
 [json-loader](https://www.npmjs.com/package/json-loader)
 
 ```sh
@@ -293,11 +303,12 @@ npm install --save-dev po-gettext-loader json-loader
 ```
 
 Ok, we are ready to load our translations via loader, let's modify our webpack config:
+
 ```js
 const webpack = require('webpack');
 
 module.exports = ({ extract } = {}) => { // webpack 2+ can accept env object
-    // ... 
+    // ...
 
     return {
         // ...
@@ -323,6 +334,7 @@ module.exports = ({ extract } = {}) => { // webpack 2+ can accept env object
 ```
 
 Please note some of the changes here:
+
 1. Use `json-loader` after `po-gettext-loader`, because we need our translations object to be used on the client-side.
 2. Added `DefinePlugin` to be able to split development and production logic inside the app.
 
@@ -332,24 +344,27 @@ Please note some of the changes here:
 After this step, we can simply require `uk.po` file and apply `uk` locale at the application startup.
 
 Let's create a separate `localeSetup.js` file:
+
 ```js
 import { addLocale, useLocale } from 'ttag';
 if (process.env.NODE_ENV !== 'production') {
     const ukLocale = require('./uk.po');
     addLocale('uk', ukLocale);
-    useLocale('uk');   
+    useLocale('uk');
 }
 ```
+
 > Notice that locale initialization logic is wrapped with the `if` condition because we need that logic only during the
->  development setup. In the production mode all assets will be already translated on a build step.
- 
+> development setup. In the production mode all assets will be already translated on a build step.
+
 After that we need to `import localeSetup.js` at the top of `app.js` file:
 
 ```js
 import './localeSetup';
 ```
-> Note: `import './localeSetup'` **must** be the first `import` in your entry bundle, to setup locale before other 
-> exports evaluation. 
+
+> Note: `import './localeSetup'` **must** be the first `import` in your entry bundle, to setup locale before other
+> exports evaluation.
 
 As you know, ES6 exports are evaluated before module execution. So, to apply translations
 to exported values also, we need to make locale setup as soon as possible.
@@ -398,21 +413,21 @@ appropriate transformations for some locale.
 module.exports = ({ extract, locale } = {}) => {
     const ttag = {};
 
-    if (locale) { // we should pass default for the default locale.
+    if (locale) {
+        // we should pass default for the default locale.
         ttag.resolve = { translations: locale !== 'default' ? `${locale}.po` : 'default' };
     }
     // ...
-}
+};
 ```
 
 Let's also change the resulting output filename to be able to compare it with the previous versions:
 
 ```js
 output: {
-    filename: locale ? `./dist/app_${locale}.js` : './dist/app.js'
+    filename: locale ? `./dist/app_${locale}.js` : './dist/app.js';
 }
 ```
-
 
 Let's build localized assets with commands `webpack --env.locale=uk && webpack --env.locale=default`.
 
@@ -424,6 +439,7 @@ To see that it works le'ts modify `src` attribute in `index.html`:
 ```html
 <script src="./app_default.js"></script>
 ```
+
 and
 
 ```html
@@ -434,10 +450,12 @@ and
 > by [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) or some backend code rendering the page.
 
 ### 5.1 Replacing ttag library with a mock
+
 So, if we are placing all translations at a build time there is no need to include the original
-ttag library in the resulting bundle. There is special mock for that case inside ttag lib - `ttag/dist/mock`. 
+ttag library in the resulting bundle. There is special mock for that case inside ttag lib - `ttag/dist/mock`.
 
 Let's add a webpack alias for that:
+
 ```js
 resolve: {
     alias: {
@@ -452,11 +470,13 @@ bundled in the resulting assets.
 ## 6. Results comparison
 
 Let's build all variants and compare the output size
+
 ```bash
 webpack && NODE_ENV=production webpack --env.locale=uk && NODE_ENV=production webpack --env.locale=default
 ```
 
 The resulting files inside `./dist`:
+
 ```bash
 17K app.js
 5,5K app_default.js
@@ -464,6 +484,7 @@ The resulting files inside `./dist`:
 ```
 
 Minified versions:
+
 ```bash
 6.9K app.js
 1.8K app_default.js

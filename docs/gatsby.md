@@ -7,6 +7,7 @@ At the end of this short tutorial you will learn how to set up the localization
 process for [Gatsby](https://www.gatsbyjs.org/) and the ttag library.
 
 ## Step 1. Installation
+
 Follow these steps to setup gatsby and install ttag dependencies.
 
 ```bash
@@ -18,6 +19,7 @@ npm i -D ttag-cli
 ```
 
 ## Step 2. Create .po file for translations
+
 At this step, we should create `.po` file for the language that we want to translate to.
 For this example, we will create `.po` file with all appropriate settings for the Spanish language (`es` code).
 
@@ -28,20 +30,19 @@ npx ttag init uk i18n/es.po
 
 > You can find the list of all available language codes here - https://www.w3.org/International/O-charset-lang.html
 
-
 ## Step 3. Wrap strings with tags
 
-Let's edit `src/pages/index.js` and wrap the __"Hi people"__ string to practice translating a single string:
+Let's edit `src/pages/index.js` and wrap the **"Hi people"** string to practice translating a single string:
 
 ```jsx
 import { t } from 'ttag';
 
 //... some jsx code
 <Layout>
-  <h1>{ t`Hi people` }</h1>
-  <p>Welcome to your new Gatsby site.</p>
-  //... some jsx code
-</Layout>
+    <h1>{t`Hi people`}</h1>
+    <p>Welcome to your new Gatsby site.</p>
+    //... some jsx code
+</Layout>;
 ```
 
 ## Step 4. Update the translation file and add a translation
@@ -91,25 +92,23 @@ npm install --save babel-preset-gatsby
 Here's a simple babel config that we'll use to precompile the right language at build time:
 
 ```js
-const { env: { LOCALE } } = process;
+const {
+    env: { LOCALE },
+} = process;
 
 module.exports = {
-  "presets": [
-    [
-      "babel-preset-gatsby",
+    presets: [['babel-preset-gatsby']],
+    plugins: [
+        [
+            'babel-plugin-ttag',
+            {
+                resolve: {
+                    translations: LOCALE === 'es' ? 'i18n/es.po' : 'default',
+                },
+            },
+        ],
     ],
-  ],
-  "plugins": [
-    [
-      "babel-plugin-ttag",
-      {
-        "resolve": {
-          "translations": LOCALE === "es" ? "i18n/es.po" : "default",
-        },
-      },
-    ],
-  ],
-}
+};
 ```
 
 The key portion here is the line where `babel-plugin-ttag`'s option object's
@@ -118,7 +117,6 @@ The key portion here is the line where `babel-plugin-ttag`'s option object's
 ### Build (or develop) by locale
 
 The dynamic babel config shown above allows you to pick a translation at build (or develop) time like so:
-
 
 ```bash
 LOCALE=es npm run build

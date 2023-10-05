@@ -10,15 +10,15 @@ The default alias for `gettext` function is `_`.
 ## Usage
 
 ```js
-import { gettext } from 'ttag'
+import { gettext } from 'ttag';
 
 gettext('simple gettext');
 ```
 
-or 
+or
 
 ```js
-import { _ } from 'ttag'
+import { _ } from 'ttag';
 
 _('simple gettext');
 ```
@@ -32,14 +32,14 @@ https://jsfiddle.net/AlexMost/us7hufjr/3/
 ### Valid
 
 ```js
-gettext('simple gettext')
+gettext('simple gettext');
 ```
 
 ### Invalid
 
 ```js
-gettext(`template literal`) // template literals are not supported
-gettext('one', 'two') // gettext supports only 1 argument
+gettext(`template literal`); // template literals are not supported
+gettext('one', 'two'); // gettext supports only 1 argument
 ```
 
 ## Extract
@@ -60,6 +60,7 @@ msgstr ""
 ```
 
 ## Resolve
+
 Suppose we have translated phrase in `.po`:
 
 ```

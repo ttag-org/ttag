@@ -7,24 +7,27 @@ Modern javascript i18n localization library based on ES6 tagged templates and th
 [![travis](https://api.travis-ci.org/ttag-org/ttag.svg?master)](https://travis-ci.org/ttag-org/ttag) [![codecov](https://codecov.io/gh/ttag-org/ttag/branch/master/graph/badge.svg)](https://codecov.io/gh/ttag-org/ttag) ![downloads](https://img.shields.io/npm/dm/ttag.svg)
 
 [![NPM](https://nodei.co/npm/ttag.png?downloads=true)](https://nodei.co/npm/ttag/)
+
 </div>
 
 ---
 
 ## Key features
-* Uses ES6 template literals for string formatting (no need for sprintf).
-* Contexts [support](https://ttag.js.org/docs/context.html)
-* It can precompile translations on a build step.
-* Plurals support [ngettext](https://ttag.js.org/docs/ngettext.html).
-* It can be integrated in any build tool that works with babel.
-* Has a builtin [validation](https://ttag.js.org/docs/translations-validation.html) for translated strings format.
-* It can use any default locale in sources (not only English).
-* Handles [React (jsx) translations](https://ttag.js.org/docs/jsx-gettext.html).
-* Can be easily integrated with Create React App. [CRA doc](https://ttag.js.org/docs/create-react-app.html)
+
+-   Uses ES6 template literals for string formatting (no need for sprintf).
+-   Contexts [support](https://ttag.js.org/docs/context.html)
+-   It can precompile translations on a build step.
+-   Plurals support [ngettext](https://ttag.js.org/docs/ngettext.html).
+-   It can be integrated in any build tool that works with babel.
+-   Has a builtin [validation](https://ttag.js.org/docs/translations-validation.html) for translated strings format.
+-   It can use any default locale in sources (not only English).
+-   Handles [React (jsx) translations](https://ttag.js.org/docs/jsx-gettext.html).
+-   Can be easily integrated with Create React App. [CRA doc](https://ttag.js.org/docs/create-react-app.html)
 
 ## Usage example
+
 ```js
-import { t, ngettext, msgid } from 'ttag'
+import { t, ngettext, msgid } from 'ttag';
 
 // formatted strings
 const name = 'Mike';
@@ -32,15 +35,17 @@ const helloMike = t`Hello ${name}`;
 
 // plurals (works for en locale out of the box)
 const n = 5;
-const msg = ngettext(msgid`${ n } task left`, `${ n } tasks left`, n)
+const msg = ngettext(msgid`${n} task left`, `${n} tasks left`, n);
 ```
 
 ## Installation
+
 ```bash
 npm install --save ttag
 ```
 
 ## CLI
+
 You may also need to install ttag-cli for `po` files manipulation.
 
 **ttag cli** - [https://github.com/ttag-org/ttag-cli](https://github.com/ttag-org/ttag-cli)
@@ -62,17 +67,20 @@ Give a ⭐️ if this project helped you!
 
 ## Useful links
 
-* [Documentation](https://ttag.js.org/)
-* [Changelog](https://ttag.js.org/docs/changelog.html)
-* [Quick Start](https://ttag.js.org/docs/quickstart.html)
-* [Quick view on JsFiddle playground](https://jsfiddle.net/0atw0hgh/)
+-   [Documentation](https://ttag.js.org/)
+-   [Changelog](https://ttag.js.org/docs/changelog.html)
+-   [Quick Start](https://ttag.js.org/docs/quickstart.html)
+-   [Quick view on JsFiddle playground](https://jsfiddle.net/0atw0hgh/)
 
 ### Slides from talks
-* [Kyivjs 2017](https://docs.google.com/presentation/d/1oj6ZaXfIfcClROe-4kOMMjnXFExn1gUfF6D30VyznWs/edit?usp=sharing)
-* [Odessajs 2017](https://docs.google.com/presentation/d/1XB82-hTLQxP456Bk8UWJb-tZBsHnUHp4lJzmQorxNgs/edit?usp=sharing)
+
+-   [Kyivjs 2017](https://docs.google.com/presentation/d/1oj6ZaXfIfcClROe-4kOMMjnXFExn1gUfF6D30VyznWs/edit?usp=sharing)
+-   [Odessajs 2017](https://docs.google.com/presentation/d/1XB82-hTLQxP456Bk8UWJb-tZBsHnUHp4lJzmQorxNgs/edit?usp=sharing)
 
 ### Talks
-* [Odessajs 2017 (video RU)](https://www.youtube.com/watch?v=9QjzpfA9LH4)
+
+-   [Odessajs 2017 (video RU)](https://www.youtube.com/watch?v=9QjzpfA9LH4)
 
 ## License
-This project is licensed under the  [MIT](https://github.com/eckertalex/cheatsheep/blob/main/LICENSE) license.
+
+This project is licensed under the [MIT](https://github.com/eckertalex/cheatsheep/blob/main/LICENSE) license.
