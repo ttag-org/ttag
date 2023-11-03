@@ -168,3 +168,35 @@ describe('test compact format regression', () => {
         expect(result2).to.eql('Langue par défaut');
     });
 });
+
+describe('should use undefined for untranslated string', () => {
+    it('Should`t strip undefined variables value in main translation', () => {
+        const blank = undefined;
+        const index = {};
+        const key = 'demo';
+        const poData = {
+            headers: {
+                'content-type': 'text/plain; charset=utf-8',
+                'plural-forms': 'nplurals = 2; plural = (n > 1);',
+            },
+            translations: {
+                '': {
+                    'Demo: ${ blank } ${ process.version } ${ index[key] }': {
+                        msgid: 'Demo: ${ blank } ${ process.version } ${ index[key] }',
+                        msgstr: ['__Démo: ${ blank } ${ process.version } ${ index[key] }'],
+                    },
+                },
+            },
+        };
+        addLocale('fr', poData);
+        function demo() {
+            return t`Demo: ${blank} ${process.version} ${index[key]}`;
+        }
+        const untranslated = demo();
+        useLocale('fr');
+        const translated = demo();
+
+        expect(untranslated).to.eql('Demo: undefined v16.15.1 undefined');
+        expect(translated).to.eql('__Démo: undefined v16.15.1 undefined');
+    });
+});

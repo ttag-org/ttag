@@ -40,7 +40,8 @@ export const msgid2Orig = (id, exprs) => {
 };
 
 export const buildStr = (strs, exprs) => {
-    return strs.reduce((r, s, i) => r + s + (exprs[i] !== undefined ? exprs[i] : ''), '');
+    const exprsLength = exprs.length - 1;
+    return strs.reduce((r, s, i) => r + s + (i <= exprsLength ? exprs[i] : ''), '');
 };
 
 export const buildArr = (strs, exprs) => {
