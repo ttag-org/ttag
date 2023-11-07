@@ -82,8 +82,7 @@ const variableREG = /\$\{\s*([.\w+\[\]])*\s*\}/g;
 
 function getObjectKeys(obj) {
     const keys = [];
-    for (const key in obj) {
-        // eslint-disable-line no-restricted-syntax
+    for (const [key, _] of Object.entries(obj)) {
         if (obj.hasOwnProperty(key)) {
             keys.push(key);
         }

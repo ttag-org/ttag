@@ -5,7 +5,7 @@ import Config from './config';
 function Context(context) {
     if (process.env.NODE_ENV !== 'production') {
         if (typeof context !== 'string') {
-            throw new Error('String type is expected as a first ' + 'argument to c() function.');
+            throw new Error('String type is expected as a first argument to c() function.');
         }
     }
     this.getContext = () => context;
