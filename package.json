@@ -60,7 +60,7 @@
     "webpack": "^2.3.2"
   },
   "dependencies": {
-    "dedent": "^0.7.0",
+    "dedent": "1.5.1",
     "plural-forms": "^0.5.3"
   }
 }
