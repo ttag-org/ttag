@@ -11,7 +11,7 @@
   "scripts": {
     "test": "BABEL_ENV=test mocha --require @babel/register tests",
     "codecov-test": "BABEL_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha -- --require @babel/register tests",
-    "lib:build": "babel src --out-dir dist && webpack && NODE_ENV=production webpack -p",
+    "lib:build": "babel src --out-dir dist && webpack --mode=development && NODE_ENV=production webpack --mode=production",
     "lint": "eslint ./src ./tests",
     "fix": "eslint --fix ./src ./tests",
     "doc:serve": "cd website && npm run start",
@@ -57,7 +57,8 @@
     "mocha": "^5.2.0",
     "prettier": "^3.0.3",
     "sinon": "1.17.7",
-    "webpack": "^2.3.2"
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   },
   "dependencies": {
     "dedent": "1.5.1",
