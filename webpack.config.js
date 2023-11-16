@@ -7,6 +7,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: isProd ? 'ttag.min.js' : 'ttag.js',
         libraryTarget: 'umd',
+        globalObject: 'this',
     },
     module: {
         rules: [
