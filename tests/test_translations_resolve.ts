@@ -41,6 +41,7 @@ describe('translations resolve', () => {
 });
 
 const locale1 = {
+    charset: 'utf-8',
     headers: {
         'plural-forms': 'nplurals=2; plural=(n!=1);',
     },
@@ -60,6 +61,7 @@ const locale1 = {
 };
 
 const locale2 = {
+    charset: 'utf-8',
     headers: {
         'plural-forms': 'nplurals=2; plural=(n!=1);',
     },
@@ -74,6 +76,7 @@ const locale2 = {
 };
 
 const ukLocale = {
+    charset: 'utf-8',
     headers: {
         'plural-forms':
             'nplurals=3; ' +
@@ -116,6 +119,7 @@ describe('test useLocales', () => {
 });
 
 const ukCompactLocale = {
+    charset: 'utf-8',
     headers: {
         'plural-forms':
             'nplurals=3; ' +
@@ -143,6 +147,7 @@ describe('test compact format', () => {
 });
 
 const compactFmt = {
+    charset: 'utf-8',
     headers: {
         'plural-forms': 'nplurals=2; plural=(n > 1);',
     },
@@ -172,25 +177,27 @@ describe('test compact format regression', () => {
 describe('should use undefined for untranslated string', () => {
     it('Should`t strip undefined variables value in main translation', () => {
         const blank = undefined;
-        const index = {};
+        const index: Record<string, string | undefined> = {};
         const key = 'demo';
+        const version = 'v16.15.1';
         const poData = {
+            charset: 'utf-8',
             headers: {
                 'content-type': 'text/plain; charset=utf-8',
                 'plural-forms': 'nplurals = 2; plural = (n > 1);',
             },
             translations: {
                 '': {
-                    'Demo: ${ blank } ${ process.version } ${ index[key] }': {
-                        msgid: 'Demo: ${ blank } ${ process.version } ${ index[key] }',
-                        msgstr: ['__Démo: ${ blank } ${ process.version } ${ index[key] }'],
+                    'Demo: ${ blank } ${ version } ${ index[key] }': {
+                        msgid: 'Demo: ${ blank } ${ version } ${ index[key] }',
+                        msgstr: ['__Démo: ${ blank } ${ version } ${ index[key] }'],
                     },
                 },
             },
         };
         addLocale('fr', poData);
         function demo() {
-            return t`Demo: ${blank} ${process.version} ${index[key]}`;
+            return t`Demo: ${blank} ${version} ${index[key]}`;
         }
         const untranslated = demo();
         useLocale('fr');

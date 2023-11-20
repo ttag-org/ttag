@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
+const webpack = require('webpack');
+
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/index.ts',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: isProd ? 'ttag.min.js' : 'ttag.js',
@@ -12,7 +15,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.(js|ts)$/,
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -23,4 +26,14 @@ module.exports = {
             },
         ],
     },
+    resolve: {
+        extensions: ['.js', '.ts'],
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'dev'),
+            },
+        }),
+    ],
 };

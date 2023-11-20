@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "noImplicitAny": true,
+        "module": "commonjs",
+        "target": "ESNext",
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "strict": true,
+    },
+    "exclude": ["node_modules", "website", "examples", "docs", "types", "dist"]
+}

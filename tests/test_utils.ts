@@ -2,7 +2,8 @@ import fs from 'fs';
 import { assert, expect } from 'chai';
 import { getMsgid, msgid2Orig, transformTranslateObj, dedentStr, transformCompactObj } from '../src/utils';
 
-function getStrsExprs(strs, ...exprs) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getStrsExprs(strs: TemplateStringsArray, ...exprs: any[]): [TemplateStringsArray, any[]] {
     return [strs, exprs];
 }
 
@@ -37,8 +38,10 @@ describe('utils msgid2Orig', () => {
 
 describe('utils transformTranslateObj', () => {
     it('should transform translate object', () => {
-        const translateObj = JSON.parse(fs.readFileSync('tests/fixtures/test-result-po-before-transform.json'));
-        const expected = JSON.parse(fs.readFileSync('tests/fixtures/test-result-po-after-transform.json'));
+        const translateObj = JSON.parse(
+            fs.readFileSync('tests/fixtures/test-result-po-before-transform.json').toString(),
+        );
+        const expected = JSON.parse(fs.readFileSync('tests/fixtures/test-result-po-after-transform.json').toString());
         assert.deepEqual(transformTranslateObj(translateObj), expected);
     });
 });
@@ -46,6 +49,7 @@ describe('utils transformTranslateObj', () => {
 describe('utils transformCompactObj', () => {
     it('should transform compact format', () => {
         const compactObj = {
+            charset: 'utf-8',
             headers: {
                 'plural-forms': 'nplurals=2; plural=(n!=1);\n',
             },
@@ -56,6 +60,7 @@ describe('utils transformCompactObj', () => {
             },
         };
         const expectedObj = {
+            charset: 'utf-8',
             headers: {
                 'plural-forms': 'nplurals=2; plural=(n!=1);\n',
             },
@@ -69,6 +74,7 @@ describe('utils transformCompactObj', () => {
     });
     it('should transform compact format without expressions', () => {
         const compactObj = {
+            charset: 'utf-8',
             headers: {
                 'plural-forms': 'nplurals=2; plural=(n!=1);\n',
             },
@@ -80,6 +86,7 @@ describe('utils transformCompactObj', () => {
             },
         };
         const expectedObj = {
+            charset: 'utf-8',
             headers: {
                 'plural-forms': 'nplurals=2; plural=(n!=1);\n',
             },
@@ -103,6 +110,8 @@ describe('utils dedentStr', () => {
 
     it('should return rawStr if it is not a string', () => {
         const source = { test: 'test' };
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         const result = dedentStr(source);
         expect(result).to.eql(source);
     });

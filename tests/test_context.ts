@@ -5,6 +5,7 @@ import { loadLocale } from './loader';
 describe('contexts', () => {
     before(() => {
         const enLocale = {
+            charset: 'utf-8',
             headers: {
                 'plural-forms': 'nplurals=2; plural=(n!=1);',
             },
@@ -81,6 +82,8 @@ describe('contexts', () => {
     });
 
     it('should throw if context is not a string', () => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         const fn = () => c(111).gettext('test');
         expect(fn).to.throw('String type is expected');
     });
