@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { expect } from 'chai';
 import { jt, useLocale } from '../src/index';
 import { loadLocale } from './loader';
@@ -9,33 +10,40 @@ describe('jt', () => {
     });
 
     it('should resolve translation', () => {
+        // @ts-ignore
         expect(jt`test`).to.deep.eql(['test [translation]']);
     });
 
     it('should resolve translation with expressions', () => {
+        // @ts-ignore
         expect(jt`test ${1} test`).to.deep.eql(['test ', 1, ' test [translation]']);
     });
 
     it('should resolve translation with expression that is used multiple times', () => {
+        // @ts-ignore
         expect(jt`test ${1} test ${1} test`).to.deep.eql(['test ', 1, ' test ', 1, ' test [translation]']);
     });
 
     it('should use the same str if no translation found', () => {
+        // @ts-ignore
         expect(jt`not found`).to.deep.eql(['not found']);
     });
 
     it('should use the same str with expressions if no translation found', () => {
+        // @ts-ignore
         expect(jt`not found ${0}`).to.deep.eql(['not found ', 0, '']);
     });
 
     it('should use the same str if locale is not found', () => {
         useLocale('unknown');
+        // @ts-ignore
         expect(jt`not found`).to.deep.eql(['not found']);
         useLocale('en');
     });
 
     it('should handle the case that variable positions are inconsistent', () => {
         const enLocale = {
+            charset: 'utf-8',
             headers: {
                 'plural-forms': 'nplurals=2; plural=(n!=1);',
             },
@@ -50,12 +58,14 @@ describe('jt', () => {
         };
         loadLocale('en2', enLocale);
         useLocale('en2');
-        expect(jt`Click ${100} and ${200}`).to.deep.eql(['Click ', 200, ' and ', 100, ' [translation]']);
+
+        expect(jt`Click ${100} and ${200}`).to.deep.equal(['Click ', 200, ' and ', 100, ' [translation]']);
     });
 
     it('should strip leading spaces for multi-line msgid', () => {
         const constant = 'CONSTANT';
         const enLocale = {
+            charset: 'utf-8',
             headers: {
                 'plural-forms': 'nplurals=2; plural=(n!=1);',
             },
@@ -72,9 +82,11 @@ describe('jt', () => {
         useLocale('en3');
 
         // Spaces before "string with ${constant}" should be stripped.
+
         expect(
             jt`Test multi-line
             string with ${constant}`,
+            // @ts-ignore
         ).to.deep.eql(['Test multi-line\nstring with ', constant, ' [translation]']);
     });
 });

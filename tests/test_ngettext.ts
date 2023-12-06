@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { expect } from 'chai';
 import { ngettext, useLocale, msgid, addLocale, setDefaultLang } from '../src/index';
 import { loadLocale } from './loader';
 
 const ukLocale = {
+    charset: 'utf-8',
     headers: {
         'plural-forms':
             'nplurals=3; ' +
@@ -92,6 +94,7 @@ describe('ngettext', () => {
         addLocale('uk', ukLocale);
         useLocale('uk');
         const a = 2;
+        // @ts-ignore
         const fn = () => ngettext(`${a} банан`, `${a} банана`, `${a} бананів`, a);
         expect(fn).to.throw("The first argument for ngettext must be tagged with 'msgid' tag.");
     });
@@ -100,6 +103,7 @@ describe('ngettext', () => {
         addLocale('uk', ukLocale);
         useLocale('uk');
         const a = 2;
+        // @ts-ignore
         const fn = () => ngettext(msgid`${a} банан`, `${a} банана`, `${a} бананів`);
         expect(fn).to.throw(
             "The last argument to ngettext - '2 бананів' expected to be a number. Got 'string' instead",

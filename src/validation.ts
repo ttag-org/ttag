@@ -1,6 +1,12 @@
 import { hasLang, getAvailLangs } from 'plural-forms/minimal-safe';
+import { TTagTranslations, TTagCompactTranslations } from './config';
 
-function validateLocale(locale, availLocales) {
+function validateLocale(
+    locale: string,
+    availLocales: {
+        [locale: string]: TTagTranslations | TTagCompactTranslations;
+    },
+) {
     if (process.env.NODE_ENV !== 'production') {
         if (!availLocales[locale]) {
             throw new Error(`
@@ -11,7 +17,7 @@ function validateLocale(locale, availLocales) {
     }
 }
 
-export function validateLocaleCode(locale) {
+export function validateLocaleCode(locale: string) {
     if (process.env.NODE_ENV !== 'production') {
         if (typeof locale !== 'string') {
             throw new Error(`Expected locale code to be a string but recieved ${typeof locale} insttead`);
@@ -19,7 +25,7 @@ export function validateLocaleCode(locale) {
     }
 }
 
-export function validateLocaleData(data) {
+export function validateLocaleData(data: TTagTranslations | TTagCompactTranslations) {
     if (process.env.NODE_ENV !== 'production') {
         // eslint-disable-next-line
         const addLocaleDoc = 'https://ttag.js.org/docs/library-api.html#addlocale';
@@ -41,19 +47,19 @@ export function validateLocaleData(data) {
             see - ${addLocaleDoc}
             `);
         }
-        if (!data.translations && !data.contexts) {
+        if (!('translations' in data) && !('contexts' in data)) {
             throw new Error(`
             Locale data should contain translations or contexts property "${JSON.stringify(data)}".
             see - ${addLocaleDoc}
             `);
         }
-        if (data.translations && !Object.keys(data.translations).length) {
+        if ('translations' in data && !Object.keys(data.translations).length) {
             throw new Error(`
             Locale data.translations should have at least 1 key"${JSON.stringify(data)}".
             see - ${addLocaleDoc}
             `);
         }
-        if (data.contexts && !Object.keys(data.contexts).length) {
+        if ('contexts' in data && !Object.keys(data.contexts).length) {
             throw new Error(`
             Locale data.contexts should have at least 1 key"${JSON.stringify(data)}".
             see - ${addLocaleDoc}
@@ -62,7 +68,12 @@ export function validateLocaleData(data) {
     }
 }
 
-export function validateLocales(locales, availLocales) {
+export function validateLocales(
+    locales: string[],
+    availLocales: {
+        [locale: string]: TTagTranslations | TTagCompactTranslations;
+    },
+) {
     if (process.env.NODE_ENV !== 'production') {
         if (!Array.isArray(locales)) {
             throw new Error('useLocales accepts only array as the first argument');
@@ -71,7 +82,8 @@ export function validateLocales(locales, availLocales) {
     }
 }
 
-export function validateNgettextMsgid(str) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function validateNgettextMsgid(str: any) {
     if (process.env.NODE_ENV !== 'production') {
         const ngettextDoc = 'https://ttag.js.org/docs/ngettext.html';
         if (!(str.hasOwnProperty('_strs') && str.hasOwnProperty('_exprs'))) {
@@ -84,7 +96,8 @@ export function validateNgettextMsgid(str) {
     }
 }
 
-export function validateNgettextNumber(n) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function validateNgettextNumber(n: any) {
     if (process.env.NODE_ENV !== 'production') {
         const ngettextDoc = 'https://ttag.js.org/docs/ngettext.html';
         if (!(typeof n === 'number')) {
@@ -96,7 +109,7 @@ export function validateNgettextNumber(n) {
     }
 }
 
-export function validateNgettextPluralForms(expectedFormsCount, actualFormsCount) {
+export function validateNgettextPluralForms(expectedFormsCount: number, actualFormsCount: number) {
     if (process.env.NODE_ENV !== 'production') {
         if (actualFormsCount !== expectedFormsCount) {
             throw new Error(
@@ -107,7 +120,7 @@ export function validateNgettextPluralForms(expectedFormsCount, actualFormsCount
     }
 }
 
-export function validateLang(lang) {
+export function validateLang(lang: string) {
     if (process.env.NODE_ENV !== 'production') {
         const langs = getAvailLangs().join(',');
         if (!hasLang(lang)) {
