@@ -35,10 +35,9 @@
     "url": "https://github.com/ttag-org/ttag.git/issues"
   },
   "homepage": "https://github.com/ttag-org/ttag.git#readme",
-  "types": "types",
+  "types": "dist",
   "files": [
-    "dist",
-    "types/*"
+    "dist"
   ],
   "devDependencies": {
     "@babel/cli": "^7.0.0",
