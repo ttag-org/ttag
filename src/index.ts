@@ -104,29 +104,29 @@ export class TTag {
         return this.findTransObj(this.conf.getCurrentLocale(), str, ctx);
     };
 
-    public setDefaultLang(lang: string) {
+    public setDefaultLang = (lang: string) => {
         if (process.env.NODE_ENV !== 'production') validateLang(lang);
         this.conf.setDefaultLang(lang);
-    }
+    };
 
-    public useLocales(locales: string[]) {
+    public useLocales = (locales: string[]) => {
         this.conf.setCurrentLocales(locales);
-    }
+    };
 
-    public setDedent(value: boolean) {
+    public setDedent = (value: boolean) => {
         this.conf.setDedent(Boolean(value));
-    }
+    };
 
-    public useLocale(locale: string) {
+    public useLocale = (locale: string) => {
         this.conf.setCurrentLocale(locale);
-    }
+    };
 
-    public addLocale(locale: string, data: TTagTranslations | TTagCompactTranslations) {
+    public addLocale = (locale: string, data: TTagTranslations | TTagCompactTranslations) => {
         this.conf.addLocale(locale, data);
-    }
+    };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public t(strings: TemplateStringsArray, ...exprs: any[]): string {
+    public t = (strings: TemplateStringsArray, ...exprs: any[]): string => {
         let result: string = strings as unknown as string;
         if (strings && 'reduce' in strings) {
             const id = this.maybeDedent(getMsgid(strings, exprs));
@@ -135,10 +135,10 @@ export class TTag {
             result = trans ? msgid2Orig(trans[0], exprs) : buildStr(strings, exprs);
         }
         return this.maybeDedent(result);
-    }
+    };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public jt(strings: TemplateStringsArray, ...exprs: any[]): any[] {
+    public jt = (strings: TemplateStringsArray, ...exprs: any[]): any[] => {
         if (strings && 'reduce' in strings) {
             const id = this.maybeDedent(getMsgid(strings, exprs));
             const context = this.ctx.getContext();
@@ -156,9 +156,9 @@ export class TTag {
             });
         }
         return strings as unknown as (string | unknown)[];
-    }
+    };
 
-    public ngettext(...args: [StringWithRawData, ...string[], number]): string {
+    public ngettext = (...args: [StringWithRawData, ...string[], number]): string => {
         if (process.env.NODE_ENV !== 'production') validateNgettextMsgid(args[0]);
 
         const id = this.maybeDedent(getMsgid(args[0]._strs, args[0]._exprs));
@@ -178,47 +178,50 @@ export class TTag {
         }
         const pluralFn = this.conf.getDefaultPluralFn();
         return this.maybeDedent(pluralFn(n, forms));
-    }
+    };
 
-    public gettext(id: string) {
+    public gettext = (id: string) => {
         const context = this.ctx.getContext();
         const trans = this.findTranslation(id, context);
         return trans ? trans[0] : id;
-    }
+    };
 
     public _ = this.gettext;
 
-    private copyWithNewContext(ctx: string) {
+    private copyWithNewContext = (ctx: string) => {
         return new TTag({ config: this.conf, context: new Context(ctx) });
-    }
+    };
 
-    public c(context: string): {
-        t: (strings: TemplateStringsArray, ...exprs: (string | number | null | undefined)[]) => string;
+    public c = (
+        context: string,
+    ): {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        jt: (strings: TemplateStringsArray, ...exprs: unknown[]) => any[];
+        t: (strings: TemplateStringsArray, ...exprs: any[]) => string;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        jt: (strings: TemplateStringsArray, ...exprs: any[]) => any[];
         gettext: (id: string) => string;
         ngettext: (...args: [StringWithRawData, ...string[], number]) => string;
-    } {
+    } => {
         const copyTTag = this.copyWithNewContext(context);
         return {
-            t: this.t.bind(copyTTag),
-            jt: this.jt.bind(copyTTag),
-            gettext: this.gettext.bind(copyTTag),
-            ngettext: this.ngettext.bind(copyTTag),
+            t: copyTTag.t,
+            jt: copyTTag.jt,
+            gettext: copyTTag.gettext,
+            ngettext: copyTTag.ngettext,
         };
-    }
+    };
 }
 
 const globalTTag = new TTag();
 
-export const c: TTag['c'] = globalTTag.c.bind(globalTTag);
-export const _: TTag['_'] = globalTTag._.bind(globalTTag);
-export const addLocale: TTag['addLocale'] = globalTTag.addLocale.bind(globalTTag);
-export const gettext: TTag['gettext'] = globalTTag.gettext.bind(globalTTag);
-export const jt: TTag['jt'] = globalTTag.jt.bind(globalTTag);
-export const ngettext: TTag['ngettext'] = globalTTag.ngettext.bind(globalTTag);
-export const setDedent: TTag['setDedent'] = globalTTag.setDedent.bind(globalTTag);
-export const setDefaultLang: TTag['setDefaultLang'] = globalTTag.setDefaultLang.bind(globalTTag);
-export const t: TTag['t'] = globalTTag.t.bind(globalTTag);
-export const useLocale: TTag['useLocale'] = globalTTag.useLocale.bind(globalTTag);
-export const useLocales: TTag['useLocales'] = globalTTag.useLocales.bind(globalTTag);
+export const c = globalTTag.c;
+export const _ = globalTTag._;
+export const addLocale = globalTTag.addLocale;
+export const gettext = globalTTag.gettext;
+export const jt = globalTTag.jt;
+export const ngettext = globalTTag.ngettext;
+export const setDedent = globalTTag.setDedent;
+export const setDefaultLang = globalTTag.setDefaultLang;
+export const t = globalTTag.t;
+export const useLocale = globalTTag.useLocale;
+export const useLocales = globalTTag.useLocales;
