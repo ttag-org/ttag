@@ -2,7 +2,7 @@ import { getMsgid, msgid2Orig, buildStr, getPluralFnForTrans, buildArr, dedentSt
 import { validateNgettextMsgid, validateNgettextNumber, validateNgettextPluralForms, validateLang } from './validation';
 import Config, { TTagTranslations, TTagCompactTranslations, TTagTranslation } from './config';
 
-class Context {
+export class Context {
     context: string;
 
     constructor(context: string) {
@@ -56,7 +56,9 @@ export class TTag {
     private conf: Config;
     private ctx: Context;
 
-    constructor({ config, context }: { config: Config; context?: Context }) {
+    constructor(
+        { config, context }: { config: Config; context?: Context } = { config: new Config(), context: new Context('') },
+    ) {
         this.conf = config;
         this.ctx = context || new Context('');
     }
@@ -207,7 +209,7 @@ export class TTag {
     }
 }
 
-const globalTTag = new TTag({ config: new Config() });
+const globalTTag = new TTag();
 
 export const c: TTag['c'] = globalTTag.c.bind(globalTTag);
 export const _: TTag['_'] = globalTTag._.bind(globalTTag);
