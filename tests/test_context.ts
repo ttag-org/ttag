@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { t, jt, c, useLocale, ngettext, msgid, gettext } from '../src/index';
+import { t, jt, c, useLocale, ngettext, msgid, gettext, addLocale } from '../src/index';
 import { loadLocale } from './loader';
 
 describe('contexts', () => {
@@ -91,5 +91,43 @@ describe('contexts', () => {
     it('should switch to default context if provided context is not found', () => {
         const result1 = c('ctx3').gettext('test');
         expect(result1).to.eql('test default');
+    });
+
+    it('should not throw error if translation have same key for compact poData', () => {
+        process.env.NODE_ENV = 'production';
+        const poData = {
+            charset: 'utf-8',
+            headers: {
+                'plural-forms': 'nplurals=2; plural=(n != 1);',
+                language: 'de',
+            },
+            contexts: {
+                Title: {
+                    'Delete ${ name }': ['${ name } löschen', '${ count } Kontakte löschen'],
+                    'Delete ${ Name }': ['${ Name } löschen'],
+                },
+            },
+        };
+
+        const fn = () => addLocale('de', poData);
+
+        expect(fn).not.to.throw();
+
+        useLocale('de');
+
+        const error1 = () => {
+            const name = 'John Doe';
+            const count = 2;
+            c('Title').ngettext(msgid`Delete ${name}`, `Delete ${count} contacts`, count);
+        };
+
+        const error2 = () => {
+            const Name = 'John Doe';
+            c('Title').t`Delete ${Name}`;
+        };
+        expect(error1).not.to.throw();
+        expect(error2).not.to.throw();
+
+        process.env.NODE_ENV = 'dev';
     });
 });

@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "test": "env TS_NODE_PROJECT=\"tsconfig.test.json\" mocha --require ts-node/register ./tests/**/*.ts",
+    "test:file": "env TS_NODE_PROJECT=\"tsconfig.test.json\" mocha --require ts-node/register",
     "codecov-test": "BABEL_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha -- --require @babel/register tests",
     "lint": "eslint ./src ./tests",
     "lib:build": "babel src --out-dir dist && webpack --mode=development && NODE_ENV=production webpack --mode=production && tsc src/index.ts -d --declarationDir dist --emitDeclarationOnly",

@@ -39,7 +39,7 @@ export type StringWithRawData = string & {
     _strs: TemplateStringsArray;
     _exprs: unknown[];
 };
-export function msgid(strings: TemplateStringsArray, ...exprs: number[]): StringWithRawData {
+export function msgid(strings: TemplateStringsArray, ...exprs: (string | number)[]): StringWithRawData {
     if (strings && 'reduce' in strings) {
         const result: StringWithRawData = new String(buildStr(strings, exprs)) as StringWithRawData;
         result._strs = strings;
@@ -174,7 +174,8 @@ export class TTag {
         const trans = this.findTranslation(id, this.ctx.getContext());
         if (trans) {
             const pluralFn = getPluralFnForTrans(this.conf);
-            return msgid2Orig(pluralFn(n, trans), args[0]._exprs);
+            const pluralTrans: string = pluralFn(n, trans) || '';
+            return msgid2Orig(pluralTrans, args[0]._exprs);
         }
         const pluralFn = this.conf.getDefaultPluralFn();
         return pluralFn(n, forms);

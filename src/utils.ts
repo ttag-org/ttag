@@ -152,14 +152,27 @@ export function transformTranslateObj(translateObj: TTagTranslations) {
 
 function transformCompactTranslate(msgid: string, translations: string[]): [string, string[]] {
     const variableNumberMap = getVariablesMap(msgid);
+
     if (!variableNumberMap) {
         return [msgid, translations];
     }
     const newMsgid = replaceVariables(msgid, variableNumberMap);
+
     const newTranslations = translations.map((trans) => {
         return replaceVariables(trans, variableNumberMap);
     });
     return [newMsgid, newTranslations];
+}
+
+function findDuplicatingMsgid(msgids: string[], transformedMsgid: string) {
+    return msgids.find((msgid) => {
+        const variableNumberMap = getVariablesMap(msgid);
+
+        if (!variableNumberMap) {
+            return false;
+        }
+        return replaceVariables(msgid, variableNumberMap) === transformedMsgid;
+    });
 }
 
 export function transformCompactObj(compactObj: TTagCompactTranslations) {
@@ -171,10 +184,18 @@ export function transformCompactObj(compactObj: TTagCompactTranslations) {
             [msgId: string]: string[];
         } = {};
         const msgids = getObjectKeys(compactObj.contexts[ctx]);
+
         for (let j = 0; j < msgids.length; j++) {
             const msgid = msgids[j];
             const translations = compactObj.contexts[ctx][msgid];
             const [newMsgid, newTranslations] = transformCompactTranslate(msgid, translations);
+            if (process.env.NODE_ENV !== 'production' && newContext[newMsgid]) {
+                const duplicatedMsgid = findDuplicatingMsgid(msgids, newMsgid);
+                throw new Error(
+                    `Duplicate msgid ("${msgid}" and "${duplicatedMsgid}" will be interpreted as the same key "${newMsgid}") this potentially can lead to translation loss.` +
+                        " Consider using context for one of those msgid's. See the context doc here - https://ttag.js.org/docs/context.html",
+                );
+            }
             newContext[newMsgid] = newTranslations;
         }
         newContexts[ctx] = newContext;
