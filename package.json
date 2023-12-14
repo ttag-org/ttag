@@ -19,7 +19,7 @@
     "doc:build": "cd website && npm run build",
     "doc:install": "cd website && npm i",
     "doc:publish": "npm run doc:install && npm run doc:build && cp CNAME website/build/ttag && cd website/build/ttag && git init && git commit --allow-empty -m 'update book' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update book' && git push git@github.com:ttag-org/ttag.git gh-pages --force",
-    "preversion": "npm run lint && npm run test",
+    "preversion": "npm run lint && npm run test && npm run lib:build",
     "prepublish": "npm run lib:build",
     "prettier-check": "prettier . --check",
     "prettier-fix": "prettier . --write",
