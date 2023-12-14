@@ -134,7 +134,7 @@ export class TTag {
             const trans = this.findTranslation(id, context);
             result = trans ? msgid2Orig(trans[0], exprs) : buildStr(strings, exprs);
         }
-        return this.maybeDedent(result);
+        return result;
     };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -174,10 +174,10 @@ export class TTag {
         const trans = this.findTranslation(id, this.ctx.getContext());
         if (trans) {
             const pluralFn = getPluralFnForTrans(this.conf);
-            return this.maybeDedent(msgid2Orig(pluralFn(n, trans), args[0]._exprs));
+            return msgid2Orig(pluralFn(n, trans), args[0]._exprs);
         }
         const pluralFn = this.conf.getDefaultPluralFn();
-        return this.maybeDedent(pluralFn(n, forms));
+        return pluralFn(n, forms);
     };
 
     public gettext = (id: string) => {
