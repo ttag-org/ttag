@@ -38,6 +38,9 @@
       "multiline-strings": {
         "title": "Multiline strings"
       },
+      "next-js": {
+        "title": "Next"
+      },
       "ngettext": {
         "title": "ngettext (plurals)"
       },
