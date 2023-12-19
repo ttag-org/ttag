@@ -117,7 +117,7 @@ export class TTag {
         this.conf.setDedent(Boolean(value));
     };
 
-    public useLocale = (locale: string) => {
+    public useLocale = (locale: string | (() => string)) => {
         this.conf.setCurrentLocale(locale);
     };
 
