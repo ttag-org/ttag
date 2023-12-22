@@ -6,7 +6,8 @@
       "webpack",
       "typescript",
       "create-react-app",
-      "gatsby"
+      "gatsby",
+      "next-js"
     ],
     "Tags and Functions": [
       "tag-gettext",
