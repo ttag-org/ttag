@@ -99,4 +99,27 @@ describe('config addLocale', () => {
         const fn = () => config.setCurrentLocale('uk');
         expect(fn).to.not.throw();
     });
+
+    it('should throw error if translation have same key for compact poData', () => {
+        const poData = {
+            charset: 'utf-8',
+            headers: {
+                'plural-forms': 'nplurals=2; plural=(n != 1);',
+                language: 'de',
+            },
+            contexts: {
+                Title: {
+                    'Delete ${ name }': ['${ name } löschen', '${ count } Kontakte löschen'],
+                    'Delete ${ Name }': ['${ Name } löschen'],
+                },
+            },
+        };
+
+        const fn = () => config.addLocale('de', poData);
+
+        expect(fn).to.throw(
+            'Duplicate msgid ("Delete ${ Name }" and "Delete ${ name }" will be interpreted as the same key "Delete ${0}") this potentially can lead to translation loss.' +
+                " Consider using context for one of those msgid's. See the context doc here - https://ttag.js.org/docs/context.html",
+        );
+    });
 });
