@@ -33,8 +33,8 @@ export type TTagCompactTranslations = {
 
 type ConfigType = {
     locales: { [locale: string]: TTagTranslations | TTagCompactTranslations };
-    currentLocales: string[];
-    currentLocale: string;
+    currentLocales: (string | (() => string))[];
+    currentLocale: string | (() => string);
     dedent: boolean;
     defaultLang: string;
 };
@@ -62,7 +62,7 @@ export default class Config {
         this.config.locales[locale] = transformedData;
     }
 
-    setCurrentLocale(locale: string) {
+    setCurrentLocale(locale: string | (() => string)) {
         this.config.currentLocale = locale;
     }
 
@@ -80,11 +80,11 @@ export default class Config {
     }
 
     getCurrentLocales() {
-        return this.config.currentLocales;
+        return this.config.currentLocales.map((locale) => (typeof locale === 'string' ? locale : locale()));
     }
 
     getCurrentLocale() {
-        return this.config.currentLocale;
+        return typeof this.config.currentLocale === 'string' ? this.config.currentLocale : this.config.currentLocale();
     }
 
     isDedent() {
@@ -104,6 +104,7 @@ export default class Config {
     }
 
     getCurrentLocaleHeaders() {
-        return this.config.locales[this.config.currentLocale].headers;
+        const locale = this.getCurrentLocale();
+        return this.config.locales[locale].headers;
     }
 }

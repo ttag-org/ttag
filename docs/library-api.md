@@ -32,19 +32,23 @@ addLocale('en', poData);
 
 ## useLocale
 
-`useLocale(locale: string)`
+`useLocale(locale: string | () => string)`
 
 Activates a locale. After setting the locale to be used, all strings marked for translations will be
 represented by the corresponding translation in the specified locale.
 
 Arguments:
 
--   `locale: string` Locale name (i.e: `'uk'`, `'en'`)
+-   `locale: string | () => string` Locale name (i.e: `'uk'`, `'en'`) or function that return this locale name
+
+The variant with function argument could be useful to resolve problem with global TTag instance when you use SSR and streaming ([Demo](https://github.com/stoyanovk/asyncstorage_ttag_demo/blob/master/src/index.js))
 
 Example:
 
 ```js
 useLocale('uk');
+// or
+useLocale(() => 'uk');
 ```
 
 ## useLocales
