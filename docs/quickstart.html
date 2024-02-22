@@ -1,0 +1,228 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Quick start · ttag</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="In a few steps you will be able to setup the full translation cycle with `ttag` and `ttag-cli`."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Quick start · ttag"/><meta property="og:type" content="website"/><meta property="og:url" content="https://ttag.js.org/index.html"/><meta property="og:description" content="In a few steps you will be able to setup the full translation cycle with `ttag` and `ttag-cli`."/><meta property="og:image" content="https://ttag.js.org/img/docusaurus.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://ttag.js.org/img/docusaurus.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="alternate" type="application/atom+xml" href="https://ttag.js.org/blog/atom.xml" title="ttag Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://ttag.js.org/blog/feed.xml" title="ttag Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-125563423-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/short-icon.svg" alt="ttag"/><h2 class="headerTitleWithLogo">ttag</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive siteNavItemActive"><a href="/docs/quickstart.html" target="_self">Docs</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="https://github.com/ttag-org/ttag/" target="_self">Github</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Getting Started</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/installation.html">Installation</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/quickstart.html">Quick start</a></li><li class="navListItem"><a class="navItem" href="/docs/webpack.html">Webpack integration</a></li><li class="navListItem"><a class="navItem" href="/docs/typescript.html">Typescript</a></li><li class="navListItem"><a class="navItem" href="/docs/create-react-app.html">Create React App</a></li><li class="navListItem"><a class="navItem" href="/docs/gatsby.html">Gatsby</a></li><li class="navListItem"><a class="navItem" href="/docs/next-js.html">Next</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Tags and Functions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/tag-gettext.html">t (gettext tag)</a></li><li class="navListItem"><a class="navItem" href="/docs/jsx-gettext.html">jt (jsx gettext)</a></li><li class="navListItem"><a class="navItem" href="/docs/context.html">c (context)</a></li><li class="navListItem"><a class="navItem" href="/docs/ngettext.html">ngettext (plurals)</a></li><li class="navListItem"><a class="navItem" href="/docs/gettext.html">gettext</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Features</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/translations-validation.html">Translations validation</a></li><li class="navListItem"><a class="navItem" href="/docs/aliasing.html">Aliasing</a></li><li class="navListItem"><a class="navItem" href="/docs/multiline-strings.html">Multiline strings</a></li><li class="navListItem"><a class="navItem" href="/docs/translator-comments.html">Comments for translators</a></li><li class="navListItem"><a class="navItem" href="/docs/ignore.html">Ignoring code blocks</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/library-api.html">ttag API</a></li><li class="navListItem"><a class="navItem" href="/docs/plugin-api.html">babel-plugin-ttag API</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">CHANGELOG</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/changelog.html">Changelog</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Quick start</h1></header><article><div><span><p>In a few steps you will be able to setup the full translation cycle with <code>ttag</code> and <code>ttag-cli</code>.</p>
+<blockquote>
+<p>All sources for this tutorial can be found under the <a href="https://github.com/ttag-org/ttag/tree/master/examples/quickstart"><code>examples</code></a>
+directory.</p>
+</blockquote>
+<!-- toc -->
+<h2><a class="anchor" aria-hidden="true" id="1-simple-counter-program"></a><a href="#1-simple-counter-program" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. Simple counter program</h2>
+<p>Let's setup some simple counter program - <code>counter.js</code>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// counter.js</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">startCount</span>(<span class="hljs-params">n</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`starting count up to <span class="hljs-subst">${n}</span>`</span>);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt;= n; i++) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${i}</span> ticks passed`</span>);
+    }
+}
+
+startCount(<span class="hljs-number">3</span>);
+</code></pre>
+<pre><code class="hljs css language-bash">node counter.js
+
+starting count up to 3
+0 ticks passed
+1 ticks passed
+2 ticks passed
+3 ticks passed
+</code></pre>
+<p>The program works but, as you can see, it uses the wrong plural form for <code>1 ticks passed</code> instead of <code>1 tick passed</code>.</p>
+<p>Let's fix it.</p>
+<h2><a class="anchor" aria-hidden="true" id="2-wrap-strings-with-ttag-tags-and-functions"></a><a href="#2-wrap-strings-with-ttag-tags-and-functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Wrap strings with ttag tags and functions</h2>
+<p>Install the ttag library:</p>
+<pre><code class="hljs css language-bash">npm install --save ttag
+</code></pre>
+<p>To fix the issue above, the only thing we need is just to use <code>ngettext</code> from <code>ttag</code> library:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> { t, ngettext, msgid } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ttag'</span>);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">startCount</span>(<span class="hljs-params">n</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(t<span class="hljs-string">`starting count up to <span class="hljs-subst">${n}</span>`</span>); <span class="hljs-comment">// using 't' tag for 1 to 1 translations</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt;= n; i++) {
+        <span class="hljs-comment">// use ngettext function for handling plural forms</span>
+        <span class="hljs-built_in">console</span>.log(ngettext(msgid<span class="hljs-string">`<span class="hljs-subst">${i}</span> tick passed`</span>, <span class="hljs-string">`<span class="hljs-subst">${i}</span> ticks passed`</span>, i));
+    }
+}
+</code></pre>
+<p>For more information, please check:</p>
+<ul>
+<li><code>t</code> tag <a href="tag-gettext.html">reference documentation</a></li>
+<li><code>ngettext</code> function <a href="ngettext.html">reference documentation</a></li>
+</ul>
+<p>Let's see what our program outputs now:</p>
+<pre><code class="hljs css language-bash">node counter.js
+
+starting count up to 3
+0 ticks passed
+1 tick passed
+2 ticks passed
+3 ticks passed
+</code></pre>
+<p>As we see, plural forms are working out of the box without no extra configuration for the English locale.</p>
+<h2><a class="anchor" aria-hidden="true" id="3-setup-localization"></a><a href="#3-setup-localization" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3. Setup localization</h2>
+<p>Gettext standard is based on manipulation with <code>.po</code> files. In general, a <code>.po</code> file is a special file format
+for adding, updating, and editing translations.</p>
+<p>Let's install <a href="https://github.com/ttag-org/ttag-cli"><code>ttag-cli</code></a> for <code>.po</code> different po/pot files manipulations:</p>
+<pre><code class="hljs css language-bash">npm install --save-dev ttag-cli
+</code></pre>
+<blockquote>
+<p>After installation, the <code>ttag</code> command should be available in npm scripts.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="create-po-file"></a><a href="#create-po-file" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create <code>.po</code> file</h3>
+<p>Let's assume that we want to translate our program to Ukrainian language.</p>
+<pre><code class="hljs css language-bash">ttag init uk uk.po
+</code></pre>
+<p>This will create a new <code>uk.po</code> file with all appropriate headers for the Ukrainian language</p>
+<pre><code class="hljs">msgid <span class="hljs-string">""</span>
+msgstr <span class="hljs-string">""</span>
+<span class="hljs-string">"Content-Type: text/plain; charset=utf-8<span class="hljs-subst">\n</span>"</span>
+<span class="hljs-string">"Plural-Forms: nplurals = 3; plural = (n % 10 === 1 &amp;&amp; n % 100 !== 11 ? 0 : "</span>
+<span class="hljs-string">"n % 10 &gt;= 2 &amp;&amp; n % 10 &lt;= 4 &amp;&amp; (n % 100 &lt; 10 || n % 100 &gt;= 20) ? 1 : 2);<span class="hljs-subst">\n</span>"</span>
+<span class="hljs-string">"Language: uk<span class="hljs-subst">\n</span>"</span>
+<span class="hljs-string">"MIME-Version: 1.0<span class="hljs-subst">\n</span>"</span>
+<span class="hljs-string">"Content-Transfer-Encoding: 8bit<span class="hljs-subst">\n</span>"</span>
+
+</code></pre>
+<blockquote>
+<p>See all available languages at the <a href="https://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html">GNU gettext manual</a></p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="update-po-file"></a><a href="#update-po-file" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Update <code>.po</code> file</h3>
+<p>Use <code>ttag update</code> command for translations extraction/update to <code>.po</code> file from the source files:</p>
+<pre><code class="hljs css language-bash">ttag update uk.po counter.js
+</code></pre>
+<p>Now, you can open <code>uk.po</code> file and add translations in <code>msgstr</code>.</p>
+<blockquote>
+<p>ttag-cli can be used for js, ts, jsx, tsx files out of the box. Read more about typescript support <a href="typescript.html">here</a></p>
+</blockquote>
+<pre><code class="hljs css language-po"><span class="hljs-comment">#: counter.js:12</span>
+<span class="hljs-attribute">msgid</span> <span class="hljs-string">"starting count up to <span class="hljs-variable">${ n }</span>"</span>
+msgstr <span class="hljs-string">""</span>
+
+<span class="hljs-comment">#: counter.js:14</span>
+msgid <span class="hljs-string">"<span class="hljs-variable">${ i }</span> tick passed"</span>
+msgid_plural <span class="hljs-string">"<span class="hljs-variable">${ i }</span> ticks passed"</span>
+msgstr[<span class="hljs-number">0</span>] <span class="hljs-string">""</span>
+msgstr[<span class="hljs-number">1</span>] <span class="hljs-string">""</span>
+msgstr[<span class="hljs-number">2</span>] <span class="hljs-string">""</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="4-load-translations"></a><a href="#4-load-translations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4. Load translations</h2>
+<p>After all translations are added by the translator to the <code>uk.po</code> file, we need to load those translations somehow.
+There are 2 ways in which you can apply translations from <code>.po</code> file. Each of them has their pros and cons. Both of them are quite easy to setup, so you decide which one suits better for you.</p>
+<h3><a class="anchor" aria-hidden="true" id="runtime-load"></a><a href="#runtime-load" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Runtime load</h3>
+<p>With <code>ttag-cli</code> we can simply convert our <code>uk.po</code> file to JSON format with <code>po2json</code> command:</p>
+<pre><code class="hljs css language-bash">ttag po2json uk.po &gt; uk.po.json
+</code></pre>
+<p>The last step is to modify our program to load locale from the <code>.po.json</code> file if the <code>LOCALE</code> environment variable is present:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> { ngettext, msgid, t, addLocale, useLocale } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ttag'</span>);
+
+<span class="hljs-keyword">const</span> locale = process.env.LOCALE; <span class="hljs-comment">// uk</span>
+
+<span class="hljs-keyword">if</span> (locale) {
+    <span class="hljs-keyword">const</span> translationObj = <span class="hljs-built_in">require</span>(<span class="hljs-string">`./<span class="hljs-subst">${locale}</span>.po.json`</span>); <span class="hljs-comment">// will load uk.po.json</span>
+    addLocale(locale, translationObj); <span class="hljs-comment">// adding locale to ttag</span>
+    useLocale(locale); <span class="hljs-comment">// make uk locale active</span>
+}
+
+<span class="hljs-comment">//....</span>
+</code></pre>
+<p>Let's run our script with env LOCALE:</p>
+<pre><code class="hljs css language-bash">LOCALE=uk node counter.js
+
+
+починаємо рахунок до 3
+минуло 0 тіків
+минув 1 тік
+минуло 2 тіка
+минуло 3 тіка
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="precompile-translations"></a><a href="#precompile-translations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Precompile translations</h3>
+<p>Another approach is to produce separate output file for each locale, with all translations already placed in code. In our case, <code>ttag replace</code> command can generate standalone localized <code>counter.uk.js</code> file:</p>
+<pre><code class="hljs css language-bash">ttag replace uk.po counter.uk.js counter.js
+</code></pre>
+<p>So, you can simply run <code>node counter.uk.js</code> and see the the localized output.</p>
+<p>This approach performs much better, because it eliminates all the translations loading boilerplate.</p>
+<blockquote>
+<p>Note: <code>ttag-cli</code> is a wrapper around <a href="https://github.com/ttag-org/babel-plugin-ttag">babel-plugin-ttag</a></p>
+</blockquote>
+<p>Feel free to post any questions and issues <a href="https://github.com/ttag-org/ttag/issues">here</a></p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/installation.html"><span class="arrow-prev">← </span><span>Installation</span></a><a class="docs-next button" href="/docs/webpack.html"><span>Webpack integration</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#1-simple-counter-program">1. Simple counter program</a></li><li><a href="#2-wrap-strings-with-ttag-tags-and-functions">2. Wrap strings with ttag tags and functions</a></li><li><a href="#3-setup-localization">3. Setup localization</a><ul class="toc-headings"><li><a href="#create-po-file">Create <code>.po</code> file</a></li><li><a href="#update-po-file">Update <code>.po</code> file</a></li></ul></li><li><a href="#4-load-translations">4. Load translations</a><ul class="toc-headings"><li><a href="#runtime-load">Runtime load</a></li><li><a href="#precompile-translations">Precompile translations</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/short-icon.svg" alt="ttag" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/quickstart.html">Quick Start</a><a href="/docs/library-api.html">ttag API</a><a href="/docs/plugin-api.html">babel-plugin-ttag API</a></div><div><h5>Community</h5><a href="/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/ttag/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/ttag-org/ttag">GitHub</a><a class="github-button" href="https://github.com/ttag-org/ttag" data-icon="octicon-star" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2024 ttag</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '42e5d47bee16e5851b457e187224f831',
+                indexName: 'ttag',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

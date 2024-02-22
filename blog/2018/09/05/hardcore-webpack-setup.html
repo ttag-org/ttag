@@ -1,0 +1,483 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Localization setup with babel-plugin-ttag and webpack (the hard way) · ttag</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="This post will describe hardcore but flexible setup with webpack and `babel-plugin-ttag` (without `ttag-cli`). We recommend to use simpler approach with `ttag-cli`, but if you want more flexibility in your translation process - this post is for you."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Localization setup with babel-plugin-ttag and webpack (the hard way) · ttag"/><meta property="og:type" content="website"/><meta property="og:url" content="https://ttag.js.org/blog/2018/09/05/hardcore-webpack-setup.html"/><meta property="og:description" content="This post will describe hardcore but flexible setup with webpack and `babel-plugin-ttag` (without `ttag-cli`). We recommend to use simpler approach with `ttag-cli`, but if you want more flexibility in your translation process - this post is for you."/><meta property="og:image" content="https://ttag.js.org/img/docusaurus.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://ttag.js.org/img/docusaurus.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="alternate" type="application/atom+xml" href="https://ttag.js.org/blog/atom.xml" title="ttag Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://ttag.js.org/blog/feed.xml" title="ttag Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-125563423-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/short-icon.svg" alt="ttag"/><h2 class="headerTitleWithLogo">ttag</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/quickstart.html" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="https://github.com/ttag-org/ttag/" target="_self">Github</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2018/11/07/1.4.2-relase.html">1.4.2</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/1.3.1-release.html">1.3.x release</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/06/why-msgid.html">Why there must be a msgid tag in ngettext?</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2018/09/05/hardcore-webpack-setup.html">Localization setup with babel-plugin-ttag and webpack (the hard way)</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2018/09/05/hardcore-webpack-setup.html">Localization setup with babel-plugin-ttag and webpack (the hard way)</a></h1><p class="post-meta">September 5, 2018</p><div class="authorBlock"><p class="post-authorName"><a href="https://twitter.com/MostovenkoA" target="_blank" rel="noreferrer noopener">Alexander Mostovenko</a></p><div class="authorPhoto"><a href="https://twitter.com/MostovenkoA" target="_blank" rel="noreferrer noopener"><img src="https://graph.facebook.com/alexander.mostovenko/picture/?height=200&amp;width=200" alt="Alexander Mostovenko"/></a></div></div></header><div><span><p>This post will describe hardcore but flexible setup with webpack and <code>babel-plugin-ttag</code> (without <code>ttag-cli</code>). We recommend to use simpler approach with <code>ttag-cli</code>, but if you want more flexibility in your translation process - this post is for you.</p>
+<!--truncate-->
+<blockquote>
+<p>This tutorial is based on Webpack 2. It should work in a similar way with webpack 3/4 wihout much
+changes</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="1-initial-setup"></a><a href="#1-initial-setup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. Initial setup</h2>
+<h3><a class="anchor" aria-hidden="true" id="11-why-should-i-care-about-dev-and-prod-setup"></a><a href="#11-why-should-i-care-about-dev-and-prod-setup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.1 Why should I care about dev and prod setup?</h3>
+<p>There are different requirements to development and production setups.</p>
+<p>Requirements for the dev setup:</p>
+<ol>
+<li>Faster builds.</li>
+<li>Simple setup.</li>
+<li>Fast feedback.</li>
+</ol>
+<p>Production setup:</p>
+<ol>
+<li>Smaller assets.</li>
+<li>Less work to load locale (faster locale load).</li>
+</ol>
+<p>According to this requirements, ttag provides you options for making efficient production and development setups.</p>
+<h3><a class="anchor" aria-hidden="true" id="12-application-overview"></a><a href="#12-application-overview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.2 Application overview</h3>
+<p>For demonstration purposes, we will implement simple clock application.
+An <a href="https://jsfiddle.net/AlexMost/9wuafbL5/7/">example is available</a> on JSFiddle.</p>
+<p>All <a href="https://github.com/ttag-org/ttag/tree/master/examples/webpack-setup">sources for this example</a> are available
+under the <code>examples</code> directory of the <code>ttag</code> repository.</p>
+<h3><a class="anchor" aria-hidden="true" id="13-installation"></a><a href="#13-installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.3 Installation</h3>
+<ol>
+<li>First we need to create separate folder run <code>npm init</code> and follow all <a href="/docs/installation.md">installation</a> instructions.</li>
+</ol>
+<pre><code class="hljs css language-bash">mkdir ttag-counter
+<span class="hljs-built_in">cd</span> ttag-couter
+npm init
+npm install --save ttag &amp;&amp; npm install --save-dev babel-plugin-ttag
+</code></pre>
+<ol start="2">
+<li>Also we need to install webpack and babel loader for webpack.
+<blockquote>
+<p>Tip: follow the installation instructions from <a href="https://github.com/babel/babel-loader">Babel official documetntaion</a></p>
+</blockquote></li>
+</ol>
+<pre><code class="hljs css language-bash">npm install  --save-dev babel-loader babel-core babel-preset-env webpack
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="14-basic-app-setup"></a><a href="#14-basic-app-setup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.4 Basic app setup</h3>
+<p>Now we are ready to make a basic setup for our application. It will consist of an <code>index.html</code> and <code>app.js</code> files.</p>
+<p>Let's add <code>./dist</code> directory and add <code>index.html</code> there:</p>
+<pre><code class="hljs css language-html"><span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Webpack with ttag demo<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"content"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./app.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p>Nothing special, just some html boilerplate.</p>
+<p>Let's add <code>app.js</code> file also, that will contain our simple business logic:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { ngettext, msgid, t } <span class="hljs-keyword">from</span> <span class="hljs-string">'ttag'</span>;
+<span class="hljs-keyword">const</span> content = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'content'</span>);
+
+<span class="hljs-keyword">const</span> view = <span class="hljs-function">(<span class="hljs-params">hours, minutes, seconds</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> hoursTxt = <span class="hljs-string">`<span class="hljs-subst">${hours}</span> hours`</span>;
+    <span class="hljs-keyword">const</span> minutesTxt = <span class="hljs-string">`<span class="hljs-subst">${minutes}</span> minutes`</span>;
+    <span class="hljs-keyword">const</span> secondsTxt = <span class="hljs-string">`<span class="hljs-subst">${seconds}</span> seconds`</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`
+    &lt;h1&gt;<span class="hljs-subst">${t<span class="hljs-string">`webpack with ttag localization demo`</span>}</span>&lt;/h1&gt;
+    &lt;h2&gt;<span class="hljs-subst">${t<span class="hljs-string">`Current time is`</span>}</span>&lt;/h2&gt;
+    &lt;h3&gt;<span class="hljs-subst">${hoursTxt}</span> <span class="hljs-subst">${minutesTxt}</span> <span class="hljs-subst">${secondsTxt}</span>&lt;/h3&gt;
+    `</span>;
+};
+
+setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+    content.innerHTML = view(date.getHours(), date.getMinutes(), date.getSeconds());
+}, <span class="hljs-number">1000</span>);
+</code></pre>
+<p>This is simple program that will display the current time:</p>
+<blockquote>
+<p><img src="/img/blog/webpack-demo-2.jpg" alt="Local image"></p>
+</blockquote>
+<p>Let's make setup for webpack. Here is our <code>webpack.config.js</code>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">module</span>.exports = {
+    <span class="hljs-attr">entry</span>: <span class="hljs-string">'./app.js'</span>,
+    <span class="hljs-attr">output</span>: { <span class="hljs-attr">filename</span>: <span class="hljs-string">'./dist/app.js'</span> },
+    <span class="hljs-attr">module</span>: {
+        <span class="hljs-attr">rules</span>: [
+            {
+                <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.js$/</span>,
+                <span class="hljs-attr">exclude</span>: <span class="hljs-regexp">/(node_modules|bower_components)/</span>,
+                <span class="hljs-attr">use</span>: { <span class="hljs-attr">loader</span>: <span class="hljs-string">'babel-loader'</span> },
+            },
+        ],
+    },
+};
+</code></pre>
+<p>And now we can execute <code>webpack</code> to build our <code>app.js</code> file and open <code>index.html</code> in a browser.</p>
+<h3><a class="anchor" aria-hidden="true" id="15-wrapping-strings-with-ttag-functions-and-tags"></a><a href="#15-wrapping-strings-with-ttag-functions-and-tags" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.5 Wrapping strings with ttag functions and tags</h3>
+<p>Let's wrap our literals in <code>ngettext</code> and <code>t</code>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { ngettext, msgid, t } <span class="hljs-keyword">from</span> <span class="hljs-string">'ttag'</span>;
+
+<span class="hljs-keyword">const</span> view = <span class="hljs-function">(<span class="hljs-params">hours, minutes, seconds</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> hoursTxt = ngettext(msgid<span class="hljs-string">`<span class="hljs-subst">${hours}</span> hour`</span>, <span class="hljs-string">`<span class="hljs-subst">${hours}</span> hours`</span>, hours);
+    <span class="hljs-keyword">const</span> minutesTxt = ngettext(msgid<span class="hljs-string">`<span class="hljs-subst">${minutes}</span> minute`</span>, <span class="hljs-string">`<span class="hljs-subst">${minutes}</span> minutes`</span>, minutes);
+    <span class="hljs-keyword">const</span> secondsTxt = ngettext(msgid<span class="hljs-string">`<span class="hljs-subst">${seconds}</span> second`</span>, <span class="hljs-string">`<span class="hljs-subst">${seconds}</span> seconds`</span>, seconds);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`
+    &lt;h1&gt;<span class="hljs-subst">${t<span class="hljs-string">`webpack with ttag localization demo`</span>}</span>&lt;/h1&gt;
+    &lt;h2&gt;<span class="hljs-subst">${t<span class="hljs-string">`Current time is`</span>}</span>&lt;/h2&gt;
+    &lt;h3&gt;<span class="hljs-subst">${hoursTxt}</span> <span class="hljs-subst">${minutesTxt}</span> <span class="hljs-subst">${secondsTxt}</span>&lt;/h3&gt;
+    `</span>;
+};
+</code></pre>
+<blockquote>
+<p>Tip: Check both <code>ngettext</code> <a href="/docs/ngettext.html">function reference</a> and <code>t</code> <a href="/docs/tag-gettext.html">function reference</a></p>
+</blockquote>
+<p>Let's rebuild webpack and see what do we have in a browser:</p>
+<blockquote>
+<p><img src="/img/blog/webpack-demo-3.png" alt="Local image"></p>
+</blockquote>
+<p>You can notice that plural forms are working without any extra configuration (i.e.: <code>1 second</code> is displayed properly).
+This is because ttag uses English locale by default.</p>
+<h3><a class="anchor" aria-hidden="true" id="2-extracting-translations-to-the-pot-file"></a><a href="#2-extracting-translations-to-the-pot-file" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Extracting translations to the .pot file</h3>
+<p>Let's extract our translations to template file (<code>.pot</code>). ttag will extract translations only if it has
+<a href="/docs/plugin-api.html#configextractoutput"><code>extract.output</code></a>` setting,
+let's modify our webpack.config.js to be able to work in the extract mode.</p>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function">(<span class="hljs-params">{ extract } = {}</span>) =&gt;</span> {
+    <span class="hljs-comment">// webpack 2+ can accept env object</span>
+    <span class="hljs-keyword">const</span> ttag = {};
+
+    <span class="hljs-keyword">if</span> (extract) {
+        <span class="hljs-comment">// translations will be extracted to template.pot</span>
+        ttag.extract = { <span class="hljs-attr">output</span>: <span class="hljs-string">'template.pot'</span> };
+    }
+
+    <span class="hljs-keyword">return</span> {
+        <span class="hljs-attr">entry</span>: <span class="hljs-string">'./app.js'</span>,
+        <span class="hljs-attr">output</span>: {
+            <span class="hljs-attr">filename</span>: <span class="hljs-string">'./dist/app.js'</span>,
+        },
+        <span class="hljs-attr">module</span>: {
+            <span class="hljs-attr">rules</span>: [
+                {
+                    <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.(js|jsx)$/</span>,
+                    <span class="hljs-attr">use</span>: {
+                        <span class="hljs-attr">loader</span>: <span class="hljs-string">'babel-loader'</span>,
+                        <span class="hljs-attr">options</span>: { <span class="hljs-attr">plugins</span>: [[<span class="hljs-string">'ttag'</span>, ttag]] },
+                    },
+                },
+            ],
+        },
+    };
+};
+</code></pre>
+<p>Let's extract all translated strings by executing <code>webpack --env.extract</code>.</p>
+<p>The resulting extracted <code>.pot</code> file:</p>
+<pre><code class="hljs"><span class="hljs-attribute">msgid</span> <span class="hljs-string">""</span>
+msgstr <span class="hljs-string">""</span>
+<span class="hljs-string">"Content-Type: text/plain; charset=utf-8\n"</span>
+<span class="hljs-string">"Plural-Forms: nplurals=2; plural=(n!=1);\n"</span>
+
+<span class="hljs-comment">#: app.js:5</span>
+msgid <span class="hljs-string">"<span class="hljs-variable">${ hours }</span> hour"</span>
+msgid_plural <span class="hljs-string">"<span class="hljs-variable">${ hours }</span> hours"</span>
+msgstr[<span class="hljs-number">0</span>] <span class="hljs-string">""</span>
+msgstr[<span class="hljs-number">1</span>] <span class="hljs-string">""</span>
+
+<span class="hljs-comment">#: app.js:6</span>
+msgid <span class="hljs-string">"<span class="hljs-variable">${ minutes }</span> minute"</span>
+msgid_plural <span class="hljs-string">"<span class="hljs-variable">${ minutes }</span> minutes"</span>
+msgstr[<span class="hljs-number">0</span>] <span class="hljs-string">""</span>
+msgstr[<span class="hljs-number">1</span>] <span class="hljs-string">""</span>
+
+<span class="hljs-comment">#: app.js:7</span>
+msgid <span class="hljs-string">"<span class="hljs-variable">${ seconds }</span> second"</span>
+msgid_plural <span class="hljs-string">"<span class="hljs-variable">${ seconds }</span> seconds"</span>
+msgstr[<span class="hljs-number">0</span>] <span class="hljs-string">""</span>
+msgstr[<span class="hljs-number">1</span>] <span class="hljs-string">""</span>
+
+<span class="hljs-comment">#: app.js:10</span>
+msgid <span class="hljs-string">"webpack with ttag localization demo"</span>
+msgstr <span class="hljs-string">""</span>
+
+<span class="hljs-comment">#: app.js:11</span>
+msgid <span class="hljs-string">"Current time is"</span>
+msgstr <span class="hljs-string">""</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="3-add-a-locale-po-file"></a><a href="#3-add-a-locale-po-file" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3. Add a locale (<code>.po</code> file)</h2>
+<p>Let's add Ukrainian locale (<code>uk</code>). We can use <code>msginit</code> tool for creation of <code>.po</code> file with all appropriate to <code>uk</code>
+locale headers:</p>
+<pre><code class="hljs css language-bash">msginit -i template.pot -o uk.po -l uk
+</code></pre>
+<blockquote>
+<p>Tip: If you want to skip this, just copy and paste it from the <a href="https://github.com/ttag-org/ttag/blob/master/examples/webpack-setup/uk.po">example source</a>.</p>
+</blockquote>
+<p>Either if you generated the <code>uk.po</code> from the <code>pot</code> file or copied from the example source - the next step will be to
+add translations to <code>uk.po</code>. Translations can be added by translators (nontechnical persons) and developers.</p>
+<p>It's up to your process.</p>
+<p>Here are some translations:</p>
+<pre><code class="hljs"><span class="hljs-comment">#: app.js:5</span>
+<span class="hljs-attribute">msgid</span> <span class="hljs-string">"<span class="hljs-variable">${ hours }</span> hour"</span>
+msgid_plural <span class="hljs-string">"<span class="hljs-variable">${ hours }</span> hours"</span>
+msgstr[<span class="hljs-number">0</span>] <span class="hljs-string">"<span class="hljs-variable">${ hours }</span> година"</span>
+msgstr[<span class="hljs-number">1</span>] <span class="hljs-string">"<span class="hljs-variable">${ hours }</span> години"</span>
+msgstr[<span class="hljs-number">2</span>] <span class="hljs-string">"<span class="hljs-variable">${ hours }</span> годин"</span>
+
+<span class="hljs-comment">#: app.js:6</span>
+msgid <span class="hljs-string">"<span class="hljs-variable">${ minutes }</span> minute"</span>
+msgid_plural <span class="hljs-string">"<span class="hljs-variable">${ minutes }</span> minutes"</span>
+msgstr[<span class="hljs-number">0</span>] <span class="hljs-string">"<span class="hljs-variable">${ minutes }</span> хвилина"</span>
+msgstr[<span class="hljs-number">1</span>] <span class="hljs-string">"<span class="hljs-variable">${ minutes }</span> хвилини"</span>
+msgstr[<span class="hljs-number">2</span>] <span class="hljs-string">"<span class="hljs-variable">${ minutes }</span> хвилин"</span>
+
+<span class="hljs-comment">#: app.js:7</span>
+msgid <span class="hljs-string">"<span class="hljs-variable">${ seconds }</span> second"</span>
+msgid_plural <span class="hljs-string">"<span class="hljs-variable">${ seconds }</span> seconds"</span>
+msgstr[<span class="hljs-number">0</span>] <span class="hljs-string">"<span class="hljs-variable">${ seconds }</span> секунда"</span>
+msgstr[<span class="hljs-number">1</span>] <span class="hljs-string">"<span class="hljs-variable">${ seconds }</span> секунди"</span>
+msgstr[<span class="hljs-number">2</span>] <span class="hljs-string">"<span class="hljs-variable">${ seconds }</span> секунд"</span>
+
+<span class="hljs-comment">#: app.js:10</span>
+msgid <span class="hljs-string">"webpack with ttag localization demo"</span>
+msgstr <span class="hljs-string">"Демо локалізації з ttag та webpack"</span>
+
+<span class="hljs-comment">#: app.js:11</span>
+msgid <span class="hljs-string">"Current time is"</span>
+msgstr <span class="hljs-string">"Поточний час"</span>
+</code></pre>
+<blockquote>
+<p>In the future you will add more string literals to your app, and you will need to update <code>.po</code> files.
+we suggest you to use <code>msgmerge</code> for that. Here is an example:</p>
+<pre><code class="hljs css language-bash">msgmerge uk.po template.pot -U
+</code></pre>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="4-localization-with-dev-setup"></a><a href="#4-localization-with-dev-setup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4. Localization with dev setup</h2>
+<p>As mentioned earlier, the requirements for the development setup are:</p>
+<ol>
+<li>Faster builds.</li>
+<li>Simple setup.</li>
+<li>Fast feedback loop (validation).</li>
+</ol>
+<p>To be able to use our translation we need to load the <code>.po</code> file somehow.</p>
+<p>Let's use <a href="https://www.npmjs.com/package/po-gettext-loader">po-gettext-loader</a> with
+<a href="https://www.npmjs.com/package/json-loader">json-loader</a></p>
+<pre><code class="hljs css language-sh">npm install --save-dev po-gettext-loader json-loader
+</code></pre>
+<p>Ok, we are ready to load our translations via loader, let's modify our webpack config:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
+
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function">(<span class="hljs-params">{ extract } = {}</span>) =&gt;</span> { <span class="hljs-comment">// webpack 2+ can accept env object</span>
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">return</span> {
+        <span class="hljs-comment">// ...</span>
+        <span class="hljs-attr">module</span>: {
+            <span class="hljs-attr">rules</span>: [
+                <span class="hljs-comment">// ...</span>
+                {
+                    <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.po$/</span>,
+                    <span class="hljs-attr">use</span>: [
+                        {<span class="hljs-attr">loader</span>: <span class="hljs-string">'json-loader'</span>}
+                        {<span class="hljs-attr">loader</span>: <span class="hljs-string">'po-gettext-loader'</span>}
+                    ]
+                }
+            ]
+        },
+        <span class="hljs-attr">plugins</span>: [
+            <span class="hljs-keyword">new</span> webpack.DefinePlugin(
+                { <span class="hljs-string">'process.env.NODE_ENV'</span>: <span class="hljs-built_in">JSON</span>.stringify(process.env.NODE_ENV || <span class="hljs-string">'debug'</span>) }
+            )
+        ]
+    }
+};
+</code></pre>
+<p>Please note some of the changes here:</p>
+<ol>
+<li>Use <code>json-loader</code> after <code>po-gettext-loader</code>, because we need our translations object to be used on the client-side.</li>
+<li>Added <code>DefinePlugin</code> to be able to split development and production logic inside the app.</li>
+</ol>
+<blockquote>
+<p>Note: Webpack 4 has changed the way you deal with development and production setups, please take that into account
+when working with it.</p>
+</blockquote>
+<p>After this step, we can simply require <code>uk.po</code> file and apply <code>uk</code> locale at the application startup.</p>
+<p>Let's create a separate <code>localeSetup.js</code> file:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { addLocale, useLocale } <span class="hljs-keyword">from</span> <span class="hljs-string">'ttag'</span>;
+<span class="hljs-keyword">if</span> (process.env.NODE_ENV !== <span class="hljs-string">'production'</span>) {
+    <span class="hljs-keyword">const</span> ukLocale = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./uk.po'</span>);
+    addLocale(<span class="hljs-string">'uk'</span>, ukLocale);
+    useLocale(<span class="hljs-string">'uk'</span>);
+}
+</code></pre>
+<blockquote>
+<p>Notice that locale initialization logic is wrapped with the <code>if</code> condition because we need that logic only during the
+development setup. In the production mode all assets will be already translated on a build step.</p>
+</blockquote>
+<p>After that we need to <code>import localeSetup.js</code> at the top of <code>app.js</code> file:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> <span class="hljs-string">'./localeSetup'</span>;
+</code></pre>
+<blockquote>
+<p>Note: <code>import './localeSetup'</code> <strong>must</strong> be the first <code>import</code> in your entry bundle, to setup locale before other
+exports evaluation.</p>
+</blockquote>
+<p>As you know, ES6 exports are evaluated before module execution. So, to apply translations
+to exported values also, we need to make locale setup as soon as possible.</p>
+<p>Let's build our app with <code>npm run build</code> and you will see that all translations are applied.
+And here is what we can see in the browser:</p>
+<blockquote>
+<p><img src="/img/blog/webpack-demo-4.png" alt="Local image"></p>
+</blockquote>
+<p>A few cool things here:</p>
+<ol>
+<li>Translations are working.</li>
+<li>You can run webpack in watch mode and it will watch for changes in <code>.po</code> files and will rebuild app if
+some translation is added or changed.</li>
+<li><a href="/docs/translations-validation.html">Validation</a> is also working, just great!</li>
+</ol>
+<p>I hope you have understood the main idea of how we can load locale in development mode. In the real app, you will don't know
+what locale is selected on a build step, so you may decide to place it somewhere in the initial app state or pass it
+through some global var, or you can use webpack code splitting features and load it
+asynchronously, it's up to your application requirements and design.</p>
+<h2><a class="anchor" aria-hidden="true" id="5-localization-with-production-setup"></a><a href="#5-localization-with-production-setup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5. Localization with production setup</h2>
+<p>The main requirement for production setup are:</p>
+<ol>
+<li>Smaller resulting assets.</li>
+<li>Less work on a client to load locale.</li>
+</ol>
+<p><code>babel-plugin-ttag</code> allows you to precompile all your translations in the resulting bundles in compile time.
+It will strip all ttag tags and functions and place all translations in their places. Little pay for
+that feature is that we should make a separate build for each locale. I think it's not a big trade off for
+making your end user happier.</p>
+<p><code>babel-pugin-ttag</code> will apply translations from some locale if <a href="/docs/plugin-api.html#configresolvetranslations"><code>resolve.translations</code></a>
+setting is present.<code>resolve.translations</code> must be set to the path to the <code>.po</code> file.</p>
+<blockquote>
+<p>Note: we also should strip ttag tags and functions for the default locale. Default locale is
+resolved when <code>resolve.translations</code> is set with the <code>&quot;default&quot;</code> value.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="51-making-separate-build-for-each-locale"></a><a href="#51-making-separate-build-for-each-locale" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5.1 Making separate build for each locale</h3>
+<p>Let's modify our webpack config in a way that it can configure ttag options to make an
+appropriate transformations for some locale.</p>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function">(<span class="hljs-params">{ extract, locale } = {}</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> ttag = {};
+
+    <span class="hljs-keyword">if</span> (locale) {
+        <span class="hljs-comment">// we should pass default for the default locale.</span>
+        ttag.resolve = { <span class="hljs-attr">translations</span>: locale !== <span class="hljs-string">'default'</span> ? <span class="hljs-string">`<span class="hljs-subst">${locale}</span>.po`</span> : <span class="hljs-string">'default'</span> };
+    }
+    <span class="hljs-comment">// ...</span>
+};
+</code></pre>
+<p>Let's also change the resulting output filename to be able to compare it with the previous versions:</p>
+<pre><code class="hljs css language-js">output: {
+    <span class="hljs-attr">filename</span>: locale ? <span class="hljs-string">`./dist/app_<span class="hljs-subst">${locale}</span>.js`</span> : <span class="hljs-string">'./dist/app.js'</span>;
+}
+</code></pre>
+<p>Let's build localized assets with commands <code>webpack --env.locale=uk &amp;&amp; webpack --env.locale=default</code>.</p>
+<blockquote>
+<p>Tip: if you are still using webpack 1, you can use simple env vars instead of
+webpack env. For example: <code>LOCALE=uk webpack &amp;&amp; LOCALE=default webpack</code>.</p>
+</blockquote>
+<p>To see that it works le'ts modify <code>src</code> attribute in <code>index.html</code>:</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./app_default.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>and</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./app_uk.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<blockquote>
+<p>This step is done manually just for the demo purposes, in the real world url will be modified
+by <a href="https://www.npmjs.com/package/html-webpack-plugin">html-webpack-plugin</a> or some backend code rendering the page.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="51-replacing-ttag-library-with-a-mock"></a><a href="#51-replacing-ttag-library-with-a-mock" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5.1 Replacing ttag library with a mock</h3>
+<p>So, if we are placing all translations at a build time there is no need to include the original
+ttag library in the resulting bundle. There is special mock for that case inside ttag lib - <code>ttag/dist/mock</code>.</p>
+<p>Let's add a webpack alias for that:</p>
+<pre><code class="hljs css language-js">resolve: {
+    <span class="hljs-attr">alias</span>: {
+        <span class="hljs-string">'ttag'</span>: locale ? <span class="hljs-string">'ttag/dist/mock'</span> : <span class="hljs-string">'ttag'</span>
+    }
+}
+</code></pre>
+<p>This will minimize the resulting bundle size. Don't forget to use <code>NODE_ENV=production</code> to avoid translations to be
+bundled in the resulting assets.</p>
+<h2><a class="anchor" aria-hidden="true" id="6-results-comparison"></a><a href="#6-results-comparison" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6. Results comparison</h2>
+<p>Let's build all variants and compare the output size</p>
+<pre><code class="hljs css language-bash">webpack &amp;&amp; NODE_ENV=production webpack --env.locale=uk &amp;&amp; NODE_ENV=production webpack --env.locale=default
+</code></pre>
+<p>The resulting files inside <code>./dist</code>:</p>
+<pre><code class="hljs css language-bash">17K app.js
+5,5K app_default.js
+6,1K app_uk.js
+</code></pre>
+<p>Minified versions:</p>
+<pre><code class="hljs css language-bash">6.9K app.js
+1.8K app_default.js
+1.9K app_uk.js
+</code></pre>
+<p>As you can see production setup reduced the resulting bundle size.</p>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#1-initial-setup">1. Initial setup</a><ul class="toc-headings"><li><a href="#11-why-should-i-care-about-dev-and-prod-setup">1.1 Why should I care about dev and prod setup?</a></li><li><a href="#12-application-overview">1.2 Application overview</a></li><li><a href="#13-installation">1.3 Installation</a></li><li><a href="#14-basic-app-setup">1.4 Basic app setup</a></li><li><a href="#15-wrapping-strings-with-ttag-functions-and-tags">1.5 Wrapping strings with ttag functions and tags</a></li><li><a href="#2-extracting-translations-to-the-pot-file">2. Extracting translations to the .pot file</a></li></ul></li><li><a href="#3-add-a-locale-po-file">3. Add a locale (<code>.po</code> file)</a></li><li><a href="#4-localization-with-dev-setup">4. Localization with dev setup</a></li><li><a href="#5-localization-with-production-setup">5. Localization with production setup</a><ul class="toc-headings"><li><a href="#51-making-separate-build-for-each-locale">5.1 Making separate build for each locale</a></li><li><a href="#51-replacing-ttag-library-with-a-mock">5.1 Replacing ttag library with a mock</a></li></ul></li><li><a href="#6-results-comparison">6. Results comparison</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/short-icon.svg" alt="ttag" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/quickstart.html">Quick Start</a><a href="/docs/library-api.html">ttag API</a><a href="/docs/plugin-api.html">babel-plugin-ttag API</a></div><div><h5>Community</h5><a href="/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/ttag/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/ttag-org/ttag">GitHub</a><a class="github-button" href="https://github.com/ttag-org/ttag" data-icon="octicon-star" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2024 ttag</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '42e5d47bee16e5851b457e187224f831',
+                indexName: 'ttag',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

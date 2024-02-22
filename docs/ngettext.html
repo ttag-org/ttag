@@ -1,0 +1,158 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ngettext (plurals) · ttag</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="This is an implementation of `ngettext` function from standard GNU gettext. But also its standard behavior can be"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="ngettext (plurals) · ttag"/><meta property="og:type" content="website"/><meta property="og:url" content="https://ttag.js.org/index.html"/><meta property="og:description" content="This is an implementation of `ngettext` function from standard GNU gettext. But also its standard behavior can be"/><meta property="og:image" content="https://ttag.js.org/img/docusaurus.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://ttag.js.org/img/docusaurus.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="alternate" type="application/atom+xml" href="https://ttag.js.org/blog/atom.xml" title="ttag Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://ttag.js.org/blog/feed.xml" title="ttag Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-125563423-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/short-icon.svg" alt="ttag"/><h2 class="headerTitleWithLogo">ttag</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/quickstart.html" target="_self">Docs</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="https://github.com/ttag-org/ttag/" target="_self">Github</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Tags and Functions</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/installation.html">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/quickstart.html">Quick start</a></li><li class="navListItem"><a class="navItem" href="/docs/webpack.html">Webpack integration</a></li><li class="navListItem"><a class="navItem" href="/docs/typescript.html">Typescript</a></li><li class="navListItem"><a class="navItem" href="/docs/create-react-app.html">Create React App</a></li><li class="navListItem"><a class="navItem" href="/docs/gatsby.html">Gatsby</a></li><li class="navListItem"><a class="navItem" href="/docs/next-js.html">Next</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Tags and Functions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/tag-gettext.html">t (gettext tag)</a></li><li class="navListItem"><a class="navItem" href="/docs/jsx-gettext.html">jt (jsx gettext)</a></li><li class="navListItem"><a class="navItem" href="/docs/context.html">c (context)</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/ngettext.html">ngettext (plurals)</a></li><li class="navListItem"><a class="navItem" href="/docs/gettext.html">gettext</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Features</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/translations-validation.html">Translations validation</a></li><li class="navListItem"><a class="navItem" href="/docs/aliasing.html">Aliasing</a></li><li class="navListItem"><a class="navItem" href="/docs/multiline-strings.html">Multiline strings</a></li><li class="navListItem"><a class="navItem" href="/docs/translator-comments.html">Comments for translators</a></li><li class="navListItem"><a class="navItem" href="/docs/ignore.html">Ignoring code blocks</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/library-api.html">ttag API</a></li><li class="navListItem"><a class="navItem" href="/docs/plugin-api.html">babel-plugin-ttag API</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">CHANGELOG</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/changelog.html">Changelog</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">ngettext (plurals)</h1></header><article><div><span><p>This is an implementation of <code>ngettext</code> function from standard GNU gettext. But also its standard behavior can be
+extended by some extra configuration for handling different number of plural forms than 2. By default it works as
+expected with 2 plural forms. So you can use it even when you don't have actual translations, just for having support
+for plural forms in your code.</p>
+<h2><a class="anchor" aria-hidden="true" id="usage"></a><a href="#usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage:</h2>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { ngettext, msgid } <span class="hljs-keyword">from</span> <span class="hljs-string">'ttag'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params">n</span>) </span>{
+    <span class="hljs-keyword">return</span> ngettext(msgid<span class="hljs-string">`<span class="hljs-subst">${n}</span> time clicked`</span>, <span class="hljs-string">`<span class="hljs-subst">${n}</span> times clicked`</span>, n);
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="try"></a><a href="#try" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Try</h2>
+<p><a href="https://jsfiddle.net/AlexMost/mc2pd1on/2/">https://jsfiddle.net/AlexMost/mc2pd1on/2/</a></p>
+<p>You may noticed that the first argument for <code>ngettext</code> is tagged with <code>msgid</code> tag.
+This may seem a little bit weird, but this is the only way to find translations by <strong>msgid</strong> without code
+transpilation with babel plugin. User friendly checks on extract and resolve steps will not let you forgive about that.
+More details about why we are using <code>msgid</code> tag are <a href="/blog/2018/09/06/why-msgid.html">here</a></p>
+<h2><a class="anchor" aria-hidden="true" id="format"></a><a href="#format" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Format</h2>
+<h3><a class="anchor" aria-hidden="true" id="valid"></a><a href="#valid" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Valid</h3>
+<pre><code class="hljs css language-js">ngettext(msgid<span class="hljs-string">`<span class="hljs-subst">${n}</span> time clicked`</span>, <span class="hljs-string">`<span class="hljs-subst">${n}</span> times clicked`</span>, n);
+ngettext(msgid<span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-number">1</span>}</span> time clicked`</span>, <span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-number">1</span>}</span> times clicked`</span>, <span class="hljs-number">1</span>);
+ngettext(msgid<span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-keyword">this</span>.count}</span> time clicked`</span>, <span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-keyword">this</span>.count}</span> times clicked`</span>, <span class="hljs-keyword">this</span>.count);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="invalid"></a><a href="#invalid" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Invalid</h3>
+<pre><code class="hljs css language-js">ngettext(msgid<span class="hljs-string">`<span class="hljs-subst">${n}</span> time clicked`</span>, <span class="hljs-string">`<span class="hljs-subst">${n}</span> times clicked`</span>); <span class="hljs-comment">// plural number argument is missing</span>
+ngettext(<span class="hljs-string">`<span class="hljs-subst">${n}</span> time clicked`</span>, <span class="hljs-string">`<span class="hljs-subst">${n}</span> times clicked`</span>, n); <span class="hljs-comment">// msgid tag for the first argument is missing</span>
+<span class="hljs-comment">// only identifiers and member expressions are allowed inside translated templates.</span>
+ngettext(msgid<span class="hljs-string">`<span class="hljs-subst">${fn()}</span> time clicked`</span>, <span class="hljs-string">`<span class="hljs-subst">${fn()}</span> times clicked`</span>, fn());
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="extract"></a><a href="#extract" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Extract</h2>
+<p>All translations can be extracted to <code>.po</code> file with <code>ttag-cli</code> tool.</p>
+<pre><code class="hljs"><span class="hljs-comment">#: src/ngettextDemo.js:19</span>
+<span class="hljs-attribute">msgid</span> <span class="hljs-string">"<span class="hljs-variable">${ n }</span> time clicked"</span>
+msgid_plural <span class="hljs-string">"<span class="hljs-variable">${ n }</span> times clicked"</span>
+msgstr[<span class="hljs-number">0</span>] <span class="hljs-string">""</span>
+msgstr[<span class="hljs-number">1</span>] <span class="hljs-string">""</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="resolve"></a><a href="#resolve" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Resolve</h2>
+<p>Assume that translator added translations to our previous extracted entry:</p>
+<pre><code class="hljs"><span class="hljs-comment">#: src/ngettextDemo.js:19</span>
+<span class="hljs-attribute">msgid</span> <span class="hljs-string">"<span class="hljs-variable">${ n }</span> time clicked"</span>
+msgid_plural <span class="hljs-string">"<span class="hljs-variable">${ n }</span> times clicked"</span>
+msgstr[<span class="hljs-number">0</span>] <span class="hljs-string">"<span class="hljs-variable">${ n }</span> time clicked [translated]"</span>
+msgstr[<span class="hljs-number">1</span>] <span class="hljs-string">"<span class="hljs-variable">${ n }</span> times clicked [translated]"</span>
+</code></pre>
+<p>The resulting code (after transpilation will look like):</p>
+<pre><code class="hljs css language-js"><span class="hljs-meta">"use strict"</span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_tag_ngettext</span>(<span class="hljs-params">n, args</span>) </span>{
+    <span class="hljs-keyword">return</span> args[+(n != <span class="hljs-number">1</span>)];
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> _tag_ngettext(n, [ n + <span class="hljs-string">" time clicked [translated]"</span>, n + <span class="hljs-string">" times clicked [translated]"</span> ]));
+}
+</code></pre>
+<p>There is a new extra function in our file - <code>_tag_ngettext</code>, but you don't need to worry much about it, because this
+function is autogenerated by ttag and may change in future without requiring any changes to your code.</p>
+<h2><a class="anchor" aria-hidden="true" id="plural-forms-that-are-different-from-default-english"></a><a href="#plural-forms-that-are-different-from-default-english" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Plural forms that are different from default (English)</h2>
+<p>It is possible that your are using different language than English in strings in the sources. And here is the point
+when usage of <code>ngettext</code> becomes not so clear. For instance, you decided to write strings in Ukrainian,
+because at the time of the first release it was a single language for your project.
+At some point, you decided to localize your strings and want to use <code>ngettext</code> for plurals.
+Ukrainian language has 3 plural forms, but standard ngettext has only 2 arguments for them,
+so which one of those 3 plural forms must be passed to <code>ngettext</code> function?
+ttag suggests a quite a nice solution for this problem.</p>
+<p>By default ttag uses 'en' language (English), but if you want to use <code>ngettext</code> with Ukrainian locale, you should call <a href="library-api.html#setdefaultlang">setDefaultLang</a> for the library and <a href="plugin-api.html#configdefaultlang">defaultLang</a> for the plugin accordingly.</p>
+<pre><code class="hljs css language-js">setDefaultLang(<span class="hljs-string">'uk'</span>);
+
+<span class="hljs-comment">// 3 forms will be extracted</span>
+ngettext(msgid<span class="hljs-string">`<span class="hljs-subst">${n}</span>form1`</span>, <span class="hljs-string">`<span class="hljs-subst">${n}</span> form2`</span>, <span class="hljs-string">`<span class="hljs-subst">${n}</span> form3`</span>, n);
+</code></pre>
+<blockquote>
+<p>Tip: you can check the official <a href="https://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html">GNU gettext manual</a>
+for language ISO codes.</p>
+</blockquote>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/context.html"><span class="arrow-prev">← </span><span>c (context)</span></a><a class="docs-next button" href="/docs/gettext.html"><span>gettext</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#usage">Usage:</a></li><li><a href="#try">Try</a></li><li><a href="#format">Format</a><ul class="toc-headings"><li><a href="#valid">Valid</a></li><li><a href="#invalid">Invalid</a></li></ul></li><li><a href="#extract">Extract</a></li><li><a href="#resolve">Resolve</a></li><li><a href="#plural-forms-that-are-different-from-default-english">Plural forms that are different from default (English)</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/short-icon.svg" alt="ttag" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/quickstart.html">Quick Start</a><a href="/docs/library-api.html">ttag API</a><a href="/docs/plugin-api.html">babel-plugin-ttag API</a></div><div><h5>Community</h5><a href="/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/ttag/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/ttag-org/ttag">GitHub</a><a class="github-button" href="https://github.com/ttag-org/ttag" data-icon="octicon-star" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2024 ttag</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '42e5d47bee16e5851b457e187224f831',
+                indexName: 'ttag',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

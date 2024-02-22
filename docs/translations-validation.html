@@ -1,0 +1,142 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Translations validation · ttag</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="One of the key features of the `ttag` library is the built-in validation of the translations format."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Translations validation · ttag"/><meta property="og:type" content="website"/><meta property="og:url" content="https://ttag.js.org/index.html"/><meta property="og:description" content="One of the key features of the `ttag` library is the built-in validation of the translations format."/><meta property="og:image" content="https://ttag.js.org/img/docusaurus.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://ttag.js.org/img/docusaurus.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="alternate" type="application/atom+xml" href="https://ttag.js.org/blog/atom.xml" title="ttag Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://ttag.js.org/blog/feed.xml" title="ttag Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-125563423-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/short-icon.svg" alt="ttag"/><h2 class="headerTitleWithLogo">ttag</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/quickstart.html" target="_self">Docs</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="https://github.com/ttag-org/ttag/" target="_self">Github</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Features</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/installation.html">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/quickstart.html">Quick start</a></li><li class="navListItem"><a class="navItem" href="/docs/webpack.html">Webpack integration</a></li><li class="navListItem"><a class="navItem" href="/docs/typescript.html">Typescript</a></li><li class="navListItem"><a class="navItem" href="/docs/create-react-app.html">Create React App</a></li><li class="navListItem"><a class="navItem" href="/docs/gatsby.html">Gatsby</a></li><li class="navListItem"><a class="navItem" href="/docs/next-js.html">Next</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Tags and Functions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/tag-gettext.html">t (gettext tag)</a></li><li class="navListItem"><a class="navItem" href="/docs/jsx-gettext.html">jt (jsx gettext)</a></li><li class="navListItem"><a class="navItem" href="/docs/context.html">c (context)</a></li><li class="navListItem"><a class="navItem" href="/docs/ngettext.html">ngettext (plurals)</a></li><li class="navListItem"><a class="navItem" href="/docs/gettext.html">gettext</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Features</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/translations-validation.html">Translations validation</a></li><li class="navListItem"><a class="navItem" href="/docs/aliasing.html">Aliasing</a></li><li class="navListItem"><a class="navItem" href="/docs/multiline-strings.html">Multiline strings</a></li><li class="navListItem"><a class="navItem" href="/docs/translator-comments.html">Comments for translators</a></li><li class="navListItem"><a class="navItem" href="/docs/ignore.html">Ignoring code blocks</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/library-api.html">ttag API</a></li><li class="navListItem"><a class="navItem" href="/docs/plugin-api.html">babel-plugin-ttag API</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">CHANGELOG</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/changelog.html">Changelog</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Translations validation</h1></header><article><div><span><p>One of the key features of the <code>ttag</code> library is the built-in validation of the translations format.
+Validation is happening when <code>babel-plugin-ttag</code> is enabled in the babel configuration.</p>
+<h3><a class="anchor" aria-hidden="true" id="why-do-we-need-translations-validation"></a><a href="#why-do-we-need-translations-validation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why do we need translations validation?</h3>
+<ol>
+<li>Making extracted translatable strings readable for the translator (nontechnical person).</li>
+<li>Having control over which strings are not translated (CI integration for example).</li>
+<li>Validating <code>ttag</code> functions calls with the appropriate format to prevent bugs.</li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="format-validation"></a><a href="#format-validation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Format validation</h2>
+<p>Format validation errors are enabled for all tags and functions by default.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { t } <span class="hljs-keyword">from</span> <span class="hljs-string">'ttag'</span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params">username</span>) </span>{
+    <span class="hljs-keyword">return</span> t<span class="hljs-string">`<span class="hljs-subst">${username}</span>`</span>;
+}
+</code></pre>
+<p>Error:</p>
+<pre><code class="hljs css language-bash">ERROR <span class="hljs-keyword">in</span> ./app.js
+Module build failed: SyntaxError: Can not translate <span class="hljs-string">'${ username }'</span>
+
+  1 | import { t } from <span class="hljs-string">'ttag'</span>;
+  2 | <span class="hljs-keyword">function</span> <span class="hljs-built_in">test</span>(username) {
+&gt; 3 |     <span class="hljs-built_in">return</span> t`<span class="hljs-variable">${username}</span>`;
+    |            ^
+  4 | }
+</code></pre>
+<p>This error occurred because there is no meaningful information for the translator in <code>${ username }</code> string.</p>
+<blockquote>
+<p>More about the <code>t</code> tag format can be found in the <a href="tag-gettext.html#format">function reference</a></p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="disabling-format-validation"></a><a href="#disabling-format-validation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Disabling format validation</h3>
+<p>You can disable validation by changing
+<a href="plugin-api.html#configextractors-functionname-invalidformat"><code>extractors.[FunctionName].invalidFormat</code></a>
+configuration value.</p>
+<p>Example <code>.babelrc</code> file:</p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"plugins"</span>: [[<span class="hljs-string">"ttag"</span>, { <span class="hljs-attr">"extractors"</span>: { <span class="hljs-attr">"tag-gettext"</span>: { <span class="hljs-attr">"invalidFormat"</span>: <span class="hljs-string">"skip"</span> } } }]]
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="missing-translations"></a><a href="#missing-translations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Missing translations</h2>
+<p>You can configure ttag to fail when some translation are not found. This setting is disabled by default.
+This can be integrated somewhere on your CI workflow if you want to ensure that all strings
+have appropriate translations inside <code>.po</code> files prior to a deply, for example.</p>
+<p>Enable build failure by changing <a href="plugin-api.html#configresolveunresolved"><code>resolve.unresolved</code></a>
+configuration value.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"plugins"</span>: [[<span class="hljs-string">"ttag"</span>, { <span class="hljs-attr">"translations"</span>: <span class="hljs-string">"uk.po"</span>, <span class="hljs-attr">"unresolved"</span>: <span class="hljs-string">"fail"</span> }]]
+}
+</code></pre>
+<p>Error:</p>
+<pre><code class="hljs css language-bash">Module build failed: SyntaxError: No <span class="hljs-string">"unresolved"</span> <span class="hljs-keyword">in</span> <span class="hljs-string">"uk.po"</span> file
+
+  1 | import { ngettext, msgid, t } from <span class="hljs-string">'ttag'</span>;
+  2 | <span class="hljs-keyword">function</span> <span class="hljs-built_in">test</span>(username) {
+&gt; 3 |     <span class="hljs-built_in">return</span> t`unresolved`;
+    |            ^
+  4 | }
+
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/gettext.html"><span class="arrow-prev">← </span><span>gettext</span></a><a class="docs-next button" href="/docs/aliasing.html"><span>Aliasing</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#format-validation">Format validation</a><ul class="toc-headings"><li><a href="#disabling-format-validation">Disabling format validation</a></li></ul></li><li><a href="#missing-translations">Missing translations</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/short-icon.svg" alt="ttag" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/quickstart.html">Quick Start</a><a href="/docs/library-api.html">ttag API</a><a href="/docs/plugin-api.html">babel-plugin-ttag API</a></div><div><h5>Community</h5><a href="/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/ttag/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/ttag-org/ttag">GitHub</a><a class="github-button" href="https://github.com/ttag-org/ttag" data-icon="octicon-star" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2024 ttag</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '42e5d47bee16e5851b457e187224f831',
+                indexName: 'ttag',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

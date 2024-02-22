@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>ttag Blog</title>
+        <link>https://ttag.js.org/blog</link>
+        <description>The best place to stay up-to-date with the latest ttag news and events.</description>
+        <lastBuildDate>Wed, 07 Nov 2018 06:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <image>
+            <title>ttag Blog</title>
+            <url>https://ttag.js.org/img/short-icon.svg</url>
+            <link>https://ttag.js.org/blog</link>
+        </image>
+        <copyright>Copyright © 2024 ttag</copyright>
+        <item>
+            <title><![CDATA[1.4.2]]></title>
+            <link>https://ttag.js.org/blog/2018/11/07/1.4.2-relase.html</link>
+            <guid>https://ttag.js.org/blog/2018/11/07/1.4.2-relase.html</guid>
+            <pubDate>Wed, 07 Nov 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>1.4.2 release goes with <strong>Create React App</strong> support and better typescript typings for the <code>ttag</code> lib.</p>
+<p><a href="/docs/create-react-app.html">Read more about how you can use <code>ttag</code> with CRA</a>.</p>
+<p>This release goes also with <a href="https://github.com/kentcdodds/babel-plugin-macros">macro</a> support for <code>babel-plugin-ttag</code>.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[1.3.x release]]></title>
+            <link>https://ttag.js.org/blog/2018/09/17/1.3.1-release.html</link>
+            <guid>https://ttag.js.org/blog/2018/09/17/1.3.1-release.html</guid>
+            <pubDate>Mon, 17 Sep 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>1.3.x release comes with a couple important changes. All changes are not breaking, but here are a couple of things you should now before upgrade.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Why there must be a msgid tag in ngettext?]]></title>
+            <link>https://ttag.js.org/blog/2018/09/06/why-msgid.html</link>
+            <guid>https://ttag.js.org/blog/2018/09/06/why-msgid.html</guid>
+            <pubDate>Thu, 06 Sep 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>From the first glance, it is not clear why we should use <em>msgid</em> tag for the first argument of ngettext
+function.</p>
+<p><strong>The main reason for this is to be able to use ttag without babel transpile.</strong></p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Localization setup with babel-plugin-ttag and webpack (the hard way)]]></title>
+            <link>https://ttag.js.org/blog/2018/09/05/hardcore-webpack-setup.html</link>
+            <guid>https://ttag.js.org/blog/2018/09/05/hardcore-webpack-setup.html</guid>
+            <pubDate>Wed, 05 Sep 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>This post will describe hardcore but flexible setup with webpack and <code>babel-plugin-ttag</code> (without <code>ttag-cli</code>). We recommend to use simpler approach with <code>ttag-cli</code>, but if you want more flexibility in your translation process - this post is for you.</p>
+]]></description>
+        </item>
+    </channel>
+</rss>
