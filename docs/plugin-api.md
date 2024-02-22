@@ -182,3 +182,7 @@ t`Hello ${name}`;
 By default this will be extracted to `Hello ${ name }` in the `.po` file. Only variable names are allowed to be inside
 expressions. With `numberedExpression:true` the former example will be extracted to `Hello ${ 0 }`. This will allow you
 to use any expression inside string literals (function calls, jsx, etc)
+
+## Config.allowFuzzy
+
+Allows fuzzy messages to be resolved and placed into the source files.
