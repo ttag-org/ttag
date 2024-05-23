@@ -1,3 +1,5 @@
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct.svg)](https://stand-with-ukraine.pp.ua)
+
 <div align='center'>
 
 [![ttag](https://github.com/ttag-org/ttag/blob/master/website/static/img/ttag.svg)](https://ttag.js.org/)
