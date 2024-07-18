@@ -68,7 +68,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "dedent": "1.5.1",
+    "dedent": "^1.5.3",
     "plural-forms": "^0.5.3"
   }
 }
