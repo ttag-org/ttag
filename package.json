@@ -3,9 +3,9 @@
   "version": "1.8.8",
   "description": "",
   "main": "index.js",
-  "module": "./dist/ttag.esm.min.js",
+  "module": "./dist/ttag.esm.min.mjs",
   "exports": {
-    "import": "./dist/ttag.esm.min.js",
+    "import": "./dist/ttag.esm.min.mjs",
     "require": "./index.js"
   },
   "keywords": [

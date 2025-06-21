@@ -44,7 +44,7 @@ module.exports = [
         devtool: false,
         output: {
             path: path.resolve(__dirname, 'dist'),
-            filename: isProd ? 'ttag.esm.min.js' : 'ttag.esm.js',
+            filename: isProd ? 'ttag.esm.min.mjs' : 'ttag.esm.mjs',
             library: {
                 type: 'module',
             },
