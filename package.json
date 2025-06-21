@@ -3,6 +3,11 @@
   "version": "1.8.7",
   "description": "",
   "main": "index.js",
+  "module": "./dist/ttag.esm.min.js",
+  "exports": {
+    "import": "./dist/ttag.esm.min.js",
+    "require": "./index.js"
+  },
   "keywords": [
     "gettext",
     "translations",
