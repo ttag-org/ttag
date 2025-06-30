@@ -8,7 +8,8 @@
         "allowSyntheticDefaultImports": true,
         "moduleResolution": "node",
         "esModuleInterop": true,
-        "strict": true,
+        "strict": true
     },
+    "files": ["./src/declarations.d.ts"],
     "exclude": ["node_modules", "website", "examples", "docs", "types", "dist"]
 }
