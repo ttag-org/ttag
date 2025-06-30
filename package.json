@@ -43,7 +43,8 @@
   "homepage": "https://github.com/ttag-org/ttag.git#readme",
   "types": "dist",
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts"
   ],
   "devDependencies": {
     "@babel/cli": "^7.0.0",
