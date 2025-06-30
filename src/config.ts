@@ -1,3 +1,4 @@
+import './declarations';
 import { getPluralFunc, getNPlurals } from 'plural-forms/minimal-safe';
 import { transformTranslateObj, transformCompactObj } from './utils';
 import { validateLocaleData, validateLocales, validateLocaleCode } from './validation';

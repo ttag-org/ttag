@@ -13,8 +13,5 @@
     "ts-node": {
         "files": true
     },
-    "files": [
-        "Global.d.ts"
-    ],
     "exclude": ["node_modules", "website", "examples", "docs", "types", "dist"]
 }

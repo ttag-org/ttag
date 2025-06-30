@@ -1,3 +1,4 @@
+import './declarations';
 import { hasLang, getAvailLangs } from 'plural-forms/minimal-safe';
 import { TTagTranslations, TTagCompactTranslations } from './config';
 
