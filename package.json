@@ -5,6 +5,7 @@
   "main": "index.js",
   "module": "./dist/ttag.esm.min.mjs",
   "exports": {
+    "types": "./dist/index.d.ts",
     "import": "./dist/ttag.esm.min.mjs",
     "require": "./index.js"
   },
