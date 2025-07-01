@@ -1,6 +1,6 @@
 {
   "name": "ttag",
-  "version": "1.8.11",
+  "version": "1.8.12",
   "description": "",
   "main": "index.js",
   "module": "./dist/ttag.esm.min.mjs",
